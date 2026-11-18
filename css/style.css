@@ -579,10 +579,14 @@ html:not(.anim) .gatefold__panel, html:not(.anim) .gatefold__seal { display: non
 .sd__time { position: relative; font-style: italic; color: var(--ivory-100); font-size: clamp(1rem, .8vw + .7rem, 1.25rem); }
 .sd__place { position: relative; font-family: var(--f-caps); letter-spacing: .18em; text-transform: uppercase; font-size: clamp(.62rem, .4vw + .5rem, .78rem); color: var(--ivory-200); opacity: .85; margin: 6px 0 22px; }
 .sd__hint { margin-top: 22px; font-family: var(--f-caps); font-size: .72rem; letter-spacing: .28em; text-transform: uppercase; color: var(--gold-300); animation: glow-pulse 2.2s ease-in-out infinite; }
-.sd__pillar { position: absolute; bottom: 0; z-index: 1; width: clamp(7px, .8vw, 11px); height: 58%; border-radius: 6px 6px 0 0; transform-origin: 50% 100%; background: linear-gradient(90deg, #8a5a16, #f6e3a6 45%, #c8962e 70%, #6e4510); box-shadow: 0 0 18px rgba(255, 200, 110, .25); }
-.sd__pillar::before { content: ""; position: absolute; left: 50%; top: -14px; width: 22px; aspect-ratio: 1; translate: -50% 0; border-radius: 50% 50% 46% 46%; background: radial-gradient(circle at 35% 30%, #fff1c2, #d4af5a 55%, #8a5a16); }
-.sd__pillar--l { left: clamp(14px, 7vw, 120px); }
-.sd__pillar--r { right: clamp(14px, 7vw, 120px); }
+.sd { --flag-w: clamp(150px, 16vw, 230px); }
+.sd__pillar { position: absolute; top: 14%; bottom: calc(-1 * clamp(90px, 13vh, 140px)); z-index: 1; width: calc(var(--flag-w) * .043); border-radius: 6px 6px 0 0; transform-origin: 50% 100%; background: linear-gradient(90deg, #8a5a16, #f6e3a6 45%, #c8962e 70%, #6e4510); box-shadow: 0 0 18px rgba(255, 200, 110, .25); }
+/* Shri Ram Mandir saffron flag (dhwaja) on top of each pole, both waving in toward the date */
+.sd__flag { position: absolute; bottom: calc(100% - 3px); left: calc(50% - var(--flag-w) * .076); width: var(--flag-w); max-width: none; transform-origin: 7.6% 70%; animation: flag-wave 3.4s ease-in-out infinite; filter: drop-shadow(0 8px 12px rgba(40, 0, 18, .35)); }
+.sd__pillar--r .sd__flag { scale: -1 1; animation-delay: -1.7s; }   /* mirrored around its own pole */
+@keyframes flag-wave { 0%, 100% { transform: skewY(0deg) scaleX(1); } 50% { transform: skewY(-2.4deg) scaleX(.965); } }
+.sd__pillar--l { left: calc(50% - 50vw + clamp(14px, 7vw, 120px)); }
+.sd__pillar--r { right: calc(50% - 50vw + clamp(14px, 7vw, 120px)); }
 /* before the arrow flies (only when animated) */
 html.anim .sd__reveal { opacity: 0; }
 html:not(.anim) .sd__plaque, html:not(.anim) .sd__hint, html:not(.anim) .sd__arrow { display: none; }
@@ -994,10 +998,10 @@ html:not(.anim) .event-card { grid-area: auto; width: auto; opacity: 1; visibili
   .menu__list a { padding: 6px 0; }
 }
 @media (max-width: 560px) {
-  .sd__pillar { width: 5px; height: 46%; }
-  .sd__pillar::before { width: 13px; top: -9px; }
-  .sd__pillar--l { left: 5px; }
-  .sd__pillar--r { right: 5px; }
+  .sd { --flag-w: 92px; }
+  .sd__pillar { top: 0; }
+  .sd__pillar--l { left: calc(50% - 50vw + 6px); }
+  .sd__pillar--r { right: calc(50% - 50vw + 6px); }
   .pill { display: none; }
   .plotus--2, .plotus--3 { display: none; }
   .plotus--1 { --l: 9%; --b: -1vh; --w: 27vw; }

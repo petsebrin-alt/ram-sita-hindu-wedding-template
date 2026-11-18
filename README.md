@@ -23,7 +23,7 @@ To publish it, upload the whole folder to any static host (Netlify, Vercel, GitH
 | 01 | **Welcome** (`#welcome`) | Every stage fills the screen edge to edge (wide photos on laptops, upright photos on phones). The night-time Ram Mandir appears with the names "Ram & Sita" in a starry sky. As you scroll, the temple lights come on and you move forward into the lotus pond. Real lotus buds rise from the water and open into full blooms. Then the realistic 3D Ram & Sita rise into place in front of the temple, holding their varmalas, the Ram Mandir still in full view behind them. Four brass vilakku light up at their feet, and the date ribbon unfurls. |
 | 02 | **The Invitation** (`#invitation`) | "Welcome, dear friends & family" with Bhagavad Gita 6.30. On a soft pink, gently moving light background, a rani-pink gatefold with the gold chakra and seal swings open. Shri Hanuman rises onto the top of the ivory card to bless it; the card has lotus-embroidered corners and short lines: Ram (son of Dasharatha & Kausalya), Sita (daughter of Janaka & Sunaina), the date and venue. |
 | 03 | **Vadhu & Vara** (`#couple`) | Bride and groom portraits in gold jharokha frames, with parallax. |
-| 04 | **Save the Date** (`#save-the-date`) | On a crimson background with falling marigold petals, Shri Ram's golden bow draws back. The arrow flies (tap the bow, or it releases by itself), breaks a golden seal with a cracker "pop" and a burst of marigolds, and the date appears in a gold ring between rising gold pillars. Includes an Add to calendar button (.ics). |
+| 04 | **Save the Date** (`#save-the-date`) | On a crimson background with falling marigold petals, Shri Ram's golden bow draws back. The arrow flies (tap the bow, or it releases by itself), breaks a golden seal with a cracker "pop" and a burst of marigolds, and the date appears in a gold ring between two rising gold poles flying Shri Ram Mandir saffron flags. Includes an Add to calendar button (.ics). |
 | 05 | **Countdown** (`#countdown`) | "The Royal Timepiece": the gold lotus chakra as a clock dial (days in the centre, hours, minutes and seconds around it, a ticking gold hand), with countdown tiles below. |
 | 06 | **Ram Bhakt Hanuman** (`#hanuman`) | Hanuman kneels in prayer; a glow builds at his heart, which opens to show Ram & Sita. Verse from the Hanuman Chalisa. |
 | 07 | **Our Story** (`#story`) | A gold thread draws down the page and medallions roll in. Four chapters: Pushpa Vatika, Shiva Dhanush, Swayamvar and Saptapadi. |
@@ -83,6 +83,7 @@ assets/
 │               chakra-lotus-mandala-maroon.webp (your original) · chakra-lotus-mandala-gold(.png/.webp/-2000.png, transparent)
 │               hanuman-ram-bhakt (.png/.webp, your Hanuman picture, transparent) · heart-ram-sita-3d.webp (shown in his heart)
 │               hanuman-blessing (.png/.webp, blessing Hanuman on top of the invitation card) · corner-lotus-embroidery.svg (card corners)
+│               temple-flag-saffron (.png/.webp, Ram Mandir flag from your photo, on the Save the Date poles)
 └── effects/    sparkle-gold · particles-gold · light-rays · firework-gold · firework-pink
 ```
 
