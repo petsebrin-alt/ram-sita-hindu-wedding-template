@@ -330,17 +330,33 @@
      04 · STORY — gold thread draws, medallions roll in
      --------------------------------------------------------------------- */
   function initStory() {
+    // tap a badge to turn it (lotus <-> Ram & Sita)
+    $$('.chapter .badge').forEach(btn => {
+      const inner = $('.badge__inner', btn);
+      let turn = ANIM ? 0 : 180;
+      if (!ANIM) inner.style.transform = 'rotateY(180deg)';
+      btn.addEventListener('click', () => {
+        turn += 180;
+        if (ANIM) gsap.to(inner, { rotateY: turn, duration: 1.1, ease: 'power2.inOut', overwrite: true });
+        else inner.style.transform = 'rotateY(' + turn + 'deg)';
+      });
+      btn._turn = v => { turn = v; };
+    });
     const path = $('.timeline__line path');
     if (!ANIM || !path) return;
     path.setAttribute('pathLength', '1');
     gsap.fromTo(path, { strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDashoffset: 0, ease: 'none', scrollTrigger: { trigger: '.timeline', start: 'top 70%', end: 'bottom 70%', scrub: true } });
     $$('.chapter').forEach((ch, i) => {
-      const fromLeft = small() ? false : i % 2 === 1;
-      gsap.timeline({ scrollTrigger: { trigger: ch, start: 'top 80%', once: true } })
-        .from($('.chapter__medal', ch), { rotate: -220, scale: .3, opacity: 0, duration: 1.2, ease: 'back.out(1.6)' })
-        .from($('.chapter__body', ch), { x: fromLeft ? -70 : 70, opacity: 0, duration: 1.1, ease: 'power3.out' }, '-=.8');
+      const badge = $('.badge', ch), inner = $('.badge__inner', ch), body = $('.chapter__body', ch);
+      const fromLeft = small() ? false : i % 2 === 0;
+      gsap.timeline({ scrollTrigger: { trigger: ch, start: 'top 78%', once: true } })
+        .from(badge, { scale: .6, opacity: 0, rotate: fromLeft ? 14 : -14, duration: 1.1, ease: 'back.out(1.5)' })
+        .from(body, { x: small() ? 0 : (fromLeft ? -50 : 50), y: small() ? 24 : 0, opacity: 0, duration: 1.1, ease: 'power3.out' }, '-=.75')
+        // hold on the lotus for a breath, then turn to Ram & Sita
+        .to(inner, { rotateY: 180, duration: 1.5, ease: 'power2.inOut', onComplete: () => badge._turn && badge._turn(180) }, '+=.35');
     });
   }
+
 
   /* ---------------------------------------------------------------------
      Shared sound (Web Audio, no files): unlocked on the guest's first tap
@@ -582,48 +598,54 @@
      --------------------------------------------------------------------- */
   function initEvents() {
     if (!ANIM) return;
-    const cards = $$('.event-card');
+    const units = $$('.ev-unit');
     const dots = $$('.events__progress li');
-    const L = $('.door--left'), R = $('.door--right'), light = $('.events__light');
-    gsap.set(cards, { autoAlpha: 0, scale: .55, y: 24, zIndex: 1 });
-    gsap.set(light, { opacity: .5 });
+    const track = $('.events__track'), vp = $('.events__viewport');
+    if (!units.length || !track) return;
+    // vertical position of the track that centres window i in the viewport
+    const step = () => units[0].offsetHeight + (parseFloat(getComputedStyle(units[0]).marginBottom) || 0);
+    const yAt = i => () => (vp.clientHeight - units[0].offsetHeight) / 2 - i * step();
+    gsap.set(track, { y: yAt(0)() });
+    units.forEach(u => gsap.set($('.ev-window__light', u), { opacity: .4 }));
     const labels = [];
+    let tl = null;
     const syncDots = self => {
       if (!tl) return;
       const t = self.progress * tl.duration(); let idx = 0;
       labels.forEach((lt, i) => { if (t >= lt - .05) idx = i; });
       dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
     };
-    let tl = null;
     tl = gsap.timeline({
       defaults: { ease: 'power2.inOut' },
       scrollTrigger: {
-        trigger: '#events', start: 'top top', end: () => '+=' + innerHeight * (cards.length * 0.95 + 0.4),
-        scrub: 1, pin: true, anticipatePin: 1,
+        trigger: '#events', start: 'top top', end: () => '+=' + innerHeight * (units.length * 1.15 + .4),
+        scrub: 1, pin: true, anticipatePin: 1, invalidateOnRefresh: true,
         onUpdate: syncDots,
         onRefresh: self => requestAnimationFrame(() => syncDots(self))
       }
     });
-    tl.from('.events__head', { y: -30, opacity: 0, duration: .5 }).to({}, { duration: .25 });
-    cards.forEach((card, i) => {
+    tl.fromTo(track, { y: yAt(0) }, { y: yAt(0), duration: .01 })
+      .fromTo('.events__head', { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: .5 })
+      .to({}, { duration: .2 });
+    units.forEach((u, i) => {
+      const L = $('.door--left', u), R = $('.door--right', u), light = $('.ev-window__light', u), card = $('.event-card', u);
+      if (i > 0) {
+        // the opened window rises away and the next closed window comes into place
+        tl.to(track, { y: yAt(i), duration: 1.2 })
+          .to(units[i - 1], { opacity: 0, duration: .45, ease: 'power1.in' }, '<');
+      }
       const lbl = 'ev' + i;
       tl.addLabel(lbl); labels.push(tl.labels[lbl]);
       tl.to(L, { rotateY: -108, duration: 1 }, lbl)
         .to(R, { rotateY: 108, duration: 1 }, lbl)
         .to(light, { opacity: 1, duration: 1 }, lbl)
-        .set(card, { zIndex: 8 }, lbl + '+=0.5')
-        .to(card, { autoAlpha: 1, scale: 1, y: 0, duration: 1, ease: 'power2.out' }, lbl + '+=0.4')
-        .to({}, { duration: .9 });
-      if (i < cards.length - 1) {
-        tl.to(card, { autoAlpha: 0, scale: 1.05, y: -40, duration: .6, ease: 'power2.in' })
-          .set(card, { zIndex: 1 })
-          .to([L, R], { rotateY: 0, duration: .85 }, '<.25')
-          .to(light, { opacity: .5, duration: .85 }, '<');
-      }
+        .fromTo(card, { scale: .9 }, { scale: 1, duration: 1, ease: 'power2.out' }, lbl + '+=.3')
+        .to({}, { duration: .8 });
     });
-    tl.to({}, { duration: .5 });
+    tl.to({}, { duration: .4 });
     dots[0]?.classList.add('is-active');
   }
+
 
   /* ---------------------------------------------------------------------
      08 · WISHING WALL

@@ -501,28 +501,30 @@ html:not(.anim) .gatefold__panel, html:not(.anim) .gatefold__seal { display: non
 .timeline { position: relative; max-width: 980px; margin: 0 auto; padding: 10px 0; }
 .timeline__line { position: absolute; left: 50%; top: 0; bottom: 0; width: 4px; height: 100%; translate: -50% 0; overflow: visible; }
 .timeline__line path { stroke: var(--gold-500); stroke-width: 2; fill: none; vector-effect: non-scaling-stroke; }
-.chapter { position: relative; display: grid; grid-template-columns: 1fr 96px 1fr; align-items: center; margin-bottom: clamp(40px, 8vh, 80px); }
-.chapter__medal {
-  grid-column: 2; grid-row: 1;
-  width: 84px; height: 84px; margin: 0 auto; border-radius: 50%;
-  display: grid; place-items: center;
-  color: var(--gold-300);
-  background: radial-gradient(circle at 35% 30%, var(--maroon-600), var(--maroon-800) 70%);
-  box-shadow: 0 0 0 4px var(--ivory-100), 0 0 0 6px var(--gold-500), 0 0 0 10px rgba(212, 175, 90, .2), 0 14px 30px -8px rgba(74, 10, 26, .5);
+.chapter { position: relative; display: grid; grid-template-columns: 1fr 64px 1fr; align-items: center; margin-bottom: clamp(46px, 9vh, 96px); }
+/* turning badge: embroidered lotus (front) → Ram & Sita (back) */
+.badge { grid-row: 1; grid-column: 1; justify-self: end; position: relative; width: clamp(170px, 22vw, 250px); aspect-ratio: 1; padding: 0; border: 0; background: none; cursor: pointer; perspective: 1100px; -webkit-tap-highlight-color: transparent; }
+.chapter:nth-child(odd) .badge { grid-column: 3; justify-self: start; }
+.badge__inner { position: absolute; inset: 0; transform-style: preserve-3d; }
+.badge__face {
+  position: absolute; inset: 0; border-radius: 50%; overflow: hidden; display: grid; place-items: center;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  box-shadow: 0 0 0 4px var(--ivory-50), 0 0 0 7px var(--gold-500), 0 0 0 9px var(--ivory-50), 0 0 0 10px rgba(184, 134, 43, .55), 0 22px 40px -14px rgba(74, 10, 26, .5);
 }
-.chapter__medal svg { width: 38px; height: 38px; }
-.chapter__body {
-  grid-row: 1; grid-column: 1; text-align: right;
-  background: rgba(255, 251, 242, .85);
-  padding: 26px 30px; border-radius: var(--radius);
-  border: 1px solid rgba(184, 134, 43, .35);
-  box-shadow: 0 20px 40px -26px rgba(74, 10, 26, .4);
-}
-.chapter:nth-child(odd) .chapter__body { grid-column: 3; text-align: left; }
+.badge__front { background: radial-gradient(circle at 40% 35%, #fffaf0, #f6ead8 60%, #ecd9bf), var(--paper-noise); }
+.badge__front::after { content: ""; position: absolute; inset: 9px; border-radius: 50%; border: 1.5px dashed rgba(184, 134, 43, .65); }
+.badge__front img { width: 74%; filter: drop-shadow(0 6px 8px rgba(120, 30, 60, .25)); }
+.badge__back { transform: rotateY(180deg); background: #3a0a1a; }
+.badge__back img { width: 100%; height: 100%; object-fit: cover; }
+.chapter__body { grid-row: 1; grid-column: 3; text-align: left; max-width: 380px; padding: 0 clamp(6px, 2vw, 22px); }
+.chapter:nth-child(odd) .chapter__body { grid-column: 1; justify-self: end; text-align: right; }
+.chapter__body::before { content: ""; display: block; width: 46px; height: 2px; margin-bottom: 14px; background: linear-gradient(90deg, var(--gold-500), transparent); }
+.chapter:nth-child(odd) .chapter__body::before { margin-left: auto; background: linear-gradient(270deg, var(--gold-500), transparent); }
 .chapter__year { font-family: var(--f-caps); font-size: .7rem; letter-spacing: .26em; text-transform: uppercase; color: var(--gold-700); }
-.chapter h3 { font-size: clamp(1.6rem, 2.4vw, 2.1rem); font-weight: 600; color: var(--maroon-700); margin: 4px 0 8px; }
-.chapter p:not(.chapter__year) { color: var(--ink-soft); }
-.chapter__deva { color: var(--terracotta) !important; font-size: 1.2rem; margin-bottom: 6px; }
+.chapter h3 { font-family: "Playfair Display", Georgia, serif; font-size: clamp(1.5rem, 2.3vw, 2rem); font-weight: 700; color: var(--maroon-700); margin: 6px 0 8px; }
+.chapter p:not(.chapter__year) { color: var(--ink-soft); font-size: clamp(1.02rem, .5vw + .8rem, 1.18rem); font-style: italic; line-height: 1.5; }
+/* a dot on the gold thread beside each badge */
+.chapter::before { content: ""; position: absolute; left: 50%; top: 50%; width: 14px; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff1c2, var(--gold-500) 60%, #8a5a16); box-shadow: 0 0 0 4px var(--ivory-100), 0 0 14px rgba(212, 175, 90, .6); }
 
 /* =========================================================================
    04–06 · CRIMSON SECTIONS — Save the Date (arrow), Countdown (chakra), Hanuman
@@ -704,17 +706,18 @@ html.anim .hn__glow { opacity: 0; }
 .events__head { position: absolute; z-index: 3; top: calc(var(--header-h) + 1vh); left: 0; right: 0; text-align: center; padding: 0 var(--gutter); }
 .events__head .title { font-size: clamp(2rem, 4.4vw, 3.6rem); margin-top: 6px; }
 
-.events__doorway {
-  position: relative; z-index: 2;
-  width: min(520px, 76vw, calc(58svh * 552 / 488));
-  aspect-ratio: 552 / 488;
-  margin-top: 10vh;
-  perspective: 1600px;
+/* palace windows: one per celebration, stacked in a track that rises one window at a time */
+.events { --ev-w: min(400px, 84vw); --ev-h: min(540px, calc(100svh - var(--header-h) - 190px)); }
+.events__viewport { position: absolute; z-index: 2; left: 0; right: 0; top: calc(var(--header-h) + 104px); bottom: 7vh; }
+.events__track { position: absolute; top: 0; left: calc(50% - var(--ev-w) / 2); width: var(--ev-w); }
+.ev-unit { width: var(--ev-w); height: var(--ev-h); margin-bottom: 12vh; }
+.ev-window {
+  position: relative; width: 100%; height: 100%; perspective: 1600px; border-radius: 4px;
   box-shadow: 0 0 0 6px #6b4410, 0 0 0 9px var(--gold-500), 0 0 0 14px #3b1f10, 0 0 0 16px var(--gold-600), 0 40px 90px rgba(0, 0, 0, .65);
-  border-radius: 4px;
 }
-.events__light { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 55%, #fff6d2 0%, #ffd27a 30%, #f08a24 62%, #6a2306 100%); opacity: .85; }
-.events__cards { position: absolute; top: 0; bottom: 0; left: calc(50% - min(215px, 44vw)); width: min(430px, 88vw); display: grid; place-items: center; }
+.ev-window__light { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 55%, #fff6d2 0%, #ffd27a 30%, #f08a24 62%, #6a2306 100%); opacity: .85; }
+.ev-window__toran { position: absolute; z-index: 4; top: -13%; left: -10%; width: 120%; max-width: none; pointer-events: none; filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .5)); }
+.ev-window .event-card { position: absolute; inset: 14px; width: auto; opacity: 1; visibility: visible; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
 .event-card {
   grid-area: 1 / 1;
   width: 100%;
@@ -739,7 +742,6 @@ html.anim .hn__glow { opacity: 0; }
 .door::after { content: ""; position: absolute; inset: 0; transform: rotateY(180deg); backface-visibility: hidden; -webkit-backface-visibility: hidden; background: linear-gradient(90deg, #2a140a, #5c3317 50%, #2a140a); box-shadow: inset 0 0 0 6px #3b1f10, inset 0 0 0 8px rgba(212, 175, 90, .6); }
 .door--left { left: 0; transform-origin: 0 50%; }
 .door--right { right: 0; transform-origin: 100% 50%; }
-.events__toran { position: absolute; z-index: 4; top: -12%; left: -9%; width: 118%; max-width: none; pointer-events: none; filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .5)); }
 .events__progress { position: absolute; z-index: 3; bottom: 3vh; left: 0; right: 0; display: flex; justify-content: center; gap: clamp(8px, 2vw, 22px); list-style: none; padding: 0 var(--gutter); margin: 0; flex-wrap: wrap; }
 .events__progress li { font-family: var(--f-caps); font-size: clamp(.55rem, .4vw + .4rem, .72rem); letter-spacing: .18em; text-transform: uppercase; color: rgba(246, 227, 166, .45); display: flex; align-items: center; gap: 6px; transition: color .4s; }
 .events__progress li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; border: 1px solid currentColor; transition: background .4s, transform .4s; }
@@ -749,10 +751,12 @@ html.anim .hn__glow { opacity: 0; }
 /* static (no-animation) layout for events */
 html:not(.anim) .events__stage { height: auto; padding: calc(var(--header-h) + 130px) var(--gutter) 90px; }
 html:not(.anim) .events__head { position: relative; top: auto; margin-bottom: 40px; }
-html:not(.anim) .events__doorway { width: min(1180px, 100%); aspect-ratio: auto; box-shadow: none; margin: 0; perspective: none; }
-html:not(.anim) .door, html:not(.anim) .events__light, html:not(.anim) .events__toran, html:not(.anim) .events__progress { display: none; }
-html:not(.anim) .events__cards { position: static; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 26px; }
-html:not(.anim) .event-card { grid-area: auto; width: auto; opacity: 1; visibility: visible; }
+html:not(.anim) .events__viewport, html:not(.anim) .events__track { position: static; width: auto; }
+html:not(.anim) .events__track { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 40px 26px; max-width: 1180px; margin: 0 auto; }
+html:not(.anim) .ev-unit { width: auto; height: auto; margin: 0; }
+html:not(.anim) .ev-window { height: auto; box-shadow: none; }
+html:not(.anim) .door, html:not(.anim) .ev-window__light, html:not(.anim) .ev-window__toran, html:not(.anim) .events__progress { display: none; }
+html:not(.anim) .ev-window .event-card { position: relative; inset: auto; }
 
 /* =========================================================================
    08 · WISHING WALL
@@ -990,10 +994,11 @@ html:not(.anim) .event-card { grid-area: auto; width: auto; opacity: 1; visibili
   .venue__grid { grid-template-columns: 1fr; }
   .venue__map-arch { aspect-ratio: 1 / 1; }
   .timeline__line { left: 34px; }
-  .chapter { grid-template-columns: 68px 1fr; gap: 0 14px; }
-  .chapter__medal { grid-column: 1; width: 64px; height: 64px; }
-  .chapter__medal svg { width: 28px; height: 28px; }
-  .chapter__body, .chapter:nth-child(odd) .chapter__body { grid-column: 2; text-align: left; padding: 20px 20px; }
+  .timeline__line, .chapter::before { display: none; }
+  .chapter { grid-template-columns: 1fr; justify-items: center; gap: 18px; }
+  .badge, .chapter:nth-child(odd) .badge { grid-column: 1; grid-row: 1; justify-self: center; width: min(220px, 62vw); }
+  .chapter__body, .chapter:nth-child(odd) .chapter__body { grid-column: 1; grid-row: 2; justify-self: center; text-align: center; }
+  .chapter__body::before, .chapter:nth-child(odd) .chapter__body::before { margin: 0 auto 12px; background: linear-gradient(90deg, transparent, var(--gold-500), transparent); }
   .menu__list { columns: 1; }
   .menu__list a { padding: 6px 0; }
 }
@@ -1017,7 +1022,9 @@ html:not(.anim) .event-card { grid-area: auto; width: auto; opacity: 1; visibili
   .events__arch { opacity: .28; height: 100%; }
   .events__arch--l { left: -46vw; }
   .events__arch--r { right: -46vw; }
-  .events__doorway { margin-top: 4vh; }
+  .events { --ev-h: min(500px, calc(100svh - var(--header-h) - 290px)); }
+  .events__viewport { top: calc(var(--header-h) + 128px); bottom: 10vh; }
+  .ev-window__toran { top: -8%; }
   .event-card__desc { display: none; }
   .contact__bell { display: none; }
   .corner { width: 64px; }

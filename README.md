@@ -26,9 +26,9 @@ To publish it, upload the whole folder to any static host (Netlify, Vercel, GitH
 | 04 | **Save the Date** (`#save-the-date`) | On a crimson background with falling marigold petals, Shri Ram's golden bow draws back. The arrow flies (tap the bow, or it releases by itself), breaks a golden seal with a cracker "pop" and a burst of marigolds, and the date appears in a gold ring between two rising gold poles flying Shri Ram Mandir saffron flags. Includes an Add to calendar button (.ics). |
 | 05 | **Countdown** (`#countdown`) | "The Royal Timepiece": the gold lotus chakra as a clock dial (days in the centre, hours, minutes and seconds around it, a ticking gold hand), with countdown tiles below. |
 | 06 | **Ram Bhakt Hanuman** (`#hanuman`) | Hanuman kneels in prayer; a glow builds at his heart, which opens to show Ram & Sita. Verse from the Hanuman Chalisa. |
-| 07 | **Our Story** (`#story`) | A gold thread draws down the page and medallions roll in. Four chapters: Pushpa Vatika, Shiva Dhanush, Swayamvar and Saptapadi. |
+| 07 | **Our Story** (`#story`) | A gold thread draws down the page. Four round badges, embroidered lotus on the front, turn over one by one to show Ram & Sita, each with one short line: Pushpa Vatika, Shiva Dhanush, Swayamvar, Saptapadi. Tap a badge to turn it again. |
 | 08 | **Our Families** (`#families`) | Shri Dasharatha & Smt. Kausalya (Ayodhya), and Shri Janaka & Smt. Sunaina (Mithila). |
-| 09 | **Wedding Events** (`#events`) | Carved temple doors open, one by one, onto each event: Engagement, Haldi, Mehendi, Sangeet, Wedding and Reception. |
+| 09 | **Wedding Events** (`#events`) | "Through the Palace Doors": every celebration has its own palace window with carved doors and a marigold toran. The doors open onto that event's card, then the next window rises into place and opens: Engagement, Haldi, Mehendi, Sangeet, Wedding, Reception. |
 | 10 | **Wishing Wall** (`#wishes`) | Guests write a blessing, and it floats onto the wall with a petal burst. |
 | 11 | **RSVP** (`#rsvp`) | A maroon envelope opens when you tap the gold seal. The card slides out with an "Accept" or "Decline with blessings" choice, and a button sends the reply on WhatsApp. |
 | 12 | **The Venue** (`#venue`) | An embedded Google Map inside an arch, the venue address, where each event takes place, and directions buttons. |
@@ -84,6 +84,7 @@ assets/
 │               hanuman-ram-bhakt (.png/.webp, your Hanuman picture, transparent) · heart-ram-sita-3d.webp (shown in his heart)
 │               hanuman-blessing (.png/.webp, blessing Hanuman on top of the invitation card) · corner-lotus-embroidery.svg (card corners)
 │               temple-flag-saffron (.png/.webp, Ram Mandir flag from your photo, on the Save the Date poles)
+├── story/      lotus-embroidery (.png/.webp, badge front) · story-garden-walk · story-flowers · story-varmala · story-embrace (.webp, badge backs)
 └── effects/    sparkle-gold · particles-gold · light-rays · firework-gold · firework-pink
 ```
 
