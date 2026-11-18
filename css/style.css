@@ -361,7 +361,7 @@ html:not(.anim) .scroll-cue { display: none; }
 .verse__en { font-style: italic; font-size: clamp(1.05rem, .8vw + .7rem, 1.3rem); color: var(--ink-soft); margin-top: 10px; }
 .verse cite { display: block; margin-top: 10px; font-style: normal; font-family: var(--f-caps); font-size: .7rem; letter-spacing: .28em; text-transform: uppercase; color: var(--gold-700); }
 
-.gatefold { position: relative; height: 100vh; height: 100svh; display: flex; align-items: center; justify-content: center; perspective: 2200px; }
+.gatefold { position: relative; margin-top: clamp(-100px, -9vh, -40px); height: 100vh; height: 100svh; display: flex; align-items: center; justify-content: center; perspective: 2200px; }
 .gatefold__stage { position: relative; width: min(540px, 90vw); perspective: 2000px; }
 .gatefold__card {
   position: relative; z-index: 1;
@@ -446,7 +446,7 @@ html:not(.anim) .gatefold__panel, html:not(.anim) .gatefold__seal { display: non
 /* =========================================================================
    03 · VADHU & VARA
    ========================================================================= */
-.couple { padding: clamp(120px, 20vh, 200px) 0 clamp(90px, 14vh, 150px); overflow: hidden; }
+.couple { padding: clamp(80px, 12vh, 130px) 0 clamp(90px, 14vh, 150px); overflow: hidden; }
 .couple__grid { display: grid; grid-template-columns: 1fr auto 1fr; align-items: start; gap: clamp(20px, 4vw, 60px); }
 .person { text-align: center; }
 .person__portrait { position: relative; width: min(330px, 74vw); aspect-ratio: 500 / 640; margin: 0 auto 26px; }
