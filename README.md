@@ -16,23 +16,25 @@ Then open <http://127.0.0.1:5501>. A local server is needed because some browser
 
 To publish it, upload the whole folder to any static host (Netlify, Vercel, GitHub Pages, Cloudflare Pages or your own server).
 
-## The 13 sections
+## The 15 sections
 
 | # | Section | What happens on scroll |
 |---|---------|------------------------|
 | 01 | **Welcome** (`#welcome`) | Every stage fills the screen edge to edge (wide photos on laptops, upright photos on phones). The night-time Ram Mandir appears with the names "Ram & Sita" in a starry sky. As you scroll, the temple lights come on and you move forward into the lotus pond. Real lotus buds rise from the water and open into full blooms. Then the realistic 3D Ram & Sita rise into place in front of the temple, holding their varmalas, the Ram Mandir still in full view behind them. Four brass vilakku light up at their feet, and the date ribbon unfurls. |
-| 02 | **The Invitation** (`#invitation`) | "Welcome, dear friends & family" with Bhagavad Gita 6.30. A maroon gatefold, carrying the gold chakra and a wax seal, swings open to reveal the ivory invitation card: the Ganesh shloka, both families, and a verse from the Valmiki Ramayana. |
+| 02 | **The Invitation** (`#invitation`) | "Welcome, dear friends & family" with Bhagavad Gita 6.30. On a soft pink, gently moving light background, a rani-pink gatefold with the gold chakra and seal swings open. Shri Hanuman rises onto the top of the ivory card to bless it; the card has lotus-embroidered corners and short lines: Ram (son of Dasharatha & Kausalya), Sita (daughter of Janaka & Sunaina), the date and venue. |
 | 03 | **Vadhu & Vara** (`#couple`) | Bride and groom portraits in gold jharokha frames, with parallax. |
-| 04 | **Our Story** (`#story`) | A gold thread draws down the page and medallions roll in. Four chapters: Pushpa Vatika, Shiva Dhanush, Swayamvar and Saptapadi. |
-| 05 | **Save the Date** (`#save-the-date`) | The rotating maroon-and-gold lotus chakra, a live countdown to the muhurat, and an Add to calendar button (.ics). |
-| 06 | **Our Families** (`#families`) | Shri Dasharatha & Smt. Kausalya (Ayodhya), and Shri Janaka & Smt. Sunaina (Mithila). |
-| 07 | **Wedding Events** (`#events`) | Carved temple doors open, one by one, onto each event: Engagement, Haldi, Mehendi, Sangeet, Wedding and Reception. |
-| 08 | **Wishing Wall** (`#wishes`) | Guests write a blessing, and it floats onto the wall with a petal burst. |
-| 09 | **RSVP** (`#rsvp`) | A maroon envelope opens when you tap the gold seal. The card slides out with an "Accept" or "Decline with blessings" choice, and a button sends the reply on WhatsApp. |
-| 10 | **The Venue** (`#venue`) | An embedded Google Map inside an arch, the venue address, where each event takes place, and directions buttons. |
-| 11 | **Travel & Stay** (`#travel`) | Pink City cards: by air, by rail, by road, where to stay, weather, things to explore, and dress notes. |
-| 12 | **Contact** (`#contact`) | Family contacts with call, WhatsApp and email buttons. |
-| 13 | **Thank You** (`#thank-you`) | Pink and gold fireworks over the temple, with a verse from Tulsidas. |
+| 04 | **Save the Date** (`#save-the-date`) | On a crimson background with falling marigold petals, Shri Ram's golden bow draws back. The arrow flies (tap the bow, or it releases by itself), breaks a golden seal with a cracker "pop" and a burst of marigolds, and the date appears in a gold ring between rising gold pillars. Includes an Add to calendar button (.ics). |
+| 05 | **Countdown** (`#countdown`) | "The Royal Timepiece": the gold lotus chakra as a clock dial (days in the centre, hours, minutes and seconds around it, a ticking gold hand), with countdown tiles below. |
+| 06 | **Ram Bhakt Hanuman** (`#hanuman`) | Hanuman kneels in prayer; a glow builds at his heart, which opens to show Ram & Sita. Verse from the Hanuman Chalisa. |
+| 07 | **Our Story** (`#story`) | A gold thread draws down the page and medallions roll in. Four chapters: Pushpa Vatika, Shiva Dhanush, Swayamvar and Saptapadi. |
+| 08 | **Our Families** (`#families`) | Shri Dasharatha & Smt. Kausalya (Ayodhya), and Shri Janaka & Smt. Sunaina (Mithila). |
+| 09 | **Wedding Events** (`#events`) | Carved temple doors open, one by one, onto each event: Engagement, Haldi, Mehendi, Sangeet, Wedding and Reception. |
+| 10 | **Wishing Wall** (`#wishes`) | Guests write a blessing, and it floats onto the wall with a petal burst. |
+| 11 | **RSVP** (`#rsvp`) | A maroon envelope opens when you tap the gold seal. The card slides out with an "Accept" or "Decline with blessings" choice, and a button sends the reply on WhatsApp. |
+| 12 | **The Venue** (`#venue`) | An embedded Google Map inside an arch, the venue address, where each event takes place, and directions buttons. |
+| 13 | **Travel & Stay** (`#travel`) | Pink City cards: by air, by rail, by road, where to stay, weather, things to explore, and dress notes. |
+| 14 | **Contact** (`#contact`) | Family contacts with call, WhatsApp and email buttons. |
+| 15 | **Thank You** (`#thank-you`) | Pink and gold fireworks over the temple, with a verse from Tulsidas. |
 
 ## Customising
 
@@ -79,6 +81,8 @@ assets/
 ├── events/     icon-engagement · icon-haldi · icon-mehendi · icon-sangeet · icon-wedding · icon-reception
 ├── ornaments/  corner-gold-top-left/top-right/bottom-left/bottom-right · temple-bell · rangoli-mandala
 │               chakra-lotus-mandala-maroon.webp (your original) · chakra-lotus-mandala-gold(.png/.webp/-2000.png, transparent)
+│               hanuman-ram-bhakt (.png/.webp, your Hanuman picture, transparent) · heart-ram-sita-3d.webp (shown in his heart)
+│               hanuman-blessing (.png/.webp, blessing Hanuman on top of the invitation card) · corner-lotus-embroidery.svg (card corners)
 └── effects/    sparkle-gold · particles-gold · light-rays · firework-gold · firework-pink
 ```
 

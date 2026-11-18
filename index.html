@@ -13,11 +13,11 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Pinyon+Script&family=Tiro+Devanagari+Sanskrit:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Pinyon+Script&family=Tiro+Devanagari+Sanskrit:ital@0;1&display=swap" rel="stylesheet">
 
   <link rel="preload" as="image" href="assets/hero/hero-temple-river-night-wide.webp" media="(min-aspect-ratio: 1/1)">
   <link rel="preload" as="image" href="assets/hero/hero-temple-river-night.webp" media="(max-aspect-ratio: 1/1)">
-  <link rel="stylesheet" href="css/style.css?v=1.5.1">
+  <link rel="stylesheet" href="css/style.css?v=1.7.3">
 </head>
 <body>
 
@@ -93,16 +93,18 @@
       <li><a href="#welcome"><span>01</span>Welcome</a></li>
       <li><a href="#invitation"><span>02</span>The Invitation</a></li>
       <li><a href="#couple"><span>03</span>Vadhu &amp; Vara</a></li>
-      <li><a href="#story"><span>04</span>Our Story</a></li>
-      <li><a href="#save-the-date"><span>05</span>Save the Date</a></li>
-      <li><a href="#families"><span>06</span>Our Families</a></li>
-      <li><a href="#events"><span>07</span>Wedding Events</a></li>
-      <li><a href="#wishes"><span>08</span>Wishing Wall</a></li>
-      <li><a href="#rsvp"><span>09</span>RSVP</a></li>
-      <li><a href="#venue"><span>10</span>The Venue</a></li>
-      <li><a href="#travel"><span>11</span>Travel &amp; Stay</a></li>
-      <li><a href="#contact"><span>12</span>Contact</a></li>
-      <li><a href="#thank-you"><span>13</span>Thank You</a></li>
+      <li><a href="#save-the-date"><span>04</span>Save the Date</a></li>
+      <li><a href="#countdown"><span>05</span>Countdown</a></li>
+      <li><a href="#hanuman"><span>06</span>Ram Bhakt Hanuman</a></li>
+      <li><a href="#story"><span>07</span>Our Story</a></li>
+      <li><a href="#families"><span>08</span>Our Families</a></li>
+      <li><a href="#events"><span>09</span>Wedding Events</a></li>
+      <li><a href="#wishes"><span>10</span>Wishing Wall</a></li>
+      <li><a href="#rsvp"><span>11</span>RSVP</a></li>
+      <li><a href="#venue"><span>12</span>The Venue</a></li>
+      <li><a href="#travel"><span>13</span>Travel &amp; Stay</a></li>
+      <li><a href="#contact"><span>14</span>Contact</a></li>
+      <li><a href="#thank-you"><span>15</span>Thank You</a></li>
     </ol>
     <img class="menu__chakra" src="assets/ornaments/chakra-lotus-mandala-gold.webp" alt="">
   </div>
@@ -186,7 +188,8 @@
 <!-- =====================================================
      02 · THE INVITATION — welcome, Gita verse, gatefold card
      ===================================================== -->
-<section class="invite paper" id="invitation" aria-labelledby="inviteTitle">
+<section class="invite" id="invitation" aria-labelledby="inviteTitle">
+  <div class="invite__lights" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
   <img class="corner corner--tl" src="assets/ornaments/corner-gold-top-left.svg" alt="">
   <img class="corner corner--tr" src="assets/ornaments/corner-gold-top-right.svg" alt="">
   <div class="container invite__intro">
@@ -202,17 +205,22 @@
 
   <div class="gatefold" id="gatefold">
     <div class="gatefold__stage">
+      <!-- Shri Hanuman blesses the couple from the top of the card (appears as the card opens) -->
+      <div class="gatefold__deity-wrap"><img class="gatefold__deity" src="assets/ornaments/hanuman-blessing.webp" alt="Shri Hanuman with his hand raised in blessing, 'Ram' written on his palm"></div>
       <article class="gatefold__card">
+        <span class="gf-corner gf-corner--tl" aria-hidden="true"></span>
+        <span class="gf-corner gf-corner--tr" aria-hidden="true"></span>
+        <span class="gf-corner gf-corner--bl" aria-hidden="true"></span>
+        <span class="gf-corner gf-corner--br" aria-hidden="true"></span>
         <div class="gatefold__content">
-          <p class="deva gatefold__ganesh">॥ श्री गणेशाय नमः ॥</p>
-          <p class="deva gatefold__shloka">वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ ।<br>निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥</p>
-          <p class="small-caps">With the divine blessings of <span style="white-space:nowrap">Sita–Ram</span></p>
-          <p class="gatefold__hosts">Shri Dasharatha &amp; Smt. Kausalya <em>of Ayodhya</em><br><span class="amp-sm">and</span><br>Shri Janaka &amp; Smt. Sunaina <em>of Mithila</em></p>
-          <p class="gatefold__request">request the honour of your presence at the wedding of their children</p>
-          <h3 class="gatefold__names"><span>Ram</span><span class="script">&amp;</span><span>Sita</span></h3>
-          <p class="gatefold__when">Saturday · 27<sup>th</sup> March 2027<br>Rambagh Palace · Jaipur, Rajasthan</p>
-          <p class="deva gatefold__verse">इयं सीता मम सुता सहधर्मचरी तव ।</p>
-          <p class="gatefold__verse-en">“This is Sita, my daughter — your companion in dharma.” <span>— Valmiki Ramayana</span></p>
+          <p class="gatefold__lead">Together with their families</p>
+          <h3 class="gatefold__name">Ram</h3>
+          <p class="gatefold__parents">son of Shri Dasharatha &amp; Smt. Kausalya</p>
+          <p class="gatefold__amp">&amp;</p>
+          <h3 class="gatefold__name">Sita</h3>
+          <p class="gatefold__parents">daughter of Shri Janaka &amp; Smt. Sunaina</p>
+          <p class="gatefold__request">invite you to celebrate their wedding</p>
+          <p class="gatefold__when">Saturday · 27 March 2027<br>Rambagh Palace · Jaipur</p>
           <a class="btn btn--maroon" href="#events">View the celebrations</a>
         </div>
       </article>
@@ -273,6 +281,150 @@
 </section>
 
 <!-- =====================================================
+     04 · SAVE THE DATE — the arrow of Ram breaks the golden seal
+     ===================================================== -->
+<section class="crimson sd" id="save-the-date" aria-labelledby="sdTitle">
+  <canvas class="crimson__petals" aria-hidden="true"></canvas>
+  <span class="sd__pillar sd__pillar--l" aria-hidden="true"></span>
+  <span class="sd__pillar sd__pillar--r" aria-hidden="true"></span>
+  <div class="container sd__inner">
+    <header class="crimson__head">
+      <p class="eyebrow eyebrow--light">Kindly</p>
+      <h2 class="crimson__title" id="sdTitle">Save the Date</h2>
+      <p class="crimson__sub">Release the arrow to unveil the auspicious wedding date</p>
+    </header>
+
+    <!-- Kodanda, the bow of Shri Ram: the string is pulled back, then the arrow flies -->
+    <button class="sd__bow-btn" id="sdBow" type="button" aria-label="Release the arrow and reveal the wedding date">
+      <svg class="sd__bow" viewBox="0 -130 600 300" aria-hidden="true">
+        <defs>
+          <linearGradient id="sdGold" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#fff1c2"/><stop offset=".45" stop-color="#e2b257"/><stop offset="1" stop-color="#9a6416"/>
+          </linearGradient>
+          <linearGradient id="sdSaffron" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#ffb347"/><stop offset="1" stop-color="#c9561a"/>
+          </linearGradient>
+        </defs>
+        <!-- string (middle point is pulled back by the script) -->
+        <path class="sd__string" id="sdString" d="M44 30 L300 30 L556 30" fill="none" stroke="#f6e3a6" stroke-width="2.2" stroke-linecap="round"/>
+        <!-- limbs: gold core, saffron bead work, gold bead dots -->
+        <path d="M44 30 Q170 150 300 112 Q430 150 556 30" fill="none" stroke="url(#sdGold)" stroke-width="15" stroke-linecap="round"/>
+        <path d="M44 30 Q170 150 300 112 Q430 150 556 30" fill="none" stroke="url(#sdSaffron)" stroke-width="8" stroke-linecap="round" opacity=".9"/>
+        <path d="M44 30 Q170 150 300 112 Q430 150 556 30" fill="none" stroke="#fff3cc" stroke-width="4.6" stroke-linecap="round" stroke-dasharray=".1 9"/>
+        <!-- curled tips -->
+        <path d="M44 30 q-20 -6 -16 -28 q4 -16 18 -10 q8 6 -2 12" fill="none" stroke="url(#sdGold)" stroke-width="7" stroke-linecap="round"/>
+        <path d="M556 30 q20 -6 16 -28 q-4 -16 -18 -10 q-8 6 2 12" fill="none" stroke="url(#sdGold)" stroke-width="7" stroke-linecap="round"/>
+        <!-- tassels -->
+        <g class="sd__tassel">
+          <path d="M40 34 q-6 30 4 52" fill="none" stroke="#e2b257" stroke-width="1.6"/>
+          <circle cx="44" cy="88" r="5" fill="#c9561a"/><path d="M38 92 l-6 30 h24 l-6 -30z" fill="url(#sdSaffron)"/>
+        </g>
+        <g class="sd__tassel">
+          <path d="M560 34 q6 30 -4 52" fill="none" stroke="#e2b257" stroke-width="1.6"/>
+          <circle cx="556" cy="88" r="5" fill="#c9561a"/><path d="M550 92 l-6 30 h24 l-6 -30z" fill="url(#sdSaffron)"/>
+        </g>
+        <!-- grip with a gold flower -->
+        <rect x="282" y="98" width="36" height="28" rx="6" fill="#7a0f2a" stroke="#e2b257" stroke-width="2.4"/>
+        <circle cx="300" cy="112" r="7" fill="url(#sdGold)"/><circle cx="300" cy="112" r="2.6" fill="#c9561a"/>
+      </svg>
+      <!-- the arrow (baan) — rests on the string, pointing down at the seal -->
+      <svg class="sd__arrow" id="sdArrow" viewBox="0 0 60 330" aria-hidden="true">
+        <path d="M30 6 V270" stroke="#7a3e0e" stroke-width="4.5" stroke-linecap="round"/><path d="M29 8 V268" stroke="#c98a3c" stroke-width="1.2" stroke-linecap="round" opacity=".8"/>
+        <defs>
+          <linearGradient id="sdArrowShaft" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a4a12"/><stop offset="1" stop-color="#5a2a08"/></linearGradient>
+          <linearGradient id="sdHead" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff1c2"/><stop offset=".5" stop-color="#e2b257"/><stop offset="1" stop-color="#9a6416"/></linearGradient>
+        </defs>
+        <!-- fletching -->
+        <path d="M30 10 L14 2 L14 44 L30 56Z" fill="#d9631c"/><path d="M30 10 L46 2 L46 44 L30 56Z" fill="#b5480f"/>
+        <path d="M30 14 L18 9 M30 22 L18 17 M30 30 L18 25 M30 38 L18 33 M30 14 L42 9 M30 22 L42 17 M30 30 L42 25 M30 38 L42 33" stroke="#ffd9a0" stroke-width="1"/>
+        <!-- gold flower bands -->
+        <rect x="25" y="64" width="10" height="7" rx="2" fill="url(#sdHead)"/><rect x="25" y="236" width="10" height="7" rx="2" fill="url(#sdHead)"/>
+        <!-- arrow head -->
+        <path d="M30 324 L16 270 L30 280 L44 270Z" fill="url(#sdHead)" stroke="#9a6416" stroke-width="1"/>
+      </svg>
+    </button>
+    <span class="sd__thread" id="sdThread" aria-hidden="true"></span>
+
+    <!-- the golden seal that the arrow breaks, and the date it hides -->
+    <div class="sd__target" id="sdTarget">
+      <div class="sd__reveal" id="sdReveal">
+        <span class="sd__ring" aria-hidden="true"></span>
+        <p class="sd__day">Shubh Vivah · Saturday</p>
+        <p class="sd__date"><span class="sd__num">27</span> <span class="sd__month">March 2027</span></p>
+        <p class="sd__time">Shubh muhurat · 7:45 PM IST</p>
+        <p class="sd__place">Rambagh Palace · Jaipur, Rajasthan</p>
+        <button class="btn btn--gold" id="addToCalendar"><svg><use href="#i-calendar"/></svg>Add to calendar</button>
+      </div>
+      <div class="sd__plaque" id="sdPlaque" aria-hidden="true">
+        <img src="assets/ornaments/chakra-lotus-mandala-gold.webp" alt="">
+        <span>॥ शुभ मुहूर्त ॥</span>
+      </div>
+    </div>
+    <p class="sd__hint" id="sdHint">Tap the bow to release the arrow</p>
+  </div>
+</section>
+
+<!-- =====================================================
+     05 · COUNTDOWN — the royal timepiece (gold chakra dial)
+     ===================================================== -->
+<section class="crimson cd" id="countdown" aria-labelledby="cdTitle">
+  <canvas class="crimson__petals" aria-hidden="true"></canvas>
+  <div class="container cd__inner">
+    <header class="crimson__head">
+      <p class="eyebrow eyebrow--light">The Royal Timepiece</p>
+      <h2 class="crimson__title" id="cdTitle">Counting the Auspicious Moments</h2>
+    </header>
+    <div class="cd__dial" aria-hidden="true">
+      <img class="cd__chakra" src="assets/ornaments/chakra-lotus-mandala-gold.webp" alt="">
+      <svg class="cd__ticks" viewBox="0 0 200 200" id="cdTicks"></svg>
+      <span class="cd__hand" id="cdHand"></span>
+      <div class="cd__face">
+        <span class="cd__f cd__f--top">27 · March · 2027</span>
+        <span class="cd__f cd__f--days"><b data-unit="days">000</b><i>Days</i></span>
+        <span class="cd__f cd__f--left"><b data-unit="hours">00</b><i>Hours</i></span>
+        <span class="cd__f cd__f--right"><b data-unit="minutes">00</b><i>Min</i></span>
+        <span class="cd__f cd__f--bottom"><b data-unit="seconds">00</b><i>Sec</i></span>
+      </div>
+    </div>
+    <div class="countdown" id="countdownCells" data-target="2027-03-27T19:45:00+05:30">
+      <div class="countdown__cell"><span class="countdown__num" data-unit="days">000</span><span class="countdown__label">Days</span></div>
+      <div class="countdown__cell"><span class="countdown__num" data-unit="hours">00</span><span class="countdown__label">Hours</span></div>
+      <div class="countdown__cell"><span class="countdown__num" data-unit="minutes">00</span><span class="countdown__label">Minutes</span></div>
+      <div class="countdown__cell"><span class="countdown__num" data-unit="seconds">00</span><span class="countdown__label">Seconds</span></div>
+    </div>
+    <p class="cd__muhurat" id="cdMuhurat">until the shubh muhurat · Saturday 27 March 2027 · 7:45 PM IST</p>
+  </div>
+</section>
+
+<!-- =====================================================
+     06 · RAM BHAKT HANUMAN — Ram & Sita in his heart
+     ===================================================== -->
+<section class="crimson hn" id="hanuman" aria-labelledby="hnTitle">
+  <canvas class="crimson__petals" aria-hidden="true"></canvas>
+  <div class="container hn__inner">
+    <header class="crimson__head">
+      <p class="eyebrow eyebrow--light">Ram Bhakt Hanuman</p>
+      <h2 class="crimson__title" id="hnTitle">Ram &amp; Sita in Every Heart</h2>
+    </header>
+    <div class="hn__figure" id="hnFigure">
+      <span class="hn__halo" aria-hidden="true"></span>
+      <img class="hn__img" src="assets/ornaments/hanuman-ram-bhakt.webp" alt="Shri Hanuman kneeling in prayer with folded hands">
+      <span class="hn__glow" aria-hidden="true"></span>
+      <div class="hn__heart">
+        <img src="assets/ornaments/heart-ram-sita-3d.webp" alt="Ram and Sita, dwelling in Hanuman's heart">
+      </div>
+    </div>
+    <blockquote class="hn__verse">
+      <p class="deva">प्रभु चरित्र सुनिबे को रसिया ।<br>राम लखन सीता मन बसिया ॥</p>
+      <p class="hn__verse-en">“You delight in hearing the Lord’s story; Ram, Lakshman and Sita dwell in your heart.”</p>
+      <cite>Shri Hanuman Chalisa</cite>
+    </blockquote>
+    <p class="hn__blessing">With Hanuman ji’s blessings, we ask you to keep Ram &amp; Sita in your hearts as you bless our union.</p>
+  </div>
+</section>
+
+
+<!-- =====================================================
      04 · OUR STORY
      ===================================================== -->
 <section class="story" id="story" aria-labelledby="storyTitle">
@@ -318,37 +470,6 @@
         </div>
       </article>
     </div>
-  </div>
-</section>
-
-<!-- =====================================================
-     05 · SAVE THE DATE + COUNTDOWN — maroon chakra
-     ===================================================== -->
-<section class="save" id="save-the-date" aria-labelledby="saveTitle">
-  <div class="save__chakra-wrap" aria-hidden="true">
-    <img class="save__chakra" src="assets/ornaments/chakra-lotus-mandala-gold.webp" alt="">
-  </div>
-  <img class="corner corner--tl" src="assets/ornaments/corner-gold-top-left.svg" alt="">
-  <img class="corner corner--tr" src="assets/ornaments/corner-gold-top-right.svg" alt="">
-  <img class="corner corner--bl" src="assets/ornaments/corner-gold-bottom-left.svg" alt="">
-  <img class="corner corner--br" src="assets/ornaments/corner-gold-bottom-right.svg" alt="">
-  <div class="container save__inner">
-    <p class="eyebrow eyebrow--light" data-reveal>Kindly</p>
-    <h2 class="save__title" id="saveTitle" data-reveal>Save the Date</h2>
-    <div class="save__date" data-reveal>
-      <span class="save__day">Saturday</span>
-      <span class="save__num">27</span>
-      <span class="save__month">March 2027</span>
-    </div>
-    <p class="save__place" data-reveal>Rambagh Palace · Jaipur, Rajasthan</p>
-    <div class="countdown" id="countdown" data-target="2027-03-27T19:45:00+05:30" data-reveal>
-      <div class="countdown__cell"><span class="countdown__num" data-unit="days">000</span><span class="countdown__label">Days</span></div>
-      <div class="countdown__cell"><span class="countdown__num" data-unit="hours">00</span><span class="countdown__label">Hours</span></div>
-      <div class="countdown__cell"><span class="countdown__num" data-unit="minutes">00</span><span class="countdown__label">Minutes</span></div>
-      <div class="countdown__cell"><span class="countdown__num" data-unit="seconds">00</span><span class="countdown__label">Seconds</span></div>
-    </div>
-    <p class="save__muhurat" data-reveal>until the shubh muhurat · 7:45 PM IST</p>
-    <button class="btn btn--gold" id="addToCalendar" data-reveal><svg><use href="#i-calendar"/></svg>Add to calendar</button>
   </div>
 </section>
 
@@ -765,6 +886,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="js/main.js?v=1.5.0"></script>
+<script src="js/main.js?v=1.7.2"></script>
 </body>
 </html>

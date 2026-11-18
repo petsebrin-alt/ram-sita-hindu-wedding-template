@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 170">
+  <!-- Lotus corner embroidery (top-left; rotate for other corners). Gold zari stitch-work vines, silk-pink lotus. -->
+  <defs>
+    <linearGradient id="petal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbd3df"/><stop offset=".55" stop-color="#ee8fb0"/><stop offset="1" stop-color="#c94e7c"/>
+    </linearGradient>
+    <linearGradient id="petal2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fde6ee"/><stop offset="1" stop-color="#e57ea3"/>
+    </linearGradient>
+    <linearGradient id="zari" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f3d68a"/><stop offset=".5" stop-color="#c8962e"/><stop offset="1" stop-color="#8a5a16"/>
+    </linearGradient>
+    <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9cc59a"/><stop offset="1" stop-color="#4f7d52"/>
+    </linearGradient>
+  </defs>
+
+  <!-- double gold border rule hugging the corner -->
+  <path d="M8 160 V20 Q8 8 20 8 H160" fill="none" stroke="url(#zari)" stroke-width="1.6"/>
+  <path d="M14 160 V24 Q14 14 24 14 H160" fill="none" stroke="#c8962e" stroke-width=".8" stroke-dasharray="2.2 2.2"/>
+
+  <!-- vines along the top edge -->
+  <path d="M58 24 C78 16 92 34 112 26 S146 20 164 28" fill="none" stroke="url(#zari)" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M58 24 C78 16 92 34 112 26 S146 20 164 28" fill="none" stroke="#fff1c2" stroke-width=".6" stroke-dasharray="1.4 2.6" stroke-linecap="round"/>
+  <path d="M84 24 q6 -12 16 -10 q-4 10 -16 10z" fill="url(#leaf)" stroke="#c8962e" stroke-width=".6"/>
+  <path d="M122 25 q8 10 18 6 q-6 -10 -18 -6z" fill="url(#leaf)" stroke="#c8962e" stroke-width=".6"/>
+  <g transform="translate(150 22)"><circle r="4.2" fill="url(#petal)" stroke="#c8962e" stroke-width=".7"/><circle r="1.5" fill="#f3d68a"/></g>
+  <circle cx="102" cy="33" r="1.6" fill="#c8962e"/><circle cx="134" cy="18" r="1.4" fill="#c8962e"/><circle cx="70" cy="30" r="1.3" fill="#c8962e"/>
+
+  <!-- vines along the left edge (mirror of the top) -->
+  <g transform="matrix(0 1 1 0 0 0)">
+    <path d="M58 24 C78 16 92 34 112 26 S146 20 164 28" fill="none" stroke="url(#zari)" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M58 24 C78 16 92 34 112 26 S146 20 164 28" fill="none" stroke="#fff1c2" stroke-width=".6" stroke-dasharray="1.4 2.6" stroke-linecap="round"/>
+    <path d="M84 24 q6 -12 16 -10 q-4 10 -16 10z" fill="url(#leaf)" stroke="#c8962e" stroke-width=".6"/>
+    <path d="M122 25 q8 10 18 6 q-6 -10 -18 -6z" fill="url(#leaf)" stroke="#c8962e" stroke-width=".6"/>
+    <g transform="translate(150 22)"><circle r="4.2" fill="url(#petal)" stroke="#c8962e" stroke-width=".7"/><circle r="1.5" fill="#f3d68a"/></g>
+    <circle cx="102" cy="33" r="1.6" fill="#c8962e"/><circle cx="134" cy="18" r="1.4" fill="#c8962e"/><circle cx="70" cy="30" r="1.3" fill="#c8962e"/>
+  </g>
+
+  <!-- the lotus, opening along the diagonal -->
+  <g transform="translate(34 34) rotate(135) scale(.92)">
+        <!-- back petals -->
+    <path d="M0 4 C-20 -4 -30 -18 -28 -30 C-14 -26 -4 -14 0 4z" fill="url(#petal2)" stroke="#c8962e" stroke-width=".8"/>
+    <path d="M0 4 C20 -4 30 -18 28 -30 C14 -26 4 -14 0 4z" fill="url(#petal2)" stroke="#c8962e" stroke-width=".8"/>
+    <!-- side petals -->
+    <path d="M0 6 C-14 -2 -18 -20 -12 -36 C-2 -26 2 -12 0 6z" fill="url(#petal)" stroke="#c8962e" stroke-width=".8"/>
+    <path d="M0 6 C14 -2 18 -20 12 -36 C2 -26 -2 -12 0 6z" fill="url(#petal)" stroke="#c8962e" stroke-width=".8"/>
+    <!-- centre petal -->
+    <path d="M0 6 C-8 -8 -8 -28 0 -44 C8 -28 8 -8 0 6z" fill="url(#petal)" stroke="#c8962e" stroke-width=".9"/>
+    <!-- stitch veins -->
+    <path d="M0 2 V-38 M-4 0 C-8 -10 -10 -20 -10 -30 M4 0 C8 -10 10 -20 10 -30" fill="none" stroke="#fff1c2" stroke-width=".6" stroke-dasharray="1.2 1.8" opacity=".9"/>
+    <!-- gold base cup with beads -->
+    <path d="M-16 6 Q0 16 16 6 Q0 10 -16 6z" fill="url(#zari)"/>
+    <circle cx="-10" cy="10" r="1.3" fill="#f3d68a"/><circle cx="0" cy="12" r="1.4" fill="#f3d68a"/><circle cx="10" cy="10" r="1.3" fill="#f3d68a"/>
+  </g>
+  <!-- bead trail toward the corner -->
+  <circle cx="20" cy="20" r="2.2" fill="url(#zari)"/>
+</svg>

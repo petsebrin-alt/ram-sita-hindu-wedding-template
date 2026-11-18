@@ -290,14 +290,17 @@
   function initGatefold() {
     if (!ANIM) return;
     gsap.timeline({
-      scrollTrigger: { trigger: '#gatefold', start: 'top top', end: () => '+=' + innerHeight * 1.5, scrub: 1, pin: true, anticipatePin: 1 }
+      scrollTrigger: { trigger: '#gatefold', start: 'top top', end: () => '+=' + innerHeight * 1.4, scrub: 1, pin: true, anticipatePin: 1 }
     })
       .to('.gatefold__seal', { scale: 1.25, opacity: 0, duration: .6, ease: 'power2.in' })
       .to('.gatefold__panel--left', { rotateY: -155, duration: 2.2, ease: 'power2.inOut' }, '-=.15')
       .to('.gatefold__panel--right', { rotateY: 155, duration: 2.2, ease: 'power2.inOut' }, '<')
       .fromTo('.gatefold__card', { scale: .93, filter: 'brightness(.85)' }, { scale: 1, filter: 'brightness(1)', duration: 1.8, ease: 'power2.out' }, '<.4')
       .to('.gatefold__panel', { opacity: 0, duration: .6 }, '-=.3')
+      // Shri Hanuman rises onto the top of the opened card, blessing the couple
+      .fromTo('.gatefold__deity', { opacity: 0, y: 60, scale: .8 }, { opacity: 1, y: 0, scale: 1, duration: 1.3, ease: 'back.out(1.5)' }, '-=1.1')
       .to({}, { duration: .5 });
+    gsap.to('.gatefold__deity', { yPercent: '-=3', duration: 2.6, repeat: -1, yoyo: true, ease: 'sine.inOut' });
   }
 
   /* ---------------------------------------------------------------------
@@ -340,30 +343,91 @@
   }
 
   /* ---------------------------------------------------------------------
-     05 · SAVE THE DATE — chakra + countdown + calendar
+     Shared sound (Web Audio, no files): unlocked on the guest's first tap
+     --------------------------------------------------------------------- */
+  function audio() {
+    try { return audio.ctx || (audio.ctx = new (window.AudioContext || window.webkitAudioContext)()); } catch (e) { return null; }
+  }
+  ['pointerdown', 'keydown', 'touchend'].forEach(ev => addEventListener(ev, () => { const c = audio(); if (c && c.state === 'suspended') c.resume(); }, { passive: true }));
+  function noiseBurst(ctx, t, dur, freq, q, vol, shape = 3.5) {
+    const len = Math.floor(ctx.sampleRate * dur), buf = ctx.createBuffer(1, len, ctx.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, shape);
+    const src = ctx.createBufferSource(), f = ctx.createBiquadFilter(), g = ctx.createGain();
+    src.buffer = buf; f.type = 'bandpass'; f.frequency.value = freq; f.Q.value = q; g.gain.value = vol;
+    src.connect(f).connect(g).connect(ctx.destination); src.start(t);
+    return f;
+  }
+  // the arrow leaving the string
+  function whoosh() {
+    const ctx = audio(); if (!ctx) return; if (ctx.state === 'suspended') ctx.resume();
+    const t = ctx.currentTime, f = noiseBurst(ctx, t, .5, 500, 1.2, .35, 1.6);
+    f.frequency.setValueAtTime(400, t); f.frequency.exponentialRampToValueAtTime(2600, t + .45);
+  }
+  // the cracker 'pop' as the seal breaks: a crack, a low thump and a few sparkling crackles
+  function crackerPop() {
+    const ctx = audio(); if (!ctx) return; if (ctx.state === 'suspended') ctx.resume();
+    const t = ctx.currentTime;
+    noiseBurst(ctx, t, .32, 1900, .8, 1.1);
+    const o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = 'sine'; o.frequency.setValueAtTime(170, t); o.frequency.exponentialRampToValueAtTime(42, t + .28);
+    g.gain.setValueAtTime(.8, t); g.gain.exponentialRampToValueAtTime(.001, t + .38);
+    o.connect(g).connect(ctx.destination); o.start(t); o.stop(t + .4);
+    for (let i = 0; i < 7; i++) noiseBurst(ctx, t + .12 + Math.random() * .55, .05, 3500 + Math.random() * 3000, 2, .18 + Math.random() * .15, 2);
+  }
+
+  /* ---------------------------------------------------------------------
+     Marigold petals for the crimson sections (falling + bursts)
+     --------------------------------------------------------------------- */
+  const marigolds = {};
+  function marigoldRain(cv) {
+    const ctx = cv.getContext('2d');
+    const cols = ['#ffb300', '#ff9800', '#f57c00', '#ffca28', '#ef6c00', '#ffd54f'];
+    let W = 0, H = 0, dpr = 1, parts = [], visible = false;
+    const mk = (burst, x, y, power = 1) => {
+      const a = Math.random() * Math.PI * 2, sp = (2 + Math.random() * 7) * power;
+      return burst
+        ? { x, y, vx: Math.cos(a) * sp * dpr, vy: (Math.sin(a) * sp - 3.2) * dpr, r: (3 + Math.random() * 4.5) * dpr, rot: Math.random() * 6.28, vr: (Math.random() - .5) * .25, c: cols[Math.random() * cols.length | 0], life: 1, burst: true }
+        : { x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .3 * dpr, vy: (.5 + Math.random() * 1.1) * dpr, r: (2.6 + Math.random() * 4) * dpr, rot: Math.random() * 6.28, vr: (Math.random() - .5) * .06, c: cols[Math.random() * cols.length | 0], life: 1, burst: false, ph: Math.random() * 6.28 };
+    };
+    function size() {
+      dpr = Math.min(devicePixelRatio || 1, 2);
+      W = cv.width = cv.offsetWidth * dpr; H = cv.height = cv.offsetHeight * dpr;
+      const n = reduced ? 0 : (innerWidth < 600 ? 22 : 40);
+      parts = parts.filter(p => p.burst).concat(Array.from({ length: n }, () => mk(false)));
+    }
+    size(); addEventListener('resize', size);
+    if ('ResizeObserver' in window) new ResizeObserver(size).observe(cv);
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(cv);
+    (function loop() {
+      requestAnimationFrame(loop);
+      if (!visible || document.hidden) return;
+      ctx.clearRect(0, 0, W, H);
+      for (let i = parts.length - 1; i >= 0; i--) {
+        const p = parts[i];
+        if (p.burst) { p.vy += .13 * dpr; p.vx *= .985; p.vy *= .992; p.life -= .0065; if (p.life <= 0) { parts.splice(i, 1); continue; } }
+        else { p.ph += .02; p.x += Math.sin(p.ph) * .35 * dpr; if (p.y > H + 20) { p.y = -20; p.x = Math.random() * W; } }
+        p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+        ctx.save(); ctx.globalAlpha = Math.min(1, p.life * 1.4) * .92; ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+        ctx.fillStyle = p.c; ctx.beginPath(); ctx.ellipse(0, 0, p.r, p.r * .58, 0, 0, 6.283); ctx.fill();
+        ctx.globalAlpha *= .5; ctx.fillStyle = '#fff3c4'; ctx.beginPath(); ctx.ellipse(-p.r * .25, -p.r * .12, p.r * .35, p.r * .16, 0, 0, 6.283); ctx.fill();
+        ctx.restore();
+      }
+    })();
+    return {
+      burst(clientX, clientY, n = 90, power = 1) {
+        if (reduced) return;
+        const r = cv.getBoundingClientRect();
+        for (let i = 0; i < n; i++) parts.push(mk(true, (clientX - r.left) * dpr, (clientY - r.top) * dpr, power));
+      }
+    };
+  }
+  $$('.crimson__petals').forEach(cv => { marigolds[cv.closest('section').id] = marigoldRain(cv); });
+
+  /* ---------------------------------------------------------------------
+     04 · SAVE THE DATE — draw the bow, release, the arrow breaks the seal
      --------------------------------------------------------------------- */
   function initSave() {
-    if (ANIM) {
-      gsap.fromTo('.save__chakra-wrap', { scale: .65, rotate: -40 }, { scale: 1.15, rotate: 50, ease: 'none', scrollTrigger: { trigger: '#save-the-date', start: 'top bottom', end: 'bottom top', scrub: true } });
-      gsap.from('.countdown__cell', { y: 40, opacity: 0, rotateX: -70, duration: 1, stagger: .12, ease: 'back.out(1.8)', scrollTrigger: { trigger: '#countdown', start: 'top 88%', once: true } });
-    }
-    const box = $('#countdown');
-    const target = new Date(box?.dataset.target || CONFIG.muhurat).getTime();
-    const units = { days: $('[data-unit="days"]', box), hours: $('[data-unit="hours"]', box), minutes: $('[data-unit="minutes"]', box), seconds: $('[data-unit="seconds"]', box) };
-    function tick() {
-      let d = Math.max(0, target - Date.now());
-      const days = Math.floor(d / 864e5); d -= days * 864e5;
-      const h = Math.floor(d / 36e5); d -= h * 36e5;
-      const m = Math.floor(d / 6e4); d -= m * 6e4;
-      const s = Math.floor(d / 1e3);
-      units.days.textContent = String(days).padStart(3, '0');
-      units.hours.textContent = String(h).padStart(2, '0');
-      units.minutes.textContent = String(m).padStart(2, '0');
-      units.seconds.textContent = String(s).padStart(2, '0');
-      if (target - Date.now() <= 0) $('.save__muhurat').textContent = 'The celebrations have begun — shubh vivah!';
-    }
-    tick(); setInterval(tick, 1000);
-
+    const sec = $('#save-the-date'); if (!sec) return;
     $('#addToCalendar')?.addEventListener('click', () => {
       const c = CONFIG.calendar;
       const stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
@@ -377,6 +441,140 @@
       document.body.appendChild(a); a.click(); a.remove();
       toast('Saved — see you on 27 March 2027!');
     });
+    if (!ANIM) { sec.classList.add('is-open'); return; }
+
+    const str = $('#sdString'), arrow = $('#sdArrow'), plaque = $('#sdPlaque'), thread = $('#sdThread'), bow = $('#sdBow'), inner = $('.sd__inner', sec);
+    const pull = { v: 0 };
+    const setString = () => str.setAttribute('d', `M44 30 L300 ${(30 - 130 * pull.v).toFixed(1)} L556 30`);
+    const setPull = () => { setString(); gsap.set(arrow, { yPercent: -39.4 * pull.v }); };
+    gsap.set('.sd__pillar', { scaleY: 0, transformOrigin: '50% 100%' });
+    let state = 'idle', autoT;
+
+    const draw = () => {
+      if (state !== 'idle') return;
+      state = 'drawing';
+      gsap.to(pull, { v: 1, duration: 1.5, ease: 'power2.inOut', onUpdate: setPull, onComplete: () => { state = 'drawn'; autoT = setTimeout(release, 2400); } });
+    };
+    ScrollTrigger.create({ trigger: sec, start: 'top 45%', once: true, onEnter: draw });
+    bow.addEventListener('click', () => {
+      if (state === 'idle' || state === 'drawing') { gsap.killTweensOf(pull); pull.v = 1; setPull(); state = 'drawn'; }
+      release();
+    });
+
+    function release() {
+      if (state !== 'drawn') return;
+      clearTimeout(autoT); state = 'flying';
+      whoosh();
+      // the string snaps forward and settles
+      gsap.timeline()
+        .to(pull, { v: -.14, duration: .1, ease: 'power4.in', onUpdate: setString })
+        .to(pull, { v: 0, duration: 1.1, ease: 'elastic.out(1.1, .28)', onUpdate: setString });
+      const ir = inner.getBoundingClientRect(), br = bow.getBoundingClientRect();
+      const a = arrow.getBoundingClientRect(), p = plaque.getBoundingClientRect();
+      const stringY = br.top + br.height * .533 - ir.top;
+      const dy = (p.top + p.height * .5) - a.bottom;
+      gsap.set(thread, { top: stringY, height: 0, opacity: 1 });
+      gsap.to(arrow, {
+        y: '+=' + dy, duration: .6, ease: 'power3.in',
+        onUpdate() {
+          const r = arrow.getBoundingClientRect(), nock = r.top + r.height * (6 / 330) - ir.top;
+          thread.style.height = Math.max(0, nock - stringY) + 'px';
+        },
+        onComplete: hit
+      });
+    }
+
+    function hit() {
+      state = 'open';
+      const p = plaque.getBoundingClientRect(), cx = p.left + p.width / 2, cy = p.top + p.height / 2;
+      crackerPop();
+      marigolds['save-the-date']?.burst(cx, cy, small() ? 90 : 150, 1.1);
+      shatter(p);
+      gsap.to(arrow, { opacity: 0, scale: .6, duration: .25, ease: 'power2.in' });
+      gsap.to(thread, { opacity: 0, duration: 1, delay: .4 });
+      sec.classList.add('is-open');
+      gsap.timeline({ delay: .12 })
+        .fromTo('.sd__ring', { scale: .2, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.5, ease: 'expo.out' }, 0)
+        .fromTo('#sdReveal', { opacity: 0, scale: .7 }, { opacity: 1, scale: 1, duration: 1.2, ease: 'back.out(1.5)' }, .05)
+        .from('#sdReveal > *:not(.sd__ring)', { y: 16, opacity: 0, duration: .8, stagger: .1, ease: 'power3.out' }, .3)
+        .to('.sd__pillar', { scaleY: 1, duration: 1.4, stagger: .12, ease: 'power3.out' }, .2);
+    }
+
+    // the golden seal splits into shards that fly out with the petals
+    function shatter(rect) {
+      const host = $('#sdTarget'), hr = host.getBoundingClientRect();
+      const bg = getComputedStyle(plaque).backgroundImage;
+      const n = 9, base = Math.random() * Math.PI;
+      plaque.style.visibility = 'hidden';
+      for (let i = 0; i < n; i++) {
+        const a1 = base + (i / n) * Math.PI * 2, a2 = base + ((i + 1) / n) * Math.PI * 2, am = (a1 + a2) / 2;
+        const pt = a => `${(50 + Math.cos(a) * 140).toFixed(1)}% ${(50 + Math.sin(a) * 140).toFixed(1)}%`;
+        const s = document.createElement('span');
+        s.className = 'sd__shard';
+        Object.assign(s.style, { left: rect.left - hr.left + 'px', top: rect.top - hr.top + 'px', width: rect.width + 'px', height: rect.height + 'px', backgroundImage: bg, clipPath: `polygon(${48 + Math.random() * 4}% ${48 + Math.random() * 4}%, ${pt(a1)}, ${pt(am)}, ${pt(a2)})` });
+        host.appendChild(s);
+        const dist = 140 + Math.random() * 160;
+        gsap.timeline({ onComplete: () => s.remove() })
+          .to(s, { x: Math.cos(am) * dist, y: Math.sin(am) * dist * .8 + 60, rotate: (Math.random() - .5) * 140, scale: .7, duration: 1.3, ease: 'power2.out' })
+          .to(s, { opacity: 0, duration: .5 }, .8);
+      }
+    }
+  }
+
+  /* ---------------------------------------------------------------------
+     05 · COUNTDOWN — gold chakra dial + cells
+     --------------------------------------------------------------------- */
+  function initCountdown() {
+    const sec = $('#countdown'); if (!sec) return;
+    const svg = $('#cdTicks');
+    if (svg) svg.innerHTML = Array.from({ length: 60 }, (_, i) => {
+      const big = i % 5 === 0;
+      return `<line x1="100" y1="${big ? 1 : 4}" x2="100" y2="${big ? 12 : 9}" stroke="${big ? '#f6e3a6' : 'rgba(246,227,166,.5)'}" stroke-width="${big ? 1.8 : .9}" stroke-linecap="round" transform="rotate(${i * 6} 100 100)"/>`;
+    }).join('');
+    const target = new Date($('#countdownCells')?.dataset.target || CONFIG.muhurat).getTime();
+    const units = ['days', 'hours', 'minutes', 'seconds'].reduce((o, k) => (o[k] = $$(`[data-unit="${k}"]`, sec), o), {});
+    const hand = $('#cdHand'); let steps = 0;
+    function tick() {
+      let d = Math.max(0, target - Date.now());
+      const days = Math.floor(d / 864e5); d -= days * 864e5;
+      const h = Math.floor(d / 36e5); d -= h * 36e5;
+      const m = Math.floor(d / 6e4); d -= m * 6e4;
+      const s = Math.floor(d / 1e3);
+      const set = (k, v, w) => units[k].forEach(el => { el.textContent = String(v).padStart(w, '0'); });
+      set('days', days, 3); set('hours', h, 2); set('minutes', m, 2); set('seconds', s, 2);
+      if (hand) hand.style.rotate = (steps++ * 6) + 'deg';
+      if (target - Date.now() <= 0) $('#cdMuhurat').textContent = 'The celebrations have begun — shubh vivah!';
+    }
+    tick(); setInterval(tick, 1000);
+    if (!ANIM) return;
+    gsap.from('.cd__dial', { scale: .55, rotate: -90, opacity: 0, duration: 1.8, ease: 'expo.out', scrollTrigger: { trigger: '.cd__dial', start: 'top 82%', once: true } });
+    gsap.from('.cd__f', { opacity: 0, scale: .6, duration: .9, stagger: .12, ease: 'back.out(1.8)', delay: .7, scrollTrigger: { trigger: '.cd__dial', start: 'top 82%', once: true } });
+    gsap.from('#countdownCells .countdown__cell', { y: 40, opacity: 0, rotateX: -70, duration: 1, stagger: .12, ease: 'back.out(1.8)', scrollTrigger: { trigger: '#countdownCells', start: 'top 90%', once: true } });
+    gsap.from('#countdown .crimson__head > *, .cd__muhurat', { y: 30, opacity: 0, duration: 1.1, stagger: .12, ease: 'power3.out', scrollTrigger: { trigger: sec, start: 'top 75%', once: true } });
+    gsap.fromTo('.cd__chakra', { scale: .92 }, { scale: 1.06, ease: 'none', scrollTrigger: { trigger: sec, start: 'top bottom', end: 'bottom top', scrub: true } });
+  }
+
+  /* ---------------------------------------------------------------------
+     06 · RAM BHAKT HANUMAN — his heart glows and opens to show Ram & Sita
+     --------------------------------------------------------------------- */
+  function initHanuman() {
+    if (!ANIM || !$('#hanuman')) return;
+    gsap.from('#hanuman .crimson__head > *', { y: 30, opacity: 0, duration: 1.1, stagger: .12, ease: 'power3.out', scrollTrigger: { trigger: '#hanuman', start: 'top 75%', once: true } });
+    const tl = gsap.timeline({ scrollTrigger: { trigger: '#hnFigure', start: 'top 72%', once: true } });
+    tl.from('.hn__img', { y: 70, opacity: 0, scale: .94, duration: 1.5, ease: 'power3.out' })
+      .from('.hn__halo', { opacity: 0, scale: .3, duration: 1.6, ease: 'power2.out' }, .2)
+      .to('.hn__glow', { opacity: 1, duration: 1.3, ease: 'sine.inOut' }, 1.1)
+      .fromTo('.hn__heart', { opacity: 0, scale: 0 }, {
+        opacity: 1, scale: 1, duration: 1.5, ease: 'back.out(1.6)',
+        onStart() {
+          const r = $('.hn__heart').getBoundingClientRect();
+          marigolds.hanuman?.burst(r.left + r.width / 2, r.top + r.height / 2, small() ? 50 : 80, .7);
+          bell();
+        }
+      }, 2.0)
+      .to('.hn__glow', { opacity: .5, duration: 1.4 }, 3.3)
+      .from('.hn__verse, .hn__blessing', { opacity: 0, y: 26, duration: 1.1, stagger: .2, ease: 'power3.out' }, 2.8);
+    tl.eventCallback('onComplete', () => gsap.to('.hn__heart', { scale: 1.06, duration: .95, repeat: -1, yoyo: true, ease: 'sine.inOut' }));
   }
 
   /* ---------------------------------------------------------------------
@@ -595,7 +793,7 @@
      --------------------------------------------------------------------- */
   // pinned sections are created top-to-bottom so later triggers account for their spacing
   // each section boots independently so one failure never blanks the rest of the invitation
-  [initHero, initGatefold, initStory, initSave, initEvents, initReveals, initWishes, initRSVP, initFireworks].forEach(fn => {
+  [initHero, initGatefold, initSave, initCountdown, initHanuman, initStory, initEvents, initReveals, initWishes, initRSVP, initFireworks].forEach(fn => {
     try { fn(); } catch (e) { console.error('[wedding] ' + fn.name + ' failed:', e && e.stack || e); }
   });
   if (ANIM) {
