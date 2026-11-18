@@ -1,0 +1,348 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 500" width="1000" height="500">
+  <defs>
+    <linearGradient id="mandapCanopy-goldH" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5E3F0C"/>
+      <stop offset=".16" stop-color="#8A6118"/>
+      <stop offset=".36" stop-color="#F6E3A6"/>
+      <stop offset=".52" stop-color="#D4AF5A"/>
+      <stop offset=".78" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#5E3F0C"/>
+    </linearGradient>
+    <linearGradient id="mandapCanopy-goldV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F6E3A6"/>
+      <stop offset=".45" stop-color="#D4AF5A"/>
+      <stop offset="1" stop-color="#8A6118"/>
+    </linearGradient>
+    <linearGradient id="mandapCanopy-eave" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8A6118"/>
+      <stop offset=".3" stop-color="#D4AF5A"/>
+      <stop offset=".5" stop-color="#F6E3A6"/>
+      <stop offset=".7" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#6E4A12"/>
+    </linearGradient>
+    <linearGradient id="mandapCanopy-dome" x1="300" y1="0" x2="700" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6E4A12"/>
+      <stop offset=".18" stop-color="#B8862B"/>
+      <stop offset=".38" stop-color="#F6E3A6"/>
+      <stop offset=".55" stop-color="#D4AF5A"/>
+      <stop offset=".82" stop-color="#8A6118"/>
+      <stop offset="1" stop-color="#5E3F0C"/>
+    </linearGradient>
+    <radialGradient id="mandapCanopy-sheen" cx="430" cy="140" r="170" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFBEA" stop-opacity=".7"/>
+      <stop offset=".5" stop-color="#FFF6D2" stop-opacity=".15"/>
+      <stop offset="1" stop-color="#FFF6D2" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="mandapCanopy-maroon" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8B1A2E"/>
+      <stop offset=".6" stop-color="#6B0F24"/>
+      <stop offset="1" stop-color="#4A0A1A"/>
+    </linearGradient>
+    <radialGradient id="mandapCanopy-velvet" cx=".5" cy=".2" r=".9">
+      <stop offset="0" stop-color="#A8304A"/>
+      <stop offset=".55" stop-color="#7A1228"/>
+      <stop offset="1" stop-color="#3A0712"/>
+    </radialGradient>
+    <linearGradient id="mandapCanopy-eaveShadow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2A0610" stop-opacity=".6"/>
+      <stop offset="1" stop-color="#2A0610" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="mandapCanopy-pearl" cx=".35" cy=".3" r=".75">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset=".5" stop-color="#FBF5E6"/>
+      <stop offset="1" stop-color="#B8A274"/>
+    </radialGradient>
+    <radialGradient id="mandapCanopy-gem" cx=".38" cy=".32" r=".7">
+      <stop offset="0" stop-color="#E25A72"/>
+      <stop offset=".45" stop-color="#8B1A2E"/>
+      <stop offset="1" stop-color="#4A0A1A"/>
+    </radialGradient>
+    <radialGradient id="mandapCanopy-bellG" cx=".35" cy=".3" r=".8">
+      <stop offset="0" stop-color="#FFF6D2"/>
+      <stop offset=".35" stop-color="#E8C66E"/>
+      <stop offset=".75" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#5E3F0C"/>
+    </radialGradient>
+
+    <!-- marigold heads -->
+    <path id="mandapCanopy-mgPetal" d="M0 -3.5 C-3.4 -4.6 -4.3 -9.6 -2.4 -12.6 C-1.4 -11.6 -.6 -12.4 0 -13.2 C.6 -12.4 1.4 -11.6 2.4 -12.6 C4.3 -9.6 3.4 -4.6 0 -3.5Z"/>
+    <g id="mandapCanopy-mgRing">
+      <use xlink:href="#mandapCanopy-mgPetal" href="#mandapCanopy-mgPetal"/>
+      <use xlink:href="#mandapCanopy-mgPetal" href="#mandapCanopy-mgPetal" transform="rotate(25.7)"/>
+      <use xlink:href="#mandapCanopy-mgPetal" href="#mandapCanopy-mgPetal" transform="rotate(51.4)"/>
+      <use xlink:href="#mandapCanopy-mgPetal" href="#mandapCanopy-mgPetal" transform="rotate(77.1)"/>
+      <use xlink:href="#mandapCanopy-mgPetal" href="#mandapCanopy-mgPetal" transform="rotate(102.9)"/>
+      <use xlink:href="#mandapCanopy-mgPetal" href="#mandapCanopy-mgPetal" transform="rotate(128.6)"/>
+      <use xlink:href="#mandapCanopy-mgPetal" href="#mandapCanopy-mgPetal" transform="rotate(154.3)"/>
+      <use xlink:href="#mandapCanopy-mgPetal" href="#mandapCanopy-mgPetal" transform="rotate(180)"/>
+      <use xlink:href="#mandapCanopy-mgPetal" href="#mandapCanopy-mgPetal" transform="rotate(205.7)"/>
+      <use xlink:href="#mandapCanopy-mgPetal" href="#mandapCanopy-mgPetal" transform="rotate(231.4)"/>
+      <use xlink:href="#mandapCanopy-mgPetal" href="#mandapCanopy-mgPetal" transform="rotate(257.1)"/>
+      <use xlink:href="#mandapCanopy-mgPetal" href="#mandapCanopy-mgPetal" transform="rotate(282.9)"/>
+      <use xlink:href="#mandapCanopy-mgPetal" href="#mandapCanopy-mgPetal" transform="rotate(308.6)"/>
+      <use xlink:href="#mandapCanopy-mgPetal" href="#mandapCanopy-mgPetal" transform="rotate(334.3)"/>
+    </g>
+    <g id="mandapCanopy-mgO">
+      <circle r="11.8" fill="#9C3E0C"/>
+      <use xlink:href="#mandapCanopy-mgRing" href="#mandapCanopy-mgRing" fill="#D9600F" stroke="#8E3A0C" stroke-width=".5"/>
+      <use xlink:href="#mandapCanopy-mgRing" href="#mandapCanopy-mgRing" fill="#E8761A" stroke="#A8460C" stroke-width=".55" transform="rotate(12.9) scale(.76)"/>
+      <use xlink:href="#mandapCanopy-mgRing" href="#mandapCanopy-mgRing" fill="#F28A1E" stroke="#B4530F" stroke-width=".65" transform="scale(.54)"/>
+      <use xlink:href="#mandapCanopy-mgRing" href="#mandapCanopy-mgRing" fill="#F7A41D" stroke="#C8620F" stroke-width=".85" transform="rotate(12.9) scale(.33)"/>
+    </g>
+    <g id="mandapCanopy-mgY">
+      <circle r="11.8" fill="#B87A06"/>
+      <use xlink:href="#mandapCanopy-mgRing" href="#mandapCanopy-mgRing" fill="#F2B705" stroke="#A8740A" stroke-width=".5"/>
+      <use xlink:href="#mandapCanopy-mgRing" href="#mandapCanopy-mgRing" fill="#F7C21D" stroke="#B8820A" stroke-width=".55" transform="rotate(12.9) scale(.76)"/>
+      <use xlink:href="#mandapCanopy-mgRing" href="#mandapCanopy-mgRing" fill="#FFD23F" stroke="#C99208" stroke-width=".65" transform="scale(.54)"/>
+      <use xlink:href="#mandapCanopy-mgRing" href="#mandapCanopy-mgRing" fill="#FFE27A" stroke="#D9A20A" stroke-width=".85" transform="rotate(12.9) scale(.33)"/>
+    </g>
+
+    <!-- temple bell -->
+    <g id="mandapCanopy-bell">
+      <circle cy="-2" r="2.4" fill="none" stroke="#8A6118" stroke-width="1.2"/>
+      <path d="M-3 1 H3 V4 H-3Z" fill="#8A6118" stroke="#5E3F0C" stroke-width=".4"/>
+      <path d="M-8 22 C-8 10 -5 4 0 4 C5 4 8 10 8 22Z" fill="url(#mandapCanopy-bellG)" stroke="#5E3F0C" stroke-width=".7"/>
+      <path d="M-10 22 H10 L9 25 H-9Z" fill="url(#mandapCanopy-goldH)" stroke="#5E3F0C" stroke-width=".5"/>
+      <circle cy="27.6" r="2.6" fill="#5E3F0C"/>
+      <path d="M-4.2 9 C-5.4 12 -5.8 16 -5.6 20" stroke="#FFFBEA" stroke-width="1.1" fill="none" opacity=".85" stroke-linecap="round"/>
+      <path d="M-7.6 15 H7.6" stroke="#5E3F0C" stroke-width=".6"/>
+    </g>
+    <!-- marigold strings -->
+    <g id="mandapCanopy-str7">
+      <path d="M0 0 V92" stroke="#8B1A2E" stroke-width="1.2"/>
+      <use xlink:href="#mandapCanopy-mgO" href="#mandapCanopy-mgO" transform="translate(0 7) scale(.52)"/>
+      <use xlink:href="#mandapCanopy-mgY" href="#mandapCanopy-mgY" transform="translate(0 19.5) scale(.52)"/>
+      <use xlink:href="#mandapCanopy-mgO" href="#mandapCanopy-mgO" transform="translate(0 32) scale(.52)"/>
+      <use xlink:href="#mandapCanopy-mgY" href="#mandapCanopy-mgY" transform="translate(0 44.5) scale(.52)"/>
+      <use xlink:href="#mandapCanopy-mgO" href="#mandapCanopy-mgO" transform="translate(0 57) scale(.52)"/>
+      <use xlink:href="#mandapCanopy-mgY" href="#mandapCanopy-mgY" transform="translate(0 69.5) scale(.52)"/>
+      <use xlink:href="#mandapCanopy-mgO" href="#mandapCanopy-mgO" transform="translate(0 82) scale(.52)"/>
+      <use xlink:href="#mandapCanopy-bell" href="#mandapCanopy-bell" transform="translate(0 93) scale(.8)"/>
+    </g>
+    <g id="mandapCanopy-str5">
+      <path d="M0 0 V67" stroke="#8B1A2E" stroke-width="1.2"/>
+      <use xlink:href="#mandapCanopy-mgY" href="#mandapCanopy-mgY" transform="translate(0 7) scale(.52)"/>
+      <use xlink:href="#mandapCanopy-mgO" href="#mandapCanopy-mgO" transform="translate(0 19.5) scale(.52)"/>
+      <use xlink:href="#mandapCanopy-mgY" href="#mandapCanopy-mgY" transform="translate(0 32) scale(.52)"/>
+      <use xlink:href="#mandapCanopy-mgO" href="#mandapCanopy-mgO" transform="translate(0 44.5) scale(.52)"/>
+      <use xlink:href="#mandapCanopy-mgY" href="#mandapCanopy-mgY" transform="translate(0 57) scale(.52)"/>
+      <use xlink:href="#mandapCanopy-bell" href="#mandapCanopy-bell" transform="translate(0 68) scale(.8)"/>
+    </g>
+    <g id="mandapCanopy-bellDrop">
+      <path d="M0 0 V12" stroke="#8A6118" stroke-width="1.2" stroke-dasharray="2 1"/>
+      <circle cy="4" r="2.4" fill="url(#mandapCanopy-pearl)"/>
+      <use xlink:href="#mandapCanopy-bell" href="#mandapCanopy-bell" transform="translate(0 13)"/>
+    </g>
+    <g id="mandapCanopy-cuspTassel">
+      <circle r="3.4" fill="url(#mandapCanopy-goldV)" stroke="#5E3F0C" stroke-width=".5"/>
+      <path d="M-2.6 2.6 L-3.4 15 L3.4 15 L2.6 2.6Z" fill="#D4AF5A" stroke="#8A6118" stroke-width=".4"/>
+      <path d="M-2 4 V14.6 M0 4 V14.8 M2 4 V14.6" stroke="#8A6118" stroke-width=".4"/>
+      <circle cy="16.6" r="1.8" fill="url(#mandapCanopy-gem)"/>
+    </g>
+    <!-- embroidery inside each valance scallop -->
+    <g id="mandapCanopy-scallopDeco">
+      <path d="M-25.4 333 A26 26 0 0 0 25.4 333" fill="none" stroke="#D4AF5A" stroke-width="1" stroke-dasharray="2 1.6"/>
+      <path d="M0 340 C-6 344 -6 352 0 357 C6 352 6 344 0 340Z" fill="url(#mandapCanopy-goldV)" stroke="#5E3F0C" stroke-width=".5"/>
+      <path d="M-4 352 C-12 350 -15 344 -13 340 C-9 343 -6 347 -4 352Z M4 352 C12 350 15 344 13 340 C9 343 6 347 4 352Z" fill="url(#mandapCanopy-goldV)" stroke="#5E3F0C" stroke-width=".45"/>
+      <circle cy="361.6" r="1.6" fill="#F6E3A6"/>
+      <circle cx="-17" cy="352" r="1.2" fill="#F6E3A6"/><circle cx="17" cy="352" r="1.2" fill="#F6E3A6"/>
+    </g>
+    <!-- drum niche -->
+    <g id="mandapCanopy-niche">
+      <path d="M-9 276 V262 C-9 257 -5 253 0 250 C5 253 9 257 9 262 V276Z" fill="#3A0712" stroke="#D4AF5A" stroke-width="1.4"/>
+      <path d="M-5 276 V265 C-5 262 -2.6 259.6 0 258 C2.6 259.6 5 262 5 265 V276" fill="none" stroke="#B8862B" stroke-width=".6"/>
+    </g>
+    <path id="mandapCanopy-petal" d="M-12 0 C-12 -10 -6 -18 0 -22 C6 -18 12 -10 12 0Z"/>
+    <circle id="mandapCanopy-bead" r="3.2" fill="url(#mandapCanopy-pearl)" stroke="#8A6118" stroke-width=".4"/>
+    <!-- finial spire -->
+    <g id="mandapCanopy-finial">
+      <path d="M-22 0 C-20 -8 20 -8 22 0Z" fill="url(#mandapCanopy-goldH)" stroke="#5E3F0C" stroke-width=".7"/>
+      <ellipse cy="-9" rx="20" ry="6" fill="url(#mandapCanopy-goldH)" stroke="#5E3F0C" stroke-width=".7"/>
+      <path d="M-18 -9 H18" stroke="#5E3F0C" stroke-width="2.4" stroke-dasharray="1.2 2.2"/>
+      <path d="M-6 -14 H6 V-18 H-6Z" fill="url(#mandapCanopy-goldH)" stroke="#5E3F0C" stroke-width=".5"/>
+      <path d="M-6 -18 C-16 -20 -16 -36 -4 -40 H4 C16 -36 16 -20 6 -18Z" fill="url(#mandapCanopy-goldH)" stroke="#5E3F0C" stroke-width=".7"/>
+      <path d="M-11 -28 C-4 -26 4 -26 11 -28" stroke="#8B1A2E" stroke-width="2" fill="none"/>
+      <path d="M-4 -40 H4 V-46 H-4Z" fill="url(#mandapCanopy-goldH)" stroke="#5E3F0C" stroke-width=".5"/>
+      <ellipse cy="-50" rx="6" ry="5" fill="url(#mandapCanopy-goldH)" stroke="#5E3F0C" stroke-width=".6"/>
+      <ellipse cy="-59" rx="4" ry="3.6" fill="url(#mandapCanopy-goldH)" stroke="#5E3F0C" stroke-width=".6"/>
+      <path d="M0 -62 L3 -70 L0 -84 L-3 -70Z" fill="url(#mandapCanopy-goldH)" stroke="#5E3F0C" stroke-width=".6"/>
+      <path d="M-8 -30 C-9 -26 -8 -22 -6 -20" stroke="#FFFBEA" stroke-width="1.2" fill="none" opacity=".8"/>
+    </g>
+    <!-- small corner chhatri -->
+    <g id="mandapCanopy-chhatri">
+      <rect x="-42" y="-24" width="84" height="24" fill="url(#mandapCanopy-maroon)" stroke="#5E3F0C" stroke-width=".7"/>
+      <path d="M-42 -22 H42 M-42 -2 H42" stroke="#D4AF5A" stroke-width="1.4"/>
+      <path d="M-36 -12 H36" stroke="#F6E3A6" stroke-width="2.4" stroke-dasharray=".1 6" stroke-linecap="round"/>
+      <path d="M-48 -24 H48 L44 -30 H-44Z" fill="url(#mandapCanopy-eave)" stroke="#5E3F0C" stroke-width=".6"/>
+      <path d="M-40 -30 C-40 -64 -20 -84 0 -86 C20 -84 40 -64 40 -30Z" fill="url(#mandapCanopy-goldH)" stroke="#5E3F0C" stroke-width=".8"/>
+      <path d="M0 -86 C-8 -70 -12 -50 -12 -30 M0 -86 C-18 -72 -26 -52 -28 -30 M0 -86 C8 -70 12 -50 12 -30 M0 -86 C18 -72 26 -52 28 -30" fill="none" stroke="#5E3F0C" stroke-width=".7" opacity=".7"/>
+      <path d="M-28 -50 C-24 -66 -14 -78 -4 -82" fill="none" stroke="#FFFBEA" stroke-width="1.6" opacity=".6"/>
+      <use xlink:href="#mandapCanopy-finial" href="#mandapCanopy-finial" transform="translate(0 -84) scale(.45)"/>
+    </g>
+    <g id="mandapCanopy-pinnacle">
+      <path d="M-10 0 H10 L8 -6 H-8Z" fill="url(#mandapCanopy-goldH)" stroke="#5E3F0C" stroke-width=".6"/>
+      <path d="M-7 -6 C-12 -10 -12 -20 -3 -22 H3 C12 -20 12 -10 7 -6Z" fill="url(#mandapCanopy-goldH)" stroke="#5E3F0C" stroke-width=".6"/>
+      <ellipse cy="-26" rx="4.4" ry="4" fill="url(#mandapCanopy-goldH)" stroke="#5E3F0C" stroke-width=".5"/>
+      <path d="M0 -30 L2.2 -36 L0 -46 L-2.2 -36Z" fill="url(#mandapCanopy-goldH)" stroke="#5E3F0C" stroke-width=".5"/>
+    </g>
+  </defs>
+
+  <!-- ================= CENTRAL CHHATRI DOME ================= -->
+  <use xlink:href="#mandapCanopy-finial" href="#mandapCanopy-finial" transform="translate(500 100)"/>
+  <path d="M300 250 C300 162 380 100 500 94 C620 100 700 162 700 250Z" fill="url(#mandapCanopy-dome)" stroke="#5E3F0C" stroke-width="1.2"/>
+  <path d="M300 250 C300 162 380 100 500 94 C620 100 700 162 700 250Z" fill="url(#mandapCanopy-sheen)"/>
+  <!-- ribs -->
+  <g fill="none" stroke="#5E3F0C" stroke-width="1" opacity=".55">
+    <path d="M500 96 C410 100 344 160 350 250"/>
+    <path d="M500 96 C440 102 396 162 400 250"/>
+    <path d="M500 96 C470 104 448 164 450 250"/>
+    <path d="M500 96 V250"/>
+    <path d="M500 96 C530 104 552 164 550 250"/>
+    <path d="M500 96 C560 102 604 162 600 250"/>
+    <path d="M500 96 C590 100 656 160 650 250"/>
+  </g>
+  <g fill="none" stroke="#FFF6D2" stroke-width="1" opacity=".45">
+    <path d="M500 97 C412 101 347 161 353 250"/>
+    <path d="M500 97 C442 103 399 163 403 250"/>
+    <path d="M500 97 C472 105 451 165 453 250"/>
+  </g>
+  <!-- inverted lotus crown at the apex -->
+  <path d="M454 112 C462 92 538 92 546 112 C530 104 470 104 454 112Z" fill="url(#mandapCanopy-goldH)" stroke="#5E3F0C" stroke-width=".8"/>
+  <path d="M466 106 C470 98 478 95 486 95 M486 104 C488 98 494 95 500 95 C506 95 512 98 514 104 M534 106 C530 98 522 95 514 95" fill="none" stroke="#5E3F0C" stroke-width=".8"/>
+  <!-- horizontal bead band and petal base -->
+  <path d="M318 200 C400 188 600 188 682 200" fill="none" stroke="#8B1A2E" stroke-width="7"/>
+  <path d="M318 200 C400 188 600 188 682 200" fill="none" stroke="#F6E3A6" stroke-width="3" stroke-dasharray=".1 9" stroke-linecap="round"/>
+  <path d="M316 196 C400 184 600 184 684 196 M318 204 C400 192 600 192 682 204" fill="none" stroke="#D4AF5A" stroke-width="1.2"/>
+  <g fill="url(#mandapCanopy-goldV)" stroke="#5E3F0C" stroke-width=".7">
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" x="314" y="252"/>
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" x="338" y="252"/>
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" x="362" y="252"/>
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" x="386" y="252"/>
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" x="410" y="252"/>
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" x="434" y="252"/>
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" x="458" y="252"/>
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" x="482" y="252"/>
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" x="506" y="252"/>
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" x="530" y="252"/>
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" x="554" y="252"/>
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" x="578" y="252"/>
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" x="602" y="252"/>
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" x="626" y="252"/>
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" x="650" y="252"/>
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" x="674" y="252"/>
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" x="698" y="252"/>
+  </g>
+  <g fill="none" stroke="#8B1A2E" stroke-width=".9" opacity=".7">
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" transform="translate(338 252) scale(.5)"/>
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" transform="translate(386 252) scale(.5)"/>
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" transform="translate(434 252) scale(.5)"/>
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" transform="translate(482 252) scale(.5)"/>
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" transform="translate(530 252) scale(.5)"/>
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" transform="translate(578 252) scale(.5)"/>
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" transform="translate(626 252) scale(.5)"/>
+    <use xlink:href="#mandapCanopy-petal" href="#mandapCanopy-petal" transform="translate(674 252) scale(.5)"/>
+  </g>
+
+  <!-- drum with arched niches -->
+  <rect x="290" y="250" width="420" height="30" fill="url(#mandapCanopy-maroon)" stroke="#5E3F0C" stroke-width=".8"/>
+  <rect x="286" y="246" width="428" height="5" fill="url(#mandapCanopy-eave)" stroke="#5E3F0C" stroke-width=".5"/>
+  <use xlink:href="#mandapCanopy-niche" href="#mandapCanopy-niche" x="314"/>
+  <use xlink:href="#mandapCanopy-niche" href="#mandapCanopy-niche" x="345"/>
+  <use xlink:href="#mandapCanopy-niche" href="#mandapCanopy-niche" x="376"/>
+  <use xlink:href="#mandapCanopy-niche" href="#mandapCanopy-niche" x="407"/>
+  <use xlink:href="#mandapCanopy-niche" href="#mandapCanopy-niche" x="438"/>
+  <use xlink:href="#mandapCanopy-niche" href="#mandapCanopy-niche" x="469"/>
+  <use xlink:href="#mandapCanopy-niche" href="#mandapCanopy-niche" x="500"/>
+  <use xlink:href="#mandapCanopy-niche" href="#mandapCanopy-niche" x="531"/>
+  <use xlink:href="#mandapCanopy-niche" href="#mandapCanopy-niche" x="562"/>
+  <use xlink:href="#mandapCanopy-niche" href="#mandapCanopy-niche" x="593"/>
+  <use xlink:href="#mandapCanopy-niche" href="#mandapCanopy-niche" x="624"/>
+  <use xlink:href="#mandapCanopy-niche" href="#mandapCanopy-niche" x="655"/>
+  <use xlink:href="#mandapCanopy-niche" href="#mandapCanopy-niche" x="686"/>
+
+  <!-- corner chhatris and pinnacles on the eave -->
+  <use xlink:href="#mandapCanopy-chhatri" href="#mandapCanopy-chhatri" transform="translate(112 280)"/>
+  <use xlink:href="#mandapCanopy-chhatri" href="#mandapCanopy-chhatri" transform="translate(888 280)"/>
+  <use xlink:href="#mandapCanopy-pinnacle" href="#mandapCanopy-pinnacle" transform="translate(212 280)"/>
+  <use xlink:href="#mandapCanopy-pinnacle" href="#mandapCanopy-pinnacle" transform="translate(788 280)"/>
+  <use xlink:href="#mandapCanopy-pinnacle" href="#mandapCanopy-pinnacle" transform="translate(258 280) scale(.8)"/>
+  <use xlink:href="#mandapCanopy-pinnacle" href="#mandapCanopy-pinnacle" transform="translate(742 280) scale(.8)"/>
+
+  <!-- ================= EAVE (CHAJJA) ================= -->
+  <path d="M40 280 H960 L986 306 H14Z" fill="url(#mandapCanopy-eave)" stroke="#5E3F0C" stroke-width="1"/>
+  <path d="M40 281.6 H960" stroke="#FFF6D2" stroke-width="1.2" opacity=".8"/>
+  <path d="M30 292 H970" stroke="#5E3F0C" stroke-width=".8" opacity=".6"/>
+  <path d="M34 296 H966" stroke="#8B1A2E" stroke-width="3" stroke-dasharray="10 6"/>
+  <rect x="14" y="306" width="972" height="16" fill="url(#mandapCanopy-maroon)" stroke="#4A0A1A" stroke-width=".8"/>
+  <path d="M14 307.4 H986 M14 320.6 H986" stroke="#D4AF5A" stroke-width="1.4"/>
+  <g>
+    <use xlink:href="#mandapCanopy-bead" href="#mandapCanopy-bead" x="24" y="314"/>
+    <path d="M36 314 H976" stroke="url(#mandapCanopy-eave)" stroke-width="5" stroke-dasharray=".1 12" stroke-linecap="round"/>
+    <path d="M36 314 H976" stroke="#FBF5E6" stroke-width="3.4" stroke-dasharray=".1 12" stroke-linecap="round"/>
+    <use xlink:href="#mandapCanopy-bead" href="#mandapCanopy-bead" x="976" y="314"/>
+  </g>
+
+  <!-- ================= SCALLOPED VALANCE ================= -->
+  <path d="M30 322 H970 V330 A31.3 31.3 0 0 1 911.25 330 A31.3 31.3 0 0 1 852.50 330 A31.3 31.3 0 0 1 793.75 330 A31.3 31.3 0 0 1 735.00 330 A31.3 31.3 0 0 1 676.25 330 A31.3 31.3 0 0 1 617.50 330 A31.3 31.3 0 0 1 558.75 330 A31.3 31.3 0 0 1 500.00 330 A31.3 31.3 0 0 1 441.25 330 A31.3 31.3 0 0 1 382.50 330 A31.3 31.3 0 0 1 323.75 330 A31.3 31.3 0 0 1 265.00 330 A31.3 31.3 0 0 1 206.25 330 A31.3 31.3 0 0 1 147.50 330 A31.3 31.3 0 0 1 88.75 330 A31.3 31.3 0 0 1 30.00 330Z" fill="url(#mandapCanopy-velvet)"/>
+  <rect x="30" y="322" width="940" height="12" fill="url(#mandapCanopy-eaveShadow)"/>
+  <path d="M970.00 330 A31.3 31.3 0 0 1 911.25 330 A31.3 31.3 0 0 1 852.50 330 A31.3 31.3 0 0 1 793.75 330 A31.3 31.3 0 0 1 735.00 330 A31.3 31.3 0 0 1 676.25 330 A31.3 31.3 0 0 1 617.50 330 A31.3 31.3 0 0 1 558.75 330 A31.3 31.3 0 0 1 500.00 330 A31.3 31.3 0 0 1 441.25 330 A31.3 31.3 0 0 1 382.50 330 A31.3 31.3 0 0 1 323.75 330 A31.3 31.3 0 0 1 265.00 330 A31.3 31.3 0 0 1 206.25 330 A31.3 31.3 0 0 1 147.50 330 A31.3 31.3 0 0 1 88.75 330 A31.3 31.3 0 0 1 30.00 330" fill="none" stroke="#5E3F0C" stroke-width="7"/>
+  <path d="M970.00 330 A31.3 31.3 0 0 1 911.25 330 A31.3 31.3 0 0 1 852.50 330 A31.3 31.3 0 0 1 793.75 330 A31.3 31.3 0 0 1 735.00 330 A31.3 31.3 0 0 1 676.25 330 A31.3 31.3 0 0 1 617.50 330 A31.3 31.3 0 0 1 558.75 330 A31.3 31.3 0 0 1 500.00 330 A31.3 31.3 0 0 1 441.25 330 A31.3 31.3 0 0 1 382.50 330 A31.3 31.3 0 0 1 323.75 330 A31.3 31.3 0 0 1 265.00 330 A31.3 31.3 0 0 1 206.25 330 A31.3 31.3 0 0 1 147.50 330 A31.3 31.3 0 0 1 88.75 330 A31.3 31.3 0 0 1 30.00 330" fill="none" stroke="url(#mandapCanopy-eave)" stroke-width="5"/>
+  <path d="M970.00 330 A31.3 31.3 0 0 1 911.25 330 A31.3 31.3 0 0 1 852.50 330 A31.3 31.3 0 0 1 793.75 330 A31.3 31.3 0 0 1 735.00 330 A31.3 31.3 0 0 1 676.25 330 A31.3 31.3 0 0 1 617.50 330 A31.3 31.3 0 0 1 558.75 330 A31.3 31.3 0 0 1 500.00 330 A31.3 31.3 0 0 1 441.25 330 A31.3 31.3 0 0 1 382.50 330 A31.3 31.3 0 0 1 323.75 330 A31.3 31.3 0 0 1 265.00 330 A31.3 31.3 0 0 1 206.25 330 A31.3 31.3 0 0 1 147.50 330 A31.3 31.3 0 0 1 88.75 330 A31.3 31.3 0 0 1 30.00 330" fill="none" stroke="#FFF6D2" stroke-width="1.6" stroke-dasharray=".1 5" stroke-linecap="round"/>
+  <rect x="30" y="322" width="940" height="8" fill="url(#mandapCanopy-eave)" stroke="#5E3F0C" stroke-width=".6"/>
+  <path d="M34 326 H966" stroke="#5E3F0C" stroke-width="1.6" stroke-dasharray="4 3"/>
+  <g>
+    <use xlink:href="#mandapCanopy-scallopDeco" href="#mandapCanopy-scallopDeco" x="59.38"/>
+    <use xlink:href="#mandapCanopy-scallopDeco" href="#mandapCanopy-scallopDeco" x="118.12"/>
+    <use xlink:href="#mandapCanopy-scallopDeco" href="#mandapCanopy-scallopDeco" x="176.88"/>
+    <use xlink:href="#mandapCanopy-scallopDeco" href="#mandapCanopy-scallopDeco" x="235.62"/>
+    <use xlink:href="#mandapCanopy-scallopDeco" href="#mandapCanopy-scallopDeco" x="294.38"/>
+    <use xlink:href="#mandapCanopy-scallopDeco" href="#mandapCanopy-scallopDeco" x="353.12"/>
+    <use xlink:href="#mandapCanopy-scallopDeco" href="#mandapCanopy-scallopDeco" x="411.88"/>
+    <use xlink:href="#mandapCanopy-scallopDeco" href="#mandapCanopy-scallopDeco" x="470.62"/>
+    <use xlink:href="#mandapCanopy-scallopDeco" href="#mandapCanopy-scallopDeco" x="529.38"/>
+    <use xlink:href="#mandapCanopy-scallopDeco" href="#mandapCanopy-scallopDeco" x="588.12"/>
+    <use xlink:href="#mandapCanopy-scallopDeco" href="#mandapCanopy-scallopDeco" x="646.88"/>
+    <use xlink:href="#mandapCanopy-scallopDeco" href="#mandapCanopy-scallopDeco" x="705.62"/>
+    <use xlink:href="#mandapCanopy-scallopDeco" href="#mandapCanopy-scallopDeco" x="764.38"/>
+    <use xlink:href="#mandapCanopy-scallopDeco" href="#mandapCanopy-scallopDeco" x="823.12"/>
+    <use xlink:href="#mandapCanopy-scallopDeco" href="#mandapCanopy-scallopDeco" x="881.88"/>
+    <use xlink:href="#mandapCanopy-scallopDeco" href="#mandapCanopy-scallopDeco" x="940.62"/>
+  </g>
+
+  <!-- cusp tassels -->
+  <g>
+    <use xlink:href="#mandapCanopy-cuspTassel" href="#mandapCanopy-cuspTassel" x="88.75" y="332"/>
+    <use xlink:href="#mandapCanopy-cuspTassel" href="#mandapCanopy-cuspTassel" x="147.5" y="332"/>
+    <use xlink:href="#mandapCanopy-cuspTassel" href="#mandapCanopy-cuspTassel" x="206.25" y="332"/>
+    <use xlink:href="#mandapCanopy-cuspTassel" href="#mandapCanopy-cuspTassel" x="265" y="332"/>
+    <use xlink:href="#mandapCanopy-cuspTassel" href="#mandapCanopy-cuspTassel" x="323.75" y="332"/>
+    <use xlink:href="#mandapCanopy-cuspTassel" href="#mandapCanopy-cuspTassel" x="382.5" y="332"/>
+    <use xlink:href="#mandapCanopy-cuspTassel" href="#mandapCanopy-cuspTassel" x="441.25" y="332"/>
+    <use xlink:href="#mandapCanopy-cuspTassel" href="#mandapCanopy-cuspTassel" x="500" y="332"/>
+    <use xlink:href="#mandapCanopy-cuspTassel" href="#mandapCanopy-cuspTassel" x="558.75" y="332"/>
+    <use xlink:href="#mandapCanopy-cuspTassel" href="#mandapCanopy-cuspTassel" x="617.5" y="332"/>
+    <use xlink:href="#mandapCanopy-cuspTassel" href="#mandapCanopy-cuspTassel" x="676.25" y="332"/>
+    <use xlink:href="#mandapCanopy-cuspTassel" href="#mandapCanopy-cuspTassel" x="735" y="332"/>
+    <use xlink:href="#mandapCanopy-cuspTassel" href="#mandapCanopy-cuspTassel" x="793.75" y="332"/>
+    <use xlink:href="#mandapCanopy-cuspTassel" href="#mandapCanopy-cuspTassel" x="852.5" y="332"/>
+    <use xlink:href="#mandapCanopy-cuspTassel" href="#mandapCanopy-cuspTassel" x="911.25" y="332"/>
+  </g>
+
+  <!-- hanging bells and marigold strings from each scallop -->
+  <use xlink:href="#mandapCanopy-bellDrop" href="#mandapCanopy-bellDrop" x="59.38" y="372"/>
+  <use xlink:href="#mandapCanopy-str5" href="#mandapCanopy-str5" x="118.12" y="372"/>
+  <use xlink:href="#mandapCanopy-bellDrop" href="#mandapCanopy-bellDrop" x="176.88" y="372"/>
+  <use xlink:href="#mandapCanopy-str5" href="#mandapCanopy-str5" x="235.62" y="372"/>
+  <use xlink:href="#mandapCanopy-bellDrop" href="#mandapCanopy-bellDrop" x="294.38" y="372"/>
+  <use xlink:href="#mandapCanopy-str7" href="#mandapCanopy-str7" x="353.12" y="372"/>
+  <use xlink:href="#mandapCanopy-bellDrop" href="#mandapCanopy-bellDrop" x="411.88" y="372"/>
+  <use xlink:href="#mandapCanopy-str7" href="#mandapCanopy-str7" x="470.62" y="372"/>
+  <use xlink:href="#mandapCanopy-str7" href="#mandapCanopy-str7" x="529.38" y="372"/>
+  <use xlink:href="#mandapCanopy-bellDrop" href="#mandapCanopy-bellDrop" x="588.12" y="372"/>
+  <use xlink:href="#mandapCanopy-str7" href="#mandapCanopy-str7" x="646.88" y="372"/>
+  <use xlink:href="#mandapCanopy-bellDrop" href="#mandapCanopy-bellDrop" x="705.62" y="372"/>
+  <use xlink:href="#mandapCanopy-str5" href="#mandapCanopy-str5" x="764.38" y="372"/>
+  <use xlink:href="#mandapCanopy-bellDrop" href="#mandapCanopy-bellDrop" x="823.12" y="372"/>
+  <use xlink:href="#mandapCanopy-str5" href="#mandapCanopy-str5" x="881.88" y="372"/>
+  <use xlink:href="#mandapCanopy-bellDrop" href="#mandapCanopy-bellDrop" x="940.62" y="372"/>
+</svg>

@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 300 400" width="300" height="400">
+  <defs>
+    <linearGradient id="kalash-brassH" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5E3F0C"/>
+      <stop offset=".15" stop-color="#8A6118"/>
+      <stop offset=".34" stop-color="#F6E3A6"/>
+      <stop offset=".5" stop-color="#D4AF5A"/>
+      <stop offset=".78" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#5E3F0C"/>
+    </linearGradient>
+    <radialGradient id="kalash-body" cx="108" cy="232" r="150" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF6D2"/>
+      <stop offset=".14" stop-color="#F6E3A6"/>
+      <stop offset=".38" stop-color="#D4AF5A"/>
+      <stop offset=".66" stop-color="#B8862B"/>
+      <stop offset=".86" stop-color="#8A6118"/>
+      <stop offset="1" stop-color="#5E3F0C"/>
+    </radialGradient>
+    <radialGradient id="kalash-coconut" cx="128" cy="78" r="70" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#C79158"/>
+      <stop offset=".45" stop-color="#8A5A2B"/>
+      <stop offset=".8" stop-color="#5C3317"/>
+      <stop offset="1" stop-color="#3B1F10"/>
+    </radialGradient>
+    <linearGradient id="kalash-leaf" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#25472A"/>
+      <stop offset=".45" stop-color="#3E6B3A"/>
+      <stop offset="1" stop-color="#7E9E44"/>
+    </linearGradient>
+    <linearGradient id="kalash-leafBack" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1F3A22"/>
+      <stop offset=".5" stop-color="#2E5230"/>
+      <stop offset="1" stop-color="#5B7A33"/>
+    </linearGradient>
+    <linearGradient id="kalash-rim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F6E3A6"/>
+      <stop offset=".5" stop-color="#C99A3E"/>
+      <stop offset="1" stop-color="#6E4A12"/>
+    </linearGradient>
+    <filter id="kalash-soft" x="-30%" y="-100%" width="160%" height="300%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+    <g id="kalash-leafShape">
+      <path d="M0 0 C11 -16 15 -50 4 -96 C-11 -62 -13 -24 0 0Z"/>
+    </g>
+    <g id="kalash-leafVeins" fill="none" stroke-linecap="round">
+      <path d="M0 -2 C4 -32 6 -62 4 -92" stroke="#C9D68A" stroke-width="1.1" opacity=".85"/>
+      <path d="M2 -16 L9 -22 M3 -28 L10.6 -36 M4 -40 L11 -49 M4.6 -52 L10 -61 M4.6 -64 L8.6 -72 M1.6 -20 L-6.4 -26 M2.6 -32 L-7.6 -40 M3.4 -44 L-7.4 -53 M4 -56 L-5.4 -65 M4.2 -68 L-2.6 -77" stroke="#B4C677" stroke-width=".55" opacity=".6"/>
+    </g>
+    <g id="kalash-leaf1">
+      <use xlink:href="#kalash-leafShape" href="#kalash-leafShape" fill="url(#kalash-leaf)" stroke="#1E3A1E" stroke-width=".8"/>
+      <use xlink:href="#kalash-leafVeins" href="#kalash-leafVeins"/>
+    </g>
+    <g id="kalash-leaf2">
+      <use xlink:href="#kalash-leafShape" href="#kalash-leafShape" fill="url(#kalash-leafBack)" stroke="#1A321C" stroke-width=".8"/>
+      <use xlink:href="#kalash-leafVeins" href="#kalash-leafVeins" opacity=".7"/>
+    </g>
+    <path id="kalash-petal" d="M-9 0 C-9 -9 -5 -16 0 -20 C5 -16 9 -9 9 0Z"/>
+  </defs>
+
+  <!-- ground shadow -->
+  <ellipse cx="150" cy="384" rx="98" ry="9" fill="#3B1F10" opacity=".35" filter="url(#kalash-soft)"/>
+
+  <!-- ===== mango leaves (back row) ===== -->
+  <use xlink:href="#kalash-leaf2" href="#kalash-leaf2" transform="translate(140 150) rotate(-64) scale(.98)"/>
+  <use xlink:href="#kalash-leaf2" href="#kalash-leaf2" transform="translate(160 150) rotate(64) scale(-.98 .98)"/>
+  <use xlink:href="#kalash-leaf2" href="#kalash-leaf2" transform="translate(144 148) rotate(-36)"/>
+  <use xlink:href="#kalash-leaf2" href="#kalash-leaf2" transform="translate(156 148) rotate(36) scale(-1 1)"/>
+  <use xlink:href="#kalash-leaf2" href="#kalash-leaf2" transform="translate(148 146) rotate(-12) scale(.96)"/>
+  <use xlink:href="#kalash-leaf2" href="#kalash-leaf2" transform="translate(152 146) rotate(12) scale(-.96 .96)"/>
+
+  <!-- ===== coconut ===== -->
+  <ellipse cx="150" cy="98" rx="41" ry="54" fill="url(#kalash-coconut)" stroke="#2A140A" stroke-width="1"/>
+  <g fill="none" stroke="#3B1F10" stroke-linecap="round" opacity=".75">
+    <path d="M128 52 C118 72 116 112 126 146" stroke-width="1"/>
+    <path d="M139 46 C132 70 131 116 137 150" stroke-width="1"/>
+    <path d="M150 44 C148 70 148 118 150 152" stroke-width="1"/>
+    <path d="M161 46 C167 70 168 116 163 150" stroke-width="1"/>
+    <path d="M172 52 C182 72 184 112 174 146" stroke-width="1"/>
+    <path d="M119 64 C112 84 112 110 118 132" stroke-width=".8"/>
+    <path d="M181 64 C188 84 188 110 182 132" stroke-width=".8"/>
+  </g>
+  <g fill="none" stroke="#D9A46A" stroke-linecap="round" opacity=".5">
+    <path d="M131 58 C124 76 123 104 129 128" stroke-width="2.4"/>
+    <path d="M141 52 C137 70 136 92 138 110" stroke-width="1.4"/>
+  </g>
+  <g stroke="#2A140A" stroke-width=".6" opacity=".55">
+    <path d="M124 80 l4 2 M120 98 l4 1 M122 116 l4 1 M134 70 l3 2 M133 92 l4 1 M134 120 l3 2 M158 72 l3 2 M160 96 l4 1 M158 124 l3 1 M170 84 l4 1 M172 108 l3 2"/>
+  </g>
+  <!-- husk tuft -->
+  <path d="M148 45 C144 34 146 24 152 16 M150 45 C153 34 160 28 168 26 M149 45 C143 38 134 36 127 38 M150 44 C150 34 156 22 152 10" fill="none" stroke="#7A4A22" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M148 45 C144 34 146 24 152 16 M150 45 C153 34 160 28 168 26" fill="none" stroke="#B9814A" stroke-width="1" stroke-linecap="round"/>
+  <!-- mauli thread on coconut -->
+  <path d="M110 112 C124 120 176 120 190 112" fill="none" stroke="#B5122E" stroke-width="3.2"/>
+  <path d="M110.6 117 C124 125 176 125 189.4 117" fill="none" stroke="#F2B705" stroke-width="2"/>
+  <path d="M111.4 121.4 C124 129 176 129 188.6 121.4" fill="none" stroke="#B5122E" stroke-width="2.6"/>
+  <!-- tilak on coconut -->
+  <path d="M150 70 C147 78 147 90 150 100 C153 90 153 78 150 70Z" fill="#F2B705"/>
+  <path d="M150 76 C148.4 82 148.4 90 150 96 C151.6 90 151.6 82 150 76Z" fill="#C8102E"/>
+  <circle cx="150" cy="104" r="3" fill="#C8102E"/>
+
+  <!-- ===== mango leaves (front row, spilling over the rim) ===== -->
+  <use xlink:href="#kalash-leaf1" href="#kalash-leaf1" transform="translate(138 156) rotate(-84) scale(.9)"/>
+  <use xlink:href="#kalash-leaf1" href="#kalash-leaf1" transform="translate(162 156) rotate(84) scale(-.9 .9)"/>
+  <use xlink:href="#kalash-leaf1" href="#kalash-leaf1" transform="translate(126 156) rotate(-104) scale(.7)"/>
+  <use xlink:href="#kalash-leaf1" href="#kalash-leaf1" transform="translate(174 156) rotate(104) scale(-.7 .7)"/>
+  <use xlink:href="#kalash-leaf1" href="#kalash-leaf1" transform="translate(132 154) rotate(-50) scale(.92)"/>
+  <use xlink:href="#kalash-leaf1" href="#kalash-leaf1" transform="translate(168 154) rotate(50) scale(-.92 .92)"/>
+
+  <!-- ===== rim and neck ===== -->
+  <ellipse cx="150" cy="156" rx="54" ry="13" fill="url(#kalash-brassH)" stroke="#5E3F0C" stroke-width="1"/>
+  <ellipse cx="150" cy="153.6" rx="44" ry="7.4" fill="#5E3F0C" opacity=".55"/>
+  <path d="M98 158 C112 168 188 168 202 158" fill="none" stroke="#FFF6D2" stroke-width="1.6" opacity=".75"/>
+  <path d="M96 156 C96 163 114 170 150 170 C186 170 204 163 204 156" fill="none" stroke="#5E3F0C" stroke-width="1"/>
+  <path d="M118 168 H182 L178 190 H122Z" fill="url(#kalash-brassH)" stroke="#5E3F0C" stroke-width="1"/>
+  <!-- mauli wraps on neck -->
+  <g stroke-width="2.4">
+    <path d="M119.4 173 C136 176 164 176 180.6 173" stroke="#B5122E" fill="none"/>
+    <path d="M119.8 176 C136 179 164 179 180.2 176" stroke="#F2B705" fill="none"/>
+    <path d="M120.2 179 C136 182 164 182 179.8 179" stroke="#B5122E" fill="none"/>
+    <path d="M120.6 182 C136 185 164 185 179.4 182" stroke="#E8761A" fill="none"/>
+    <path d="M121 185 C136 188 164 188 179 185" stroke="#B5122E" fill="none"/>
+  </g>
+  <path d="M176 180 C182 190 180 200 176 206 M176 180 C172 192 174 202 178 208" fill="none" stroke="#B5122E" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="176.6" cy="207.6" r="2.2" fill="#F2B705"/>
+
+  <!-- ===== body ===== -->
+  <path d="M122 188 C66 194 38 232 40 272 C42 322 94 354 150 354 C206 354 258 322 260 272 C262 232 234 194 178 188Z" fill="url(#kalash-body)" stroke="#5E3F0C" stroke-width="1.2"/>
+  <path d="M254 290 C244 320 214 342 172 350" fill="none" stroke="#F6E3A6" stroke-width="3" opacity=".4" stroke-linecap="round"/>
+  <!-- shoulder lotus-petal band -->
+  <path d="M74 214 C110 202 190 202 226 214" fill="none" stroke="#5E3F0C" stroke-width="1"/>
+  <path d="M60 232 C100 218 200 218 240 232" fill="none" stroke="#5E3F0C" stroke-width="1"/>
+  <path d="M61 235 C100 221 200 221 239 235" fill="none" stroke="#FFF6D2" stroke-width="1" opacity=".6"/>
+  <g fill="#C99A3E" stroke="#5E3F0C" stroke-width=".7" opacity=".9">
+    <use xlink:href="#kalash-petal" href="#kalash-petal" transform="translate(84 228) rotate(-12) scale(.8)"/>
+    <use xlink:href="#kalash-petal" href="#kalash-petal" transform="translate(102 224) rotate(-7) scale(.85)"/>
+    <use xlink:href="#kalash-petal" href="#kalash-petal" transform="translate(120 222) rotate(-3) scale(.88)"/>
+    <use xlink:href="#kalash-petal" href="#kalash-petal" transform="translate(138 221) scale(.9)"/>
+    <use xlink:href="#kalash-petal" href="#kalash-petal" transform="translate(162 221) scale(.9)"/>
+    <use xlink:href="#kalash-petal" href="#kalash-petal" transform="translate(180 222) rotate(3) scale(.88)"/>
+    <use xlink:href="#kalash-petal" href="#kalash-petal" transform="translate(198 224) rotate(7) scale(.85)"/>
+    <use xlink:href="#kalash-petal" href="#kalash-petal" transform="translate(216 228) rotate(12) scale(.8)"/>
+  </g>
+  <path d="M150 221 C146 214 146 208 150 204 C154 208 154 214 150 221Z" fill="#B5122E" stroke="#5E3F0C" stroke-width=".5"/>
+  <!-- belly dot garland (kumkum and haldi) -->
+  <path d="M48 262 C90 286 210 286 252 262" fill="none" stroke="#5E3F0C" stroke-width=".8" opacity=".6"/>
+  <path d="M52 268 C94 292 206 292 248 268" fill="none" stroke="#C8102E" stroke-width="3.4" stroke-dasharray=".1 11" stroke-linecap="round"/>
+  <path d="M57.5 270.6 C99 294.6 201 294.6 242.5 270.6" fill="none" stroke="#F2B705" stroke-width="2.6" stroke-dasharray=".1 11" stroke-dashoffset="5.5" stroke-linecap="round"/>
+  <!-- central tilak motif -->
+  <circle cx="150" cy="300" r="15" fill="none" stroke="#5E3F0C" stroke-width=".8" opacity=".7"/>
+  <circle cx="150" cy="300" r="18" fill="none" stroke="#F2B705" stroke-width="2" stroke-dasharray=".1 4.7" stroke-linecap="round"/>
+  <circle cx="150" cy="300" r="7" fill="#C8102E" stroke="#7A0A1A" stroke-width=".6"/>
+  <circle cx="148" cy="298" r="1.8" fill="#F06A80" opacity=".8"/>
+  <g fill="#F2B705" stroke="#A8740A" stroke-width=".4">
+    <circle cx="150" cy="287.6" r="2.6"/><circle cx="150" cy="312.4" r="2.6"/><circle cx="137.6" cy="300" r="2.6"/><circle cx="162.4" cy="300" r="2.6"/>
+  </g>
+  <g fill="#C8102E">
+    <circle cx="141.2" cy="291.2" r="1.6"/><circle cx="158.8" cy="291.2" r="1.6"/><circle cx="141.2" cy="308.8" r="1.6"/><circle cx="158.8" cy="308.8" r="1.6"/>
+  </g>
+  <!-- lower engraved bands -->
+  <path d="M62 314 C100 334 200 334 238 314" fill="none" stroke="#5E3F0C" stroke-width="1"/>
+  <path d="M70 322 C104 340 196 340 230 322" fill="none" stroke="#5E3F0C" stroke-width=".8"/>
+  <path d="M66 318 C102 337 198 337 234 318" fill="none" stroke="#FFF1C2" stroke-width="1.6" stroke-dasharray=".1 6" stroke-linecap="round"/>
+  <!-- specular highlights -->
+  <path d="M74 236 C64 252 62 272 68 290" fill="none" stroke="#FFFBEA" stroke-width="6" opacity=".55" stroke-linecap="round"/>
+  <path d="M86 214 C80 220 76 226 74 232" fill="none" stroke="#FFFBEA" stroke-width="3" opacity=".5" stroke-linecap="round"/>
+  <path d="M126 172 V186" stroke="#FFF6D2" stroke-width="2.4" opacity=".6" stroke-linecap="round"/>
+
+  <!-- ===== foot ===== -->
+  <path d="M112 350 C126 356 174 356 188 350 L196 372 H104Z" fill="url(#kalash-brassH)" stroke="#5E3F0C" stroke-width="1"/>
+  <path d="M108 362 C126 367 174 367 192 362" fill="none" stroke="#5E3F0C" stroke-width=".8"/>
+  <ellipse cx="150" cy="374" rx="58" ry="9" fill="url(#kalash-brassH)" stroke="#5E3F0C" stroke-width="1"/>
+  <path d="M96 375 C118 382 182 382 204 375" fill="none" stroke="#FFF6D2" stroke-width="1.2" opacity=".6"/>
+</svg>

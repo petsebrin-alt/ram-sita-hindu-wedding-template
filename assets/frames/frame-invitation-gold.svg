@@ -1,0 +1,340 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 840" width="600" height="840">
+  <defs>
+    <linearGradient id="frameInv-goldU" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="600" y2="840">
+      <stop offset="0" stop-color="#8A6118"/>
+      <stop offset=".08" stop-color="#F6E3A6"/>
+      <stop offset=".18" stop-color="#B8862B"/>
+      <stop offset=".3" stop-color="#D4AF5A"/>
+      <stop offset=".42" stop-color="#F6E3A6"/>
+      <stop offset=".55" stop-color="#B8862B"/>
+      <stop offset=".68" stop-color="#D4AF5A"/>
+      <stop offset=".8" stop-color="#F6E3A6"/>
+      <stop offset=".92" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#6E4A12"/>
+    </linearGradient>
+    <linearGradient id="frameInv-goldC" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="300" y2="300">
+      <stop offset="0" stop-color="#8A6118"/>
+      <stop offset=".1" stop-color="#D4AF5A"/>
+      <stop offset=".2" stop-color="#F6E3A6"/>
+      <stop offset=".3" stop-color="#B8862B"/>
+      <stop offset=".42" stop-color="#D4AF5A"/>
+      <stop offset=".52" stop-color="#F6E3A6"/>
+      <stop offset=".62" stop-color="#B8862B"/>
+      <stop offset=".75" stop-color="#D4AF5A"/>
+      <stop offset=".85" stop-color="#F6E3A6"/>
+      <stop offset="1" stop-color="#8A6118"/>
+    </linearGradient>
+    <linearGradient id="frameInv-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8A6118"/>
+      <stop offset=".3" stop-color="#D4AF5A"/>
+      <stop offset=".5" stop-color="#F6E3A6"/>
+      <stop offset=".7" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#6E4A12"/>
+    </linearGradient>
+    <radialGradient id="frameInv-pearl" cx=".5" cy=".5" r=".5" fx=".38" fy=".32">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset=".3" stop-color="#FBF5E6"/>
+      <stop offset=".7" stop-color="#EFE2C2"/>
+      <stop offset="1" stop-color="#A88F64"/>
+    </radialGradient>
+    <radialGradient id="frameInv-maroon" cx=".5" cy=".45" r=".6">
+      <stop offset="0" stop-color="#8B1A2E"/>
+      <stop offset=".6" stop-color="#6B0F24"/>
+      <stop offset="1" stop-color="#4A0A1A"/>
+    </radialGradient>
+    <linearGradient id="frameInv-pink" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#C2185B"/>
+      <stop offset=".35" stop-color="#E8638F"/>
+      <stop offset=".75" stop-color="#F48FB1"/>
+      <stop offset="1" stop-color="#FFD1DF"/>
+    </linearGradient>
+    <linearGradient id="frameInv-pink2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#C2185B"/>
+      <stop offset=".55" stop-color="#E8638F"/>
+      <stop offset="1" stop-color="#F48FB1"/>
+    </linearGradient>
+    <linearGradient id="frameInv-leaf" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6E8F3A"/>
+      <stop offset="1" stop-color="#3E6B3A"/>
+    </linearGradient>
+    <radialGradient id="frameInv-coconut" cx=".5" cy=".5" r=".55" fx=".38" fy=".3">
+      <stop offset="0" stop-color="#C8693F"/>
+      <stop offset=".6" stop-color="#B5502E"/>
+      <stop offset="1" stop-color="#5E3F0C"/>
+    </radialGradient>
+    <filter id="frameInv-shadow" x="-3%" y="-3%" width="106%" height="106%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.2"/>
+      <feOffset dx="1.3" dy="1.8" result="o"/>
+      <feFlood flood-color="#3B2405" flood-opacity=".4"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- ===== corner filigree (local 300x300 space, top-left orientation) ===== -->
+    <path id="frameInv-gl" d="M0,0C3.8,-5 4.4,-11.5 0,-18C-4.4,-11.5 -3.8,-5 0,0Z"/>
+    <g id="frameInv-arm">
+      <path d="M52.4,48.9C57.9,44.4 63.2,41.3 70.3,38.4C77.3,35.5 84.4,33.6 92.7,32.3C101.1,30.9 109.5,30.3 118.8,30.4C128.2,30.5 137.6,31.3 147.6,32.7C158.6,34.3 167.5,36.9 175.4,40.4C183.2,43.9 188.8,47.7 193.2,52.3C197.6,57 199.7,60.8 200.4,65.8C201,70.8 200.1,74.4 196.6,78.9C193.7,82.7 190.7,84.5 186.6,85.8C182.4,87 178.9,87 174.9,86C170.9,84.9 167.9,83.3 165.2,80.4C162.6,77.5 161.2,74.5 161.2,70C161.2,66.8 161.9,64.7 163.5,62.5C165.1,60.3 166.9,59 169.4,58.1C171.8,57.1 174.1,56.9 176.7,57.3C179.3,57.7 181.4,58.6 183.4,60.6C184.7,61.8 185.2,62.9 185.6,64.3C185.9,65.8 185.8,66.8 185.4,68.1C185,69.5 184.5,70.3 183.4,71.1C182.4,72 181.5,72.3 180,72.3A0.6,0.6 0 0 1 180,73.7C181.5,73.7 183.2,73 184.3,72.2C185.3,71.4 186.4,69.9 186.8,68.6C187.3,67.3 187.4,65.4 187.1,64C186.8,62.5 185.8,60.7 184.6,59.4C182.6,57.4 179.7,55.9 177,55.4C174.4,55 171.2,55.3 168.6,56.2C166.1,57.1 163.4,59 161.7,61.2C160.1,63.3 158.8,66.8 158.8,70C158.8,74.5 160.7,79.2 163.3,82.2C165.8,85.1 170.1,87.7 174.1,88.8C178.1,89.9 183.3,90 187.4,88.8C191.6,87.7 196.3,84.8 199.4,81.1C202.9,76.6 204.7,70.3 204.2,65.4C203.7,60.4 200.6,54.2 196.3,49.4C192,44.7 185.1,39.8 177.3,36.1C169.5,32.4 159.4,29.2 148.4,27.4C138.4,25.7 128.3,24.7 119,24.4C109.6,24.2 100.2,24.6 91.8,25.7C83.4,26.9 74.8,29 67.7,31.8C60.5,34.5 53.1,38.6 47.6,43.1A3.8,3.8 0 0 1 52.4,48.9Z"/>
+      <path d="M94.2,32.1C98.3,38.5 105.5,43.3 112.1,47.3C118.7,51.3 124.9,54.8 129,60.7C132.5,66.1 131.9,69.8 129.5,72.9C127.1,75.9 124,76.8 120.4,74.4C117.9,72.5 117.6,70.5 118.4,68.5C119.2,66.5 120.8,65.5 123.9,66.4A0.4,0.4 0 0 1 124.1,65.6C121.2,64.5 118.3,66 117.3,68C116.4,70 117.1,73.5 119.5,75.6C123,78.2 128.4,77.1 131,74.1C133.6,71.2 134.5,64.9 131,59.3C127.1,53.2 120.3,48.7 113.9,44.5C107.5,40.2 101.7,36.5 97.8,29.9A2.1,2.1 0 0 1 94.2,32.1Z"/>
+      <path d="M148.3,31.8C164.3,29.1 180,27.5 194.8,27.1C209.5,26.7 222.8,27.6 233.8,29.9C243.8,32.4 250.3,37.2 253.4,42.2C256.4,47.3 255.8,51.4 249.8,53.5C245.8,55 242.9,54.1 241,52.2C239.1,50.2 238.8,47.8 241.3,45.3A0.4,0.4 0 0 1 240.7,44.7C238.2,47.2 238.4,50.8 240.3,52.8C242.1,54.9 246.2,56 250.2,54.5C256.2,52.6 257.6,46.7 254.6,41.5C251.7,36.3 244.2,30.6 234.2,28.1C223.2,25.4 209.5,24.3 194.7,24.4C180,24.5 163.7,25.9 147.7,28.2A1.8,1.8 0 0 1 148.3,31.8Z"/>
+      <path d="M234.2,30C243.2,28.4 251.6,27.1 259.5,26.5C267.5,25.9 274.9,26 281.9,27.4C285.4,28.1 287.2,29.6 287.7,31.3C288.2,33 287.4,34.2 285,34.8A0.2,0.2 0 0 1 285,35.2C287.6,34.8 288.8,32.8 288.3,31.1C287.8,29.4 285.6,27.4 282.1,26.6C275.1,25 267.5,24.6 259.5,25C251.4,25.4 242.8,26.6 233.8,28A1.1,1.1 0 0 1 234.2,30Z"/>
+    </g>
+    <g id="frameInv-leafArm">
+      <use href="#frameInv-gl" transform="translate(151 34) rotate(162)"/>
+      <use href="#frameInv-gl" transform="translate(151 34) rotate(204)"/>
+      <use href="#frameInv-gl" transform="translate(198 55) rotate(52)"/>
+      <use href="#frameInv-gl" transform="translate(202.5 68) rotate(98)"/>
+      <use href="#frameInv-gl" transform="translate(84 32) rotate(206) scale(.85)"/>
+      <use href="#frameInv-gl" transform="translate(222 27) rotate(150) scale(.7)"/>
+      <use href="#frameInv-gl" transform="translate(262 26) rotate(160) scale(.55)"/>
+    </g>
+    <g id="frameInv-cWire">
+      <use href="#frameInv-arm"/>
+      <use href="#frameInv-arm" transform="matrix(0 1 1 0 0 0)"/>
+      <path d="M46.2,49.8C62.4,65.6 76.6,79.4 90.7,93.3A1.8,1.8 0 0 1 93.3,90.7C79.4,76.6 65.6,62.4 49.8,46.2A2.5,2.5 0 0 1 46.2,49.8Z"/>
+      <ellipse cx="68" cy="68" rx="3.4" ry="5.6" transform="rotate(45 68 68)"/>
+    </g>
+    <g id="frameInv-cLeaves">
+      <use href="#frameInv-leafArm"/>
+      <use href="#frameInv-leafArm" transform="matrix(0 1 1 0 0 0)"/>
+    </g>
+    <path id="frameInv-petalB" d="M0,-6C-7.5,-10 -8.5,-20 0,-27C8.5,-20 7.5,-10 0,-6Z"/>
+    <path id="frameInv-petalF" d="M0,-5C-8,-9 -9,-17 0,-22C9,-17 8,-9 0,-5Z"/>
+    <path id="frameInv-petalI" d="M0,-9C-4,-11 -4.6,-15.5 0,-18.8C4.6,-15.5 4,-11 0,-9Z"/>
+    <g id="frameInv-rosette">
+      <g fill="url(#frameInv-gold)" stroke="#5E3F0C" stroke-width=".8">
+        <use href="#frameInv-petalB" transform="rotate(22.5)"/><use href="#frameInv-petalB" transform="rotate(67.5)"/><use href="#frameInv-petalB" transform="rotate(112.5)"/><use href="#frameInv-petalB" transform="rotate(157.5)"/><use href="#frameInv-petalB" transform="rotate(202.5)"/><use href="#frameInv-petalB" transform="rotate(247.5)"/><use href="#frameInv-petalB" transform="rotate(292.5)"/><use href="#frameInv-petalB" transform="rotate(337.5)"/>
+        <use href="#frameInv-petalF"/><use href="#frameInv-petalF" transform="rotate(45)"/><use href="#frameInv-petalF" transform="rotate(90)"/><use href="#frameInv-petalF" transform="rotate(135)"/><use href="#frameInv-petalF" transform="rotate(180)"/><use href="#frameInv-petalF" transform="rotate(225)"/><use href="#frameInv-petalF" transform="rotate(270)"/><use href="#frameInv-petalF" transform="rotate(315)"/>
+      </g>
+      <g fill="url(#frameInv-maroon)" stroke="#4A0A1A" stroke-width=".4">
+        <use href="#frameInv-petalI"/><use href="#frameInv-petalI" transform="rotate(45)"/><use href="#frameInv-petalI" transform="rotate(90)"/><use href="#frameInv-petalI" transform="rotate(135)"/><use href="#frameInv-petalI" transform="rotate(180)"/><use href="#frameInv-petalI" transform="rotate(225)"/><use href="#frameInv-petalI" transform="rotate(270)"/><use href="#frameInv-petalI" transform="rotate(315)"/>
+      </g>
+      <circle r="8.8" fill="url(#frameInv-gold)" stroke="#5E3F0C" stroke-width=".8"/>
+      <circle r="6.7" fill="url(#frameInv-maroon)" stroke="#3A0612" stroke-width=".5"/>
+      <circle r="4.4" fill="url(#frameInv-pearl)"/>
+    </g>
+    <g id="frameInv-mango">
+      <path d="M0,0C8,-8 24,-10 37,-2C26,4 10,4.5 0,0Z" fill="url(#frameInv-leaf)" stroke="#B8862B" stroke-width="1.1"/>
+      <path d="M2,-.6C12,-3.6 24,-4.4 34,-2.2" fill="none" stroke="#E7C97A" stroke-width=".7"/>
+    </g>
+    <g id="frameInv-lotus">
+      <g fill="url(#frameInv-leaf)" stroke="#B8862B" stroke-width="1">
+        <path d="M-4,0C-2,-10 8,-17 20,-18C14,-12 9,-6 7,0Z"/>
+        <path d="M-4,0C-2,10 8,17 20,18C14,12 9,6 7,0Z"/>
+      </g>
+      <g fill="url(#frameInv-pink2)" stroke="#7A5212" stroke-width="1.1">
+        <path d="M1,-2C8,-12 20,-26 37,-32C39,-25 35,-14 27,-7C20,-2 10,-1 1,-2Z"/>
+        <path d="M1,2C8,12 20,26 37,32C39,25 35,14 27,7C20,2 10,1 1,2Z"/>
+      </g>
+      <path d="M2,0C9,-14 32,-15 58,0C32,15 9,14 2,0Z" fill="url(#frameInv-pink)" stroke="#7A5212" stroke-width="1.2"/>
+      <path d="M12,0C22,-5 36,-5 50,0" fill="none" stroke="#FFE6EE" stroke-width=".8" opacity=".85"/>
+      <g fill="url(#frameInv-pink2)" stroke="#7A5212" stroke-width="1.1">
+        <path d="M1,-1C4,-13 22,-21 45,-17C34,-11 24,-5 17,0Z"/>
+        <path d="M1,1C4,13 22,21 45,17C34,11 24,5 17,0Z"/>
+      </g>
+      <g fill="none" stroke="#FFD1DF" stroke-width=".7" opacity=".9">
+        <path d="M6,-6C14,-14 25,-17 38,-17"/>
+        <path d="M6,6C14,14 25,17 38,17"/>
+      </g>
+      <circle cx="-1" cy="0" r="5.4" fill="url(#frameInv-gold)" stroke="#5E3F0C" stroke-width=".8"/>
+      <circle cx="-1" cy="0" r="2.4" fill="url(#frameInv-maroon)"/>
+    </g>
+    <g id="frameInv-cJewels">
+      <use href="#frameInv-mango" transform="translate(66 66) rotate(8)"/>
+      <use href="#frameInv-mango" transform="translate(66 66) rotate(82) scale(1 -1)"/>
+      <use href="#frameInv-lotus" transform="translate(94 94) rotate(45)"/>
+      <use href="#frameInv-rosette" transform="translate(36 36)"/>
+      <g fill="url(#frameInv-gold)" stroke="#5E3F0C" stroke-width=".6"><circle cx="172.5" cy="71" r="6.2"/><circle cx="71" cy="172.5" r="6.2"/></g>
+      <g fill="url(#frameInv-pearl)" stroke="#8A6118" stroke-width=".35">
+        <circle cx="172.5" cy="71" r="4.6"/><circle cx="71" cy="172.5" r="4.6"/>
+        <circle cx="125" cy="70.5" r="2.3"/><circle cx="70.5" cy="125" r="2.3"/>
+        <circle cx="247.5" cy="48.5" r="2.4"/><circle cx="48.5" cy="247.5" r="2.4"/>
+        <circle cx="141" cy="141" r="2.8"/>
+      </g>
+    </g>
+
+    <!-- ===== top crest pieces ===== -->
+    <!-- right half of the crest arch (mirrored for the left); outer band ends in an outward volute -->
+    <g id="frameInv-archHalf">
+      <path d="M296.2,60C296.2,61.8 296.5,64.3 296.9,65.7C297.3,67.2 298.4,69.6 299.2,70.8C300.1,72 301.8,73.8 303.1,74.9C304.3,75.9 306.4,77.3 308.1,78.3C319,83.2 329.7,87.4 339.8,91.5C349.8,95.6 358.9,99.5 367.1,104C375.2,108.6 381.2,112.9 386.1,119.1C391,125.4 393.3,131 393.5,140C393.5,143 394.2,146.6 395.2,149C396.2,151.4 398,154.2 399.7,155.8C401.4,157.4 404.2,159 406.4,159.6C408.6,160.2 411.9,160.3 414.4,159.8C416.8,159.2 419.6,157.5 420.9,156C422.1,154.5 423.1,151.9 423.2,150.1C423.3,148.3 422.5,145.8 421.5,144.3C420.5,142.9 418.3,141.4 416.3,140.9C414.7,140.7 412.8,141.1 411.8,141.7C410.9,142.3 409.8,143.6 409.4,144.6C409.1,145.5 409.1,147.1 409.4,148C409.7,148.9 410.7,150.1 411.7,150.6A0.6,0.6 0 0 1 412.3,149.4C411.3,148.9 411.1,148.5 410.8,147.5C410.6,146.6 410.6,146.1 411.1,145.2C411.5,144.3 411.8,143.9 412.8,143.4C413.7,142.9 414.3,142.8 415.8,143.1C417.7,143.6 418.5,144.3 419.4,145.8C420.3,147.2 420.5,148.2 420.3,149.9C420.1,151.6 419.8,152.5 418.5,153.9C417.1,155.3 416.2,155.8 413.6,156.2C411.1,156.7 409.7,156.5 407.6,155.8C405.4,155.1 404.4,154.4 402.8,152.7C401.2,151 400.5,149.8 399.6,147.3C398.8,144.9 398.5,143 398.5,140C398.7,131 395.5,121.9 390.9,115.5C386.2,109.1 378.5,103 370.4,98.2C362.4,93.4 352.6,89 342.6,84.7C332.6,80.5 322,76.3 311.6,71.6C310.1,70.7 309.2,70.1 307.9,69C306.6,68 306.3,67.7 305.5,66.5C304.7,65.3 304.6,65.1 304.2,63.7C303.9,62.3 303.8,61.8 303.8,60A3.8,3.8 0 0 1 296.2,60Z"/>
+      <path d="M298.5,74C298.5,76.5 299.2,79.3 300.4,81C301.5,82.8 303.7,84.8 306.3,86.2C324.9,94.8 344.1,101.4 358.8,109.5C373.4,117.6 382.8,126 382.9,140C382.9,142 382.9,144 382.9,146C382.9,148 382.9,150 382.9,152A1.1,1.1 0 0 1 385.1,152C385.1,150 385.1,148 385.1,146C385.1,144 385.1,142 385.1,140C385.2,126 374.6,115.4 360,107.3C345.4,99.1 326.1,92.2 307.6,83.7C305.3,82.2 304,81.2 302.9,79.5C301.8,77.7 301.5,76.5 301.5,74A1.5,1.5 0 0 1 298.5,74Z"/>
+      <use href="#frameInv-gl" transform="translate(394 128) rotate(70) scale(.7)"/>
+      <use href="#frameInv-gl" transform="translate(386 113) rotate(40) scale(.62)"/>
+    </g>
+    <g id="frameInv-arch">
+      <use href="#frameInv-archHalf"/>
+      <use href="#frameInv-archHalf" transform="matrix(-1 0 0 1 600 0)"/>
+    </g>
+    <path id="frameInv-archBeads" d="M300,67.5C300,73 302.5,76.5 308.5,80C348,98 390.5,107 390.5,140V146"/>
+    <path id="frameInv-foil" d="M300,80.5A8.5,8.5 0 0 0 308.5,91.7A10.8,10.8 0 0 0 325.1,98.8A10.7,10.7 0 0 0 341.5,105.8A10.4,10.4 0 0 0 357.1,113.4A9.9,9.9 0 0 0 370.5,122.9A8.7,8.7 0 0 0 378,135.3A10,10 0 0 0 378.5,152"/>
+    <g id="frameInv-spandrel">
+      <path d="M310.6,45.7C322.5,41.6 336.6,39 351.8,38.4C367,37.7 382.7,39.1 397.8,42.9C407.8,45.3 413.2,50.3 415.1,55.5C416.9,60.7 414.9,64.9 407.9,66.4C403.9,67.5 401.5,66 400.3,63.8C399.2,61.5 399.6,59.4 403.1,58.4A0.4,0.4 0 0 1 402.9,57.6C399.4,58.6 398.3,62 399.4,64.2C400.5,66.5 404.1,68.5 408.1,67.5C415.1,66.1 418.1,60.3 416.4,55C414.8,49.7 408.2,43.7 398.2,41.1C383.3,36.9 367,35.3 351.7,35.6C336.4,36 321.5,38.4 309.4,42.3A1.8,1.8 0 0 1 310.6,45.7Z"/>
+      <path d="M371.3,37.8C377.3,43.2 379.1,48.6 378.2,53.5C377.3,58.4 374,61.4 368,61.5C365,61.5 363.4,60.1 362.8,58.1C362.1,56.1 362.6,54.3 365.1,53.3A0.3,0.3 0 0 1 364.9,52.7C362.4,53.7 361.4,56.4 362,58.4C362.6,60.4 365,62.5 368,62.5C374,62.6 378.7,58.6 379.8,53.8C380.9,48.9 378.7,41.8 372.7,36.2A1.1,1.1 0 0 1 371.3,37.8Z"/>
+      <use href="#frameInv-gl" transform="translate(342 39.5) rotate(160) scale(.75)"/>
+      <use href="#frameInv-gl" transform="translate(392 41) rotate(200) scale(.7)"/>
+      <use href="#frameInv-gl" transform="translate(410 66) rotate(150) scale(.6)"/>
+    </g>
+    <path id="frameInv-kLeaf" d="M0,0C3.4,-4.5 4,-10.5 0,-16C-4,-10.5 -3.4,-4.5 0,0Z"/>
+  </defs>
+
+  <g filter="url(#frameInv-shadow)">
+    <!-- ===== outer band ===== -->
+    <rect x="20" y="20" width="560" height="800" fill="none" stroke="#4A3008" stroke-width="9.4"/>
+    <rect x="20" y="20" width="560" height="800" fill="none" stroke="url(#frameInv-goldU)" stroke-width="7.2"/>
+    <rect x="20" y="20" width="560" height="800" fill="none" stroke="#6E4A12" stroke-width=".7" opacity=".85"/>
+    <rect x="21.2" y="21.2" width="557.6" height="797.6" fill="none" stroke="#FFF3CC" stroke-width=".6" opacity=".75"/>
+    <rect x="17.4" y="17.4" width="565.2" height="805.2" fill="none" stroke="#FFF3CC" stroke-width=".5" opacity=".55"/>
+    <!-- inner rule -->
+    <rect x="31" y="31" width="538" height="778" fill="none" stroke="#4A3008" stroke-width="2.6"/>
+    <rect x="31" y="31" width="538" height="778" fill="none" stroke="url(#frameInv-goldU)" stroke-width="1.5"/>
+    <!-- beaded inner border -->
+    <rect x="40.5" y="40.6" width="520" height="760" fill="none" stroke="#4A3008" stroke-width="4.4" stroke-linecap="round" stroke-dasharray="0 8"/>
+    <rect x="40" y="40" width="520" height="760" fill="none" stroke="url(#frameInv-goldU)" stroke-width="3.6" stroke-linecap="round" stroke-dasharray="0 8"/>
+    <rect x="39.3" y="39.3" width="520" height="760" fill="none" stroke="#FFF8DC" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="0 8"/>
+    <!-- corner blocks on the band -->
+    <g fill="url(#frameInv-gold)" stroke="#4A3008" stroke-width=".9">
+      <rect x="-9" y="-9" width="18" height="18" transform="translate(20 20) rotate(45)"/>
+      <rect x="-9" y="-9" width="18" height="18" transform="translate(580 20) rotate(45)"/>
+      <rect x="-9" y="-9" width="18" height="18" transform="translate(20 820) rotate(45)"/>
+      <rect x="-9" y="-9" width="18" height="18" transform="translate(580 820) rotate(45)"/>
+    </g>
+    <g fill="url(#frameInv-maroon)">
+      <rect x="-5" y="-5" width="10" height="10" transform="translate(20 20) rotate(45)"/>
+      <rect x="-5" y="-5" width="10" height="10" transform="translate(580 20) rotate(45)"/>
+      <rect x="-5" y="-5" width="10" height="10" transform="translate(20 820) rotate(45)"/>
+      <rect x="-5" y="-5" width="10" height="10" transform="translate(580 820) rotate(45)"/>
+    </g>
+    <g fill="url(#frameInv-pearl)">
+      <circle cx="20" cy="20" r="2.6"/><circle cx="580" cy="20" r="2.6"/><circle cx="20" cy="820" r="2.6"/><circle cx="580" cy="820" r="2.6"/>
+    </g>
+
+    <!-- ===== corner filigree, light kept from the top-left in every corner ===== -->
+    <g fill="#4A3008">
+      <use href="#frameInv-cWire" transform="translate(.6,.7) translate(30 30) scale(.62)"/>
+      <use href="#frameInv-cWire" transform="translate(.6,.7) matrix(-1 0 0 1 600 0) translate(30 30) scale(.62)"/>
+      <use href="#frameInv-cWire" transform="translate(.6,.7) matrix(1 0 0 -1 0 840) translate(30 30) scale(.62)"/>
+      <use href="#frameInv-cWire" transform="translate(.6,.7) matrix(-1 0 0 -1 600 840) translate(30 30) scale(.62)"/>
+      <use href="#frameInv-cLeaves" transform="translate(.4,.5) translate(30 30) scale(.62)"/>
+      <use href="#frameInv-cLeaves" transform="translate(.4,.5) matrix(-1 0 0 1 600 0) translate(30 30) scale(.62)"/>
+      <use href="#frameInv-cLeaves" transform="translate(.4,.5) matrix(1 0 0 -1 0 840) translate(30 30) scale(.62)"/>
+      <use href="#frameInv-cLeaves" transform="translate(.4,.5) matrix(-1 0 0 -1 600 840) translate(30 30) scale(.62)"/>
+    </g>
+    <g fill="#FFF0BF">
+      <use href="#frameInv-cWire" transform="translate(-.45,-.55) translate(30 30) scale(.62)"/>
+      <use href="#frameInv-cWire" transform="translate(-.45,-.55) matrix(-1 0 0 1 600 0) translate(30 30) scale(.62)"/>
+      <use href="#frameInv-cWire" transform="translate(-.45,-.55) matrix(1 0 0 -1 0 840) translate(30 30) scale(.62)"/>
+      <use href="#frameInv-cWire" transform="translate(-.45,-.55) matrix(-1 0 0 -1 600 840) translate(30 30) scale(.62)"/>
+      <use href="#frameInv-cLeaves" transform="translate(-.35,-.4) translate(30 30) scale(.62)"/>
+      <use href="#frameInv-cLeaves" transform="translate(-.35,-.4) matrix(-1 0 0 1 600 0) translate(30 30) scale(.62)"/>
+      <use href="#frameInv-cLeaves" transform="translate(-.35,-.4) matrix(1 0 0 -1 0 840) translate(30 30) scale(.62)"/>
+      <use href="#frameInv-cLeaves" transform="translate(-.35,-.4) matrix(-1 0 0 -1 600 840) translate(30 30) scale(.62)"/>
+    </g>
+    <g id="frameInv-cornersTop">
+      <g transform="translate(30 30) scale(.62)">
+        <use href="#frameInv-cWire" fill="url(#frameInv-goldC)"/>
+        <use href="#frameInv-cLeaves" fill="url(#frameInv-gold)"/>
+        <use href="#frameInv-cJewels"/>
+      </g>
+      <g transform="matrix(-1 0 0 1 600 0) translate(30 30) scale(.62)">
+        <use href="#frameInv-cWire" fill="url(#frameInv-goldC)"/>
+        <use href="#frameInv-cLeaves" fill="url(#frameInv-gold)"/>
+        <use href="#frameInv-cJewels"/>
+      </g>
+    </g>
+    <g transform="matrix(1 0 0 -1 0 840) translate(30 30) scale(.62)">
+      <use href="#frameInv-cWire" fill="url(#frameInv-goldC)"/>
+      <use href="#frameInv-cLeaves" fill="url(#frameInv-gold)"/>
+      <use href="#frameInv-cJewels"/>
+    </g>
+    <g transform="matrix(-1 0 0 -1 600 840) translate(30 30) scale(.62)">
+      <use href="#frameInv-cWire" fill="url(#frameInv-goldC)"/>
+      <use href="#frameInv-cLeaves" fill="url(#frameInv-gold)"/>
+      <use href="#frameInv-cJewels"/>
+    </g>
+
+    <!-- ===== bottom centre: scroll pair with lotus rosette ===== -->
+    <g>
+      <use href="#frameInv-spandrel" fill="#4A3008" transform="translate(.6,.7) matrix(1 0 0 -1 0 840) translate(12 18)"/>
+      <use href="#frameInv-spandrel" fill="#4A3008" transform="translate(.6,.7) matrix(-1 0 0 -1 600 840) translate(12 18)"/>
+      <use href="#frameInv-spandrel" fill="#FFF0BF" transform="translate(-.45,-.55) matrix(1 0 0 -1 0 840) translate(12 18)"/>
+      <use href="#frameInv-spandrel" fill="#FFF0BF" transform="translate(-.45,-.55) matrix(-1 0 0 -1 600 840) translate(12 18)"/>
+      <use href="#frameInv-spandrel" fill="url(#frameInv-goldU)" transform="matrix(1 0 0 -1 0 840) translate(12 18)"/>
+      <use href="#frameInv-spandrel" fill="url(#frameInv-goldU)" transform="matrix(-1 0 0 -1 600 840) translate(12 18)"/>
+      <g fill="url(#frameInv-pearl)" stroke="#8A6118" stroke-width=".35">
+        <circle cx="419" cy="760.5" r="2.4"/><circle cx="181" cy="760.5" r="2.4"/>
+        <circle cx="381.5" cy="765" r="1.9"/><circle cx="218.5" cy="765" r="1.9"/>
+      </g>
+      <use href="#frameInv-lotus" transform="translate(300 772) rotate(-90) scale(.5)"/>
+      <use href="#frameInv-rosette" transform="translate(300 780) scale(.62)"/>
+    </g>
+
+    <!-- ===== top crest: cusped jharokha arch crowned by a kalash ===== -->
+    <g>
+      <!-- spandrel scrolls -->
+      <use href="#frameInv-spandrel" fill="#4A3008" transform="translate(12.6 18.7)"/>
+      <use href="#frameInv-spandrel" fill="#4A3008" transform="translate(-11.4 18.7) matrix(-1 0 0 1 600 0)"/>
+      <use href="#frameInv-spandrel" fill="#FFF0BF" transform="translate(11.55 17.45)"/>
+      <use href="#frameInv-spandrel" fill="#FFF0BF" transform="translate(-12.45 17.45) matrix(-1 0 0 1 600 0)"/>
+      <use href="#frameInv-spandrel" fill="url(#frameInv-goldU)" transform="translate(12 18)"/>
+      <use href="#frameInv-spandrel" fill="url(#frameInv-goldU)" transform="translate(-12 18) matrix(-1 0 0 1 600 0)"/>
+      <g fill="url(#frameInv-pearl)" stroke="#8A6118" stroke-width=".35">
+        <circle cx="419" cy="79.5" r="2.4"/><circle cx="181" cy="79.5" r="2.4"/>
+        <circle cx="381.5" cy="75" r="1.9"/><circle cx="218.5" cy="75" r="1.9"/>
+      </g>
+      <!-- arch: tapered outer band with volutes, inner fillet -->
+      <use href="#frameInv-arch" fill="#4A3008" transform="translate(.7,.8)"/>
+      <use href="#frameInv-arch" fill="#FFF0BF" transform="translate(-.5,-.6)"/>
+      <use href="#frameInv-arch" fill="url(#frameInv-goldU)"/>
+      <!-- granulated bead row between the bands -->
+      <g fill="none" stroke-linecap="round" stroke-dasharray="0 6.4">
+        <use href="#frameInv-archBeads" stroke="#4A3008" stroke-width="3" transform="translate(.4,.5)"/>
+        <use href="#frameInv-archBeads" stroke="#4A3008" stroke-width="3" transform="translate(.4,.5) matrix(-1 0 0 1 600 0)"/>
+        <use href="#frameInv-archBeads" stroke="url(#frameInv-goldU)" stroke-width="2.5"/>
+        <use href="#frameInv-archBeads" stroke="url(#frameInv-goldU)" stroke-width="2.5" transform="matrix(-1 0 0 1 600 0)"/>
+      </g>
+      <!-- cusped (multifoil) inner edge -->
+      <g fill="none" stroke-linecap="round">
+        <use href="#frameInv-foil" stroke="#4A3008" stroke-width="3.2"/>
+        <use href="#frameInv-foil" stroke="#4A3008" stroke-width="3.2" transform="matrix(-1 0 0 1 600 0)"/>
+        <use href="#frameInv-foil" stroke="url(#frameInv-goldU)" stroke-width="2"/>
+        <use href="#frameInv-foil" stroke="url(#frameInv-goldU)" stroke-width="2" transform="matrix(-1 0 0 1 600 0)"/>
+      </g>
+      <g fill="url(#frameInv-pearl)" stroke="#8A6118" stroke-width=".3">
+        <circle cx="306.9" cy="95.4" r="2"/><circle cx="323.6" cy="102.5" r="2"/><circle cx="339.9" cy="109.4" r="2"/><circle cx="355.2" cy="116.9" r="2"/><circle cx="367.8" cy="125.8" r="2"/><circle cx="374.1" cy="136.2" r="2"/>
+        <circle cx="293.1" cy="95.4" r="2"/><circle cx="276.4" cy="102.5" r="2"/><circle cx="260.1" cy="109.4" r="2"/><circle cx="244.8" cy="116.9" r="2"/><circle cx="232.2" cy="125.8" r="2"/><circle cx="225.9" cy="136.2" r="2"/>
+        <circle cx="384" cy="155.5" r="2.4"/><circle cx="216" cy="155.5" r="2.4"/>
+      </g>
+      <!-- volute eyes and hanging pearls -->
+      <g fill="url(#frameInv-gold)" stroke="#5E3F0C" stroke-width=".5">
+        <circle cx="415.2" cy="150.2" r="3.4"/><circle cx="184.8" cy="150.2" r="3.4"/>
+      </g>
+      <g fill="url(#frameInv-pearl)"><circle cx="415.2" cy="150.2" r="2.3"/><circle cx="184.8" cy="150.2" r="2.3"/></g>
+      <path d="M406.5,160V168M193.5,160V168" stroke="#8A6118" stroke-width=".9"/>
+      <g fill="url(#frameInv-pearl)" stroke="#8A6118" stroke-width=".35"><circle cx="406.5" cy="171" r="3"/><circle cx="193.5" cy="171" r="3"/></g>
+      <!-- lotus pendant hanging inside the arch -->
+      <path d="M300,82V96" stroke="#4A3008" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="0 3.6"/>
+      <path d="M300,82V96" stroke="url(#frameInv-goldU)" stroke-width="2" stroke-linecap="round" stroke-dasharray="0 3.6"/>
+      <use href="#frameInv-lotus" transform="translate(300 100) rotate(90) scale(.4)"/>
+      <circle cx="300" cy="127" r="2.6" fill="url(#frameInv-pearl)" stroke="#8A6118" stroke-width=".35"/>
+
+      <!-- kalash finial on the apex -->
+      <g transform="translate(300 61) scale(1.12) translate(-300 -50)">
+        <g fill="url(#frameInv-leaf)" stroke="#B8862B" stroke-width=".7">
+          <use href="#frameInv-kLeaf" transform="translate(300 21) rotate(-68)"/>
+          <use href="#frameInv-kLeaf" transform="translate(300 21) rotate(68)"/>
+          <use href="#frameInv-kLeaf" transform="translate(300 21) rotate(-38)"/>
+          <use href="#frameInv-kLeaf" transform="translate(300 21) rotate(38)"/>
+        </g>
+        <ellipse cx="300" cy="11" rx="6.6" ry="8.6" fill="url(#frameInv-coconut)" stroke="#4A3008" stroke-width=".7"/>
+        <path d="M300,2.6C298.6,0.6 298.8,-1.2 300,-2.2C301.2,-1.2 301.4,0.6 300,2.6Z" fill="#6E4A12"/>
+        <path d="M296.5,9C297,6.5 298.4,5 300,4.6" fill="none" stroke="#E7A57E" stroke-width=".8" stroke-linecap="round"/>
+        <ellipse cx="300" cy="21.5" rx="9.5" ry="2.4" fill="url(#frameInv-gold)" stroke="#4A3008" stroke-width=".7"/>
+        <rect x="294.5" y="22.5" width="11" height="4.5" fill="url(#frameInv-gold)" stroke="#4A3008" stroke-width=".7"/>
+        <path d="M290,27C281,30 280,42 289,46.5H311C320,42 319,30 310,27Z" fill="url(#frameInv-gold)" stroke="#4A3008" stroke-width=".8"/>
+        <path d="M283.2,35.5Q300,40 316.8,35.5" fill="none" stroke="url(#frameInv-maroon)" stroke-width="2.6"/>
+        <g fill="url(#frameInv-pearl)"><circle cx="292" cy="37.6" r="1.1"/><circle cx="300" cy="38.6" r="1.1"/><circle cx="308" cy="37.6" r="1.1"/></g>
+        <path d="M286,31.5C287.5,29.8 289.2,28.8 291,28.4" fill="none" stroke="#FFF6D2" stroke-width=".9" stroke-linecap="round"/>
+        <ellipse cx="300" cy="47.6" rx="12" ry="2.6" fill="url(#frameInv-gold)" stroke="#4A3008" stroke-width=".7"/>
+      </g>
+    </g>
+  </g>
+</svg>

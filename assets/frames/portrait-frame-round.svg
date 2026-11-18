@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <defs>
+    <linearGradient id="roundFrame-goldU" gradientUnits="userSpaceOnUse" x1="-230" y1="-230" x2="230" y2="230">
+      <stop offset="0" stop-color="#8A6118"/>
+      <stop offset=".1" stop-color="#F6E3A6"/>
+      <stop offset=".22" stop-color="#B8862B"/>
+      <stop offset=".34" stop-color="#D4AF5A"/>
+      <stop offset=".46" stop-color="#F6E3A6"/>
+      <stop offset=".58" stop-color="#B8862B"/>
+      <stop offset=".7" stop-color="#D4AF5A"/>
+      <stop offset=".82" stop-color="#F6E3A6"/>
+      <stop offset=".92" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#6E4A12"/>
+    </linearGradient>
+    <linearGradient id="roundFrame-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8A6118"/>
+      <stop offset=".3" stop-color="#D4AF5A"/>
+      <stop offset=".5" stop-color="#F6E3A6"/>
+      <stop offset=".7" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#6E4A12"/>
+    </linearGradient>
+    <linearGradient id="roundFrame-ray" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#8A6118"/>
+      <stop offset=".35" stop-color="#D4AF5A"/>
+      <stop offset=".6" stop-color="#F6E3A6"/>
+      <stop offset="1" stop-color="#B8862B"/>
+    </linearGradient>
+    <linearGradient id="roundFrame-maroon" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#4A0A1A"/>
+      <stop offset=".6" stop-color="#6B0F24"/>
+      <stop offset="1" stop-color="#8B1A2E"/>
+    </linearGradient>
+    <linearGradient id="roundFrame-pink" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#C2185B"/>
+      <stop offset=".5" stop-color="#E8638F"/>
+      <stop offset="1" stop-color="#FFD1DF"/>
+    </linearGradient>
+    <radialGradient id="roundFrame-pearl" cx=".5" cy=".5" r=".5" fx=".38" fy=".32">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset=".35" stop-color="#FBF5E6"/>
+      <stop offset=".75" stop-color="#EFE2C2"/>
+      <stop offset="1" stop-color="#A88F64"/>
+    </radialGradient>
+    <filter id="roundFrame-shadow" x="-5%" y="-5%" width="112%" height="112%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.6"/>
+      <feOffset dx="1.8" dy="2.4" result="o"/>
+      <feFlood flood-color="#2A1A04" flood-opacity=".4"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- rays: long petal with enamel inset, short plain petal (pointing up from the centre) -->
+    <g id="roundFrame-long">
+      <path d="M0,-189C-10,-199 -9,-219 0,-235C9,-219 10,-199 0,-189Z" fill="url(#roundFrame-ray)" stroke="#4A3008" stroke-width=".8"/>
+      <path d="M0,-197C-4.6,-204 -4.2,-217 0,-227C4.2,-217 4.6,-204 0,-197Z" fill="url(#roundFrame-maroon)"/>
+      <path d="M0,-200V-224" stroke="#D4AF5A" stroke-width=".6"/>
+    </g>
+    <g id="roundFrame-longPink">
+      <path d="M0,-189C-11,-199 -10,-220 0,-237C10,-220 11,-199 0,-189Z" fill="url(#roundFrame-ray)" stroke="#4A3008" stroke-width=".8"/>
+      <path d="M0,-197C-5,-204 -4.6,-218 0,-229C4.6,-218 5,-204 0,-197Z" fill="url(#roundFrame-pink)"/>
+      <path d="M0,-200V-226" stroke="#FFE6EE" stroke-width=".6"/>
+    </g>
+    <path id="roundFrame-short" d="M0,-189C-6.5,-196 -6,-208 0,-218C6,-208 6.5,-196 0,-189Z" fill="url(#roundFrame-ray)" stroke="#4A3008" stroke-width=".7"/>
+    <!-- 45-degree sector of rays (4 long-ish + 4 short) -->
+    <g id="roundFrame-sector">
+      <use href="#roundFrame-long" transform="rotate(11.25)"/>
+      <use href="#roundFrame-long" transform="rotate(22.5)"/>
+      <use href="#roundFrame-long" transform="rotate(33.75)"/>
+      <use href="#roundFrame-short" transform="rotate(5.625)"/>
+      <use href="#roundFrame-short" transform="rotate(16.875)"/>
+      <use href="#roundFrame-short" transform="rotate(28.125)"/>
+      <use href="#roundFrame-short" transform="rotate(39.375)"/>
+    </g>
+    <circle id="roundFrame-scallop" cy="-184" r="9.4"/>
+    <g id="roundFrame-scallop4">
+      <use href="#roundFrame-scallop"/><use href="#roundFrame-scallop" transform="rotate(5.625)"/><use href="#roundFrame-scallop" transform="rotate(11.25)"/><use href="#roundFrame-scallop" transform="rotate(16.875)"/><use href="#roundFrame-scallop" transform="rotate(22.5)"/><use href="#roundFrame-scallop" transform="rotate(28.125)"/><use href="#roundFrame-scallop" transform="rotate(33.75)"/><use href="#roundFrame-scallop" transform="rotate(39.375)"/>
+    </g>
+    <g id="roundFrame-tip4">
+      <circle cy="-240.5" r="2.7"/><circle cy="-238.6" r="2.3" transform="rotate(11.25)"/><circle cy="-238.6" r="2.3" transform="rotate(22.5)"/><circle cy="-238.6" r="2.3" transform="rotate(33.75)"/>
+      <circle cy="-189" r="2.2"/><circle cy="-189" r="2.2" transform="rotate(11.25)"/><circle cy="-189" r="2.2" transform="rotate(22.5)"/><circle cy="-189" r="2.2" transform="rotate(33.75)"/>
+    </g>
+  </defs>
+
+  <g filter="url(#roundFrame-shadow)">
+    <g transform="translate(250 250)">
+      <!-- petal rays -->
+      <use href="#roundFrame-sector"/><use href="#roundFrame-sector" transform="rotate(45)"/><use href="#roundFrame-sector" transform="rotate(90)"/><use href="#roundFrame-sector" transform="rotate(135)"/><use href="#roundFrame-sector" transform="rotate(180)"/><use href="#roundFrame-sector" transform="rotate(225)"/><use href="#roundFrame-sector" transform="rotate(270)"/><use href="#roundFrame-sector" transform="rotate(315)"/>
+      <use href="#roundFrame-longPink"/><use href="#roundFrame-longPink" transform="rotate(45)"/><use href="#roundFrame-longPink" transform="rotate(90)"/><use href="#roundFrame-longPink" transform="rotate(135)"/><use href="#roundFrame-longPink" transform="rotate(180)"/><use href="#roundFrame-longPink" transform="rotate(225)"/><use href="#roundFrame-longPink" transform="rotate(270)"/><use href="#roundFrame-longPink" transform="rotate(315)"/>
+
+      <!-- scalloped ring -->
+      <g fill="url(#roundFrame-goldU)" stroke="#3B2405" stroke-width=".9">
+        <g>
+          <use href="#roundFrame-scallop4"/><use href="#roundFrame-scallop4" transform="rotate(45)"/><use href="#roundFrame-scallop4" transform="rotate(90)"/><use href="#roundFrame-scallop4" transform="rotate(135)"/><use href="#roundFrame-scallop4" transform="rotate(180)"/><use href="#roundFrame-scallop4" transform="rotate(225)"/><use href="#roundFrame-scallop4" transform="rotate(270)"/><use href="#roundFrame-scallop4" transform="rotate(315)"/>
+        </g>
+      </g>
+      <circle r="181" fill="none" stroke="#3B2405" stroke-width="11.6"/>
+      <circle r="181" fill="none" stroke="url(#roundFrame-goldU)" stroke-width="9.8"/>
+      <!-- pearls: ray tips and scallop centres -->
+      <g fill="url(#roundFrame-pearl)" stroke="#8A6118" stroke-width=".3">
+        <use href="#roundFrame-tip4"/><use href="#roundFrame-tip4" transform="rotate(45)"/><use href="#roundFrame-tip4" transform="rotate(90)"/><use href="#roundFrame-tip4" transform="rotate(135)"/><use href="#roundFrame-tip4" transform="rotate(180)"/><use href="#roundFrame-tip4" transform="rotate(225)"/><use href="#roundFrame-tip4" transform="rotate(270)"/><use href="#roundFrame-tip4" transform="rotate(315)"/>
+      </g>
+      <circle r="181" fill="none" stroke="#6E4A12" stroke-width=".6" opacity=".7"/>
+      <circle r="176" fill="none" stroke="#3B2405" stroke-width="1"/>
+
+      <!-- main band -->
+      <circle r="167" fill="none" stroke="#3B2405" stroke-width="15"/>
+      <circle r="167" fill="none" stroke="url(#roundFrame-goldU)" stroke-width="12.6"/>
+      <circle r="167" fill="none" stroke="#6E4A12" stroke-width="3.6" stroke-linecap="round" pathLength="96" stroke-dasharray="0 1" opacity=".55" transform="rotate(1.875)"/>
+      <circle r="167" fill="none" stroke="#FFF1C2" stroke-width="2.8" stroke-linecap="round" pathLength="96" stroke-dasharray="0 1" transform="rotate(1.875) translate(-.5 -.5)"/>
+      <circle r="172.4" fill="none" stroke="#FFF3CC" stroke-width=".8" opacity=".7" transform="translate(-.8 -.8)"/>
+      <circle r="161.6" fill="none" stroke="#4A3008" stroke-width=".6" opacity=".6"/>
+      <!-- inner fillet and bead string -->
+      <circle r="156.5" fill="none" stroke="#3B2405" stroke-width="2.8"/>
+      <circle r="156.5" fill="none" stroke="url(#roundFrame-goldU)" stroke-width="1.7"/>
+      <circle r="151" fill="none" stroke="#3B2405" stroke-width="4.2" stroke-linecap="round" pathLength="128" stroke-dasharray="0 1" transform="translate(.4 .5)"/>
+      <circle r="151" fill="none" stroke="url(#roundFrame-goldU)" stroke-width="3.5" stroke-linecap="round" pathLength="128" stroke-dasharray="0 1"/>
+      <circle r="151" fill="none" stroke="#FFF8DC" stroke-width="1.1" stroke-linecap="round" pathLength="128" stroke-dasharray="0 1" transform="translate(-.6 -.6)"/>
+    </g>
+  </g>
+</svg>

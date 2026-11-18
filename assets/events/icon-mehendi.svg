@@ -1,0 +1,269 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <!-- ===== shared medallion defs ===== -->
+    <linearGradient id="iconMehendi-gold" x1="20" y1="14" x2="220" y2="226" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8A6118"/>
+      <stop offset=".3" stop-color="#D4AF5A"/>
+      <stop offset=".5" stop-color="#F6E3A6"/>
+      <stop offset=".7" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#6E4A12"/>
+    </linearGradient>
+    <linearGradient id="iconMehendi-goldRev" x1="220" y1="226" x2="20" y2="14" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8A6118"/>
+      <stop offset=".3" stop-color="#D4AF5A"/>
+      <stop offset=".5" stop-color="#F6E3A6"/>
+      <stop offset=".7" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#6E4A12"/>
+    </linearGradient>
+    <radialGradient id="iconMehendi-pearl" cx=".35" cy=".3" r=".75">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset=".45" stop-color="#FBF5E6"/>
+      <stop offset=".85" stop-color="#E2D2A8"/>
+      <stop offset="1" stop-color="#9C8556"/>
+    </radialGradient>
+    <radialGradient id="iconMehendi-field" cx=".5" cy=".42" r=".62">
+      <stop offset="0" stop-color="#FFFDF6"/>
+      <stop offset=".6" stop-color="#FBF5E6"/>
+      <stop offset="1" stop-color="#EEDDB6"/>
+    </radialGradient>
+    <radialGradient id="iconMehendi-gem" cx=".38" cy=".32" r=".7">
+      <stop offset="0" stop-color="#E25A72"/>
+      <stop offset=".45" stop-color="#8B1A2E"/>
+      <stop offset="1" stop-color="#4A0A1A"/>
+    </radialGradient>
+    <filter id="iconMehendi-soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="2.2"/>
+    </filter>
+    <path id="iconMehendi-scallop" d="M120.0 14.0 A19 19 0 0 1 147.4 17.6 A19 19 0 0 1 173.0 28.2 A19 19 0 0 1 195.0 45.0 A19 19 0 0 1 211.8 67.0 A19 19 0 0 1 222.4 92.6 A19 19 0 0 1 226.0 120.0 A19 19 0 0 1 222.4 147.4 A19 19 0 0 1 211.8 173.0 A19 19 0 0 1 195.0 195.0 A19 19 0 0 1 173.0 211.8 A19 19 0 0 1 147.4 222.4 A19 19 0 0 1 120.0 226.0 A19 19 0 0 1 92.6 222.4 A19 19 0 0 1 67.0 211.8 A19 19 0 0 1 45.0 195.0 A19 19 0 0 1 28.2 173.0 A19 19 0 0 1 17.6 147.4 A19 19 0 0 1 14.0 120.0 A19 19 0 0 1 17.6 92.6 A19 19 0 0 1 28.2 67.0 A19 19 0 0 1 45.0 45.0 A19 19 0 0 1 67.0 28.2 A19 19 0 0 1 92.6 17.6 A19 19 0 0 1 120.0 14.0Z"/>
+    <circle id="iconMehendi-p" cx="120" cy="10.6" r="2.7" fill="url(#iconMehendi-pearl)" stroke="#8A6118" stroke-width=".35"/>
+    <g id="iconMehendi-pearls">
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(7.5 120 120)"/>
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(22.5 120 120)"/>
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(37.5 120 120)"/>
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(52.5 120 120)"/>
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(67.5 120 120)"/>
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(82.5 120 120)"/>
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(97.5 120 120)"/>
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(112.5 120 120)"/>
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(127.5 120 120)"/>
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(142.5 120 120)"/>
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(157.5 120 120)"/>
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(172.5 120 120)"/>
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(187.5 120 120)"/>
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(202.5 120 120)"/>
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(217.5 120 120)"/>
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(232.5 120 120)"/>
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(247.5 120 120)"/>
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(262.5 120 120)"/>
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(277.5 120 120)"/>
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(292.5 120 120)"/>
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(307.5 120 120)"/>
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(322.5 120 120)"/>
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(337.5 120 120)"/>
+      <use xlink:href="#iconMehendi-p" href="#iconMehendi-p" transform="rotate(352.5 120 120)"/>
+    </g>
+    <g id="iconMehendi-boss">
+      <path d="M120 9 L127.5 19 L120 29 L112.5 19Z" fill="url(#iconMehendi-gold)" stroke="#5E3F0C" stroke-width=".7"/>
+      <path d="M120 11.5 L125.2 19 L120 26.5" fill="none" stroke="#F6E3A6" stroke-width=".6" opacity=".8"/>
+      <circle cx="120" cy="19" r="3.3" fill="url(#iconMehendi-gem)" stroke="#5E3F0C" stroke-width=".5"/>
+      <circle cx="118.9" cy="17.9" r=".9" fill="#FFE3EA" opacity=".85"/>
+    </g>
+
+    <!-- ===== motif defs ===== -->
+    <clipPath id="iconMehendi-clip"><circle cx="120" cy="120" r="89.6"/></clipPath>
+    <linearGradient id="iconMehendi-skin" x1="60" y1="0" x2="145" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F3CDA5"/>
+      <stop offset=".45" stop-color="#EBBD92"/>
+      <stop offset="1" stop-color="#CC9468"/>
+    </linearGradient>
+    <linearGradient id="iconMehendi-cone" x1="-12" y1="0" x2="12" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3B1F10"/>
+      <stop offset=".3" stop-color="#7A3E1D"/>
+      <stop offset=".45" stop-color="#B9764A"/>
+      <stop offset=".6" stop-color="#7A3E1D"/>
+      <stop offset="1" stop-color="#3B1F10"/>
+    </linearGradient>
+    <linearGradient id="iconMehendi-brass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6E4A12"/>
+      <stop offset=".35" stop-color="#F6E3A6"/>
+      <stop offset=".6" stop-color="#D4AF5A"/>
+      <stop offset="1" stop-color="#6E4A12"/>
+    </linearGradient>
+    <linearGradient id="iconMehendi-ruby" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#C23650"/>
+      <stop offset=".5" stop-color="#8B1A2E"/>
+      <stop offset="1" stop-color="#4A0A1A"/>
+    </linearGradient>
+    <path id="iconMehendi-hand" d="M94 212 C92 190 88 176 86 166 C78 156 70 146 65 132 C62 124 59.5 115 60.5 109 C61.5 103 66.5 101 70 103.5 C73 105.5 74.6 109 76 114 C78.6 122 83 128 90 131 C88 122 86 112 85.2 102 C85 94 84.8 86 85.4 78 C85.8 71.5 88.2 67.5 91.3 67.5 C94.4 67.5 96.9 71 97 77.5 C97.4 88 98.4 100 99 108 C99.8 92 100.3 76 100.8 64.5 C101.1 59.4 103.6 56 107 56 C110.4 56 112.9 59.4 113.2 64.5 C113.6 78 113.8 94 114 107 C115 92 115.4 78 116.4 68.5 C116.9 63.4 119.3 60.5 122.4 60.5 C125.5 60.5 127.7 63.4 128 68.5 C128.3 82 128.2 96 128 109 C129 100 130 92 131.2 86.5 C132.2 81.6 134.6 79.4 137.4 79.8 C140.2 80.2 141.6 83 141.3 87.5 C140.6 98 140 108 140 118 C141 135 142 152 140 166 C138 178 136 190 136 212Z"/>
+    <clipPath id="iconMehendi-handClip"><use xlink:href="#iconMehendi-hand" href="#iconMehendi-hand"/></clipPath>
+    <path id="iconMehendi-petal" d="M113 141 C110.6 137.6 111 134.2 113 132 C115 134.2 115.4 137.6 113 141Z"/>
+    <path id="iconMehendi-leafPair" d="M0 0 C-2.2 -.6 -3.2 -2.4 -3.4 -4 C-1.6 -3.6 -.4 -2 0 0Z M0 0 C2.2 -.6 3.2 -2.4 3.4 -4 C1.6 -3.6 .4 -2 0 0Z"/>
+  </defs>
+
+  <!-- ===== MEDALLION ===== -->
+  <use xlink:href="#iconMehendi-scallop" href="#iconMehendi-scallop" fill="#3B1F10" opacity=".35" transform="translate(0 3)" filter="url(#iconMehendi-soft)"/>
+  <use xlink:href="#iconMehendi-scallop" href="#iconMehendi-scallop" fill="url(#iconMehendi-gold)" stroke="#5E3F0C" stroke-width="1"/>
+  <use xlink:href="#iconMehendi-scallop" href="#iconMehendi-scallop" fill="none" stroke="#F6E3A6" stroke-width=".7" opacity=".75" transform="translate(120 120) scale(.965) translate(-120 -120)"/>
+  <use xlink:href="#iconMehendi-pearls" href="#iconMehendi-pearls"/>
+  <circle cx="120" cy="120" r="103" fill="url(#iconMehendi-goldRev)" stroke="#5E3F0C" stroke-width=".9"/>
+  <circle cx="120" cy="120" r="100.6" fill="none" stroke="#F6E3A6" stroke-width=".6" opacity=".7"/>
+  <circle cx="120" cy="120" r="96" fill="none" stroke="#6B0F24" stroke-width="5.6"/>
+  <circle cx="120" cy="120" r="96" fill="none" stroke="#4A0A1A" stroke-width=".5" opacity=".6"/>
+  <circle cx="120" cy="120" r="96" fill="none" stroke="url(#iconMehendi-gold)" stroke-width="2.8" stroke-dasharray="0 5.03" stroke-linecap="round"/>
+  <circle cx="120" cy="120" r="92.6" fill="url(#iconMehendi-gold)" stroke="#5E3F0C" stroke-width=".8"/>
+  <circle cx="120" cy="120" r="90" fill="url(#iconMehendi-field)" stroke="#5E3F0C" stroke-width=".7"/>
+  <circle cx="120" cy="120" r="85.5" fill="none" stroke="#B8862B" stroke-width=".6" stroke-dasharray="1 2.6" opacity=".55"/>
+
+  <!-- ===== MOTIF: hennaed palm and cone ===== -->
+  <g clip-path="url(#iconMehendi-clip)">
+    <!-- hand shadow -->
+    <use xlink:href="#iconMehendi-hand" href="#iconMehendi-hand" fill="#5C3317" opacity=".28" transform="translate(4 4)" filter="url(#iconMehendi-soft)"/>
+    <!-- hand -->
+    <use xlink:href="#iconMehendi-hand" href="#iconMehendi-hand" fill="url(#iconMehendi-skin)"/>
+    <g clip-path="url(#iconMehendi-handClip)">
+    <!-- soft modelling: finger gaps, thenar and heel shading -->
+    <path d="M98 76 L99 108 L101 108 L100.3 72Z M114 64 L114 107 L115.6 106 L115.4 68Z M128.5 68 L128 109 L129.6 104 L130.2 84Z" fill="#B47A4E" opacity=".45"/>
+    <path d="M90 130 C96 138 98 152 94 166 C90 158 86 150 82 140 C85 136 88 133 90 130Z" fill="#C98E64" opacity=".28"/>
+    <path d="M140 118 C141 135 142 152 140 166 C138 178 137 186 136 196 C132 180 133 150 136 120Z" fill="#B47A4E" opacity=".3"/>
+    <path d="M67 108 C70 104 73 106 75 112 C77 120 81 125 86 128" fill="none" stroke="#FFE3C6" stroke-width="1.1" opacity=".55"/>
+    <path d="M88 76 C87 84 88 96 89 104 M103 64 C102.6 76 102.8 90 103 104 M119 68 C118.6 80 118.6 94 119 104 M134 87 C133.4 94 133 102 133 110" fill="none" stroke="#FFE3C6" stroke-width="1" opacity=".5" stroke-linecap="round"/>
+
+    <!-- ===== henna ===== -->
+    <g fill="#7A3E1D" stroke="#5C2A12" stroke-width=".3">
+      <!-- fingertip caps -->
+      <path d="M84 81 C84 66 98.5 66 98.5 81 C94 79.4 88.5 79.4 84 81Z"/>
+      <path d="M99.5 70 C99.5 53 114.5 53 114.5 70 C110 68.4 104 68.4 99.5 70Z"/>
+      <path d="M115 73 C115 57 129.5 57 129.5 73 C125 71.4 119.5 71.4 115 73Z"/>
+      <path d="M130 91 C130 77 143 77 143 91 C139 89.6 134 89.6 130 91Z"/>
+      <path d="M58 115 C58 98 76 100 77 113 C71 111.6 64 112.4 58 115Z"/>
+    </g>
+    <g fill="none" stroke="#6A3215" stroke-width=".7" stroke-linecap="round">
+      <!-- index finger -->
+      <path d="M84.6 84 C89 82.6 94 82.6 98.3 84 M84.8 87 C89 85.6 94 85.6 98.4 87"/>
+      <path d="M85.2 97 C89 95.8 94 95.8 98.6 97 M85.4 100 C89 98.8 94 98.8 98.7 100"/>
+      <path d="M91.5 88 L91.5 95"/>
+      <!-- middle finger -->
+      <path d="M100 73 C104.4 71.6 109.6 71.6 114 73 M100 76 C104.4 74.6 109.6 74.6 114 76"/>
+      <path d="M100 91 C104.4 89.6 109.6 89.6 114 91 M100 94 C104.4 92.6 109.6 92.6 114 94"/>
+      <path d="M107 77 L107 89"/>
+      <path d="M107 96 L107 105"/>
+      <!-- ring finger -->
+      <path d="M115.6 76 C119.6 74.6 124.4 74.6 128.4 76 M115.5 79 C119.6 77.6 124.4 77.6 128.3 79"/>
+      <path d="M115.2 93 C119.6 91.6 124.4 91.6 128.2 93 M115.2 96 C119.6 94.6 124.4 94.6 128.1 96"/>
+      <path d="M122 80 L122 91"/>
+      <!-- little finger -->
+      <path d="M131 94 C134.4 92.8 138 92.8 141.2 94 M130.8 97 C134.4 95.8 138 95.8 141 97"/>
+      <path d="M130.2 106 C134 104.8 137.6 104.8 140.6 106"/>
+      <!-- thumb -->
+      <path d="M61.8 118 C66.6 115 71.6 114 77.4 115 M62.8 121.4 C67.4 118.4 72.4 117.6 78.4 118.6"/>
+      <path d="M66 132 C70.6 128.6 76 127.6 82 128.4"/>
+    </g>
+    <!-- finger vines: leaf pairs and dots -->
+    <g fill="#7A3E1D">
+      <use xlink:href="#iconMehendi-leafPair" href="#iconMehendi-leafPair" transform="translate(91.5 94)"/>
+      <use xlink:href="#iconMehendi-leafPair" href="#iconMehendi-leafPair" transform="translate(91.5 90.5) scale(.8)"/>
+      <use xlink:href="#iconMehendi-leafPair" href="#iconMehendi-leafPair" transform="translate(107 87.5)"/>
+      <use xlink:href="#iconMehendi-leafPair" href="#iconMehendi-leafPair" transform="translate(107 83.5)"/>
+      <use xlink:href="#iconMehendi-leafPair" href="#iconMehendi-leafPair" transform="translate(107 79.5) scale(.8)"/>
+      <use xlink:href="#iconMehendi-leafPair" href="#iconMehendi-leafPair" transform="translate(107 104)"/>
+      <use xlink:href="#iconMehendi-leafPair" href="#iconMehendi-leafPair" transform="translate(107 100) scale(.8)"/>
+      <use xlink:href="#iconMehendi-leafPair" href="#iconMehendi-leafPair" transform="translate(122 89.5)"/>
+      <use xlink:href="#iconMehendi-leafPair" href="#iconMehendi-leafPair" transform="translate(122 85.5)"/>
+      <use xlink:href="#iconMehendi-leafPair" href="#iconMehendi-leafPair" transform="translate(122 81.5) scale(.8)"/>
+      <circle cx="136" cy="100.6" r="1.4"/>
+      <circle cx="122" cy="101" r="1.5"/>
+      <circle cx="122" cy="105" r="1"/>
+      <circle cx="91.5" cy="104" r="1.3"/>
+      <circle cx="72" cy="123.6" r="1.6"/>
+      <circle cx="73.8" cy="108.6" r=".8" fill="#FBE2C4"/>
+    </g>
+
+    <!-- palm top arch band -->
+    <path d="M87.6 121 Q92.2 114.6 96.8 121 Q101.4 114.6 106 121 Q110.6 114.6 115.2 121 Q119.8 114.6 124.4 121 Q129 114.6 133.6 121 Q137.2 116 140.4 120" fill="none" stroke="#6A3215" stroke-width=".8"/>
+    <path d="M87.8 123.6 C104 122.6 124 122.6 140.6 123.6" fill="none" stroke="#6A3215" stroke-width=".8"/>
+    <g fill="#7A3E1D">
+      <circle cx="92.2" cy="119.2" r="1.1"/><circle cx="101.4" cy="119.2" r="1.1"/><circle cx="110.6" cy="119.2" r="1.1"/>
+      <circle cx="119.8" cy="119.2" r="1.1"/><circle cx="129" cy="119.2" r="1.1"/><circle cx="137" cy="119.6" r="1"/>
+    </g>
+    <path d="M88 126 C104 125 124 125 140.6 126" fill="none" stroke="#7A3E1D" stroke-width="1.4" stroke-dasharray=".1 2.6" stroke-linecap="round"/>
+
+    <!-- palm mandala -->
+    <circle cx="113" cy="148" r="19.5" fill="#F0C59A" opacity=".35"/>
+    <circle cx="113" cy="148" r="18.4" fill="none" stroke="#6A3215" stroke-width=".6"/>
+    <circle cx="113" cy="148" r="16.6" fill="none" stroke="#7A3E1D" stroke-width="1.7" stroke-dasharray=".1 2.45" stroke-linecap="round"/>
+    <circle cx="113" cy="148" r="14.6" fill="none" stroke="#6A3215" stroke-width=".8"/>
+    <g fill="#7A3E1D" stroke="#5C2A12" stroke-width=".3">
+      <use xlink:href="#iconMehendi-petal" href="#iconMehendi-petal"/>
+      <use xlink:href="#iconMehendi-petal" href="#iconMehendi-petal" transform="rotate(45 113 148)"/>
+      <use xlink:href="#iconMehendi-petal" href="#iconMehendi-petal" transform="rotate(90 113 148)"/>
+      <use xlink:href="#iconMehendi-petal" href="#iconMehendi-petal" transform="rotate(135 113 148)"/>
+      <use xlink:href="#iconMehendi-petal" href="#iconMehendi-petal" transform="rotate(180 113 148)"/>
+      <use xlink:href="#iconMehendi-petal" href="#iconMehendi-petal" transform="rotate(225 113 148)"/>
+      <use xlink:href="#iconMehendi-petal" href="#iconMehendi-petal" transform="rotate(270 113 148)"/>
+      <use xlink:href="#iconMehendi-petal" href="#iconMehendi-petal" transform="rotate(315 113 148)"/>
+    </g>
+    <g fill="none" stroke="#6A3215" stroke-width=".5">
+      <use xlink:href="#iconMehendi-petal" href="#iconMehendi-petal" transform="rotate(22.5 113 148) translate(113 148) scale(1.18) translate(-113 -148)"/>
+      <use xlink:href="#iconMehendi-petal" href="#iconMehendi-petal" transform="rotate(67.5 113 148) translate(113 148) scale(1.18) translate(-113 -148)"/>
+      <use xlink:href="#iconMehendi-petal" href="#iconMehendi-petal" transform="rotate(112.5 113 148) translate(113 148) scale(1.18) translate(-113 -148)"/>
+      <use xlink:href="#iconMehendi-petal" href="#iconMehendi-petal" transform="rotate(157.5 113 148) translate(113 148) scale(1.18) translate(-113 -148)"/>
+      <use xlink:href="#iconMehendi-petal" href="#iconMehendi-petal" transform="rotate(202.5 113 148) translate(113 148) scale(1.18) translate(-113 -148)"/>
+      <use xlink:href="#iconMehendi-petal" href="#iconMehendi-petal" transform="rotate(247.5 113 148) translate(113 148) scale(1.18) translate(-113 -148)"/>
+      <use xlink:href="#iconMehendi-petal" href="#iconMehendi-petal" transform="rotate(292.5 113 148) translate(113 148) scale(1.18) translate(-113 -148)"/>
+      <use xlink:href="#iconMehendi-petal" href="#iconMehendi-petal" transform="rotate(337.5 113 148) translate(113 148) scale(1.18) translate(-113 -148)"/>
+    </g>
+    <circle cx="113" cy="148" r="5.6" fill="#F3CDA5" stroke="#6A3215" stroke-width=".8"/>
+    <circle cx="113" cy="148" r="3" fill="#7A3E1D"/>
+    <circle cx="113" cy="148" r="1" fill="#F3CDA5"/>
+    <!-- side paisley on thenar -->
+    <path d="M91 140 C84 142 82 152 88 157 C93 161 98 156 95 151 C93 148 89 150 90 153" fill="none" stroke="#6A3215" stroke-width=".8"/>
+    <circle cx="90.6" cy="153.4" r="1.2" fill="#7A3E1D"/>
+    <!-- trailing vine to wrist -->
+    <path d="M113 167.6 C113 172 115 176 113 180" fill="none" stroke="#6A3215" stroke-width=".7"/>
+    <g fill="#7A3E1D">
+      <use xlink:href="#iconMehendi-leafPair" href="#iconMehendi-leafPair" transform="translate(113.6 174) rotate(180)"/>
+      <use xlink:href="#iconMehendi-leafPair" href="#iconMehendi-leafPair" transform="translate(113.8 178) rotate(180) scale(.8)"/>
+    </g>
+    <!-- wrist lattice band -->
+    <path d="M90 182 C106 184 122 184 139 182 M90.6 189 C106 191 122 191 138.6 189" fill="none" stroke="#6A3215" stroke-width=".8"/>
+    <path d="M92 182.6 L97 189 L102 183 L107 189.6 L112 183.3 L117 189.8 L122 183.3 L127 189.6 L132 183 L137 189" fill="none" stroke="#6A3215" stroke-width=".55"/>
+    <path d="M92 189 L97 182.8 L102 189.6 L107 183.2 L112 189.8 L117 183.4 L122 189.8 L127 183.2 L132 189.6 L137 182.6" fill="none" stroke="#6A3215" stroke-width=".55"/>
+
+    </g>
+    <use xlink:href="#iconMehendi-hand" href="#iconMehendi-hand" fill="none" stroke="#A86F47" stroke-width=".8"/>
+    <!-- bangles -->
+    <g>
+      <path d="M88.4 193 Q114 198 141 193 L141 197.4 Q114 202.4 88.4 197.4Z" fill="url(#iconMehendi-brass)" stroke="#5E3F0C" stroke-width=".5"/>
+      <path d="M88.4 197.4 Q114 202.4 141 197.4 L141 202 Q114 207 88.4 202Z" fill="url(#iconMehendi-ruby)" stroke="#4A0A1A" stroke-width=".5"/>
+      <path d="M88.4 202 Q114 207 141 202 L141 206.4 Q114 211.4 88.4 206.4Z" fill="url(#iconMehendi-ruby)" stroke="#4A0A1A" stroke-width=".5"/>
+      <path d="M88.4 206.4 Q114 211.4 141 206.4 L141 211 Q114 216 88.4 211Z" fill="url(#iconMehendi-brass)" stroke="#5E3F0C" stroke-width=".5"/>
+      <path d="M88.4 195 Q114 200 141 195" fill="none" stroke="#5E3F0C" stroke-width="1.1" stroke-dasharray=".1 2.2" stroke-linecap="round"/>
+      <path d="M88.4 199.2 Q114 204.2 141 199.2 M88.4 203.8 Q114 208.8 141 203.8" fill="none" stroke="#F48FB1" stroke-width=".6" opacity=".7"/>
+    </g>
+  </g>
+
+  <!-- henna cone -->
+  <g transform="translate(147 150) rotate(36) scale(.9)">
+    <path d="M0 0 L-12 -70 Q0 -74.5 12 -70Z" fill="#3B1F10" opacity=".3" transform="translate(3 2)" filter="url(#iconMehendi-soft)"/>
+    <path d="M0 0 L-12 -70 Q0 -74.5 12 -70Z" fill="url(#iconMehendi-cone)" stroke="#2A140A" stroke-width=".6"/>
+    <path d="M-2.2 -6 L-7 -62" stroke="#E6B48A" stroke-width="1.3" opacity=".5" stroke-linecap="round"/>
+    <path d="M-9 -54 Q0 -57.5 9 -54 M-6.6 -40 Q0 -42.6 6.6 -40 M-4.2 -26 Q0 -27.6 4.2 -26" fill="none" stroke="#2A140A" stroke-width=".5" opacity=".6"/>
+    <!-- gold foil band -->
+    <path d="M-11.3 -64 Q0 -68 11.3 -64 L12 -70 Q0 -74.5 -12 -70Z" fill="url(#iconMehendi-brass)" stroke="#5E3F0C" stroke-width=".5"/>
+    <!-- twisted paper top -->
+    <path d="M-12 -70 Q0 -74.5 12 -70 L5 -79 L6.5 -86 L-6.5 -86 L-5 -79Z" fill="#F6ECD4" stroke="#8A5A2B" stroke-width=".6"/>
+    <path d="M-5 -79 L5 -79 M-3 -86 L-1.8 -79 M2 -86 L1.5 -79 M-8 -73 L-3 -79 M8 -73 L3 -79" stroke="#B89A6E" stroke-width=".5"/>
+    <path d="M-6.5 -86 L-8 -89 L-3 -88 L0 -90.5 L3 -88 L8 -89 L6.5 -86Z" fill="#FBF5E6" stroke="#8A5A2B" stroke-width=".5"/>
+    <!-- tip with henna bead -->
+    <path d="M-1.2 -4 L0 1.5 L1.2 -4Z" fill="#2A140A"/>
+  </g>
+  <!-- fresh henna trail drawn by the cone -->
+  <path d="M146 151 C142 156 138 154 136.6 158" fill="none" stroke="#5C2A12" stroke-width="1.1" stroke-linecap="round"/>
+  <circle cx="136.4" cy="158.8" r="1.3" fill="#5C2A12"/>
+
+  <!-- medallion bosses (above motif) -->
+  <use xlink:href="#iconMehendi-boss" href="#iconMehendi-boss"/>
+  <use xlink:href="#iconMehendi-boss" href="#iconMehendi-boss" transform="rotate(90 120 120)"/>
+  <use xlink:href="#iconMehendi-boss" href="#iconMehendi-boss" transform="rotate(180 120 120)"/>
+  <use xlink:href="#iconMehendi-boss" href="#iconMehendi-boss" transform="rotate(270 120 120)"/>
+</svg>

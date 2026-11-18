@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+<defs>
+<linearGradient id="diyaBrass01-m" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5E3F0C"/><stop offset=".12" stop-color="#8A6118"/><stop offset=".3" stop-color="#D4AF5A"/><stop offset=".4" stop-color="#F6E3A6"/><stop offset=".5" stop-color="#D4AF5A"/><stop offset=".72" stop-color="#B8862B"/><stop offset=".9" stop-color="#8A6118"/><stop offset="1" stop-color="#5E3F0C"/></linearGradient>
+<linearGradient id="diyaBrass01-r" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8A6118"/><stop offset=".3" stop-color="#D4AF5A"/><stop offset=".45" stop-color="#F6E3A6"/><stop offset=".7" stop-color="#B8862B"/><stop offset="1" stop-color="#6E4A12"/></linearGradient>
+<linearGradient id="diyaBrass01-v" x1="0" y1="0" x2="0" y2="1"><stop offset=".25" stop-color="#3A2606" stop-opacity="0"/><stop offset="1" stop-color="#3A2606" stop-opacity=".5"/></linearGradient>
+<linearGradient id="diyaBrass01-in" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B8862B"/><stop offset=".55" stop-color="#6E4A12"/><stop offset="1" stop-color="#3A2606"/></linearGradient>
+<radialGradient id="diyaBrass01-oil" cx=".42" cy=".4" r=".7"><stop offset="0" stop-color="#B8862B"/><stop offset=".5" stop-color="#8A6118"/><stop offset="1" stop-color="#4A3008"/></radialGradient>
+<radialGradient id="diyaBrass01-ball" cx=".36" cy=".3" r=".75"><stop offset="0" stop-color="#FFF6D8"/><stop offset=".18" stop-color="#F6E3A6"/><stop offset=".5" stop-color="#B8862B"/><stop offset=".85" stop-color="#6E4A12"/><stop offset="1" stop-color="#5E3F0C"/></radialGradient>
+<linearGradient id="diyaBrass01-ch" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3A2606"/><stop offset=".6" stop-color="#6E4A12"/><stop offset="1" stop-color="#B8862B"/></linearGradient>
+<filter id="diyaBrass01-blur" x="-20%" y="-100%" width="140%" height="300%"><feGaussianBlur stdDeviation="3.5"/></filter>
+</defs>
+<ellipse cx="142" cy="277" rx="74" ry="7" fill="#1A0E02" opacity=".3" filter="url(#diyaBrass01-blur)"/>
+<!-- foot -->
+<path d="M82,266A58,10 0 0 0 198,266L198,273A58,10 0 0 1 82,273Z" fill="url(#diyaBrass01-m)"/>
+<path d="M82,273A58,10 0 0 0 198,273" fill="none" stroke="#3A2606" stroke-width="1" opacity=".6"/>
+<path id="diyaBrass01-dome" d="M120,241C120,252 98,257 82,266A58,10 0 0 0 198,266C182,257 160,252 160,241Z" fill="url(#diyaBrass01-m)"/>
+<use href="#diyaBrass01-dome" fill="url(#diyaBrass01-v)"/>
+<clipPath id="diyaBrass01-dc"><use href="#diyaBrass01-dome"/></clipPath>
+<g fill="none" stroke-linecap="round" clip-path="url(#diyaBrass01-dc)">
+<path d="M91,268Q93,258 99,255Q103,259 104,270M104,270Q107,256 114,252Q119,257 120,272M120,272Q124,254 131,250Q136,256 138,273M138,273Q143,253 150,250Q155,256 157,272M157,272Q160,256 166,252Q172,257 174,270M174,270Q177,258 182,255Q187,259 189,268" stroke="#5E3F0C" stroke-width="1.1" opacity=".75"/>
+<path d="M92,269Q94,259.5 100,256.5M105,271Q108,257.5 115,253.5M121,273Q125,255.5 132,251.5M139,274Q144,254.5 151,251.5M158,273Q161,257.5 167,253.5M175,271Q178,259.5 183,256.5" stroke="#F6E3A6" stroke-width=".8" opacity=".6"/>
+</g>
+<path d="M84,266.5A57,9.5 0 0 0 196,266.5" fill="none" stroke="#F6E3A6" stroke-width="1" opacity=".75"/>
+<!-- stem -->
+<ellipse cx="140" cy="241" rx="21" ry="4.6" fill="url(#diyaBrass01-r)" stroke="#5E3F0C" stroke-width=".6"/>
+<path d="M131,232L149,232L151,240L129,240Z" fill="url(#diyaBrass01-m)"/>
+<ellipse cx="140" cy="232" rx="11.5" ry="3.2" fill="url(#diyaBrass01-r)" stroke="#5E3F0C" stroke-width=".5"/>
+<ellipse cx="140" cy="219" rx="16.5" ry="12.5" fill="url(#diyaBrass01-ball)"/>
+<path d="M124.5,219A16.5,5 0 0 0 155.5,219" fill="none" stroke="#5E3F0C" stroke-width="1" opacity=".7"/>
+<path d="M125,220.4A16,5 0 0 0 155,220.4" fill="none" stroke="#F6E3A6" stroke-width=".7" opacity=".55"/>
+<ellipse cx="134" cy="213" rx="4.5" ry="2.6" fill="#FFF6D8" opacity=".75" transform="rotate(-25 134 213)"/>
+<ellipse cx="140" cy="206.5" rx="14" ry="3.6" fill="url(#diyaBrass01-r)" stroke="#5E3F0C" stroke-width=".5"/>
+<path d="M116,192Q140,200 164,192L153,205Q140,208.5 127,205Z" fill="url(#diyaBrass01-m)"/>
+<path d="M116,192Q140,200 164,192L153,205Q140,208.5 127,205Z" fill="url(#diyaBrass01-v)"/>
+<!-- spout body (behind bowl) -->
+<path d="M196,144C212,143 224,137 236,126C241,121.5 248,121 246.5,128C243.5,141 230,156 214,165C207,169 199,169 194,166Z" fill="url(#diyaBrass01-m)"/>
+<path d="M196,144C212,143 224,137 236,126C241,121.5 248,121 246.5,128C243.5,141 230,156 214,165C207,169 199,169 194,166Z" fill="url(#diyaBrass01-v)"/>
+<path d="M246.5,128C243.5,141 230,156 214,165" fill="none" stroke="#5E3F0C" stroke-width=".8" opacity=".7"/>
+<path d="M223,155Q234,146 242,133" fill="none" stroke="#FFF6D8" stroke-width="1.8" stroke-linecap="round" opacity=".5"/>
+<!-- bowl body -->
+<path id="diyaBrass01-body" d="M60,150C61,178 100,197 140,197C180,197 219,178 220,150A80,20 0 0 1 60,150Z" fill="url(#diyaBrass01-m)"/>
+<use href="#diyaBrass01-body" fill="url(#diyaBrass01-v)"/>
+<clipPath id="diyaBrass01-bc"><use href="#diyaBrass01-body"/></clipPath>
+<g fill="none" clip-path="url(#diyaBrass01-bc)">
+<path d="M60,158A80,20.5 0 0 0 220,158" stroke="#5E3F0C" stroke-width="1.1" opacity=".8"/>
+<path d="M60,159.2A80,20.5 0 0 0 220,159.2" stroke="#F6E3A6" stroke-width=".7" opacity=".6"/>
+<path d="M67,166A73,21.5 0 0 0 213,166" stroke="#5E3F0C" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="0 6.4" opacity=".85"/>
+<path d="M66.5,165.2A73,21.5 0 0 0 212.5,165.2" stroke="#FFF6D8" stroke-width="1" stroke-linecap="round" stroke-dasharray="0 6.4" opacity=".7"/>
+<path d="M60,172.5A80,22 0 0 0 220,172.5" stroke="#5E3F0C" stroke-width="1.1" opacity=".8"/>
+<path d="M60,173.7A80,22 0 0 0 220,173.7" stroke="#F6E3A6" stroke-width=".7" opacity=".55"/>
+<path d="M84,170Q96,186 124,192" stroke="#FFF6D8" stroke-width="3" stroke-linecap="round" opacity=".55"/>
+<path d="M190,184Q204,176 212,162" stroke="#F6E3A6" stroke-width="1.6" stroke-linecap="round" opacity=".35"/>
+</g>
+<!-- rim, inside and oil -->
+<ellipse cx="140" cy="150" rx="80" ry="20" fill="url(#diyaBrass01-r)" stroke="#5E3F0C" stroke-width=".7"/>
+<ellipse cx="140" cy="151" rx="73" ry="16" fill="url(#diyaBrass01-in)"/>
+<ellipse cx="140" cy="153.5" rx="66" ry="12.5" fill="url(#diyaBrass01-oil)"/>
+<ellipse cx="120" cy="150.5" rx="28" ry="3.6" fill="#FFF6D8" opacity=".22"/>
+<path d="M62.5,153A78,19 0 0 0 217.5,153" fill="none" stroke="#FFF6D8" stroke-width="1.2" opacity=".75"/>
+<!-- spout channel opening from the rim -->
+<path d="M203,151C214,147 225,139 237.5,127.5C236.5,136 227,147 214,154.5C209,156.5 205,155.5 203,151Z" fill="url(#diyaBrass01-ch)"/>
+<path d="M216,141.6C225,137 231,131.5 236,126C239,123 242,122 244,122.4" fill="none" stroke="#F6E3A6" stroke-width="1.2" opacity=".85"/>
+<!-- wick: flame anchor at the charred tip, approx (240,126) -->
+<path d="M207,151C216,148 226,140 234,132" fill="none" stroke="#F4F1E6" stroke-width="3.8" stroke-linecap="round"/>
+<path d="M207,151C216,148 226,140 234,132" fill="none" stroke="#D9D2B8" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="2 2.4" opacity=".8"/>
+<path d="M232.5,133.5L239.5,126.5" fill="none" stroke="#2A1606" stroke-width="4" stroke-linecap="round"/>
+<circle cx="240" cy="126" r="1.4" fill="#D2380F" opacity=".85"/>
+</svg>

@@ -1,0 +1,196 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <!-- ===== shared medallion defs ===== -->
+    <linearGradient id="iconHaldi-gold" x1="20" y1="14" x2="220" y2="226" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8A6118"/>
+      <stop offset=".3" stop-color="#D4AF5A"/>
+      <stop offset=".5" stop-color="#F6E3A6"/>
+      <stop offset=".7" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#6E4A12"/>
+    </linearGradient>
+    <linearGradient id="iconHaldi-goldRev" x1="220" y1="226" x2="20" y2="14" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8A6118"/>
+      <stop offset=".3" stop-color="#D4AF5A"/>
+      <stop offset=".5" stop-color="#F6E3A6"/>
+      <stop offset=".7" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#6E4A12"/>
+    </linearGradient>
+    <radialGradient id="iconHaldi-pearl" cx=".35" cy=".3" r=".75">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset=".45" stop-color="#FBF5E6"/>
+      <stop offset=".85" stop-color="#E2D2A8"/>
+      <stop offset="1" stop-color="#9C8556"/>
+    </radialGradient>
+    <radialGradient id="iconHaldi-field" cx=".5" cy=".42" r=".62">
+      <stop offset="0" stop-color="#FFFDF6"/>
+      <stop offset=".6" stop-color="#FBF5E6"/>
+      <stop offset="1" stop-color="#EEDDB6"/>
+    </radialGradient>
+    <radialGradient id="iconHaldi-gem" cx=".38" cy=".32" r=".7">
+      <stop offset="0" stop-color="#E25A72"/>
+      <stop offset=".45" stop-color="#8B1A2E"/>
+      <stop offset="1" stop-color="#4A0A1A"/>
+    </radialGradient>
+    <filter id="iconHaldi-soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="2.2"/>
+    </filter>
+    <path id="iconHaldi-scallop" d="M120.0 14.0 A19 19 0 0 1 147.4 17.6 A19 19 0 0 1 173.0 28.2 A19 19 0 0 1 195.0 45.0 A19 19 0 0 1 211.8 67.0 A19 19 0 0 1 222.4 92.6 A19 19 0 0 1 226.0 120.0 A19 19 0 0 1 222.4 147.4 A19 19 0 0 1 211.8 173.0 A19 19 0 0 1 195.0 195.0 A19 19 0 0 1 173.0 211.8 A19 19 0 0 1 147.4 222.4 A19 19 0 0 1 120.0 226.0 A19 19 0 0 1 92.6 222.4 A19 19 0 0 1 67.0 211.8 A19 19 0 0 1 45.0 195.0 A19 19 0 0 1 28.2 173.0 A19 19 0 0 1 17.6 147.4 A19 19 0 0 1 14.0 120.0 A19 19 0 0 1 17.6 92.6 A19 19 0 0 1 28.2 67.0 A19 19 0 0 1 45.0 45.0 A19 19 0 0 1 67.0 28.2 A19 19 0 0 1 92.6 17.6 A19 19 0 0 1 120.0 14.0Z"/>
+    <circle id="iconHaldi-p" cx="120" cy="10.6" r="2.7" fill="url(#iconHaldi-pearl)" stroke="#8A6118" stroke-width=".35"/>
+    <g id="iconHaldi-pearls">
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(7.5 120 120)"/>
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(22.5 120 120)"/>
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(37.5 120 120)"/>
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(52.5 120 120)"/>
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(67.5 120 120)"/>
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(82.5 120 120)"/>
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(97.5 120 120)"/>
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(112.5 120 120)"/>
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(127.5 120 120)"/>
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(142.5 120 120)"/>
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(157.5 120 120)"/>
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(172.5 120 120)"/>
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(187.5 120 120)"/>
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(202.5 120 120)"/>
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(217.5 120 120)"/>
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(232.5 120 120)"/>
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(247.5 120 120)"/>
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(262.5 120 120)"/>
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(277.5 120 120)"/>
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(292.5 120 120)"/>
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(307.5 120 120)"/>
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(322.5 120 120)"/>
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(337.5 120 120)"/>
+      <use xlink:href="#iconHaldi-p" href="#iconHaldi-p" transform="rotate(352.5 120 120)"/>
+    </g>
+    <g id="iconHaldi-boss">
+      <path d="M120 9 L127.5 19 L120 29 L112.5 19Z" fill="url(#iconHaldi-gold)" stroke="#5E3F0C" stroke-width=".7"/>
+      <path d="M120 11.5 L125.2 19 L120 26.5" fill="none" stroke="#F6E3A6" stroke-width=".6" opacity=".8"/>
+      <circle cx="120" cy="19" r="3.3" fill="url(#iconHaldi-gem)" stroke="#5E3F0C" stroke-width=".5"/>
+      <circle cx="118.9" cy="17.9" r=".9" fill="#FFE3EA" opacity=".85"/>
+    </g>
+
+    <!-- ===== motif defs ===== -->
+    <linearGradient id="iconHaldi-brass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5E3F0C"/>
+      <stop offset=".18" stop-color="#B8862B"/>
+      <stop offset=".38" stop-color="#F6E3A6"/>
+      <stop offset=".55" stop-color="#D4AF5A"/>
+      <stop offset=".8" stop-color="#8A6118"/>
+      <stop offset="1" stop-color="#5E3F0C"/>
+    </linearGradient>
+    <linearGradient id="iconHaldi-brassInner" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6E4A12"/>
+      <stop offset="1" stop-color="#B8862B"/>
+    </linearGradient>
+    <radialGradient id="iconHaldi-paste" cx=".45" cy=".35" r=".7">
+      <stop offset="0" stop-color="#FFE27A"/>
+      <stop offset=".45" stop-color="#FFD23F"/>
+      <stop offset=".85" stop-color="#F2B705"/>
+      <stop offset="1" stop-color="#C98A04"/>
+    </radialGradient>
+    <linearGradient id="iconHaldi-leaf" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2E5230"/>
+      <stop offset=".5" stop-color="#3E6B3A"/>
+      <stop offset="1" stop-color="#6E8F3A"/>
+    </linearGradient>
+    <g id="iconHaldi-mangoLeaf">
+      <path d="M0 0 C9 -14 10 -40 0 -62 C-10 -40 -9 -14 0 0Z" fill="url(#iconHaldi-leaf)" stroke="#24401F" stroke-width=".6"/>
+      <path d="M0 -2 L0 -58" stroke="#B9C77A" stroke-width=".8" opacity=".8"/>
+      <path d="M0 -14 L5 -19 M0 -24 L6 -30 M0 -34 L5.5 -40 M0 -44 L4 -49 M0 -18 L-5 -23 M0 -28 L-6 -34 M0 -38 L-5.5 -44 M0 -48 L-3.5 -52" stroke="#A9BC6A" stroke-width=".45" opacity=".6"/>
+    </g>
+    <path id="iconHaldi-mgPetal" d="M0 -3.5 C-3.4 -4.6 -4.3 -9.6 -2.4 -12.6 C-1.4 -11.6 -.6 -12.4 0 -13.2 C.6 -12.4 1.4 -11.6 2.4 -12.6 C4.3 -9.6 3.4 -4.6 0 -3.5Z"/>
+    <g id="iconHaldi-mgRing">
+      <use xlink:href="#iconHaldi-mgPetal" href="#iconHaldi-mgPetal"/>
+      <use xlink:href="#iconHaldi-mgPetal" href="#iconHaldi-mgPetal" transform="rotate(25.7)"/>
+      <use xlink:href="#iconHaldi-mgPetal" href="#iconHaldi-mgPetal" transform="rotate(51.4)"/>
+      <use xlink:href="#iconHaldi-mgPetal" href="#iconHaldi-mgPetal" transform="rotate(77.1)"/>
+      <use xlink:href="#iconHaldi-mgPetal" href="#iconHaldi-mgPetal" transform="rotate(102.9)"/>
+      <use xlink:href="#iconHaldi-mgPetal" href="#iconHaldi-mgPetal" transform="rotate(128.6)"/>
+      <use xlink:href="#iconHaldi-mgPetal" href="#iconHaldi-mgPetal" transform="rotate(154.3)"/>
+      <use xlink:href="#iconHaldi-mgPetal" href="#iconHaldi-mgPetal" transform="rotate(180)"/>
+      <use xlink:href="#iconHaldi-mgPetal" href="#iconHaldi-mgPetal" transform="rotate(205.7)"/>
+      <use xlink:href="#iconHaldi-mgPetal" href="#iconHaldi-mgPetal" transform="rotate(231.4)"/>
+      <use xlink:href="#iconHaldi-mgPetal" href="#iconHaldi-mgPetal" transform="rotate(257.1)"/>
+      <use xlink:href="#iconHaldi-mgPetal" href="#iconHaldi-mgPetal" transform="rotate(282.9)"/>
+      <use xlink:href="#iconHaldi-mgPetal" href="#iconHaldi-mgPetal" transform="rotate(308.6)"/>
+      <use xlink:href="#iconHaldi-mgPetal" href="#iconHaldi-mgPetal" transform="rotate(334.3)"/>
+    </g>
+    <g id="iconHaldi-marigold">
+      <circle r="11.5" fill="#A8460C"/>
+      <use xlink:href="#iconHaldi-mgRing" href="#iconHaldi-mgRing" fill="#E06A12" stroke="#9C4A1A" stroke-width=".45"/>
+      <use xlink:href="#iconHaldi-mgRing" href="#iconHaldi-mgRing" fill="#F0861A" stroke="#B4530F" stroke-width=".5" transform="rotate(12.9) scale(.76)"/>
+      <use xlink:href="#iconHaldi-mgRing" href="#iconHaldi-mgRing" fill="#F7A41D" stroke="#C8620F" stroke-width=".6" transform="scale(.54)"/>
+      <use xlink:href="#iconHaldi-mgRing" href="#iconHaldi-mgRing" fill="#FFC24A" stroke="#D9780F" stroke-width=".8" transform="rotate(12.9) scale(.33)"/>
+      <circle r="1.6" fill="#C8620F"/>
+      <ellipse cx="-3" cy="-4.5" rx="4.5" ry="2.6" fill="#FFE7A6" opacity=".3"/>
+    </g>
+  </defs>
+
+  <!-- ===== MEDALLION ===== -->
+  <use xlink:href="#iconHaldi-scallop" href="#iconHaldi-scallop" fill="#3B1F10" opacity=".35" transform="translate(0 3)" filter="url(#iconHaldi-soft)"/>
+  <use xlink:href="#iconHaldi-scallop" href="#iconHaldi-scallop" fill="url(#iconHaldi-gold)" stroke="#5E3F0C" stroke-width="1"/>
+  <use xlink:href="#iconHaldi-scallop" href="#iconHaldi-scallop" fill="none" stroke="#F6E3A6" stroke-width=".7" opacity=".75" transform="translate(120 120) scale(.965) translate(-120 -120)"/>
+  <use xlink:href="#iconHaldi-pearls" href="#iconHaldi-pearls"/>
+  <circle cx="120" cy="120" r="103" fill="url(#iconHaldi-goldRev)" stroke="#5E3F0C" stroke-width=".9"/>
+  <circle cx="120" cy="120" r="100.6" fill="none" stroke="#F6E3A6" stroke-width=".6" opacity=".7"/>
+  <circle cx="120" cy="120" r="96" fill="none" stroke="#6B0F24" stroke-width="5.6"/>
+  <circle cx="120" cy="120" r="96" fill="none" stroke="#4A0A1A" stroke-width=".5" opacity=".6"/>
+  <circle cx="120" cy="120" r="96" fill="none" stroke="url(#iconHaldi-gold)" stroke-width="2.8" stroke-dasharray="0 5.03" stroke-linecap="round"/>
+  <circle cx="120" cy="120" r="92.6" fill="url(#iconHaldi-gold)" stroke="#5E3F0C" stroke-width=".8"/>
+  <circle cx="120" cy="120" r="90" fill="url(#iconHaldi-field)" stroke="#5E3F0C" stroke-width=".7"/>
+  <circle cx="120" cy="120" r="85.5" fill="none" stroke="#B8862B" stroke-width=".6" stroke-dasharray="1 2.6" opacity=".55"/>
+  <use xlink:href="#iconHaldi-boss" href="#iconHaldi-boss"/>
+  <use xlink:href="#iconHaldi-boss" href="#iconHaldi-boss" transform="rotate(90 120 120)"/>
+  <use xlink:href="#iconHaldi-boss" href="#iconHaldi-boss" transform="rotate(180 120 120)"/>
+  <use xlink:href="#iconHaldi-boss" href="#iconHaldi-boss" transform="rotate(270 120 120)"/>
+
+  <!-- ===== MOTIF: brass urli with haldi paste ===== -->
+  <!-- ground shadow -->
+  <ellipse cx="120" cy="181" rx="56" ry="6.5" fill="#5C3317" opacity=".22" filter="url(#iconHaldi-soft)"/>
+
+  <!-- mango leaves fanned behind the urli -->
+  <use xlink:href="#iconHaldi-mangoLeaf" href="#iconHaldi-mangoLeaf" transform="translate(84 124) rotate(-62) scale(.9)"/>
+  <use xlink:href="#iconHaldi-mangoLeaf" href="#iconHaldi-mangoLeaf" transform="translate(156 124) rotate(62) scale(.9)"/>
+  <use xlink:href="#iconHaldi-mangoLeaf" href="#iconHaldi-mangoLeaf" transform="translate(96 122) rotate(-34)"/>
+  <use xlink:href="#iconHaldi-mangoLeaf" href="#iconHaldi-mangoLeaf" transform="translate(144 122) rotate(34)"/>
+  <use xlink:href="#iconHaldi-mangoLeaf" href="#iconHaldi-mangoLeaf" transform="translate(110 121) rotate(-11) scale(1.02)"/>
+  <use xlink:href="#iconHaldi-mangoLeaf" href="#iconHaldi-mangoLeaf" transform="translate(130 121) rotate(11) scale(1.02)"/>
+
+  <!-- inside of bowl -->
+  <ellipse cx="120" cy="128" rx="61" ry="15.5" fill="url(#iconHaldi-brassInner)"/>
+  <!-- turmeric paste -->
+  <path d="M64 131 C70 121 88 112 104 110 C112 104 128 104 136 110 C152 112 170 121 176 131 C170 140 70 140 64 131Z" fill="url(#iconHaldi-paste)" stroke="#C98A04" stroke-width=".6"/>
+  <path d="M90 118 C100 113 112 112 120 114 M126 109 C134 108 142 111 146 115 M80 126 C92 122 106 123 116 127 M128 126 C140 121 154 122 164 127" fill="none" stroke="#FFF1B8" stroke-width="1.3" stroke-linecap="round" opacity=".75"/>
+  <path d="M96 131 C108 128 124 130 136 133 M142 130 C150 128 158 129 166 131" fill="none" stroke="#D99A0A" stroke-width="1" stroke-linecap="round" opacity=".7"/>
+  <!-- marigold heads resting on the paste -->
+  <use xlink:href="#iconHaldi-marigold" href="#iconHaldi-marigold" transform="translate(97 116) scale(1.12 .92)"/>
+  <use xlink:href="#iconHaldi-marigold" href="#iconHaldi-marigold" transform="translate(144 117) scale(1.04 .86)"/>
+  <use xlink:href="#iconHaldi-marigold" href="#iconHaldi-marigold" transform="translate(121 108) scale(.9 .76)"/>
+
+  <!-- bowl body -->
+  <path d="M58 128 C58 151 86 167 120 167 C154 167 182 151 182 128 A62 16 0 0 1 58 128Z" fill="url(#iconHaldi-brass)" stroke="#5E3F0C" stroke-width=".9"/>
+  <!-- engraved band -->
+  <path d="M65 141 C73 155 96 161 120 161 C144 161 167 155 175 141" fill="none" stroke="#5E3F0C" stroke-width=".8"/>
+  <path d="M68 147 C77 158 98 163.6 120 163.6 C142 163.6 163 158 172 147" fill="none" stroke="#5E3F0C" stroke-width=".6" opacity=".7"/>
+  <path d="M67 144 C76 157 97 162.3 120 162.3 C143 162.3 164 157 173 144" fill="none" stroke="#F6E3A6" stroke-width="1.2" stroke-dasharray=".1 3.4" stroke-linecap="round"/>
+  <path d="M70 140 C82 150 100 154 120 154 C140 154 158 150 170 140" fill="none" stroke="#F6E3A6" stroke-width="1.6" opacity=".35"/>
+  <!-- small engraved lotus petals on front -->
+  <path d="M120 147 C116 151 116 155 120 158 C124 155 124 151 120 147Z M108 148 C104 151 104 154 107 157 C110 154 111 151 108 148Z M132 148 C136 151 136 154 133 157 C130 154 129 151 132 148Z" fill="#8A6118" stroke="#5E3F0C" stroke-width=".5"/>
+  <!-- rim lip -->
+  <ellipse cx="120" cy="128" rx="62" ry="16" fill="none" stroke="url(#iconHaldi-brass)" stroke-width="4.6"/>
+  <ellipse cx="120" cy="128" rx="64.3" ry="18.2" fill="none" stroke="#5E3F0C" stroke-width=".7"/>
+  <ellipse cx="120" cy="128" rx="59.8" ry="13.9" fill="none" stroke="#5E3F0C" stroke-width=".5" opacity=".7"/>
+  <path d="M66 136 C82 143 100 145.6 120 145.6 C140 145.6 158 143 174 136" fill="none" stroke="#FFF6D2" stroke-width="1" opacity=".75"/>
+  <!-- foot -->
+  <path d="M101 165 L97 176 L143 176 L139 165Z" fill="url(#iconHaldi-brass)" stroke="#5E3F0C" stroke-width=".8"/>
+  <ellipse cx="120" cy="176.5" rx="24" ry="3.6" fill="url(#iconHaldi-brass)" stroke="#5E3F0C" stroke-width=".8"/>
+
+  <!-- loose marigolds and leaves at the foot -->
+  <use xlink:href="#iconHaldi-mangoLeaf" href="#iconHaldi-mangoLeaf" transform="translate(80 174) rotate(-76) scale(.48)"/>
+  <use xlink:href="#iconHaldi-mangoLeaf" href="#iconHaldi-mangoLeaf" transform="translate(162 175) rotate(78) scale(.42)"/>
+  <use xlink:href="#iconHaldi-marigold" href="#iconHaldi-marigold" transform="translate(76 171) scale(.9 .76)"/>
+  <use xlink:href="#iconHaldi-marigold" href="#iconHaldi-marigold" transform="translate(166 172) scale(.72 .6)"/>
+  <circle cx="91" cy="181" r="1.8" fill="#F7A41D"/>
+  <circle cx="152" cy="183" r="1.5" fill="#E8761A"/>
+  <circle cx="98" cy="184" r="1.2" fill="#E8761A"/>
+</svg>

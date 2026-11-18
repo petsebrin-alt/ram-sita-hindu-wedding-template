@@ -1,0 +1,268 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <defs>
+    <linearGradient id="templeArch-stoneV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E3A07A"/>
+      <stop offset=".35" stop-color="#C8693F"/>
+      <stop offset=".75" stop-color="#B5502E"/>
+      <stop offset="1" stop-color="#8A3A20"/>
+    </linearGradient>
+    <linearGradient id="templeArch-stoneH" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7A2E16"/>
+      <stop offset=".16" stop-color="#A0442A"/>
+      <stop offset=".36" stop-color="#E3A07A"/>
+      <stop offset=".52" stop-color="#C8693F"/>
+      <stop offset=".8" stop-color="#A0442A"/>
+      <stop offset="1" stop-color="#6A2812"/>
+    </linearGradient>
+    <linearGradient id="templeArch-wall" gradientUnits="userSpaceOnUse" x1="0" y1="212" x2="0" y2="440">
+      <stop offset="0" stop-color="#B5502E"/>
+      <stop offset=".25" stop-color="#C8693F"/>
+      <stop offset="1" stop-color="#B5502E"/>
+    </linearGradient>
+    <radialGradient id="templeArch-petal" cx=".4" cy=".35" r=".7">
+      <stop offset="0" stop-color="#EDB48F"/>
+      <stop offset=".5" stop-color="#D98256"/>
+      <stop offset="1" stop-color="#B5502E"/>
+    </radialGradient>
+    <linearGradient id="templeArch-goldU" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="800" y2="1000">
+      <stop offset="0" stop-color="#8A6118"/>
+      <stop offset=".12" stop-color="#F6E3A6"/>
+      <stop offset=".25" stop-color="#B8862B"/>
+      <stop offset=".38" stop-color="#D4AF5A"/>
+      <stop offset=".5" stop-color="#F6E3A6"/>
+      <stop offset=".62" stop-color="#B8862B"/>
+      <stop offset=".75" stop-color="#D4AF5A"/>
+      <stop offset=".88" stop-color="#F6E3A6"/>
+      <stop offset="1" stop-color="#6E4A12"/>
+    </linearGradient>
+    <linearGradient id="templeArch-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8A6118"/>
+      <stop offset=".3" stop-color="#D4AF5A"/>
+      <stop offset=".5" stop-color="#F6E3A6"/>
+      <stop offset=".7" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#6E4A12"/>
+    </linearGradient>
+    <radialGradient id="templeArch-ball" cx=".5" cy=".5" r=".55" fx=".35" fy=".3">
+      <stop offset="0" stop-color="#FFF6D2"/>
+      <stop offset=".35" stop-color="#E2C27A"/>
+      <stop offset=".75" stop-color="#8A6118"/>
+      <stop offset="1" stop-color="#4A3008"/>
+    </radialGradient>
+    <filter id="templeArch-shadow" x="-5%" y="-3%" width="112%" height="108%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="3" dy="4" result="o"/>
+      <feFlood flood-color="#3A1408" flood-opacity=".38"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- arch geometry -->
+    <path id="templeArch-opening" d="M179,430A26.7,26.7 0 0 1 192.5,386.1A28,28 0 0 1 228.2,353.5A29.5,29.5 0 0 1 273,329.6A30,30 0 0 1 320.7,309.4A30.3,30.3 0 0 1 369.1,289.9A26.2,26.2 0 0 1 400,257A26.2,26.2 0 0 1 430.9,289.9A30.3,30.3 0 0 1 479.3,309.4A30,30 0 0 1 527,329.6A29.5,29.5 0 0 1 571.8,353.5A28,28 0 0 1 607.5,386.1A26.7,26.7 0 0 1 621,430"/>
+    <path id="templeArch-band" d="M154,442V430C155,342 263,307 378,259C394,252 400,244 400,232C400,244 406,252 422,259C537,307 645,342 646,430V442"/>
+    <!-- lotus petal carved across the arch band (local x = along the band) -->
+    <g id="templeArch-bp">
+      <path d="M0,10C-8.5,4 -7.5,-6 0,-11.5C7.5,-6 8.5,4 0,10Z" fill="#7A2E16" transform="translate(.8 1)"/>
+      <path d="M0,10C-8.5,4 -7.5,-6 0,-11.5C7.5,-6 8.5,4 0,10Z" fill="url(#templeArch-petal)"/>
+      <path d="M0,6C-3.6,2 -3.2,-3.5 0,-7C3.2,-3.5 3.6,2 0,6Z" fill="#A0442A"/>
+      <path d="M-5.2,3C-5.6,-1.5 -3.6,-5.5 0,-9.6" fill="none" stroke="#F6E3A6" stroke-width=".8" stroke-linecap="round" opacity=".85"/>
+    </g>
+    <g id="templeArch-bandPetalsR">
+      <use href="#templeArch-bp" transform="translate(409.1 251.5) rotate(39.5)"/><use href="#templeArch-bp" transform="translate(428.9 261.9) rotate(22.5)"/><use href="#templeArch-bp" transform="translate(449.5 270.4) rotate(22.3)"/><use href="#templeArch-bp" transform="translate(470.2 278.8) rotate(22.3)"/><use href="#templeArch-bp" transform="translate(490.9 287.4) rotate(22.8)"/><use href="#templeArch-bp" transform="translate(511.4 296.2) rotate(23.8)"/><use href="#templeArch-bp" transform="translate(531.8 305.5) rotate(25.3)"/><use href="#templeArch-bp" transform="translate(551.8 315.4) rotate(27.5)"/><use href="#templeArch-bp" transform="translate(571.4 326.2) rotate(30.7)"/><use href="#templeArch-bp" transform="translate(590.2 338.4) rotate(35.3)"/><use href="#templeArch-bp" transform="translate(607.7 352.2) rotate(41.8)"/><use href="#templeArch-bp" transform="translate(623.2 368.3) rotate(50.8)"/><use href="#templeArch-bp" transform="translate(635.5 387) rotate(62.8)"/><use href="#templeArch-bp" transform="translate(643.3 407.9) rotate(76.4)"/>
+    </g>
+    <!-- spandrel carving (left; mirrored for right) -->
+    <g id="templeArch-scrolls">
+      <path transform="translate(0 -4)" d="M262.8,237.8C274.7,232.7 288.2,229.7 302.4,228C316.6,226.4 330.9,226.2 343.9,227.1C352.9,228 358.9,230.2 362.4,233.4C366,236.6 366.4,239.6 363.4,243.6C361,246.6 358.2,246.9 355.9,246C353.5,245 352.4,243.3 354.4,240.3A0.5,0.5 0 0 1 353.6,239.7C351.6,242.7 353,246 355.4,247C357.8,248.1 362,247.4 364.5,244.4C367.6,240.4 367,235.4 363.6,232.1C360.1,228.8 353.1,226 344.1,224.9C331.1,223.8 316.4,223.6 302.1,225C287.8,226.3 273.3,229.3 261.2,234.2A2,2 0 0 1 262.8,237.8Z"/>
+      <path d="M199,256.6C192.1,261.7 187.1,270.2 185.7,278C184.3,285.8 186.2,294.7 191.2,300.6C194.3,304.1 199.2,305.3 202.2,304.4C205.2,303.5 207.7,299.8 206.7,295.8C205.6,292.8 202.9,291.4 201.3,291.7C199.7,292 198,294.1 198.5,296.1A0.5,0.5 0 0 1 199.5,295.9C199,293.9 199.8,293 201.5,292.8C203.1,292.6 204.4,293.2 205.4,296.2C206.3,300.2 204.8,302 201.8,302.8C198.8,303.7 195.7,302.9 192.7,299.4C187.8,293.3 186.7,286.2 188.3,278.5C189.9,270.8 193.9,264.3 201,259.4A1.7,1.7 0 0 1 199,256.6Z"/>
+      <path transform="translate(0 -2)" d="M299,226.4C305.2,240.3 318.1,246.6 330.1,244.3A0.3,0.3 0 0 1 329.9,243.7C317.9,245.4 306.8,239.7 301,225.6A1.1,1.1 0 0 1 299,226.4Z"/>
+      <path d="M0,0C3.8,-5 4.4,-11.5 0,-18C-4.4,-11.5 -3.8,-5 0,0Z" transform="translate(320 229) rotate(160) scale(.8)"/>
+      <path d="M0,0C3.8,-5 4.4,-11.5 0,-18C-4.4,-11.5 -3.8,-5 0,0Z" transform="translate(290 229) rotate(200) scale(.7)"/>
+      <path d="M0,0C3.8,-5 4.4,-11.5 0,-18C-4.4,-11.5 -3.8,-5 0,0Z" transform="translate(186 280) rotate(-70) scale(.7)"/>
+    </g>
+    <!-- carved lotus medallion -->
+    <path id="templeArch-mp" d="M0,-8C-7,-12 -7.5,-21 0,-27C7.5,-21 7,-12 0,-8Z"/>
+    <g id="templeArch-medallion">
+      <circle r="31" fill="#7A2E16"/>
+      <circle r="29" fill="url(#templeArch-stoneV)"/>
+      <circle r="25.5" fill="#A0442A"/>
+      <g fill="url(#templeArch-petal)" stroke="#7A2E16" stroke-width=".8">
+        <use href="#templeArch-mp"/><use href="#templeArch-mp" transform="rotate(45)"/><use href="#templeArch-mp" transform="rotate(90)"/><use href="#templeArch-mp" transform="rotate(135)"/><use href="#templeArch-mp" transform="rotate(180)"/><use href="#templeArch-mp" transform="rotate(225)"/><use href="#templeArch-mp" transform="rotate(270)"/><use href="#templeArch-mp" transform="rotate(315)"/>
+      </g>
+      <circle r="8.5" fill="url(#templeArch-gold)" stroke="#5E3F0C" stroke-width=".8"/>
+      <circle r="4" fill="url(#templeArch-ball)"/>
+      <circle r="29" fill="none" stroke="url(#templeArch-gold)" stroke-width="1.2"/>
+    </g>
+    <!-- frieze panel: recessed square with a four-petal flower -->
+    <g id="templeArch-fp">
+      <rect x="-12" y="-12" width="24" height="24" fill="#8A3A20"/>
+      <rect x="-10.5" y="-10.5" width="22" height="22" fill="#A0442A"/>
+      <g fill="url(#templeArch-petal)" stroke="#7A2E16" stroke-width=".6">
+        <path d="M0,-1.5C-4,-4 -4,-8 0,-10C4,-8 4,-4 0,-1.5Z"/><path d="M0,-1.5C-4,-4 -4,-8 0,-10C4,-8 4,-4 0,-1.5Z" transform="rotate(90)"/><path d="M0,-1.5C-4,-4 -4,-8 0,-10C4,-8 4,-4 0,-1.5Z" transform="rotate(180)"/><path d="M0,-1.5C-4,-4 -4,-8 0,-10C4,-8 4,-4 0,-1.5Z" transform="rotate(270)"/>
+      </g>
+      <circle r="2.4" fill="url(#templeArch-ball)"/>
+    </g>
+    <!-- pillar (symmetric about x=128) -->
+    <g id="templeArch-pillar">
+      <!-- base -->
+      <rect x="64" y="946" width="128" height="14" fill="url(#templeArch-stoneV)" stroke="#6A2812" stroke-width=".8"/>
+      <rect x="70" y="930" width="116" height="16" fill="url(#templeArch-stoneV)" stroke="#6A2812" stroke-width=".8"/>
+      <rect x="78" y="912" width="100" height="18" fill="url(#templeArch-stoneH)" stroke="#6A2812" stroke-width=".8"/>
+      <path d="M96,866C78,872 76,900 88,912H168C180,900 178,872 160,866Z" fill="url(#templeArch-stoneH)" stroke="#6A2812" stroke-width=".8"/>
+      <path d="M82,889Q128,896 174,889" fill="none" stroke="#7A2E16" stroke-width="3"/>
+      <path d="M82,887.6Q128,894.6 174,887.6" fill="none" stroke="url(#templeArch-goldU)" stroke-width="1.1"/>
+      <rect x="92" y="858" width="72" height="8" fill="url(#templeArch-stoneH)" stroke="#6A2812" stroke-width=".8"/>
+      <!-- shaft -->
+      <rect x="96" y="446" width="64" height="412" fill="url(#templeArch-stoneH)" stroke="#6A2812" stroke-width=".8"/>
+      <g stroke-width="1.6" fill="none">
+        <path d="M106,542V754M117,542V754M128,542V754M139,542V754M150,542V754" stroke="#7A2E16" opacity=".55"/>
+        <path d="M107.6,542V754M118.6,542V754M129.6,542V754M140.6,542V754" stroke="#EDB48F" stroke-width=".8" opacity=".7"/>
+      </g>
+      <!-- carved bell garland (ghanta-mala) -->
+      <path d="M100,458Q128,486 156,458" fill="none" stroke="#7A2E16" stroke-width="2.4"/>
+      <path d="M100,456.6Q128,484.6 156,456.6" fill="none" stroke="#EDB48F" stroke-width=".8"/>
+      <path d="M128,472V482" stroke="#7A2E16" stroke-width="1.6"/>
+      <path d="M120.5,500C120.5,490 123,484 128,483C133,484 135.5,490 135.5,500Z" fill="url(#templeArch-gold)" stroke="#5E3F0C" stroke-width=".7"/>
+      <rect x="118.5" y="499.5" width="19" height="3" rx="1.4" fill="url(#templeArch-gold)" stroke="#5E3F0C" stroke-width=".5"/>
+      <circle cx="128" cy="505.6" r="2.2" fill="url(#templeArch-ball)"/>
+      <!-- carved lozenge -->
+      <path d="M128,784L148,808L128,832L108,808Z" fill="#8A3A20"/>
+      <path d="M128,788L144.5,808L128,828L111.5,808Z" fill="url(#templeArch-stoneV)"/>
+      <circle cx="128" cy="808" r="7" fill="#A0442A" stroke="#7A2E16" stroke-width=".8"/>
+      <circle cx="128" cy="808" r="3.2" fill="url(#templeArch-ball)"/>
+      <!-- moulded bands -->
+      <g fill="url(#templeArch-stoneV)" stroke="#6A2812" stroke-width=".8">
+        <rect x="92" y="522" width="72" height="16" rx="2"/>
+        <rect x="92" y="758" width="72" height="16" rx="2"/>
+        <rect x="92" y="842" width="72" height="12" rx="2"/>
+      </g>
+      <g fill="none" stroke-linecap="round" stroke-dasharray="0 6.5">
+        <path d="M96,530.6H162M96,766.6H162" stroke="#5E3F0C" stroke-width="3.6"/>
+        <path d="M96,530H162M96,766H162" stroke="url(#templeArch-goldU)" stroke-width="3"/>
+      </g>
+      <!-- capital: neck, inverted-lotus cushion, abacus -->
+      <rect x="92" y="436" width="72" height="10" fill="url(#templeArch-stoneH)" stroke="#6A2812" stroke-width=".8"/>
+      <path d="M76,412H180C180,424 170,432 162,436H94C86,432 76,424 76,412Z" fill="url(#templeArch-stoneH)" stroke="#6A2812" stroke-width=".8"/>
+      <path d="M88,414C90,422 96,430 104,435M104,414C106,422 110,430 114,435M120,414C121,422 123,430 124,435M136,414C135,422 133,430 132,435M152,414C150,422 146,430 142,435M168,414C166,422 160,430 152,435" fill="none" stroke="#7A2E16" stroke-width="1.2" opacity=".7"/>
+      <rect x="70" y="400" width="116" height="12" fill="url(#templeArch-stoneV)" stroke="#6A2812" stroke-width=".8"/>
+      <path d="M71,401.4H185" stroke="url(#templeArch-goldU)" stroke-width="1.2"/>
+    </g>
+    <path id="templeArch-dpetal" d="M0,0C-4.4,-4 -3.8,-9 0,-12C3.8,-9 4.4,-4 0,0Z"/>
+  </defs>
+
+  <g filter="url(#templeArch-shadow)">
+    <!-- carved stone wall with a truly transparent cusped opening -->
+    <path fill-rule="evenodd" fill="url(#templeArch-wall)" d="M70,210H730V412H636V430H164V412H70ZM170,430H179A26.7,26.7 0 0 1 192.5,386.1A28,28 0 0 1 228.2,353.5A29.5,29.5 0 0 1 273,329.6A30,30 0 0 1 320.7,309.4A30.3,30.3 0 0 1 369.1,289.9A26.2,26.2 0 0 1 400,257A26.2,26.2 0 0 1 430.9,289.9A30.3,30.3 0 0 1 479.3,309.4A30,30 0 0 1 527,329.6A29.5,29.5 0 0 1 571.8,353.5A28,28 0 0 1 607.5,386.1A26.7,26.7 0 0 1 621,430H630Z"/>
+    <path d="M70.5,210V400M729.5,210V400" stroke="#6A2812" stroke-width="1"/>
+
+    <!-- recessed side panels above the capitals -->
+    <g>
+      <rect x="84" y="226" width="58" height="166" fill="#8A3A20"/>
+      <rect x="87" y="229" width="54" height="162" fill="url(#templeArch-wall)"/>
+      <rect x="658" y="226" width="58" height="166" fill="#8A3A20"/>
+      <rect x="661" y="229" width="54" height="162" fill="url(#templeArch-wall)"/>
+      <use href="#templeArch-medallion" transform="translate(113 300) scale(.66)"/>
+      <use href="#templeArch-medallion" transform="translate(687 300) scale(.66)"/>
+      <g fill="none" stroke-linecap="round" stroke-dasharray="0 7">
+        <path d="M113,245V272M113,328V378M687,245V272M687,328V378" stroke="#7A2E16" stroke-width="3.6"/>
+        <path d="M113,244.4V272M113,327.4V378M687,244.4V272M687,327.4V378" stroke="url(#templeArch-goldU)" stroke-width="2.6"/>
+      </g>
+    </g>
+
+    <!-- spandrels: scrolling vine and lotus medallions -->
+    <use href="#templeArch-scrolls" fill="#7A2E16" transform="translate(1 1.3)"/>
+    <use href="#templeArch-scrolls" fill="#7A2E16" transform="translate(1 1.3) matrix(-1 0 0 1 800 0)"/>
+    <use href="#templeArch-scrolls" fill="#EDB48F"/>
+    <use href="#templeArch-scrolls" fill="#EDB48F" transform="matrix(-1 0 0 1 800 0)"/>
+    <use href="#templeArch-medallion" transform="translate(236 262)"/>
+    <use href="#templeArch-medallion" transform="translate(564 262)"/>
+    <g fill="url(#templeArch-ball)">
+      <circle cx="358" cy="236" r="2.6"/><circle cx="442" cy="236" r="2.6"/>
+      <circle cx="202" cy="298" r="2.4"/><circle cx="598" cy="298" r="2.4"/>
+    </g>
+
+    <!-- arch band: moulded voussoir with carved lotus petals and gold fillets -->
+    <g fill="none" stroke-linejoin="round">
+      <use href="#templeArch-band" stroke="#6A2812" stroke-width="35"/>
+      <use href="#templeArch-band" stroke="url(#templeArch-goldU)" stroke-width="33"/>
+      <use href="#templeArch-band" stroke="#8A3A20" stroke-width="30.4"/>
+      <use href="#templeArch-band" stroke="#B5502E" stroke-width="28.4"/>
+      <use href="#templeArch-band" stroke="#C8693F" stroke-width="21"/>
+    </g>
+    <use href="#templeArch-bandPetalsR"/>
+    <use href="#templeArch-bandPetalsR" transform="matrix(-1 0 0 1 800 0)"/>
+    <use href="#templeArch-bp" transform="translate(400 238) rotate(0) scale(1.1)"/>
+    <!-- cusped edge of the opening with gold bud tips -->
+    <use href="#templeArch-opening" fill="none" stroke="#6A2812" stroke-width="5"/>
+    <use href="#templeArch-opening" fill="none" stroke="#D98256" stroke-width="2.6"/>
+    <use href="#templeArch-opening" fill="none" stroke="url(#templeArch-goldU)" stroke-width="1" transform="translate(-.6 -.8)"/>
+    <g fill="url(#templeArch-ball)" stroke="#5E3F0C" stroke-width=".5">
+      <circle cx="429" cy="294.5" r="3.6"/><circle cx="477.5" cy="314" r="3.6"/><circle cx="524.9" cy="334.1" r="3.6"/><circle cx="569" cy="357.7" r="3.6"/><circle cx="603.4" cy="388.9" r="3.6"/>
+      <circle cx="371" cy="294.5" r="3.6"/><circle cx="322.5" cy="314" r="3.6"/><circle cx="275.1" cy="334.1" r="3.6"/><circle cx="231" cy="357.7" r="3.6"/><circle cx="196.6" cy="388.9" r="3.6"/>
+      <circle cx="400" cy="263.5" r="4"/>
+    </g>
+
+    <!-- frieze -->
+    <rect x="56" y="178" width="688" height="34" fill="url(#templeArch-stoneV)" stroke="#6A2812" stroke-width=".9"/>
+    <rect x="56" y="206" width="688" height="6" fill="#A0442A" stroke="#6A2812" stroke-width=".6"/>
+    <g>
+      <use href="#templeArch-fp" transform="translate(80 193)"/><use href="#templeArch-fp" transform="translate(126 193)"/><use href="#templeArch-fp" transform="translate(172 193)"/><use href="#templeArch-fp" transform="translate(218 193)"/><use href="#templeArch-fp" transform="translate(264 193)"/><use href="#templeArch-fp" transform="translate(310 193)"/><use href="#templeArch-fp" transform="translate(356 193)"/><use href="#templeArch-fp" transform="translate(400 193)"/><use href="#templeArch-fp" transform="translate(444 193)"/><use href="#templeArch-fp" transform="translate(490 193)"/><use href="#templeArch-fp" transform="translate(536 193)"/><use href="#templeArch-fp" transform="translate(582 193)"/><use href="#templeArch-fp" transform="translate(628 193)"/><use href="#templeArch-fp" transform="translate(674 193)"/><use href="#templeArch-fp" transform="translate(720 193)"/>
+    </g>
+    <path d="M57,179.2H743M57,207.2H743" stroke="url(#templeArch-goldU)" stroke-width="1.1"/>
+
+    <!-- cornice (chhajja) with dentils -->
+    <path d="M44,152H756L742,172H58Z" fill="url(#templeArch-stoneV)" stroke="#6A2812" stroke-width=".9"/>
+    <path d="M62,175H738" stroke="#8A3A20" stroke-width="6" stroke-dasharray="6 6"/>
+    <path d="M62,172.6H738" stroke="#EDB48F" stroke-width="1.2" stroke-dasharray="6 6" opacity=".8"/>
+    <rect x="38" y="140" width="724" height="12" rx="2" fill="url(#templeArch-stoneV)" stroke="#6A2812" stroke-width=".9"/>
+    <path d="M40,141.4H760" stroke="url(#templeArch-goldU)" stroke-width="1.3"/>
+    <path d="M60,162H740" stroke="#7A2E16" stroke-width=".8" opacity=".6"/>
+
+    <!-- corner pinnacles -->
+    <g stroke="#6A2812" stroke-width=".8">
+      <rect x="58" y="126" width="28" height="14" fill="url(#templeArch-stoneH)"/>
+      <path d="M56,126C56,112 70,106 72,98C74,106 88,112 88,126Z" fill="url(#templeArch-stoneH)"/>
+      <rect x="714" y="126" width="28" height="14" fill="url(#templeArch-stoneH)"/>
+      <path d="M712,126C712,112 726,106 728,98C730,106 744,112 744,126Z" fill="url(#templeArch-stoneH)"/>
+    </g>
+    <g fill="url(#templeArch-ball)" stroke="#5E3F0C" stroke-width=".5"><circle cx="72" cy="94.5" r="3.6"/><circle cx="728" cy="94.5" r="3.6"/></g>
+
+    <!-- chhatri finial: plinth, colonnette pavilion, dome, kalash -->
+    <rect x="330" y="126" width="140" height="14" fill="url(#templeArch-stoneV)" stroke="#6A2812" stroke-width=".9"/>
+    <path d="M331,127.4H469" stroke="url(#templeArch-goldU)" stroke-width="1.1"/>
+    <g fill="url(#templeArch-stoneH)" stroke="#6A2812" stroke-width=".7">
+      <rect x="342" y="94" width="10" height="32"/><rect x="368" y="94" width="10" height="32"/><rect x="422" y="94" width="10" height="32"/><rect x="448" y="94" width="10" height="32"/>
+    </g>
+    <path d="M352,126V108A8,8 0 0 1 368,108V126ZM378,126V106A22,14 0 0 1 422,106V126ZM432,126V108A8,8 0 0 1 448,108V126Z" fill="none" stroke="#7A2E16" stroke-width="1.2"/>
+    <path d="M322,86H478L470,95H330Z" fill="url(#templeArch-stoneV)" stroke="#6A2812" stroke-width=".8"/>
+    <path d="M323,87.2H477" stroke="url(#templeArch-goldU)" stroke-width="1"/>
+    <path d="M354,86C341,70 352,48 380,39C392,35 397,30 400,20C403,30 408,35 420,39C448,48 459,70 446,86Z" fill="url(#templeArch-stoneH)" stroke="#6A2812" stroke-width=".9"/>
+    <g fill="none" stroke="#7A2E16" stroke-width="1" opacity=".55">
+      <path d="M400,24Q368,46 368,85M400,24Q384,50 384,85M400,24V85M400,24Q416,50 416,85M400,24Q432,46 432,85"/>
+    </g>
+    <path d="M400,25Q372,48 371,82" fill="none" stroke="#F6E3A6" stroke-width="1.2" opacity=".5"/>
+    <g fill="url(#templeArch-petal)" stroke="#6A2812" stroke-width=".55">
+      <use href="#templeArch-dpetal" transform="translate(360 86)"/><use href="#templeArch-dpetal" transform="translate(370 86)"/><use href="#templeArch-dpetal" transform="translate(380 86)"/><use href="#templeArch-dpetal" transform="translate(390 86)"/><use href="#templeArch-dpetal" transform="translate(400 86)"/><use href="#templeArch-dpetal" transform="translate(410 86)"/><use href="#templeArch-dpetal" transform="translate(420 86)"/><use href="#templeArch-dpetal" transform="translate(430 86)"/><use href="#templeArch-dpetal" transform="translate(440 86)"/>
+    </g>
+    <ellipse cx="400" cy="21" rx="9" ry="2.8" fill="url(#templeArch-gold)" stroke="#5E3F0C" stroke-width=".7"/>
+    <path d="M393,19C388,16 388,9 394,7H406C412,9 412,16 407,19Z" fill="url(#templeArch-gold)" stroke="#5E3F0C" stroke-width=".7"/>
+    <rect x="396.5" y="3.5" width="7" height="4" fill="url(#templeArch-gold)" stroke="#5E3F0C" stroke-width=".5"/>
+    <circle cx="400" cy="2.6" r="2.2" fill="url(#templeArch-ball)"/>
+
+    <!-- pillars -->
+    <use href="#templeArch-pillar"/>
+    <use href="#templeArch-pillar" transform="translate(544 0)"/>
+
+    <!-- springing brackets under the arch -->
+    <g fill="url(#templeArch-stoneH)" stroke="#6A2812" stroke-width=".8">
+      <path d="M164,411H194C194,420 189,426 183,430C180,433 178,437 177,441C174,441 171,438 170,433C166,427 164,420 164,411Z"/>
+      <path d="M636,411H606C606,420 611,426 617,430C620,433 622,437 623,441C626,441 629,438 630,433C634,427 636,420 636,411Z"/>
+    </g>
+    <path d="M168,415C171,421 175,425 179,428M632,415C629,421 625,425 621,428" fill="none" stroke="#7A2E16" stroke-width="1" opacity=".7"/>
+    <g fill="url(#templeArch-ball)" stroke="#5E3F0C" stroke-width=".5"><circle cx="175" cy="443.5" r="3"/><circle cx="625" cy="443.5" r="3"/></g>
+
+    <!-- threshold steps -->
+    <rect x="40" y="960" width="720" height="20" fill="url(#templeArch-stoneV)" stroke="#6A2812" stroke-width=".9"/>
+    <rect x="28" y="980" width="744" height="18" fill="url(#templeArch-stoneV)" stroke="#6A2812" stroke-width=".9"/>
+    <path d="M41,961.4H759" stroke="url(#templeArch-goldU)" stroke-width="1.2"/>
+    <path d="M60,970H740" stroke="#7A2E16" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="0 12" opacity=".6"/>
+  </g>
+</svg>

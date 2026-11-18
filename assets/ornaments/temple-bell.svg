@@ -1,0 +1,181 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 420" width="200" height="420">
+  <defs>
+    <linearGradient id="templeBell-brass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4A3008"/>
+      <stop offset=".1" stop-color="#6E4A12"/>
+      <stop offset=".24" stop-color="#B8862B"/>
+      <stop offset=".35" stop-color="#F6E3A6"/>
+      <stop offset=".43" stop-color="#E4C47C"/>
+      <stop offset=".58" stop-color="#B8862B"/>
+      <stop offset=".78" stop-color="#8A6118"/>
+      <stop offset=".92" stop-color="#6E4A12"/>
+      <stop offset="1" stop-color="#4A3008"/>
+    </linearGradient>
+    <linearGradient id="templeBell-ring" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFF1C2"/>
+      <stop offset=".35" stop-color="#E2C27A"/>
+      <stop offset=".7" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#5E3F0C"/>
+    </linearGradient>
+    <linearGradient id="templeBell-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8A6118"/>
+      <stop offset=".3" stop-color="#D4AF5A"/>
+      <stop offset=".5" stop-color="#F6E3A6"/>
+      <stop offset=".7" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#6E4A12"/>
+    </linearGradient>
+    <linearGradient id="templeBell-rod" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5E3F0C"/>
+      <stop offset=".35" stop-color="#F6E3A6"/>
+      <stop offset=".6" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#4A3008"/>
+    </linearGradient>
+    <linearGradient id="templeBell-edge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2A1A04" stop-opacity=".75"/>
+      <stop offset=".18" stop-color="#2A1A04" stop-opacity="0"/>
+      <stop offset=".72" stop-color="#2A1A04" stop-opacity="0"/>
+      <stop offset="1" stop-color="#2A1A04" stop-opacity=".8"/>
+    </linearGradient>
+    <linearGradient id="templeBell-spec" x1="0" y1="0" x2="1" y2="0">
+      <stop offset=".26" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset=".33" stop-color="#FFFFFF" stop-opacity=".55"/>
+      <stop offset=".37" stop-color="#FFFFFF" stop-opacity=".1"/>
+      <stop offset=".4" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="templeBell-ball" cx=".5" cy=".5" r=".55" fx=".35" fy=".3">
+      <stop offset="0" stop-color="#FFF6D2"/>
+      <stop offset=".3" stop-color="#E2C27A"/>
+      <stop offset=".7" stop-color="#8A6118"/>
+      <stop offset="1" stop-color="#3B2405"/>
+    </radialGradient>
+    <radialGradient id="templeBell-hollow" cx=".5" cy=".2" r=".9">
+      <stop offset="0" stop-color="#1E1203"/>
+      <stop offset=".6" stop-color="#3B2405"/>
+      <stop offset="1" stop-color="#6E4A12"/>
+    </radialGradient>
+    <filter id="templeBell-shadow" x="-20%" y="-5%" width="140%" height="112%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="2" dy="3" result="o"/>
+      <feFlood flood-color="#2A1A04" flood-opacity=".38"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <path id="templeBell-body" d="M100,170C116,170 128,178 130,194C133,232 134,272 144,308C150,330 158,346 172,356C176,359 176.5,365 172,368C172,362.5 139.8,358 100,358C60.2,358 28,362.5 28,368C23.5,365 24,359 28,356C42,346 50,330 56,308C66,272 67,232 70,194C72,178 84,170 100,170Z"/>
+    <clipPath id="templeBell-clip"><use href="#templeBell-body"/></clipPath>
+    <!-- chain links -->
+    <g id="templeBell-linkF">
+      <ellipse rx="5.6" ry="9.6" fill="none" stroke="#4A3008" stroke-width="4.4"/>
+      <ellipse rx="5.6" ry="9.6" fill="none" stroke="url(#templeBell-rod)" stroke-width="2.8"/>
+      <path d="M-4.6,-4C-4.4,-7 -2.6,-8.8 0,-9.2" fill="none" stroke="#FFF6D2" stroke-width=".9" stroke-linecap="round"/>
+    </g>
+    <g id="templeBell-linkS">
+      <rect x="-2.1" y="-11.5" width="4.2" height="23" rx="2.1" fill="url(#templeBell-rod)" stroke="#4A3008" stroke-width=".9"/>
+      <path d="M-.6,-8V8" stroke="#FFF6D2" stroke-width=".7" stroke-linecap="round" opacity=".8"/>
+    </g>
+    <path id="templeBell-petal" d="M0,0C-8,-6 -6.5,-17 0,-24C6.5,-17 8,-6 0,0Z"/>
+  </defs>
+
+  <g filter="url(#templeBell-shadow)">
+    <!-- chain: starts at top centre (100,0) -->
+    <use href="#templeBell-linkF" x="100" y="11"/>
+    <use href="#templeBell-linkS" x="100" y="26.5"/>
+    <use href="#templeBell-linkF" x="100" y="42"/>
+    <use href="#templeBell-linkS" x="100" y="57.5"/>
+    <use href="#templeBell-linkF" x="100" y="73"/>
+    <use href="#templeBell-linkS" x="100" y="88.5"/>
+    <!-- suspension ring -->
+    <circle cx="100" cy="106" r="7.2" fill="none" stroke="#4A3008" stroke-width="5"/>
+    <circle cx="100" cy="106" r="7.2" fill="none" stroke="url(#templeBell-gold)" stroke-width="3.3"/>
+    <path d="M94.2,102.5C95.5,100 97.6,98.9 100,98.8" fill="none" stroke="#FFF6D2" stroke-width="1" stroke-linecap="round"/>
+
+    <!-- mouth: rim lip and dark hollow, with the clapper hanging inside -->
+    <ellipse cx="100" cy="368" rx="73.5" ry="11.5" fill="url(#templeBell-brass)" stroke="#3B2405" stroke-width="1"/>
+    <ellipse cx="100" cy="366.6" rx="68" ry="8.6" fill="url(#templeBell-hollow)"/>
+    <rect x="97.4" y="340" width="5.2" height="48" rx="2" fill="url(#templeBell-rod)" stroke="#3B2405" stroke-width=".7"/>
+    <circle cx="100" cy="395" r="10" fill="url(#templeBell-ball)" stroke="#3B2405" stroke-width=".8"/>
+    <ellipse cx="100" cy="386.2" rx="4.4" ry="1.6" fill="url(#templeBell-ring)" stroke="#3B2405" stroke-width=".5"/>
+    <path d="M100,404.5C104,407.5 104.6,412.5 100,417C95.4,412.5 96,407.5 100,404.5Z" fill="url(#templeBell-gold)" stroke="#3B2405" stroke-width=".7"/>
+    <ellipse cx="96.6" cy="391.5" rx="2.6" ry="1.8" fill="#FFF8DE" opacity=".75"/>
+
+    <!-- bell body -->
+    <use href="#templeBell-body" fill="url(#templeBell-brass)"/>
+    <g clip-path="url(#templeBell-clip)">
+      <!-- engraved frieze grounds -->
+      <path d="M60.5,264 L61.9,262.7 L65.8,261.6 L72.1,260.5 L80.3,259.8 L89.8,259.3 L100,259.1 L110.2,259.3 L119.7,259.8 L127.9,260.5 L134.2,261.6 L138.1,262.7 L140,264 L145.5,290 L143.9,288.6 L139.4,287.2 L132.1,286.1 L122.7,285.2 L111.8,284.7 L100,284.5 L88.2,284.7 L77.3,285.2 L67.9,286.1 L60.6,287.2 L56.1,288.6 L54.5,290Z" fill="#5E3F0C" opacity=".55"/>
+      <!-- raised lotus-petal frieze -->
+      <g fill="url(#templeBell-ring)" stroke="#4A3008" stroke-width=".6">
+        <path d="M60.1,287C60.1,277 64,272.1 64.3,267.1C64.7,272.1 62.3,277 62.3,287Z"/>
+        <path d="M62.7,285.3C62.7,275.3 67.5,270.5 68.6,265.5C69.8,270.5 69.1,275.3 69.1,285.3Z"/>
+        <path d="M69.8,283.8C69.8,273.8 75,269.1 76.7,264.1C78.4,269.1 79.5,273.8 79.5,283.8Z"/>
+        <path d="M80.6,282.9C80.6,272.9 85.5,268.3 87.6,263.3C89.7,268.3 92.5,272.9 92.5,282.9Z"/>
+        <path d="M93.7,282.5C93.7,272.5 97.8,268 100,263C102.2,268 106.3,272.5 106.3,282.5Z"/>
+        <path d="M107.5,282.9C107.5,272.9 110.3,268.3 112.4,263.3C114.5,268.3 119.4,272.9 119.4,282.9Z"/>
+        <path d="M120.5,283.8C120.5,273.8 121.6,269.1 123.3,264.1C125,269.1 130.2,273.8 130.2,283.8Z"/>
+        <path d="M130.9,285.3C130.9,275.3 130.2,270.5 131.4,265.5C132.5,270.5 137.3,275.3 137.3,285.3Z"/>
+        <path d="M137.7,287C137.7,277 135.3,272.1 135.7,267.1C136,272.1 139.9,277 139.9,287Z"/>
+      </g>
+      <g fill="#6B0F24" opacity=".55">
+        <path d="M60.7,286C60.7,279 64.2,276.1 64.3,272.1C64.5,276.1 61.8,279 61.8,286Z"/>
+        <path d="M64.3,284.3C64.3,277.3 68.2,274.5 68.6,270.5C69.1,274.5 67.5,277.3 67.5,284.3Z"/>
+        <path d="M72.3,282.8C72.3,275.8 76,273.1 76.7,269.1C77.5,273.1 77.1,275.8 77.1,282.8Z"/>
+        <path d="M83.6,281.9C83.6,274.9 86.7,272.3 87.6,268.3C88.5,272.3 89.5,274.9 89.5,281.9Z"/>
+        <path d="M96.8,281.5C96.8,274.5 99.1,272 100,268C100.9,272 103.2,274.5 103.2,281.5Z"/>
+        <path d="M110.5,281.9C110.5,274.9 111.5,272.3 112.4,268.3C113.3,272.3 116.4,274.9 116.4,281.9Z"/>
+        <path d="M122.9,282.8C122.9,275.8 122.5,273.1 123.3,269.1C124,273.1 127.7,275.8 127.7,282.8Z"/>
+        <path d="M132.5,284.3C132.5,277.3 130.9,274.5 131.4,270.5C131.8,274.5 135.7,277.3 135.7,284.3Z"/>
+        <path d="M138.2,286C138.2,279 135.5,276.1 135.7,272.1C135.8,276.1 139.3,279 139.3,286Z"/>
+      </g>
+      <!-- engraved dentil band -->
+      <path d="M52.1,319.5L54.2,319.5L47.7,332.3ZM54.7,318.1L58.7,318.1L51.7,330.8ZM59.6,316.8L65.3,316.8L58.1,329.4ZM66.5,315.8L73.6,315.8L66.5,328.2ZM75,315L83.3,315L76.7,327.3ZM84.8,314.5L93.8,314.5L88.1,326.7ZM95.4,314.3L104.6,314.3L100,326.5ZM106.2,314.5L115.2,314.5L111.9,326.7ZM116.7,315L125,315L123.3,327.3ZM126.4,315.8L133.5,315.8L133.5,328.2ZM134.7,316.8L140.4,316.8L141.9,329.4ZM141.3,318.1L145.3,318.1L148.3,330.8ZM145.8,319.5L147.9,319.5L152.3,332.3Z" fill="#4A3008" opacity=".6"/>
+      <!-- engraved creeper wave -->
+      <path d="M57.8,298.3 L58.2,299.7 L58.7,301.3 L59.5,302.5 L60.4,302.7 L61.5,301.7 L62.8,299.7 L64.2,297.4 L65.9,295.5 L67.7,294.5 L69.7,294.8 L71.8,296.2 L74,297.9 L76.4,299.2 L78.9,299.6 L81.5,298.8 L84.2,297.1 L87,294.9 L89.8,293.2 L92.7,292.5 L95.6,293.1 L98.5,294.7 L101.5,296.6 L104.4,298.3 L107.3,298.9 L110.2,298.4 L113,296.9 L115.8,295.1 L118.5,293.6 L121.1,293.2 L123.6,294.1 L126,295.9 L128.2,298.1 L130.3,300 L132.3,300.9 L134.1,300.6 L135.8,299.4 L137.2,297.8 L138.5,296.5 L139.6,296.3 L140.5,297.3 L141.3,299.3 L141.8,301.7 L142.2,304.3" fill="none" stroke="#4A3008" stroke-width=".9" stroke-linejoin="round" opacity=".75"/>
+      <g fill="#4A3008" opacity=".7">
+        <ellipse cx="60.4" cy="304.9" rx="0.4" ry="1.1"/><ellipse cx="67.7" cy="292.2" rx="0.7" ry="1.1"/><ellipse cx="78.9" cy="301.8" rx="1" ry="1.1"/><ellipse cx="92.7" cy="290.2" rx="1.1" ry="1.1"/><ellipse cx="107.3" cy="301.1" rx="1.1" ry="1.1"/><ellipse cx="121.1" cy="290.9" rx="1" ry="1.1"/><ellipse cx="132.3" cy="303.1" rx="0.7" ry="1.1"/><ellipse cx="139.6" cy="294" rx="0.4" ry="1.1"/>
+      </g>
+      <!-- bead band -->
+      <g fill="url(#templeBell-ring)" stroke="#4A3008" stroke-width=".4">
+        <ellipse cx="67.9" cy="230.2" rx="0.4" ry="2.4"/><ellipse cx="69.3" cy="229.4" rx="0.8" ry="2.4"/><ellipse cx="71.7" cy="228.7" rx="1.2" ry="2.4"/><ellipse cx="75" cy="228.1" rx="1.5" ry="2.4"/><ellipse cx="79" cy="227.5" rx="1.8" ry="2.4"/><ellipse cx="83.7" cy="227.1" rx="2.1" ry="2.4"/><ellipse cx="88.8" cy="226.7" rx="2.3" ry="2.4"/><ellipse cx="94.3" cy="226.5" rx="2.4" ry="2.4"/><ellipse cx="100" cy="226.5" rx="2.4" ry="2.4"/><ellipse cx="105.7" cy="226.5" rx="2.4" ry="2.4"/><ellipse cx="111.2" cy="226.7" rx="2.3" ry="2.4"/><ellipse cx="116.3" cy="227.1" rx="2.1" ry="2.4"/><ellipse cx="121" cy="227.5" rx="1.8" ry="2.4"/><ellipse cx="125" cy="228.1" rx="1.5" ry="2.4"/><ellipse cx="128.3" cy="228.7" rx="1.2" ry="2.4"/><ellipse cx="130.7" cy="229.4" rx="0.8" ry="2.4"/><ellipse cx="132.1" cy="230.2" rx="0.4" ry="2.4"/>
+      </g>
+      <!-- raised moulded rings -->
+      <g fill="url(#templeBell-ring)" stroke="#4A3008" stroke-width=".6">
+        <path d="M67.2,190 L68.4,188.9 L71.6,188 L76.8,187.1 L83.6,186.5 L91.5,186.1 L100,185.9 L108.5,186.1 L116.4,186.5 L123.2,187.1 L128.4,188 L131.6,188.9 L132.8,190 L133.9,198 L132.8,196.9 L129.4,195.9 L124,195 L117,194.4 L108.8,193.9 L100,193.8 L91.2,193.9 L83,194.4 L76,195 L70.6,195.9 L67.2,196.9 L66.1,198Z"/>
+        <path d="M63.9,218.5 L65.1,217.3 L68.7,216.3 L74.4,215.3 L81.9,214.6 L90.6,214.2 L100,214 L109.4,214.2 L118.1,214.6 L125.6,215.3 L131.3,216.3 L134.9,217.3 L136.1,218.5 L136.4,221.5 L135.2,220.3 L131.6,219.3 L125.9,218.3 L118.3,217.6 L109.5,217.2 L100,217 L90.5,217.2 L81.7,217.6 L74.1,218.3 L68.4,219.3 L64.8,220.3 L63.6,221.5Z"/>
+        <path d="M63,236 L64.3,234.8 L68,233.7 L73.9,232.8 L81.5,232 L90.4,231.6 L100,231.4 L109.6,231.6 L118.5,232 L126.1,232.8 L132,233.7 L135.7,234.8 L137,236 L137.3,239 L136,237.8 L132.3,236.7 L126.3,235.8 L118.7,235 L109.7,234.6 L100,234.4 L90.3,234.6 L81.3,235 L73.7,235.8 L67.7,236.7 L64,237.8 L62.7,239Z"/>
+        <path d="M60.5,260 L61.9,258.7 L65.8,257.6 L72.1,256.5 L80.3,255.8 L89.8,255.3 L100,255.1 L110.2,255.3 L119.7,255.8 L127.9,256.5 L134.2,257.6 L138.1,258.7 L139.5,260 L140,264 L138.6,262.7 L134.6,261.5 L128.3,260.5 L120,259.7 L110.3,259.2 L100,259 L89.7,259.2 L80,259.7 L71.7,260.5 L65.4,261.5 L61.4,262.7 L60,264Z"/>
+        <path d="M55.5,290 L57,288.6 L61.4,287.2 L68.5,286.1 L77.7,285.2 L88.5,284.7 L100,284.5 L111.5,284.7 L122.3,285.2 L131.5,286.1 L138.6,287.2 L143,288.6 L144.5,290 L145.5,294 L143.9,292.5 L139.4,291.2 L132.1,290 L122.7,289.1 L111.8,288.6 L100,288.4 L88.2,288.6 L77.3,289.1 L67.9,290 L60.6,291.2 L56.1,292.5 L54.5,294Z"/>
+        <path d="M48.1,316 L49.8,314.3 L55,312.8 L63.3,311.4 L74,310.4 L86.6,309.8 L100,309.6 L113.4,309.8 L126,310.4 L136.7,311.4 L145,312.8 L150.2,314.3 L151.9,316 L153.4,320 L151.6,318.3 L146.3,316.7 L137.8,315.3 L126.7,314.3 L113.8,313.6 L100,313.4 L86.2,313.6 L73.3,314.3 L62.2,315.3 L53.7,316.7 L48.4,318.3 L46.6,320Z"/>
+        <path d="M34.6,342 L36.8,339.9 L43.3,337.9 L53.7,336.3 L67.3,335 L83.1,334.2 L100,333.9 L116.9,334.2 L132.7,335 L146.3,336.3 L156.7,337.9 L163.2,339.9 L165.4,342 L180.6,356 L177.9,353.4 L169.8,351 L157,348.9 L140.3,347.3 L120.9,346.3 L100,346 L79.1,346.3 L59.7,347.3 L43,348.9 L30.2,351 L22.1,353.4 L19.4,356Z"/>
+      </g>
+      <!-- engraved hairlines in the lip moulding -->
+      <path d="M26,349 Q100,331 174,349" fill="none" stroke="#5E3F0C" stroke-width=".6" opacity=".7"/>
+      <!-- cylindrical shading + specular streak -->
+      <rect x="20" y="160" width="160" height="210" fill="url(#templeBell-edge)"/>
+      <rect x="20" y="160" width="160" height="210" fill="url(#templeBell-spec)"/>
+    </g>
+    <use href="#templeBell-body" fill="none" stroke="#3B2405" stroke-width="1"/>
+
+    <!-- lotus collar draped over the shoulder -->
+    <path d="M81,174.6C81,180.6 73.4,185 74.7,189C76,185 87.5,180.6 87.5,174.6ZM85.7,173.6C85.7,179.6 83.3,183.5 85.4,187.5C87.4,183.5 96.1,179.6 96.1,173.6ZM94.1,173.2C94.1,179.2 97.6,182.9 100,186.9C102.4,182.9 105.9,179.2 105.9,173.2ZM103.9,173.6C103.9,179.6 112.6,183.5 114.6,187.5C116.7,183.5 114.3,179.6 114.3,173.6ZM112.5,174.6C112.5,180.6 124,185 125.3,189C126.6,185 119,180.6 119,174.6Z" fill="url(#templeBell-gold)" stroke="#4A3008" stroke-width=".6"/>
+
+    <!-- lotus finial cup + kalash knob -->
+    <g fill="url(#templeBell-gold)" stroke="#4A3008" stroke-width=".7">
+      <use href="#templeBell-petal" transform="translate(100 172) rotate(-64) scale(.8)"/>
+      <use href="#templeBell-petal" transform="translate(100 172) rotate(64) scale(.8)"/>
+      <use href="#templeBell-petal" transform="translate(100 172) rotate(-34) scale(.92)"/>
+      <use href="#templeBell-petal" transform="translate(100 172) rotate(34) scale(.92)"/>
+      <use href="#templeBell-petal" transform="translate(100 172)"/>
+    </g>
+    <g fill="none" stroke="#FFF1C2" stroke-width=".6" opacity=".8">
+      <path d="M0,-4V-19" transform="translate(100 172)"/>
+      <path d="M0,-4V-17" transform="translate(100 172) rotate(-34) scale(.92)"/>
+      <path d="M0,-4V-17" transform="translate(100 172) rotate(34) scale(.92)"/>
+    </g>
+    <ellipse cx="100" cy="171" rx="14" ry="3" fill="url(#templeBell-ring)" stroke="#4A3008" stroke-width=".7"/>
+    <path d="M100,119C106.5,119 109.5,125 108.6,130.5C107.8,136 104.5,139.5 100,140.5C95.5,139.5 92.2,136 91.4,130.5C90.5,125 93.5,119 100,119Z" fill="url(#templeBell-ball)" stroke="#4A3008" stroke-width=".8"/>
+    <path d="M93,128.5Q100,131.5 107,128.5" fill="none" stroke="#5E3F0C" stroke-width=".6"/>
+    <path d="M92.6,131.5Q100,134.5 107.4,131.5" fill="none" stroke="#FFF1C2" stroke-width=".5" opacity=".8"/>
+    <ellipse cx="100" cy="117.6" rx="5" ry="2" fill="url(#templeBell-ring)" stroke="#4A3008" stroke-width=".7"/>
+    <ellipse cx="100" cy="142.5" rx="5.4" ry="2.2" fill="url(#templeBell-ring)" stroke="#4A3008" stroke-width=".7"/>
+    <circle cx="100" cy="147" r="3.4" fill="url(#templeBell-ball)" stroke="#4A3008" stroke-width=".6"/>
+  </g>
+</svg>

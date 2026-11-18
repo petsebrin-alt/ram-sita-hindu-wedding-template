@@ -1,0 +1,296 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <!-- ===== shared medallion defs ===== -->
+    <linearGradient id="iconWedding-gold" x1="20" y1="14" x2="220" y2="226" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8A6118"/>
+      <stop offset=".3" stop-color="#D4AF5A"/>
+      <stop offset=".5" stop-color="#F6E3A6"/>
+      <stop offset=".7" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#6E4A12"/>
+    </linearGradient>
+    <linearGradient id="iconWedding-goldRev" x1="220" y1="226" x2="20" y2="14" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8A6118"/>
+      <stop offset=".3" stop-color="#D4AF5A"/>
+      <stop offset=".5" stop-color="#F6E3A6"/>
+      <stop offset=".7" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#6E4A12"/>
+    </linearGradient>
+    <radialGradient id="iconWedding-pearl" cx=".35" cy=".3" r=".75">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset=".45" stop-color="#FBF5E6"/>
+      <stop offset=".85" stop-color="#E2D2A8"/>
+      <stop offset="1" stop-color="#9C8556"/>
+    </radialGradient>
+    <radialGradient id="iconWedding-field" cx=".5" cy=".42" r=".62">
+      <stop offset="0" stop-color="#FFFDF6"/>
+      <stop offset=".6" stop-color="#FBF5E6"/>
+      <stop offset="1" stop-color="#EEDDB6"/>
+    </radialGradient>
+    <radialGradient id="iconWedding-gem" cx=".38" cy=".32" r=".7">
+      <stop offset="0" stop-color="#E25A72"/>
+      <stop offset=".45" stop-color="#8B1A2E"/>
+      <stop offset="1" stop-color="#4A0A1A"/>
+    </radialGradient>
+    <filter id="iconWedding-soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="2.2"/>
+    </filter>
+    <path id="iconWedding-scallop" d="M120.0 14.0 A19 19 0 0 1 147.4 17.6 A19 19 0 0 1 173.0 28.2 A19 19 0 0 1 195.0 45.0 A19 19 0 0 1 211.8 67.0 A19 19 0 0 1 222.4 92.6 A19 19 0 0 1 226.0 120.0 A19 19 0 0 1 222.4 147.4 A19 19 0 0 1 211.8 173.0 A19 19 0 0 1 195.0 195.0 A19 19 0 0 1 173.0 211.8 A19 19 0 0 1 147.4 222.4 A19 19 0 0 1 120.0 226.0 A19 19 0 0 1 92.6 222.4 A19 19 0 0 1 67.0 211.8 A19 19 0 0 1 45.0 195.0 A19 19 0 0 1 28.2 173.0 A19 19 0 0 1 17.6 147.4 A19 19 0 0 1 14.0 120.0 A19 19 0 0 1 17.6 92.6 A19 19 0 0 1 28.2 67.0 A19 19 0 0 1 45.0 45.0 A19 19 0 0 1 67.0 28.2 A19 19 0 0 1 92.6 17.6 A19 19 0 0 1 120.0 14.0Z"/>
+    <circle id="iconWedding-p" cx="120" cy="10.6" r="2.7" fill="url(#iconWedding-pearl)" stroke="#8A6118" stroke-width=".35"/>
+    <g id="iconWedding-pearls">
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(7.5 120 120)"/>
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(22.5 120 120)"/>
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(37.5 120 120)"/>
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(52.5 120 120)"/>
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(67.5 120 120)"/>
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(82.5 120 120)"/>
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(97.5 120 120)"/>
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(112.5 120 120)"/>
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(127.5 120 120)"/>
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(142.5 120 120)"/>
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(157.5 120 120)"/>
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(172.5 120 120)"/>
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(187.5 120 120)"/>
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(202.5 120 120)"/>
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(217.5 120 120)"/>
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(232.5 120 120)"/>
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(247.5 120 120)"/>
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(262.5 120 120)"/>
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(277.5 120 120)"/>
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(292.5 120 120)"/>
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(307.5 120 120)"/>
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(322.5 120 120)"/>
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(337.5 120 120)"/>
+      <use xlink:href="#iconWedding-p" href="#iconWedding-p" transform="rotate(352.5 120 120)"/>
+    </g>
+    <g id="iconWedding-boss">
+      <path d="M120 9 L127.5 19 L120 29 L112.5 19Z" fill="url(#iconWedding-gold)" stroke="#5E3F0C" stroke-width=".7"/>
+      <path d="M120 11.5 L125.2 19 L120 26.5" fill="none" stroke="#F6E3A6" stroke-width=".6" opacity=".8"/>
+      <circle cx="120" cy="19" r="3.3" fill="url(#iconWedding-gem)" stroke="#5E3F0C" stroke-width=".5"/>
+      <circle cx="118.9" cy="17.9" r=".9" fill="#FFE3EA" opacity=".85"/>
+    </g>
+
+    <!-- ===== motif defs ===== -->
+    <linearGradient id="iconWedding-brassL" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#B8862B"/>
+      <stop offset=".45" stop-color="#F6E3A6"/>
+      <stop offset="1" stop-color="#C99A3E"/>
+    </linearGradient>
+    <linearGradient id="iconWedding-brassR" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#B8862B"/>
+      <stop offset=".5" stop-color="#8A6118"/>
+      <stop offset="1" stop-color="#5E3F0C"/>
+    </linearGradient>
+    <linearGradient id="iconWedding-brassV" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6E4A12"/>
+      <stop offset=".3" stop-color="#D4AF5A"/>
+      <stop offset=".45" stop-color="#F6E3A6"/>
+      <stop offset=".7" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#5E3F0C"/>
+    </linearGradient>
+    <linearGradient id="iconWedding-rimTop" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#D4AF5A"/>
+      <stop offset=".45" stop-color="#F6E3A6"/>
+      <stop offset="1" stop-color="#B8862B"/>
+    </linearGradient>
+    <radialGradient id="iconWedding-pit" cx=".5" cy=".7" r=".6">
+      <stop offset="0" stop-color="#FFB13B"/>
+      <stop offset=".35" stop-color="#C8471A"/>
+      <stop offset=".75" stop-color="#4A1A0C"/>
+      <stop offset="1" stop-color="#2A140A"/>
+    </radialGradient>
+    <radialGradient id="iconWedding-glow" cx="120" cy="122" r="62" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF3C4" stop-opacity=".95"/>
+      <stop offset=".35" stop-color="#FFD98A" stop-opacity=".55"/>
+      <stop offset=".7" stop-color="#F7A41D" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#F7A41D" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="iconWedding-flameO" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#E8761A"/>
+      <stop offset=".6" stop-color="#D94A1A"/>
+      <stop offset="1" stop-color="#A8261A"/>
+    </linearGradient>
+    <linearGradient id="iconWedding-flameM" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#FFC24A"/>
+      <stop offset=".6" stop-color="#F7A41D"/>
+      <stop offset="1" stop-color="#E8761A"/>
+    </linearGradient>
+    <linearGradient id="iconWedding-flameI" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#FFF3C4"/>
+      <stop offset=".55" stop-color="#FFE27A"/>
+      <stop offset="1" stop-color="#FFD23F"/>
+    </linearGradient>
+    <linearGradient id="iconWedding-lacquer" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8B1A2E"/>
+      <stop offset="1" stop-color="#4A0A1A"/>
+    </linearGradient>
+    <linearGradient id="iconWedding-leaf" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2E5230"/>
+      <stop offset=".5" stop-color="#3E6B3A"/>
+      <stop offset="1" stop-color="#6E8F3A"/>
+    </linearGradient>
+    <radialGradient id="iconWedding-coconut" cx=".38" cy=".3" r=".75">
+      <stop offset="0" stop-color="#B9814A"/>
+      <stop offset=".6" stop-color="#7A4A22"/>
+      <stop offset="1" stop-color="#3B1F10"/>
+    </radialGradient>
+    <radialGradient id="iconWedding-pot" cx=".36" cy=".38" r=".7">
+      <stop offset="0" stop-color="#FFF1C2"/>
+      <stop offset=".3" stop-color="#E2BE6A"/>
+      <stop offset=".75" stop-color="#A87A26"/>
+      <stop offset="1" stop-color="#5E3F0C"/>
+    </radialGradient>
+    <g id="iconWedding-mini">
+      <circle r="3.3" fill="#C85A12"/>
+      <circle r="2.7" fill="none" stroke="#F28A1E" stroke-width="1.6" stroke-dasharray=".9 .6"/>
+      <circle r="1.5" fill="#F7A41D"/>
+      <circle r="1.2" fill="none" stroke="#FFC24A" stroke-width=".8" stroke-dasharray=".5 .4"/>
+    </g>
+    <g id="iconWedding-string">
+      <path d="M0 0 L0 22" stroke="#8B1A2E" stroke-width=".6"/>
+      <use xlink:href="#iconWedding-mini" href="#iconWedding-mini" y="3.5"/>
+      <use xlink:href="#iconWedding-mini" href="#iconWedding-mini" y="9.8"/>
+      <use xlink:href="#iconWedding-mini" href="#iconWedding-mini" y="16.1"/>
+      <path d="M-1.6 21 L1.6 21 L2.4 25 L-2.4 25Z" fill="url(#iconWedding-brassV)" stroke="#5E3F0C" stroke-width=".35"/>
+      <circle cy="25.6" r=".8" fill="#5E3F0C"/>
+    </g>
+    <g id="iconWedding-pillar">
+      <rect x="-3.6" y="0" width="7.2" height="90" fill="url(#iconWedding-brassV)" stroke="#5E3F0C" stroke-width=".5"/>
+      <rect x="-3.6" y="14" width="7.2" height="4" fill="url(#iconWedding-lacquer)"/>
+      <rect x="-3.6" y="44" width="7.2" height="4" fill="url(#iconWedding-lacquer)"/>
+      <rect x="-3.6" y="72" width="7.2" height="4" fill="url(#iconWedding-lacquer)"/>
+      <path d="M-3.6 14 H3.6 M-3.6 18 H3.6 M-3.6 44 H3.6 M-3.6 48 H3.6 M-3.6 72 H3.6 M-3.6 76 H3.6" stroke="#F6E3A6" stroke-width=".5"/>
+      <path d="M-1.2 20 V42 M-1.2 50 V70" stroke="#FFF6D2" stroke-width=".8" opacity=".6"/>
+      <path d="M-6 0 L6 0 L4.6 -4 L-4.6 -4Z" fill="url(#iconWedding-brassV)" stroke="#5E3F0C" stroke-width=".5"/>
+      <path d="M-6.4 90 L6.4 90 L7.4 95 L-7.4 95Z" fill="url(#iconWedding-brassV)" stroke="#5E3F0C" stroke-width=".5"/>
+      <path d="M-5 86 L5 86 L6.4 90 L-6.4 90Z" fill="url(#iconWedding-brassV)" stroke="#5E3F0C" stroke-width=".5"/>
+    </g>
+    <g id="iconWedding-mangoLeaf">
+      <path d="M0 0 C6 -9 6.5 -26 0 -40 C-6.5 -26 -6 -9 0 0Z" fill="url(#iconWedding-leaf)" stroke="#24401F" stroke-width=".5"/>
+      <path d="M0 -2 L0 -37" stroke="#B9C77A" stroke-width=".6" opacity=".8"/>
+    </g>
+  </defs>
+
+  <!-- ===== MEDALLION ===== -->
+  <use xlink:href="#iconWedding-scallop" href="#iconWedding-scallop" fill="#3B1F10" opacity=".35" transform="translate(0 3)" filter="url(#iconWedding-soft)"/>
+  <use xlink:href="#iconWedding-scallop" href="#iconWedding-scallop" fill="url(#iconWedding-gold)" stroke="#5E3F0C" stroke-width="1"/>
+  <use xlink:href="#iconWedding-scallop" href="#iconWedding-scallop" fill="none" stroke="#F6E3A6" stroke-width=".7" opacity=".75" transform="translate(120 120) scale(.965) translate(-120 -120)"/>
+  <use xlink:href="#iconWedding-pearls" href="#iconWedding-pearls"/>
+  <circle cx="120" cy="120" r="103" fill="url(#iconWedding-goldRev)" stroke="#5E3F0C" stroke-width=".9"/>
+  <circle cx="120" cy="120" r="100.6" fill="none" stroke="#F6E3A6" stroke-width=".6" opacity=".7"/>
+  <circle cx="120" cy="120" r="96" fill="none" stroke="#6B0F24" stroke-width="5.6"/>
+  <circle cx="120" cy="120" r="96" fill="none" stroke="#4A0A1A" stroke-width=".5" opacity=".6"/>
+  <circle cx="120" cy="120" r="96" fill="none" stroke="url(#iconWedding-gold)" stroke-width="2.8" stroke-dasharray="0 5.03" stroke-linecap="round"/>
+  <circle cx="120" cy="120" r="92.6" fill="url(#iconWedding-gold)" stroke="#5E3F0C" stroke-width=".8"/>
+  <circle cx="120" cy="120" r="90" fill="url(#iconWedding-field)" stroke="#5E3F0C" stroke-width=".7"/>
+  <circle cx="120" cy="120" r="85.5" fill="none" stroke="#B8862B" stroke-width=".6" stroke-dasharray="1 2.6" opacity=".55"/>
+  <use xlink:href="#iconWedding-boss" href="#iconWedding-boss"/>
+  <use xlink:href="#iconWedding-boss" href="#iconWedding-boss" transform="rotate(90 120 120)"/>
+  <use xlink:href="#iconWedding-boss" href="#iconWedding-boss" transform="rotate(180 120 120)"/>
+  <use xlink:href="#iconWedding-boss" href="#iconWedding-boss" transform="rotate(270 120 120)"/>
+
+  <!-- ===== MOTIF: agni kund under a mandap ===== -->
+  <!-- warm glow of the fire -->
+  <circle cx="120" cy="122" r="62" fill="url(#iconWedding-glow)"/>
+
+  <!-- mandap pillars -->
+  <use xlink:href="#iconWedding-pillar" href="#iconWedding-pillar" transform="translate(63 86)"/>
+  <use xlink:href="#iconWedding-pillar" href="#iconWedding-pillar" transform="translate(177 86)"/>
+
+  <!-- canopy: central dome with finial -->
+  <path d="M90 76 C90 58 104 50 120 49 C136 50 150 58 150 76Z" fill="url(#iconWedding-brassV)" stroke="#5E3F0C" stroke-width=".7"/>
+  <path d="M100 76 C100 62 108 55 120 53 M110 76 C110 64 114 57 120 53 M120 53 V76 M130 76 C130 64 126 57 120 53 M140 76 C140 62 132 55 120 53" fill="none" stroke="#5E3F0C" stroke-width=".5" opacity=".7"/>
+  <path d="M95 68 C99 60 106 55 114 53" fill="none" stroke="#FFF6D2" stroke-width="1.1" opacity=".7"/>
+  <path d="M114 49.6 C114 46 117 44.4 120 44.4 C123 44.4 126 46 126 49.6Z" fill="url(#iconWedding-brassV)" stroke="#5E3F0C" stroke-width=".5"/>
+  <ellipse cx="120" cy="42" rx="3.4" ry="2.8" fill="url(#iconWedding-brassV)" stroke="#5E3F0C" stroke-width=".5"/>
+  <path d="M120 39.2 L121.4 35.4 L120 32 L118.6 35.4Z" fill="url(#iconWedding-brassV)" stroke="#5E3F0C" stroke-width=".4"/>
+  <!-- side chhatri caps -->
+  <path d="M54 77 C54 69 58 65 63 64 C68 65 72 69 72 77Z" fill="url(#iconWedding-brassV)" stroke="#5E3F0C" stroke-width=".6"/>
+  <path d="M168 77 C168 69 172 65 177 64 C182 65 186 69 186 77Z" fill="url(#iconWedding-brassV)" stroke="#5E3F0C" stroke-width=".6"/>
+  <path d="M63 64 V59 M177 64 V59" stroke="#8A6118" stroke-width="1.2"/>
+  <circle cx="63" cy="58.4" r="1.6" fill="#D4AF5A" stroke="#5E3F0C" stroke-width=".4"/>
+  <circle cx="177" cy="58.4" r="1.6" fill="#D4AF5A" stroke="#5E3F0C" stroke-width=".4"/>
+  <!-- canopy beam -->
+  <rect x="52" y="76" width="136" height="9" rx="1" fill="url(#iconWedding-lacquer)" stroke="#5E3F0C" stroke-width=".7"/>
+  <path d="M52 77.6 H188 M52 83.4 H188" stroke="#D4AF5A" stroke-width="1"/>
+  <path d="M55 80.5 H185" stroke="#F6E3A6" stroke-width="1.4" stroke-dasharray=".1 4" stroke-linecap="round"/>
+  <!-- scalloped valance -->
+  <path d="M60 85 Q65 92 70 85 Q75 92 80 85 Q85 92 90 85 Q95 92 100 85 Q105 92 110 85 Q115 92 120 85 Q125 92 130 85 Q135 92 140 85 Q145 92 150 85 Q155 92 160 85 Q165 92 170 85 Q175 92 180 85Z" fill="url(#iconWedding-brassV)" stroke="#5E3F0C" stroke-width=".5"/>
+  <!-- marigold strings -->
+  <use xlink:href="#iconWedding-string" href="#iconWedding-string" transform="translate(75 88)"/>
+  <use xlink:href="#iconWedding-string" href="#iconWedding-string" transform="translate(90 88) scale(1 .8)"/>
+  <use xlink:href="#iconWedding-string" href="#iconWedding-string" transform="translate(150 88) scale(1 .8)"/>
+  <use xlink:href="#iconWedding-string" href="#iconWedding-string" transform="translate(165 88)"/>
+
+  <!-- ground shadow -->
+  <ellipse cx="120" cy="184" rx="66" ry="6" fill="#5C3317" opacity=".22" filter="url(#iconWedding-soft)"/>
+
+  <!-- havan kund: stepped square brass vessel (3 tiers) -->
+  <!-- tier 3 -->
+  <path d="M94 159 L120 166.4 L120 175 L94 167.6Z" fill="url(#iconWedding-brassL)" stroke="#5E3F0C" stroke-width=".6"/>
+  <path d="M120 166.4 L146 159 L146 167.6 L120 175Z" fill="url(#iconWedding-brassR)" stroke="#5E3F0C" stroke-width=".6"/>
+  <!-- tier 2 -->
+  <path d="M87 152 L120 161.4 L120 170 L87 160.6Z" fill="url(#iconWedding-brassL)" stroke="#5E3F0C" stroke-width=".6"/>
+  <path d="M120 161.4 L153 152 L153 160.6 L120 170Z" fill="url(#iconWedding-brassR)" stroke="#5E3F0C" stroke-width=".6"/>
+  <path d="M89 156.4 L120 165.2 L151 156.4" fill="none" stroke="#5E3F0C" stroke-width="1" stroke-dasharray=".1 2.6" stroke-linecap="round"/>
+  <!-- tier 1 sides -->
+  <path d="M80 144 L120 155.4 L120 165 L80 153.6Z" fill="url(#iconWedding-brassL)" stroke="#5E3F0C" stroke-width=".6"/>
+  <path d="M120 155.4 L160 144 L160 153.6 L120 165Z" fill="url(#iconWedding-brassR)" stroke="#5E3F0C" stroke-width=".6"/>
+  <path d="M82 146.6 L120 157.4 L158 146.6 M82 151.2 L120 162 L158 151.2" fill="none" stroke="#5E3F0C" stroke-width=".45" opacity=".8"/>
+  <path d="M84 148.9 L120 159.7 L156 148.9" fill="none" stroke="#FFF1C2" stroke-width="1.1" stroke-dasharray=".1 3" stroke-linecap="round"/>
+  <!-- tier 1 top rim -->
+  <path d="M80 144 L120 132.6 L160 144 L120 155.4Z" fill="url(#iconWedding-rimTop)" stroke="#5E3F0C" stroke-width=".7"/>
+  <!-- pit with inner steps -->
+  <path d="M88 144 L120 134.9 L152 144 L120 153.1Z" fill="url(#iconWedding-pit)" stroke="#5E3F0C" stroke-width=".6"/>
+  <path d="M94 144.6 L120 137.2 L146 144.6" fill="none" stroke="#B8862B" stroke-width=".7" opacity=".8"/>
+  <path d="M100 145.2 L120 139.5 L140 145.2" fill="none" stroke="#B8862B" stroke-width=".6" opacity=".6"/>
+  <!-- samidha sticks -->
+  <path d="M98 146 L136 139 M104 141 L142 147 M112 138.4 L128 150" stroke="#3B1F10" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M98 146 L136 139 M104 141 L142 147" stroke="#C8471A" stroke-width=".7" stroke-linecap="round" opacity=".8"/>
+
+  <!-- flames -->
+  <path d="M86 147 C80 130 91 120 93 106 C98 115 98 122 103 126 C101 110 107 97 116 84 C116 98 122 104 124 112 C128 102 132 98 134 90 C140 104 136 116 140 124 C144 116 148 112 150 104 C156 120 158 134 154 147Z" fill="url(#iconWedding-flameO)"/>
+  <path d="M94 147 C90 133 98 125 100 115 C104 122 104 128 108 130 C108 116 114 104 119 94 C120 106 125 112 126 120 C130 112 134 108 135 102 C140 114 140 124 142 130 C146 126 147 120 148 116 C152 128 150 138 147 147Z" fill="url(#iconWedding-flameM)"/>
+  <path d="M101 147 C99 137 105 131 107 125 C110 131 110 135 113 137 C113 127 117 117 121 109 C122 119 126 125 127 131 C130 127 131 123 132 119 C136 129 136 139 134 147Z" fill="url(#iconWedding-flameI)"/>
+  <path d="M108 147 C107 141 111 137 113 133 C115 137 116 141 118 141 C118 135 121 129 123 125 C124 133 127 137 127 141 C128 144 127 146 126 147Z" fill="#FFFBEA" opacity=".9"/>
+  <g fill="#FFC24A">
+    <circle cx="104" cy="98" r="1.1"/><circle cx="138" cy="84" r=".9"/><circle cx="128" cy="78" r=".8" fill="#F7A41D"/><circle cx="96" cy="88" r=".7"/><circle cx="146" cy="96" r=".9" fill="#F7A41D"/>
+  </g>
+  <!-- front rim strip seats the flames inside the kund -->
+  <path d="M80 144 L120 155.4 L160 144 L152 144 L120 153.1 L88 144Z" fill="url(#iconWedding-rimTop)" stroke="#5E3F0C" stroke-width=".5"/>
+  <path d="M84 145.2 L120 155.4" stroke="#FFF6D2" stroke-width=".6" opacity=".8"/>
+
+  <!-- small diya, left -->
+  <g transform="translate(72 176)">
+    <ellipse cx="0" cy="3.4" rx="12" ry="2.4" fill="#5C3317" opacity=".25"/>
+    <path d="M-11 -2 C-9 4 9 4 11 -2 L14 -4 C10 -3 -10 -3 -11 -2Z" fill="url(#iconWedding-brassV)" stroke="#5E3F0C" stroke-width=".5"/>
+    <path d="M-11 -2 C-6 -4.4 8 -4.4 14 -4 C8 -1.6 -6 -1.2 -11 -2Z" fill="#6E4A12"/>
+    <path d="M11 -4.6 C10 -9 12.6 -12 12.6 -16 C14.6 -12.6 16 -9 13.6 -4.6Z" fill="url(#iconWedding-flameM)"/>
+    <path d="M12 -4.8 C11.6 -7.6 12.8 -9.6 12.9 -11.6 C14 -9.4 14.4 -7.4 13.2 -4.8Z" fill="#FFF3C4"/>
+  </g>
+
+  <!-- kalash, right -->
+  <g transform="translate(164 150)">
+    <ellipse cx="0" cy="31" rx="15" ry="3" fill="#5C3317" opacity=".25"/>
+    <use xlink:href="#iconWedding-mangoLeaf" href="#iconWedding-mangoLeaf" transform="translate(-3 -5) rotate(-58) scale(.6)"/>
+    <use xlink:href="#iconWedding-mangoLeaf" href="#iconWedding-mangoLeaf" transform="translate(3 -5) rotate(58) scale(.6)"/>
+    <use xlink:href="#iconWedding-mangoLeaf" href="#iconWedding-mangoLeaf" transform="translate(-2 -6) rotate(-28) scale(.62)"/>
+    <use xlink:href="#iconWedding-mangoLeaf" href="#iconWedding-mangoLeaf" transform="translate(2 -6) rotate(28) scale(.62)"/>
+    <!-- coconut -->
+    <ellipse cx="0" cy="-14" rx="6.4" ry="8.4" fill="url(#iconWedding-coconut)" stroke="#2A140A" stroke-width=".5"/>
+    <path d="M-3 -21 C-4 -16 -4 -11 -2 -7 M1 -22 C0 -17 .4 -11 1.6 -6.6 M4 -19 C3.6 -15 3.8 -11 4.4 -8.4" stroke="#3B1F10" stroke-width=".45" fill="none" opacity=".8"/>
+    <path d="M0 -22.4 C-1 -24.6 -.4 -26.4 1 -27.4" stroke="#7A4A22" stroke-width="1" fill="none" stroke-linecap="round"/>
+    <!-- rim and neck -->
+    <ellipse cx="0" cy="-5" rx="8.6" ry="2.2" fill="url(#iconWedding-brassV)" stroke="#5E3F0C" stroke-width=".5"/>
+    <path d="M-5 -4 L5 -4 L4.4 3 L-4.4 3Z" fill="url(#iconWedding-brassV)" stroke="#5E3F0C" stroke-width=".5"/>
+    <path d="M-4.6 .2 L4.6 .2" stroke="#B5122E" stroke-width="1.4"/>
+    <!-- body -->
+    <path d="M-4.4 3 C-13 5 -15 14 -12.6 20 C-10.6 25.6 -5 27.4 0 27.4 C5 27.4 10.6 25.6 12.6 20 C15 14 13 5 4.4 3Z" fill="url(#iconWedding-pot)" stroke="#5E3F0C" stroke-width=".6"/>
+    <path d="M-12.4 12.6 C-6 14.6 6 14.6 12.4 12.6" fill="none" stroke="#5E3F0C" stroke-width=".5"/>
+    <path d="M-12.4 14.4 C-6 16.4 6 16.4 12.4 14.4" fill="none" stroke="#5E3F0C" stroke-width=".5"/>
+    <circle cx="0" cy="20" r="1.6" fill="#B5122E"/>
+    <circle cx="-4" cy="20.6" r=".8" fill="#F2B705"/><circle cx="4" cy="20.6" r=".8" fill="#F2B705"/><circle cx="0" cy="23.6" r=".8" fill="#F2B705"/>
+    <path d="M-8.4 8 C-9.6 10.4 -10 13 -9.4 15" stroke="#FFF6D2" stroke-width="1.1" fill="none" opacity=".7" stroke-linecap="round"/>
+    <!-- foot -->
+    <path d="M-5.4 27 L5.4 27 L7 31 L-7 31Z" fill="url(#iconWedding-brassV)" stroke="#5E3F0C" stroke-width=".5"/>
+  </g>
+</svg>

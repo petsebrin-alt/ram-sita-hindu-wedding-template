@@ -1,0 +1,505 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 900" width="800" height="900">
+  <defs>
+
+    <linearGradient id="templeDoorsOpen-stone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#EBB57A"/>
+      <stop offset=".55" stop-color="#D98450"/>
+      <stop offset="1" stop-color="#B5502E"/>
+    </linearGradient>
+    <linearGradient id="templeDoorsOpen-stoneH" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#A8462A"/>
+      <stop offset=".22" stop-color="#E2A66B"/>
+      <stop offset=".5" stop-color="#F0C08A"/>
+      <stop offset=".8" stop-color="#C8693F"/>
+      <stop offset="1" stop-color="#8E3A20"/>
+    </linearGradient>
+    <linearGradient id="templeDoorsOpen-stoneDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#C8693F"/>
+      <stop offset="1" stop-color="#8E3A20"/>
+    </linearGradient>
+    <linearGradient id="templeDoorsOpen-stoneDeep" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7A2E18"/>
+      <stop offset="1" stop-color="#A8462A"/>
+    </linearGradient>
+    <linearGradient id="templeDoorsOpen-goldH" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6E4A12"/>
+      <stop offset=".3" stop-color="#D4AF5A"/>
+      <stop offset=".5" stop-color="#F6E3A6"/>
+      <stop offset=".7" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#6E4A12"/>
+    </linearGradient>
+    <linearGradient id="templeDoorsOpen-goldV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F6E3A6"/>
+      <stop offset=".45" stop-color="#D4AF5A"/>
+      <stop offset="1" stop-color="#8A6118"/>
+    </linearGradient>
+    <linearGradient id="templeDoorsOpen-brass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8A6118"/>
+      <stop offset=".3" stop-color="#D4AF5A"/>
+      <stop offset=".5" stop-color="#F6E3A6"/>
+      <stop offset=".7" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#6E4A12"/>
+    </linearGradient>
+    <radialGradient id="templeDoorsOpen-studG" cx=".35" cy=".3" r=".75">
+      <stop offset="0" stop-color="#FFF6D2"/>
+      <stop offset=".3" stop-color="#E8C66E"/>
+      <stop offset=".7" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#5E3F0C"/>
+    </radialGradient>
+    <radialGradient id="templeDoorsOpen-gem" cx=".38" cy=".32" r=".7">
+      <stop offset="0" stop-color="#E25A72"/>
+      <stop offset=".45" stop-color="#8B1A2E"/>
+      <stop offset="1" stop-color="#4A0A1A"/>
+    </radialGradient>
+    <linearGradient id="templeDoorsOpen-teak" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2E170B"/>
+      <stop offset=".25" stop-color="#5C3317"/>
+      <stop offset=".5" stop-color="#6E4020"/>
+      <stop offset=".8" stop-color="#4A2814"/>
+      <stop offset="1" stop-color="#2E170B"/>
+    </linearGradient>
+    <linearGradient id="templeDoorsOpen-field" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2A140A"/>
+      <stop offset="1" stop-color="#3E2112"/>
+    </linearGradient>
+    <linearGradient id="templeDoorsOpen-raised" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9C6A38"/>
+      <stop offset=".5" stop-color="#7A4A22"/>
+      <stop offset="1" stop-color="#4A2814"/>
+    </linearGradient>
+    <linearGradient id="templeDoorsOpen-raisedLight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#B8844C"/>
+      <stop offset=".5" stop-color="#8A5A2B"/>
+      <stop offset="1" stop-color="#5C3317"/>
+    </linearGradient>
+    <g id="templeDoorsOpen-stud">
+      <circle cx="1.3" cy="1.8" r="5.6" fill="#0D0603" opacity=".6"/>
+      <circle r="5.2" fill="url(#templeDoorsOpen-studG)" stroke="#5E3F0C" stroke-width=".6"/>
+      <circle cx="-1.7" cy="-1.9" r="1.5" fill="#FFFBEA" opacity=".9"/>
+    </g>
+    <!-- sanctum interior -->
+    <linearGradient id="templeDoorsOpen-floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#B8763A"/>
+      <stop offset="1" stop-color="#5C3317"/>
+    </linearGradient>
+    <linearGradient id="templeDoorsOpen-backwall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8A4A22"/>
+      <stop offset="1" stop-color="#C8693F"/>
+    </linearGradient>
+    <radialGradient id="templeDoorsOpen-glow" cx="400" cy="600" r="380" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF3C4"/>
+      <stop offset=".3" stop-color="#FFE7A0" stop-opacity=".9"/>
+      <stop offset=".62" stop-color="#F7A41D" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#F7A41D" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="templeDoorsOpen-ray" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFBEA" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#FFFBEA" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#FFFBEA" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="templeDoorsOpen-spill" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#FFE7A0" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#FFE7A0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="templeDoorsOpen-leafShade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0D0603" stop-opacity=".5"/>
+      <stop offset=".6" stop-color="#0D0603" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#F7A41D" stop-opacity=".22"/>
+    </linearGradient>
+    <!-- frame pieces -->
+    <g id="templeDoorsOpen-finial">
+      <path d="M-15 0 C-13 -6 13 -6 15 0Z" fill="url(#templeDoorsOpen-goldH)" stroke="#5E3F0C" stroke-width=".8"/>
+      <path d="M-9 -4 C-21 -8 -21 -26 -6 -30 H6 C21 -26 21 -8 9 -4Z" fill="url(#templeDoorsOpen-goldH)" stroke="#5E3F0C" stroke-width=".8"/>
+      <path d="M-15 -17 C-6 -14 6 -14 15 -17" fill="none" stroke="#8B1A2E" stroke-width="2.4"/>
+      <path d="M-5 -30 H5 V-35 H-5Z" fill="url(#templeDoorsOpen-goldH)" stroke="#5E3F0C" stroke-width=".6"/>
+      <ellipse cy="-39" rx="5.6" ry="4.6" fill="url(#templeDoorsOpen-goldH)" stroke="#5E3F0C" stroke-width=".6"/>
+      <path d="M0 -43 L2.6 -50 L0 -62 L-2.6 -50Z" fill="url(#templeDoorsOpen-goldH)" stroke="#5E3F0C" stroke-width=".6"/>
+      <path d="M-11 -22 C-12 -16 -11 -11 -8 -8" fill="none" stroke="#FFF6D2" stroke-width="1.2" opacity=".8"/>
+    </g>
+    <path id="templeDoorsOpen-niche" d="M-13 46 V18 C-13 10 -6 5 0 1 C6 5 13 10 13 18 V46Z"/>
+    <g id="templeDoorsOpen-nicheRow">
+      <use xlink:href="#templeDoorsOpen-niche" href="#templeDoorsOpen-niche" x="58.5" y="181"/>
+      <use xlink:href="#templeDoorsOpen-niche" href="#templeDoorsOpen-niche" x="95.5" y="181"/>
+      <use xlink:href="#templeDoorsOpen-niche" href="#templeDoorsOpen-niche" x="132.5" y="181"/>
+      <use xlink:href="#templeDoorsOpen-niche" href="#templeDoorsOpen-niche" x="169.5" y="181"/>
+      <use xlink:href="#templeDoorsOpen-niche" href="#templeDoorsOpen-niche" x="206.5" y="181"/>
+      <use xlink:href="#templeDoorsOpen-niche" href="#templeDoorsOpen-niche" x="243.5" y="181"/>
+      <use xlink:href="#templeDoorsOpen-niche" href="#templeDoorsOpen-niche" x="280.5" y="181"/>
+      <use xlink:href="#templeDoorsOpen-niche" href="#templeDoorsOpen-niche" x="317.5" y="181"/>
+    </g>
+    <path id="templeDoorsOpen-lotusPetal" d="M0 -6 C-7 -11 -7 -21 0 -27 C7 -21 7 -11 0 -6Z" fill="url(#templeDoorsOpen-goldV)" stroke="#5E3F0C" stroke-width=".8"/>
+    <path id="templeDoorsOpen-stonePetal" d="M0 -5 C-5 -9 -5 -15 0 -19 C5 -15 5 -9 0 -5Z" fill="url(#templeDoorsOpen-stone)" stroke="#7A2E18" stroke-width=".8"/>
+    <g id="templeDoorsOpen-rosette">
+      <circle r="19" fill="url(#templeDoorsOpen-stoneDark)" stroke="#7A2E18" stroke-width=".8"/>
+      <use xlink:href="#templeDoorsOpen-stonePetal" href="#templeDoorsOpen-stonePetal"/>
+      <use xlink:href="#templeDoorsOpen-stonePetal" href="#templeDoorsOpen-stonePetal" transform="rotate(45)"/>
+      <use xlink:href="#templeDoorsOpen-stonePetal" href="#templeDoorsOpen-stonePetal" transform="rotate(90)"/>
+      <use xlink:href="#templeDoorsOpen-stonePetal" href="#templeDoorsOpen-stonePetal" transform="rotate(135)"/>
+      <use xlink:href="#templeDoorsOpen-stonePetal" href="#templeDoorsOpen-stonePetal" transform="rotate(180)"/>
+      <use xlink:href="#templeDoorsOpen-stonePetal" href="#templeDoorsOpen-stonePetal" transform="rotate(225)"/>
+      <use xlink:href="#templeDoorsOpen-stonePetal" href="#templeDoorsOpen-stonePetal" transform="rotate(270)"/>
+      <use xlink:href="#templeDoorsOpen-stonePetal" href="#templeDoorsOpen-stonePetal" transform="rotate(315)"/>
+      <circle r="5" fill="url(#templeDoorsOpen-goldV)" stroke="#5E3F0C" stroke-width=".6"/>
+    </g>
+    <clipPath id="templeDoorsOpen-ropeClip"><rect x="110" y="246" width="20" height="534"/></clipPath>
+    <g id="templeDoorsOpen-jamb">
+      <rect x="40" y="232" width="92" height="550" fill="url(#templeDoorsOpen-stoneH)" stroke="#8E3A20" stroke-width="1"/>
+      <rect x="42" y="246" width="15" height="530" fill="url(#templeDoorsOpen-stoneDeep)"/>
+      <path d="M50.8 252 V770" stroke="#0D0603" stroke-width="8" stroke-dasharray="0 14" stroke-linecap="round" opacity=".35"/>
+      <path d="M49.5 251 V769" stroke="#F0C08A" stroke-width="7.4" stroke-dasharray="0 14" stroke-linecap="round"/>
+      <path d="M49.5 258 V769" stroke="#D4AF5A" stroke-width="3" stroke-dasharray="0 14" stroke-linecap="round"/>
+      <rect x="60" y="246" width="48" height="530" fill="url(#templeDoorsOpen-stoneDeep)" stroke="#7A2E18" stroke-width=".8"/>
+      <path d="M61 247 V775" stroke="#5C2414" stroke-width="2"/>
+      <use xlink:href="#templeDoorsOpen-rosette" href="#templeDoorsOpen-rosette" x="84" y="264"/>
+      <use xlink:href="#templeDoorsOpen-rosette" href="#templeDoorsOpen-rosette" x="84" y="325"/>
+      <use xlink:href="#templeDoorsOpen-rosette" href="#templeDoorsOpen-rosette" x="84" y="386"/>
+      <use xlink:href="#templeDoorsOpen-rosette" href="#templeDoorsOpen-rosette" x="84" y="447"/>
+      <use xlink:href="#templeDoorsOpen-rosette" href="#templeDoorsOpen-rosette" x="84" y="508"/>
+      <use xlink:href="#templeDoorsOpen-rosette" href="#templeDoorsOpen-rosette" x="84" y="569"/>
+      <use xlink:href="#templeDoorsOpen-rosette" href="#templeDoorsOpen-rosette" x="84" y="630"/>
+      <use xlink:href="#templeDoorsOpen-rosette" href="#templeDoorsOpen-rosette" x="84" y="691"/>
+      <use xlink:href="#templeDoorsOpen-rosette" href="#templeDoorsOpen-rosette" x="84" y="752"/>
+      <path d="M84 284 V305 M84 345 V366 M84 406 V427 M84 467 V488 M84 528 V549 M84 589 V610 M84 650 V671 M84 711 V732" stroke="#D4AF5A" stroke-width="2.2"/>
+      <rect x="110" y="246" width="20" height="534" fill="url(#templeDoorsOpen-stoneDark)"/>
+      <g clip-path="url(#templeDoorsOpen-ropeClip)">
+        <path d="M120 180 V840" stroke="#7A2E18" stroke-width="22" stroke-dasharray="5 6" transform="translate(0 56) skewY(-25)"/>
+        <path d="M120 180 V840" stroke="#F0C08A" stroke-width="22" stroke-dasharray="1 10" stroke-dashoffset="-5" opacity=".6" transform="translate(0 56) skewY(-25)"/>
+      </g>
+      <path d="M41.5 234 V780" stroke="#F6D2A0" stroke-width="1.4" opacity=".7"/>
+      <path d="M131 232 V858" stroke="url(#templeDoorsOpen-goldH)" stroke-width="2.4"/>
+      <rect x="34" y="232" width="102" height="14" fill="url(#templeDoorsOpen-stone)" stroke="#8E3A20" stroke-width=".8"/>
+      <path d="M34 233.4 H136" stroke="#D4AF5A" stroke-width="1.6"/>
+      <rect x="30" y="778" width="108" height="12" fill="url(#templeDoorsOpen-stone)" stroke="#8E3A20" stroke-width=".8"/>
+      <path d="M30 779.6 H138" stroke="#D4AF5A" stroke-width="1.6"/>
+      <rect x="32" y="790" width="104" height="68" fill="url(#templeDoorsOpen-stoneH)" stroke="#8E3A20" stroke-width="1"/>
+      <rect x="42" y="798" width="84" height="54" fill="url(#templeDoorsOpen-stoneDeep)" stroke="#7A2E18" stroke-width=".8"/>
+      <use xlink:href="#templeDoorsOpen-finial" href="#templeDoorsOpen-finial" transform="translate(84 848) scale(.78)"/>
+      <path d="M50 826 C56 816 62 812 68 812 M118 826 C112 816 106 812 100 812" fill="none" stroke="#6E8F3A" stroke-width="2.4" stroke-linecap="round"/>
+    </g>
+    <!-- toran -->
+    <linearGradient id="templeDoorsOpen-leaf" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2E5230"/>
+      <stop offset=".5" stop-color="#3E6B3A"/>
+      <stop offset="1" stop-color="#6E8F3A"/>
+    </linearGradient>
+    <g id="templeDoorsOpen-mangoLeaf">
+      <path d="M0 0 C7 10 8 30 0 46 C-8 30 -7 10 0 0Z" fill="url(#templeDoorsOpen-leaf)" stroke="#1E3A1E" stroke-width=".7"/>
+      <path d="M0 2 V43" stroke="#C9D68A" stroke-width=".8" opacity=".8"/>
+      <path d="M0 12 L4 16 M0 20 L4.6 25 M0 28 L4 33 M0 16 L-4 20 M0 24 L-4.6 29 M0 32 L-3.6 36" stroke="#A9BC6A" stroke-width=".45" opacity=".6"/>
+    </g>
+    <path id="templeDoorsOpen-mgPetal" d="M0 -3.5 C-3.4 -4.6 -4.3 -9.6 -2.4 -12.6 C-1.4 -11.6 -.6 -12.4 0 -13.2 C.6 -12.4 1.4 -11.6 2.4 -12.6 C4.3 -9.6 3.4 -4.6 0 -3.5Z"/>
+    <g id="templeDoorsOpen-mgRing">
+      <use xlink:href="#templeDoorsOpen-mgPetal" href="#templeDoorsOpen-mgPetal"/>
+      <use xlink:href="#templeDoorsOpen-mgPetal" href="#templeDoorsOpen-mgPetal" transform="rotate(25.7)"/>
+      <use xlink:href="#templeDoorsOpen-mgPetal" href="#templeDoorsOpen-mgPetal" transform="rotate(51.4)"/>
+      <use xlink:href="#templeDoorsOpen-mgPetal" href="#templeDoorsOpen-mgPetal" transform="rotate(77.1)"/>
+      <use xlink:href="#templeDoorsOpen-mgPetal" href="#templeDoorsOpen-mgPetal" transform="rotate(102.9)"/>
+      <use xlink:href="#templeDoorsOpen-mgPetal" href="#templeDoorsOpen-mgPetal" transform="rotate(128.6)"/>
+      <use xlink:href="#templeDoorsOpen-mgPetal" href="#templeDoorsOpen-mgPetal" transform="rotate(154.3)"/>
+      <use xlink:href="#templeDoorsOpen-mgPetal" href="#templeDoorsOpen-mgPetal" transform="rotate(180)"/>
+      <use xlink:href="#templeDoorsOpen-mgPetal" href="#templeDoorsOpen-mgPetal" transform="rotate(205.7)"/>
+      <use xlink:href="#templeDoorsOpen-mgPetal" href="#templeDoorsOpen-mgPetal" transform="rotate(231.4)"/>
+      <use xlink:href="#templeDoorsOpen-mgPetal" href="#templeDoorsOpen-mgPetal" transform="rotate(257.1)"/>
+      <use xlink:href="#templeDoorsOpen-mgPetal" href="#templeDoorsOpen-mgPetal" transform="rotate(282.9)"/>
+      <use xlink:href="#templeDoorsOpen-mgPetal" href="#templeDoorsOpen-mgPetal" transform="rotate(308.6)"/>
+      <use xlink:href="#templeDoorsOpen-mgPetal" href="#templeDoorsOpen-mgPetal" transform="rotate(334.3)"/>
+    </g>
+    <g id="templeDoorsOpen-toranUnit">
+      <use xlink:href="#templeDoorsOpen-mangoLeaf" href="#templeDoorsOpen-mangoLeaf"/>
+      <use xlink:href="#templeDoorsOpen-marigold" href="#templeDoorsOpen-marigold" transform="translate(0 1) scale(.46)"/>
+    </g>
+    <g id="templeDoorsOpen-marigold">
+      <circle r="11.8" fill="#9C3E0C"/>
+      <use xlink:href="#templeDoorsOpen-mgRing" href="#templeDoorsOpen-mgRing" fill="#D9600F" stroke="#8E3A0C" stroke-width=".5"/>
+      <use xlink:href="#templeDoorsOpen-mgRing" href="#templeDoorsOpen-mgRing" fill="#E8761A" stroke="#A8460C" stroke-width=".55" transform="rotate(12.9) scale(.76)"/>
+      <use xlink:href="#templeDoorsOpen-mgRing" href="#templeDoorsOpen-mgRing" fill="#F28A1E" stroke="#B4530F" stroke-width=".65" transform="scale(.54)"/>
+      <use xlink:href="#templeDoorsOpen-mgRing" href="#templeDoorsOpen-mgRing" fill="#F7A41D" stroke="#C8620F" stroke-width=".85" transform="rotate(12.9) scale(.33)"/>
+    </g>
+
+    <g id="templeDoorsOpen-studColA"><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" y="250"/><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" y="286.9"/><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" y="323.8"/><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" y="360.6"/><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" y="397.5"/><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" y="434.4"/><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" y="471.2"/><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" y="508.1"/><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" y="545"/><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" y="581.9"/><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" y="618.8"/><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" y="655.6"/><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" y="692.5"/><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" y="729.4"/><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" y="766.2"/><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" y="803.1"/><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" y="840"/></g>
+    <g id="templeDoorsOpen-studColB"><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" transform="translate(0 717) scale(1.15)"/><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" transform="translate(0 759) scale(1.15)"/><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" transform="translate(0 801) scale(1.15)"/></g>
+    <g id="templeDoorsOpen-studRow"><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" x="174"/><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" x="210.4"/><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" x="246.8"/><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" x="283.2"/><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" x="319.6"/><use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" x="356"/></g>
+    <path id="templeDoorsOpen-L-pkLines" d="M148.2 443 L148.2 318.6 C148.2 297.2 158.1 291.5 167.7 293.6 C175.5 295.9 181.6 293.8 185 289.8 C188.3 296.7 194.1 303.6 201.3 307.5 C209.6 312.7 217.7 324.7 217.7 343.7 L217.7 454.3 M149 404.3 C162.1 399.6 177.8 410.7 192 410.3 C202.7 410.1 211.6 406.1 218.4 397.4"/>
+    <path id="templeDoorsOpen-L-pkThin" d="M210.3 405.8 C211 393.7 211.6 381.7 211 371 M182.4 387.9 L181.6 407.9 M186.1 388.9 L186.8 409.1 M197 309.3 L194.5 295.7 M197.7 308.7 L197.4 295.1 M198.4 309.9 L200.2 298.1"/>
+    <path id="templeDoorsOpen-L-pkTail" d="M177.8 375.6 C168 383.3 156.1 395.7 151.5 408.7 C158.9 406.6 169.8 390.4 177.8 375.6 Z M177.8 375.6 C168 390.4 156.3 411.5 152.3 428.2 C159.9 420.9 170.3 396.6 177.8 375.6 Z M177.8 375.6 C169.4 395.6 159.8 422.8 157.3 441.6 C164 430.5 172.1 400.7 177.8 375.6 Z M177.8 375.6 C171.6 397.7 164.9 427.1 164.1 445.6 C169.4 432.7 174.6 401.6 177.8 375.6 Z M177.8 375.6 C173.8 397.6 170 426.1 170.9 442.9 C174.8 429.8 177 400.3 177.8 375.6 Z M177.8 375.6 C175.9 396.4 174.8 422.4 177 436.5 C179.6 423.8 179.1 397.4 177.8 375.6 Z"/>
+    <path id="templeDoorsOpen-L-pkLeaves" d="M197.7 409 C199.9 399.6 203.4 398.8 205.5 401.1 C204.1 407.8 201.3 410.7 197.7 409 Z M206.8 404.9 C209.6 398.6 213 399.5 214.3 401.6 C213 408.2 210.3 409.3 206.8 404.9 Z M158.1 402.5 C155.6 392.3 151.5 387.4 149.8 389 C151.5 397.1 154.8 402.7 158.1 402.5 Z M211 371 C208.2 363.1 208.9 352.8 211 348.2 C213 354.2 213.7 364.8 211 371 Z"/>
+    <path id="templeDoorsOpen-L-pkBody" d="M174 368.9 C172.4 351.6 177.8 338.5 185.3 341.1 C191.2 343.2 194.9 355.2 194.1 369.4 C193.4 383.6 186.8 392.7 180.1 387.3 C177 384.6 174.7 376.6 174 368.9 Z M189 353.3 C191.2 345 192 336.2 192 327.1 C192 318.1 193.8 311.6 196.7 311 C199.1 311.1 200.6 317 199.5 321 C197.7 325.7 196.3 332.4 196.3 341.3 C196.3 348.5 195.2 357.1 193.8 362.1 Z M199.1 313.8 L203 318.3 L199.1 319.1 Z"/>
+    <path id="templeDoorsOpen-L-pkWing" d="M177.8 358.9 C181.6 349 189 353.3 192 365.1 C187.6 371 181.6 369.3 177.8 358.9 Z"/>
+    <path id="templeDoorsOpen-L-pkRosette" d="M162.1 327.4 C160.5 322.1 160.5 316.4 162.1 313.2 C163.7 317.6 163.7 323.2 162.1 327.4 Z M162.1 327.4 C162.4 321.4 164.1 318.1 166.4 318.9 C166.4 324.3 164.7 327.7 162.1 327.4 Z M162.1 327.4 C164.1 324.3 166.5 325.2 168.1 329.5 C166.5 332.7 164.1 331.9 162.1 327.4 Z M162.1 327.4 C164.7 329 166.4 333.5 166.4 338.9 C164.1 338.1 162.4 333.6 162.1 327.4 Z M162.1 327.4 C163.7 332.7 163.7 338.4 162.1 341.7 C160.5 337.3 160.5 331.6 162.1 327.4 Z M162.1 327.4 C161.9 333.4 160.2 336.8 157.9 336 C157.9 330.6 159.6 327.2 162.1 327.4 Z M162.1 327.4 C160.1 330.5 157.7 329.7 156.1 325.2 C157.7 322 160.1 322.9 162.1 327.4 Z M162.1 327.4 C159.6 325.8 157.9 321.2 157.9 315.7 C160.2 316.6 161.9 321.2 162.1 327.4 Z"/>
+    <path id="templeDoorsOpen-L-lotusOuter" d="M185 565.1 C179.3 551.5 179.7 527.5 185 510.2 C190.1 527.8 190.5 551.3 185 565.1 Z M185.5 565.7 C185.5 546.3 192.5 530.3 200.8 527.4 C199.6 548.1 193.3 565.4 185.5 565.7 Z M185.7 566.9 C191.2 553.1 200.6 553.9 207.2 566.1 C200.6 578.8 191.2 580.3 185.7 566.9 Z M185.5 568.2 C193.3 567.9 199.6 584.7 200.8 605.4 C192.5 603.1 185.5 587.6 185.5 568.2 Z M185 568.8 C190.5 582.2 190.1 605.8 185 623.7 C179.7 606.8 179.3 582.9 185 568.8 Z M184.4 568.3 C184.4 587.7 177.2 604.6 168.2 608.8 C169.6 586.8 176.4 568.6 184.4 568.3 Z M184.2 567 C178.6 581.1 168.5 580.7 160.9 567.8 C168.5 554.4 178.6 553.3 184.2 567 Z M184.4 565.7 C176.4 566 169.6 548.3 168.2 526.4 C177.2 529.9 184.4 546.3 184.4 565.7 Z"/>
+    <path id="templeDoorsOpen-L-lotusInner" d="M185.3 565.3 C183.7 552.8 186 539.3 190.9 531.6 C192.1 545.6 189.9 559 185.3 565.3 Z M185.6 566.2 C188.2 554.7 193.5 549.1 199.1 552.1 C196 564 190.7 569.7 185.6 566.2 Z M185.6 567.7 C190.7 563.8 196 569.1 199.1 580.8 C193.5 584.1 188.2 578.9 185.6 567.7 Z M185.3 568.6 C189.9 574.6 192.1 587.7 190.9 601.9 C186 594.5 183.7 581.2 185.3 568.6 Z M184.7 568.6 C186.2 581.1 183.9 594.7 178.9 603 C177.7 588.8 180 575.1 184.7 568.6 Z M184.3 567.7 C181.7 579.3 176.2 585.3 170.2 582.6 C173.5 570 179.1 564.1 184.3 567.7 Z M184.3 566.2 C179.1 570.2 173.5 564.8 170.2 552.4 C176.2 549.3 181.7 554.8 184.3 566.2 Z M184.7 565.3 C180 559.2 177.7 545.6 178.9 531.3 C183.9 539.3 186.2 552.8 184.7 565.3 Z"/>
+    <path id="templeDoorsOpen-L-quat" d="M154 509.4 C154 503.9 155.7 500 157.5 501.4 C158.1 505.6 156.3 509.5 154 509.4 Z M154 509.4 C156.3 509.5 158.1 513.6 157.5 517.7 C155.7 519 154 514.9 154 509.4 Z M154 509.4 C154 514.9 152.3 518.8 150.5 517.4 C149.9 513.2 151.6 509.2 154 509.4 Z M154 509.4 C151.6 509.2 149.9 505.1 150.5 500.9 C152.3 499.7 154 503.9 154 509.4 Z M213 512.8 C213 507.8 214.4 504.2 215.9 505.6 C216.3 509.3 214.9 512.9 213 512.8 Z M213 512.8 C214.9 512.9 216.3 516.6 215.9 520.3 C214.4 521.4 213 517.7 213 512.8 Z M213 512.8 C213 517.7 211.6 521.3 210.1 520 C209.6 516.2 211.1 512.6 213 512.8 Z M213 512.8 C211.1 512.6 209.6 508.9 210.1 505.2 C211.6 504 213 507.8 213 512.8 Z M154 626.8 C154 621.4 155.7 617.1 157.5 618.2 C158.1 622.3 156.3 626.5 154 626.8 Z M154 626.8 C156.3 626.5 158.1 630.3 157.5 634.5 C155.7 636.1 154 632.3 154 626.8 Z M154 626.8 C154 632.3 152.3 636.6 150.5 635.5 C149.9 631.5 151.6 627.1 154 626.8 Z M154 626.8 C151.6 627.1 149.9 623.3 150.5 619.1 C152.3 617.5 154 621.4 154 626.8 Z M213 619.1 C213 614.1 214.4 610.3 215.9 611.3 C216.3 615 214.9 618.8 213 619.1 Z M213 619.1 C214.9 618.8 216.3 622.3 215.9 626.1 C214.4 627.5 213 624 213 619.1 Z M213 619.1 C213 624 211.6 627.9 210.1 626.9 C209.6 623.2 211.1 619.3 213 619.1 Z M213 619.1 C211.1 619.3 209.6 615.8 210.1 612 C211.6 610.6 213 614.1 213 619.1 Z"/>
+    <path id="templeDoorsOpen-L-lattice" d="M155.6 710.2 L170.7 745.5 L185 702.3 L198.6 736.2 L211.6 695.2 M155.6 790.8 L170.7 745.5 L185 779.2 L198.6 736.2 L211.6 768.6 M155.6 710.2 L155.6 790.8 M211.6 695.2 L211.6 768.6"/>
+    <g id="templeDoorsOpen-leafArt">
+      <path d="M130 232 L231.3 281.2 L231.3 808.8 L130 858 Z" fill="url(#templeDoorsOpen-teak)" stroke="#0D0603" stroke-width="1.2"/>
+      <path d="M133.1 241.5 C134 400.9 131.8 599.8 133.5 848.3 M137.5 243.5 C136.6 421.3 138.8 619 137 846.7 M139.6 303.7 C140.1 500.7 138.8 697.9 139.6 815.9 M224.9 284.9 C225.9 421.5 224.3 609 225.6 804.8 M228.1 286.4 C227.5 438.9 229.1 625.4 228.4 803.5 M143.1 244.2 C167.7 254.1 197.7 272.9 221.6 281.6 M143.1 254 C167.7 263.5 197.7 281.9 221.6 290.2 M143.1 459.8 C167.7 461.2 197.7 469.8 221.6 470.4 M143.1 471.5 C167.7 472.5 197.7 480.6 221.6 480.7 M143.1 663.5 C167.7 657 197.7 656 221.6 648.8 M143.1 675.3 C167.7 668.3 197.7 666.7 221.6 659.1 M143.1 832.1 C167.7 819 197.7 809.9 221.6 796.4 M143.1 843.8 C167.7 830.3 197.7 820.7 221.6 806.7" fill="none" stroke="#1A0C05" stroke-width=".75" opacity=".5"/>
+      <path d="M130.7 234.3 L130.7 855.7 M130.9 234 L230.7 282.2" fill="none" stroke="#9C6A38" stroke-width="1.3" opacity=".8"/>
+      <path d="M130.9 856 L230.7 807.8" fill="none" stroke="#0D0603" stroke-width="1.4"/>
+      <path d="M141.4 263.1 L223 299.4 L223 465.4 L141.4 453.6 Z" fill="#1A0C05"/>
+      <path d="M141.4 263.1 L223 299.4 L220 305.8 L145.2 273.6 Z" fill="#140904"/>
+      <path d="M141.4 263.1 L145.2 273.6 L145.2 445.4 L141.4 453.6 Z" fill="#24120A"/>
+      <path d="M141.4 453.6 L145.2 445.4 L220 457.2 L223 465.4 Z" fill="#8A5A2B"/>
+      <path d="M223 299.4 L223 465.4 L220 457.2 L220 305.8 Z" fill="#6E4421"/>
+      <path d="M145.2 273.6 L220 305.8 L220 457.2 L145.2 445.4 Z" fill="url(#templeDoorsOpen-field)"/>
+      <path d="M147.3 279.3 L218.4 309.4 L218.4 452.7 L147.3 440.9 Z" fill="none" stroke="#B8862B" stroke-width="1.1" opacity=".75"/>
+      <path d="M141.4 479.2 L223 487.7 L223 643.4 L141.4 658 Z" fill="#1A0C05"/>
+      <path d="M141.4 479.2 L223 487.7 L220 495.1 L145.2 488.4 Z" fill="#140904"/>
+      <path d="M141.4 479.2 L145.2 488.4 L145.2 648.5 L141.4 658 Z" fill="#24120A"/>
+      <path d="M141.4 658 L145.2 648.5 L220 636.2 L223 643.4 Z" fill="#8A5A2B"/>
+      <path d="M223 487.7 L223 643.4 L220 636.2 L220 495.1 Z" fill="#6E4421"/>
+      <path d="M145.2 488.4 L220 495.1 L220 636.2 L145.2 648.5 Z" fill="url(#templeDoorsOpen-field)"/>
+      <path d="M147.3 493.4 L218.4 499.3 L218.4 632.2 L147.3 643.3 Z" fill="none" stroke="#B8862B" stroke-width="1.1" opacity=".75"/>
+      <path d="M141.4 683.5 L223 665.7 L223 790.6 L141.4 826.9 Z" fill="#1A0C05"/>
+      <path d="M141.4 683.5 L223 665.7 L220 674.1 L145.2 691.5 Z" fill="#140904"/>
+      <path d="M141.4 683.5 L145.2 691.5 L145.2 816.4 L141.4 826.9 Z" fill="#24120A"/>
+      <path d="M141.4 826.9 L145.2 816.4 L220 784.2 L223 790.6 Z" fill="#8A5A2B"/>
+      <path d="M223 665.7 L223 790.6 L220 784.2 L220 674.1 Z" fill="#6E4421"/>
+      <path d="M145.2 691.5 L220 674.1 L220 784.2 L145.2 816.4 Z" fill="url(#templeDoorsOpen-field)"/>
+      <path d="M147.3 695.8 L218.4 678.8 L218.4 780.6 L147.3 810.7 Z" fill="none" stroke="#B8862B" stroke-width="1.1" opacity=".75"/>
+      <use xlink:href="#templeDoorsOpen-L-pkLines" href="#templeDoorsOpen-L-pkLines" transform="translate(0.59 2.01)" fill="none" stroke="#0D0603" stroke-width="3.4" opacity=".7" stroke-linecap="round"/>
+      <use xlink:href="#templeDoorsOpen-L-pkLines" href="#templeDoorsOpen-L-pkLines" fill="none" stroke="#8A5A2B" stroke-width="3.4" stroke-linecap="round"/>
+      <use xlink:href="#templeDoorsOpen-L-pkLines" href="#templeDoorsOpen-L-pkLines" transform="translate(-0.15 -0.46)" fill="none" stroke="#D4A26A" stroke-width="1.0" opacity=".55" stroke-linecap="round"/>
+      <use xlink:href="#templeDoorsOpen-L-pkThin" href="#templeDoorsOpen-L-pkThin" transform="translate(0.57 1.97)" fill="none" stroke="#0D0603" stroke-width="1.6" opacity=".7" stroke-linecap="round"/>
+      <use xlink:href="#templeDoorsOpen-L-pkThin" href="#templeDoorsOpen-L-pkThin" fill="none" stroke="#8A5A2B" stroke-width="1.6" stroke-linecap="round"/>
+      <use xlink:href="#templeDoorsOpen-L-pkThin" href="#templeDoorsOpen-L-pkThin" transform="translate(-0.14 -0.45)" fill="none" stroke="#D4A26A" stroke-width="0.6" opacity=".55" stroke-linecap="round"/>
+      <use xlink:href="#templeDoorsOpen-L-pkTail" href="#templeDoorsOpen-L-pkTail" transform="translate(0.70 2.25)" fill="#0D0603" opacity=".7"/>
+      <use xlink:href="#templeDoorsOpen-L-pkTail" href="#templeDoorsOpen-L-pkTail" fill="url(#templeDoorsOpen-raised)" stroke="#1A0C05" stroke-width=".7"/>
+      <use xlink:href="#templeDoorsOpen-L-pkTail" href="#templeDoorsOpen-L-pkTail" transform="translate(-0.20 -0.47)" fill="none" stroke="#D4A26A" stroke-width=".8" opacity=".55"/>
+      <path d="M177.8 375.6 L157 401.8 M177.8 375.6 L157.6 417.3 M177.8 375.6 L161.5 428 M177.8 375.6 L166.9 431.3 M177.8 375.6 L172.3 429.3 M177.8 375.6 L177.2 424.3" fill="none" stroke="#2A140A" stroke-width=".7"/>
+      <path d="M157.2 401.5 C158.3 405.7 154.5 410.4 153.5 406.2 C152.4 402.1 156.1 397.4 157.2 401.5 Z" fill="url(#templeDoorsOpen-goldV)" stroke="#5E3F0C" stroke-width=".6"/>
+      <ellipse cx="155.3" cy="403.9" rx="0.7" ry="1.6" fill="#1F3A5C"/>
+      <path d="M157.6 417.3 C159 420.8 155.8 427.4 154.5 423.9 C153.1 420.2 156.3 413.7 157.6 417.3 Z" fill="url(#templeDoorsOpen-goldV)" stroke="#5E3F0C" stroke-width=".6"/>
+      <ellipse cx="156" cy="420.6" rx="0.7" ry="1.6" fill="#1F3A5C"/>
+      <path d="M161.5 428.1 C163.1 431 160.6 439 159 436 C157.4 433.2 159.9 425.1 161.5 428.1 Z" fill="url(#templeDoorsOpen-goldV)" stroke="#5E3F0C" stroke-width=".6"/>
+      <ellipse cx="160.2" cy="432.1" rx="0.7" ry="1.6" fill="#1F3A5C"/>
+      <path d="M167 431.1 C168.7 433.2 167 442.2 165.2 440.1 C163.5 437.9 165.2 428.9 167 431.1 Z" fill="url(#templeDoorsOpen-goldV)" stroke="#5E3F0C" stroke-width=".6"/>
+      <ellipse cx="166.1" cy="435.6" rx="0.7" ry="1.6" fill="#1F3A5C"/>
+      <path d="M172.3 428.6 C174.1 429.9 173.2 439.6 171.3 438.2 C169.5 436.9 170.5 427.2 172.3 428.6 Z" fill="url(#templeDoorsOpen-goldV)" stroke="#5E3F0C" stroke-width=".6"/>
+      <ellipse cx="171.8" cy="433.4" rx="0.7" ry="1.6" fill="#1F3A5C"/>
+      <path d="M177.2 423 C179 423.5 178.9 433.5 177.1 433 C175.2 432.5 175.4 422.5 177.2 423 Z" fill="url(#templeDoorsOpen-goldV)" stroke="#5E3F0C" stroke-width=".6"/>
+      <ellipse cx="177.1" cy="428" rx="0.7" ry="1.6" fill="#1F3A5C"/>
+      <use xlink:href="#templeDoorsOpen-L-pkLeaves" href="#templeDoorsOpen-L-pkLeaves" transform="translate(0.65 2.16)" fill="#0D0603" opacity=".7"/>
+      <use xlink:href="#templeDoorsOpen-L-pkLeaves" href="#templeDoorsOpen-L-pkLeaves" fill="url(#templeDoorsOpen-raised)" stroke="#1A0C05" stroke-width=".7"/>
+      <use xlink:href="#templeDoorsOpen-L-pkLeaves" href="#templeDoorsOpen-L-pkLeaves" transform="translate(-0.18 -0.45)" fill="none" stroke="#D4A26A" stroke-width=".8" opacity=".55"/>
+      <path d="M211 367.5 C209.9 362.8 209.9 356.6 211 353.5 C212 357.3 212 363.4 211 367.5 Z" fill="url(#templeDoorsOpen-goldV)" stroke="#5E3F0C" stroke-width=".6"/>
+      <use xlink:href="#templeDoorsOpen-L-pkBody" href="#templeDoorsOpen-L-pkBody" transform="translate(0.66 2.17)" fill="#0D0603" opacity=".7"/>
+      <use xlink:href="#templeDoorsOpen-L-pkBody" href="#templeDoorsOpen-L-pkBody" fill="url(#templeDoorsOpen-raised)" stroke="#1A0C05" stroke-width=".7"/>
+      <use xlink:href="#templeDoorsOpen-L-pkBody" href="#templeDoorsOpen-L-pkBody" transform="translate(-0.18 -0.45)" fill="none" stroke="#D4A26A" stroke-width=".8" opacity=".55"/>
+      <use xlink:href="#templeDoorsOpen-L-pkWing" href="#templeDoorsOpen-L-pkWing" transform="translate(0.67 2.20)" fill="#0D0603" opacity=".7"/>
+      <use xlink:href="#templeDoorsOpen-L-pkWing" href="#templeDoorsOpen-L-pkWing" fill="url(#templeDoorsOpen-raisedLight)" stroke="#1A0C05" stroke-width=".7"/>
+      <use xlink:href="#templeDoorsOpen-L-pkWing" href="#templeDoorsOpen-L-pkWing" transform="translate(-0.19 -0.46)" fill="none" stroke="#D4A26A" stroke-width=".8" opacity=".55"/>
+      <path d="M180.1 360.5 C183.1 356.9 186.8 358.1 189.8 364.4 M181.6 364.7 C184.2 361.8 187.2 362.7 190.1 367.3" fill="none" stroke="#2A140A" stroke-width=".8"/>
+      <g fill="url(#templeDoorsOpen-goldV)" stroke="#5E3F0C" stroke-width=".4"><ellipse cx="194.5" cy="294.8" rx="0.8" ry="2.0"/><ellipse cx="197.4" cy="294.2" rx="0.8" ry="2.0"/><ellipse cx="200.2" cy="297.3" rx="0.8" ry="2.0"/></g>
+      <ellipse cx="197.5" cy="315.4" rx="0.5" ry="1.3" fill="#F6E3A6"/>
+      <ellipse cx="162.1" cy="327.4" rx="5.2" ry="12.4" fill="#0D0603" opacity=".6"/>
+      <use xlink:href="#templeDoorsOpen-L-pkRosette" href="#templeDoorsOpen-L-pkRosette" transform="translate(0.72 2.28)" fill="#0D0603" opacity=".7"/>
+      <use xlink:href="#templeDoorsOpen-L-pkRosette" href="#templeDoorsOpen-L-pkRosette" fill="url(#templeDoorsOpen-raised)" stroke="#1A0C05" stroke-width=".7"/>
+      <use xlink:href="#templeDoorsOpen-L-pkRosette" href="#templeDoorsOpen-L-pkRosette" transform="translate(-0.20 -0.48)" fill="none" stroke="#D4A26A" stroke-width=".8" opacity=".55"/>
+      <ellipse cx="162.1" cy="327.4" rx="1.4" ry="3.4" fill="url(#templeDoorsOpen-goldV)" stroke="#5E3F0C" stroke-width=".5"/>
+      <path d="M211.2 568.1 L210.4 584.4 L207.9 599.9 L204 613.4 L198.7 624.3 L192.5 631.7 L185.6 634.9 L178.6 633.7 L171.9 628 L166.1 618 L161.5 604.4 L158.6 588 L157.6 570.3 L158.6 552.4 L161.5 535.9 L166.1 521.9 L171.9 511.4 L178.6 505.1 L185.6 503.3 L192.5 506 L198.7 512.9 L204 523.3 L207.9 536.6 L210.4 551.8Z" fill="none" stroke="#0D0603" stroke-width="6" opacity=".7"/>
+      <path d="M210.6 566 L209.8 582.4 L207.3 597.8 L203.3 611.4 L198.1 622.2 L191.8 629.6 L185 632.8 L177.9 631.6 L171.2 625.8 L165.4 615.8 L160.8 602.1 L157.9 585.8 L156.9 568 L157.9 550.1 L160.8 533.6 L165.4 519.6 L171.2 509.1 L177.9 502.8 L185 501.1 L191.8 503.8 L198.1 510.7 L203.3 521.1 L207.3 534.4 L209.8 549.7Z" fill="none" stroke="#8A5A2B" stroke-width="6"/>
+      <path d="M210.5 565.5 L209.6 581.8 L207.1 597.3 L203.2 610.9 L197.9 621.7 L191.6 629.1 L184.8 632.3 L177.8 631.1 L171.1 625.3 L165.2 615.3 L160.6 601.6 L157.7 585.2 L156.7 567.4 L157.7 549.6 L160.6 533 L165.2 519 L171.1 508.5 L177.8 502.3 L184.8 500.5 L191.6 503.3 L197.9 510.1 L203.2 520.6 L207.1 533.9 L209.6 549.2Z" fill="none" stroke="#D4A26A" stroke-width="1.4" opacity=".55"/>
+      <path d="M208.2 566.1 L207.5 580.9 L205.2 594.9 L201.6 607.2 L196.8 617 L191.2 623.6 L185 626.4 L178.6 625.2 L172.6 620 L167.3 610.9 L163.2 598.6 L160.6 583.9 L159.7 567.9 L160.6 551.8 L163.2 536.9 L167.3 524.3 L172.6 514.8 L178.6 509.1 L185 507.5 L191.2 509.9 L196.8 516.1 L201.6 525.5 L205.2 537.5 L207.5 551.3Z" fill="none" stroke="#B8862B" stroke-width="1" opacity=".8"/>
+      <use xlink:href="#templeDoorsOpen-L-lotusOuter" href="#templeDoorsOpen-L-lotusOuter" transform="translate(0.67 2.20)" fill="#0D0603" opacity=".7"/>
+      <use xlink:href="#templeDoorsOpen-L-lotusOuter" href="#templeDoorsOpen-L-lotusOuter" fill="url(#templeDoorsOpen-raised)" stroke="#1A0C05" stroke-width=".7"/>
+      <use xlink:href="#templeDoorsOpen-L-lotusOuter" href="#templeDoorsOpen-L-lotusOuter" transform="translate(-0.19 -0.46)" fill="none" stroke="#D4A26A" stroke-width=".8" opacity=".55"/>
+      <path d="M185 558.7 L185 518.5 M187.3 561 L198.6 532.9 M188.3 566.8 L204.1 566.2 M187.3 572.7 L198.6 600 M185 575.2 L185 615.4 M182.6 572.9 L170.7 602.6 M181.6 567.1 L164.5 567.7 M182.6 561.2 L170.7 532.4" fill="none" stroke="#2A140A" stroke-width=".8" opacity=".8"/>
+      <use xlink:href="#templeDoorsOpen-L-lotusInner" href="#templeDoorsOpen-L-lotusInner" transform="translate(0.67 2.20)" fill="#0D0603" opacity=".7"/>
+      <use xlink:href="#templeDoorsOpen-L-lotusInner" href="#templeDoorsOpen-L-lotusInner" fill="url(#templeDoorsOpen-raisedLight)" stroke="#1A0C05" stroke-width=".7"/>
+      <use xlink:href="#templeDoorsOpen-L-lotusInner" href="#templeDoorsOpen-L-lotusInner" transform="translate(-0.19 -0.46)" fill="none" stroke="#D4A26A" stroke-width=".8" opacity=".55"/>
+      <ellipse cx="185" cy="567" rx="5.2" ry="12.8" fill="url(#templeDoorsOpen-goldV)" stroke="#5E3F0C" stroke-width=".8"/>
+      <g fill="#5E3F0C"><ellipse cx="188.3" cy="566.8" rx="0.6" ry="1.4"/><ellipse cx="187.3" cy="572.7" rx="0.6" ry="1.4"/><ellipse cx="185" cy="575.2" rx="0.6" ry="1.4"/><ellipse cx="182.6" cy="572.9" rx="0.6" ry="1.4"/><ellipse cx="181.6" cy="567.1" rx="0.6" ry="1.4"/><ellipse cx="182.6" cy="561.2" rx="0.6" ry="1.4"/><ellipse cx="185" cy="558.7" rx="0.6" ry="1.4"/><ellipse cx="187.3" cy="561.1" rx="0.6" ry="1.4"/></g>
+      <ellipse cx="185" cy="567" rx="1.5" ry="3.7" fill="url(#templeDoorsOpen-gem)"/>
+      <use xlink:href="#templeDoorsOpen-L-quat" href="#templeDoorsOpen-L-quat" transform="translate(0.67 2.20)" fill="#0D0603" opacity=".7"/>
+      <use xlink:href="#templeDoorsOpen-L-quat" href="#templeDoorsOpen-L-quat" fill="url(#templeDoorsOpen-raised)" stroke="#1A0C05" stroke-width=".7"/>
+      <use xlink:href="#templeDoorsOpen-L-quat" href="#templeDoorsOpen-L-quat" transform="translate(-0.19 -0.46)" fill="none" stroke="#D4A26A" stroke-width=".8" opacity=".55"/>
+      <g fill="url(#templeDoorsOpen-goldV)" stroke="#5E3F0C" stroke-width=".4"><ellipse cx="154" cy="509.4" rx="1.0" ry="2.3"/><ellipse cx="213" cy="512.8" rx="0.8" ry="2.1"/><ellipse cx="154" cy="626.8" rx="1.0" ry="2.3"/><ellipse cx="213" cy="619.1" rx="0.8" ry="2.1"/></g>
+      <use xlink:href="#templeDoorsOpen-L-lattice" href="#templeDoorsOpen-L-lattice" transform="translate(0.60 2.01)" fill="none" stroke="#0D0603" stroke-width="2.4" opacity=".7" stroke-linecap="round"/>
+      <use xlink:href="#templeDoorsOpen-L-lattice" href="#templeDoorsOpen-L-lattice" fill="none" stroke="#8A5A2B" stroke-width="2.4" stroke-linecap="round"/>
+      <use xlink:href="#templeDoorsOpen-L-lattice" href="#templeDoorsOpen-L-lattice" transform="translate(-0.15 -0.46)" fill="none" stroke="#D4A26A" stroke-width="0.7" opacity=".55" stroke-linecap="round"/>
+      <g fill="url(#templeDoorsOpen-goldV)" stroke="#5E3F0C" stroke-width=".4"><ellipse cx="163.2" cy="728.1" rx="1.0" ry="2.5"/><ellipse cx="163.2" cy="767.9" rx="1.0" ry="2.5"/><ellipse cx="177.9" cy="723.7" rx="1.0" ry="2.4"/><ellipse cx="177.9" cy="762.6" rx="1.0" ry="2.4"/><ellipse cx="191.9" cy="719.5" rx="0.9" ry="2.4"/><ellipse cx="191.9" cy="757.5" rx="0.9" ry="2.4"/><ellipse cx="205.2" cy="715.5" rx="0.9" ry="2.3"/><ellipse cx="205.2" cy="752.6" rx="0.9" ry="2.3"/></g>
+      <use xlink:href="#templeDoorsOpen-studColB" href="#templeDoorsOpen-studColB" transform="matrix(0.410 0 0 0.960 155.6 21.7)"/>
+      <use xlink:href="#templeDoorsOpen-studColB" href="#templeDoorsOpen-studColB" transform="matrix(0.391 0 0 0.937 170.7 34.4)"/>
+      <use xlink:href="#templeDoorsOpen-studColB" href="#templeDoorsOpen-studColB" transform="matrix(0.372 0 0 0.915 185.0 46.4)"/>
+      <use xlink:href="#templeDoorsOpen-studColB" href="#templeDoorsOpen-studColB" transform="matrix(0.355 0 0 0.894 198.6 58.0)"/>
+      <use xlink:href="#templeDoorsOpen-studColB" href="#templeDoorsOpen-studColB" transform="matrix(0.340 0 0 0.873 211.6 69.0)"/>
+      <use xlink:href="#templeDoorsOpen-studColA" href="#templeDoorsOpen-studColA" transform="matrix(0.437 0 0 0.991 135.7 4.8)"/>
+      <use xlink:href="#templeDoorsOpen-studColA" href="#templeDoorsOpen-studColA" transform="matrix(0.321 0 0 0.849 227.2 82.1)"/>
+      <use xlink:href="#templeDoorsOpen-studRow" href="#templeDoorsOpen-studRow" transform="matrix(0.373 0.174 0 0.915 85.1 224.1)"/>
+      <use xlink:href="#templeDoorsOpen-studRow" href="#templeDoorsOpen-studRow" transform="matrix(0.373 0.046 0 0.915 85.1 459.4)"/>
+      <use xlink:href="#templeDoorsOpen-studRow" href="#templeDoorsOpen-studRow" transform="matrix(0.373 -0.074 0 0.915 85.1 681.9)"/>
+      <use xlink:href="#templeDoorsOpen-studRow" href="#templeDoorsOpen-studRow" transform="matrix(0.373 -0.174 0 0.915 85.1 865.9)"/>
+      <path d="M130.7 234.5 L152.2 244.9 Q155.5 246.5 157.1 251.1 Q160.4 252.6 162.8 257.6 Q160.4 260.3 157.1 258.8 Q155.5 261.8 152.2 260.3 L137.7 253.7 L137.7 287.3 Q137.7 295.2 136 298.5 Q136 306.4 134.2 311.7 Q132.5 305.1 132.5 297.2 Q130.7 292.5 130.7 284.5 Z" fill="#0D0603" opacity=".65"/>
+      <path d="M130 232 L151.5 242.4 Q154.8 244 156.5 248.7 Q159.7 250.2 162.1 255.2 Q159.7 257.9 156.5 256.3 Q154.8 259.4 151.5 257.9 L137 251.2 L137 284.9 Q137 292.8 135.3 296.1 Q135.3 304 133.5 309.3 Q131.8 302.7 131.8 294.7 Q130 290 130 282 Z" fill="url(#templeDoorsOpen-brass)" stroke="#5E3F0C" stroke-width=".9"/>
+      <path d="M132.7 241.3 L154.8 251.7 M133.5 239.7 L133.5 291.4" fill="none" stroke="#5E3F0C" stroke-width=".8" stroke-dasharray="3 2"/>
+      <use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" transform="matrix(0.42 0 0 0.94 133.5 241.7)"/>
+      <use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" transform="matrix(0.34 0 0 0.78 147.3 248.2)"/>
+      <use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" transform="matrix(0.35 0 0 0.80 133.5 273.5)"/>
+      <use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" transform="matrix(0.26 0 0 0.62 158.1 253.3)"/>
+      <use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" transform="matrix(0.29 0 0 0.65 133.5 299.4)"/>
+      <path d="M231.8 283.2 L215.6 275.4 Q212.9 274.1 211.5 277 Q208.8 275.7 206.7 278.2 Q208.8 282.7 211.5 284 Q212.9 288.1 215.6 289.3 L226.7 294.4 L226.7 323.3 Q226.7 330.1 228 334 Q228 340.8 229.3 346.3 Q230.5 341.7 230.5 335 Q231.8 332.1 231.8 325.4 Z" fill="#0D0603" opacity=".65"/>
+      <path d="M231.3 281.2 L215 273.2 Q212.3 271.9 211 274.8 Q208.2 273.5 206.2 276 Q208.2 280.5 211 281.8 Q212.3 285.9 215 287.1 L226.2 292.3 L226.2 321.2 Q226.2 328 227.5 331.9 Q227.5 338.7 228.8 344.3 Q230 339.7 230 332.9 Q231.3 330 231.3 323.3 Z" fill="url(#templeDoorsOpen-brass)" stroke="#5E3F0C" stroke-width=".9"/>
+      <path d="M229.4 287 L212.3 278.9 M228.8 285 L228.8 329" fill="none" stroke="#5E3F0C" stroke-width=".8" stroke-dasharray="3 2"/>
+      <use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" transform="matrix(0.30 0 0 0.80 228.8 286.7)"/>
+      <use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" transform="matrix(0.27 0 0 0.69 218.4 281.8)"/>
+      <use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" transform="matrix(0.26 0 0 0.68 228.8 313.8)"/>
+      <use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" transform="matrix(0.22 0 0 0.57 209.6 277.6)"/>
+      <use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" transform="matrix(0.21 0 0 0.55 228.8 335.8)"/>
+      <path d="M130.7 859.9 L152.2 849.4 Q155.5 847.8 157.1 843.1 Q160.4 841.6 162.8 836.6 Q160.4 833.9 157.1 835.5 Q155.5 832.4 152.2 833.9 L137.7 840.6 L137.7 807 Q137.7 799.1 136 795.8 Q136 787.9 134.2 782.6 Q132.5 789.3 132.5 797.2 Q130.7 801.9 130.7 809.9 Z" fill="#0D0603" opacity=".65"/>
+      <path d="M130 858 L151.5 847.6 Q154.8 846 156.5 841.3 Q159.7 839.8 162.1 834.8 Q159.7 832.1 156.5 833.7 Q154.8 830.6 151.5 832.1 L137 838.8 L137 805.1 Q137 797.2 135.3 793.9 Q135.3 786 133.5 780.7 Q131.8 787.3 131.8 795.3 Q130 800 130 808 Z" fill="url(#templeDoorsOpen-brass)" stroke="#5E3F0C" stroke-width=".9"/>
+      <path d="M132.7 848.7 L154.8 838.3 M133.5 850.3 L133.5 798.6" fill="none" stroke="#5E3F0C" stroke-width=".8" stroke-dasharray="3 2"/>
+      <use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" transform="matrix(0.42 0 0 0.94 133.5 848.3)"/>
+      <use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" transform="matrix(0.34 0 0 0.78 147.3 841.8)"/>
+      <use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" transform="matrix(0.35 0 0 0.80 133.5 816.5)"/>
+      <use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" transform="matrix(0.26 0 0 0.62 158.1 836.7)"/>
+      <use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" transform="matrix(0.29 0 0 0.65 133.5 790.6)"/>
+      <path d="M231.8 810.5 L215.6 818.4 Q212.9 819.7 211.5 816.9 Q208.8 818.2 206.7 815.7 Q208.8 811.2 211.5 809.9 Q212.9 805.8 215.6 804.5 L226.7 799.3 L226.7 770.4 Q226.7 763.6 228 759.7 Q228 753 229.3 747.4 Q230.5 752 230.5 758.7 Q231.8 761.6 231.8 768.3 Z" fill="#0D0603" opacity=".65"/>
+      <path d="M231.3 808.8 L215 816.8 Q212.3 818.1 211 815.2 Q208.2 816.5 206.2 814 Q208.2 809.5 211 808.2 Q212.3 804.1 215 802.9 L226.2 797.7 L226.2 768.8 Q226.2 762 227.5 758.1 Q227.5 751.3 228.8 745.7 Q230 750.3 230 757.1 Q231.3 760 231.3 766.7 Z" fill="url(#templeDoorsOpen-brass)" stroke="#5E3F0C" stroke-width=".9"/>
+      <path d="M229.4 803 L212.3 811.1 M228.8 805 L228.8 761" fill="none" stroke="#5E3F0C" stroke-width=".8" stroke-dasharray="3 2"/>
+      <use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" transform="matrix(0.30 0 0 0.80 228.8 803.3)"/>
+      <use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" transform="matrix(0.27 0 0 0.69 218.4 808.2)"/>
+      <use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" transform="matrix(0.26 0 0 0.68 228.8 776.2)"/>
+      <use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" transform="matrix(0.22 0 0 0.57 209.6 812.4)"/>
+      <use xlink:href="#templeDoorsOpen-stud" href="#templeDoorsOpen-stud" transform="matrix(0.21 0 0 0.55 228.8 754.2)"/>
+      <ellipse cx="222.3" cy="565.6" rx="5.6" ry="14.6" fill="#0D0603" opacity=".6"/>
+      <g fill="url(#templeDoorsOpen-brass)" stroke="#5E3F0C" stroke-width=".7"><ellipse cx="225.6" cy="562.9" rx="2.1" ry="5.5"/><ellipse cx="224.4" cy="570.2" rx="2.1" ry="5.5"/><ellipse cx="221.6" cy="573.3" rx="2.1" ry="5.5"/><ellipse cx="218.9" cy="570.4" rx="2.1" ry="5.5"/><ellipse cx="217.7" cy="563.1" rx="2.1" ry="5.5"/><ellipse cx="218.9" cy="555.8" rx="2.1" ry="5.5"/><ellipse cx="221.6" cy="552.7" rx="2.1" ry="5.5"/><ellipse cx="224.4" cy="555.7" rx="2.1" ry="5.5"/></g>
+      <ellipse cx="221.6" cy="563" rx="4.1" ry="10.7" fill="url(#templeDoorsOpen-brass)" stroke="#5E3F0C" stroke-width=".8"/>
+      <ellipse cx="221.6" cy="563" rx="2.3" ry="6.0" fill="url(#templeDoorsOpen-studG)" stroke="#5E3F0C" stroke-width=".7"/>
+      <ellipse cx="220.9" cy="561" rx="0.7" ry="1.7" fill="#FFFBEA" opacity=".85"/>
+      <path d="M228.1 594.2 L227.9 598.1 L227.4 601.9 L226.4 605.2 L225.2 607.7 L223.8 609.4 L222.3 610.1 L220.8 609.8 L219.3 608.4 L218.1 606.1 L217.2 602.9 L216.6 599.3 L216.4 595.2 L216.6 591.2 L217.2 587.4 L218.1 584.1 L219.3 581.5 L220.8 579.9 L222.3 579.3 L223.8 579.7 L225.2 581.2 L226.4 583.5 L227.4 586.6 L227.9 590.2Z" fill="none" stroke="#0D0603" stroke-width="6" opacity=".55"/>
+      <path d="M227.5 591.7 L227.3 595.7 L226.7 599.4 L225.8 602.7 L224.6 605.2 L223.2 606.9 L221.6 607.6 L220.1 607.3 L218.7 605.9 L217.4 603.5 L216.5 600.4 L215.9 596.7 L215.7 592.7 L215.9 588.6 L216.5 584.8 L217.4 581.5 L218.7 579 L220.1 577.4 L221.6 576.7 L223.2 577.2 L224.6 578.6 L225.8 581 L226.7 584.1 L227.3 587.7Z" fill="none" stroke="#5E3F0C" stroke-width="6.4"/>
+      <path d="M227.5 591.7 L227.3 595.7 L226.7 599.4 L225.8 602.7 L224.6 605.2 L223.2 606.9 L221.6 607.6 L220.1 607.3 L218.7 605.9 L217.4 603.5 L216.5 600.4 L215.9 596.7 L215.7 592.7 L215.9 588.6 L216.5 584.8 L217.4 581.5 L218.7 579 L220.1 577.4 L221.6 576.7 L223.2 577.2 L224.6 578.6 L225.8 581 L226.7 584.1 L227.3 587.7Z" fill="none" stroke="url(#templeDoorsOpen-brass)" stroke-width="4.6"/>
+      <path d="M216.4 587.4 C217 580.5 219.7 576.9 222.3 576.7" fill="none" stroke="#FFF6D2" stroke-width="1.3" opacity=".85" stroke-linecap="round"/>
+      <ellipse cx="221.6" cy="575.9" rx="1.1" ry="2.9" fill="none" stroke="#8A6118" stroke-width="2"/>
+      <path d="M230.2 280.6 L231.3 281.2 L231.3 808.8 L230.2 809.4 Z" fill="#0D0603" opacity=".85"/>
+      <path d="M130 232 L231.3 281.2 L231.3 808.8 L130 858Z" fill="url(#templeDoorsOpen-leafShade)"/>
+      <path d="M230.3 282.2 L230.3 807.8" stroke="#FFD98A" stroke-width="2.2" opacity=".75"/>
+    </g>
+  </defs>
+
+  <!-- ================= SANCTUM BEYOND THE DOORS ================= -->
+  <g id="templeDoorsOpen-sanctum">
+    <rect x="130" y="232" width="540" height="626" fill="#2A140A"/>
+    <path d="M130 232 L670 232 L580 336 L220 336Z" fill="#3B1F10"/>
+    <path d="M130 232 L220 336 L220 754 L130 858Z" fill="#4A2814"/>
+    <path d="M670 232 L580 336 L580 754 L670 858Z" fill="#4A2814"/>
+    <path d="M130 858 L670 858 L580 754 L220 754Z" fill="url(#templeDoorsOpen-floor)"/>
+    <rect x="220" y="336" width="360" height="418" fill="url(#templeDoorsOpen-backwall)"/>
+    <path d="M330 754 V560 C330 520 360 492 400 476 C440 492 470 520 470 560 V754Z" fill="#FFF3C4" stroke="#B8862B" stroke-width="3"/>
+    <path d="M318 754 V556 C318 512 354 482 400 464 C446 482 482 512 482 556 V754" fill="none" stroke="#D4AF5A" stroke-width="2.4" opacity=".8"/>
+    <g fill="#5C3317" opacity=".8">
+      <path d="M282 754 H298 L294 744 V672 H286 V744Z"/>
+      <path d="M502 754 H518 L514 744 V672 H506 V744Z"/>
+    </g>
+    <path d="M284 672 C284 664 296 664 296 672Z M504 672 C504 664 516 664 516 672Z" fill="#B8862B"/>
+    <path d="M290 666 C287 660 289 654 290 648 C292 654 294 660 290 666Z M510 666 C507 660 509 654 510 648 C512 654 514 660 510 666Z" fill="#FFD23F"/>
+    <rect x="130" y="232" width="540" height="626" fill="url(#templeDoorsOpen-glow)"/>
+    <path d="M400 600 L300 232 L340 232Z M400 600 L460 232 L500 232Z M400 600 L170 420 L180 380Z M400 600 L630 380 L620 420Z" fill="url(#templeDoorsOpen-ray)" opacity=".7"/>
+  </g>
+
+  <!-- light spilling over the threshold -->
+  <ellipse cx="400" cy="866" rx="250" ry="16" fill="url(#templeDoorsOpen-spill)"/>
+  <!-- ================= DOOR LEAVES (swung inward) ================= -->
+  <g id="templeDoorsOpen-leftLeaf">
+    <use xlink:href="#templeDoorsOpen-leafArt" href="#templeDoorsOpen-leafArt"/>
+  </g>
+  <g id="templeDoorsOpen-rightLeaf">
+    <use xlink:href="#templeDoorsOpen-leafArt" href="#templeDoorsOpen-leafArt" transform="translate(800 0) scale(-1 1)"/>
+  </g>
+  <!-- ================= CARVED STONE DOORFRAME ================= -->
+  <g id="templeDoorsOpen-frame">
+    <!-- pediment: small cusped arch on top -->
+    <use xlink:href="#templeDoorsOpen-finial" href="#templeDoorsOpen-finial" transform="translate(400 44)"/>
+    <path d="M236 150 C238 118 286 104 326 92 C360 82 388 66 400 42 C412 66 440 82 474 92 C514 104 562 118 564 150Z" fill="url(#templeDoorsOpen-stone)" stroke="#8E3A20" stroke-width="1.2"/>
+    <path d="M246 150 C248 124 292 110 330 98 C362 88 388 74 400 54 C412 74 438 88 470 98 C508 110 552 124 554 150" fill="none" stroke="url(#templeDoorsOpen-goldH)" stroke-width="3"/>
+    <path d="M268 150 C270 128 306 116 338 106 C366 97 390 84 400 66 C410 84 434 97 462 106 C494 116 530 128 532 150Z" fill="url(#templeDoorsOpen-stoneDeep)" stroke="#7A2E18" stroke-width="1"/>
+    <path d="M280 150 C284 134 312 124 340 115 M520 150 C516 134 488 124 460 115" fill="none" stroke="#F6D2A0" stroke-width="1" opacity=".5"/>
+    <g transform="translate(400 122)">
+      <circle r="27" fill="url(#templeDoorsOpen-goldH)" stroke="#5E3F0C" stroke-width="1"/>
+      <circle r="23" fill="none" stroke="#5E3F0C" stroke-width="5" stroke-dasharray="3.2 2.8" opacity=".7"/>
+      <circle r="23" fill="none" stroke="#F6E3A6" stroke-width="1.2" stroke-dasharray="3.2 2.8"/>
+      <circle r="14" fill="url(#templeDoorsOpen-goldV)" stroke="#5E3F0C" stroke-width=".8"/>
+      <circle r="8" fill="url(#templeDoorsOpen-gem)" stroke="#4A0A1A" stroke-width=".7"/>
+      <circle cx="-2.6" cy="-2.8" r="2.2" fill="#FFE3EA" opacity=".85"/>
+    </g>
+    <circle cx="236" cy="146" r="6" fill="url(#templeDoorsOpen-goldV)" stroke="#5E3F0C" stroke-width=".8"/>
+    <circle cx="564" cy="146" r="6" fill="url(#templeDoorsOpen-goldV)" stroke="#5E3F0C" stroke-width=".8"/>
+    <use xlink:href="#templeDoorsOpen-finial" href="#templeDoorsOpen-finial" transform="translate(52 150) scale(.7)"/>
+    <use xlink:href="#templeDoorsOpen-finial" href="#templeDoorsOpen-finial" transform="translate(748 150) scale(.7)"/>
+
+    <!-- cornice -->
+    <path d="M18 148 H782 L772 162 H28Z" fill="url(#templeDoorsOpen-stone)" stroke="#8E3A20" stroke-width="1"/>
+    <path d="M18 149.6 H782" stroke="url(#templeDoorsOpen-goldH)" stroke-width="2.4"/>
+    <rect x="28" y="162" width="744" height="12" fill="url(#templeDoorsOpen-stoneDark)" stroke="#7A2E18" stroke-width=".8"/>
+    <path d="M32 168 H768" stroke="#7A2E18" stroke-width="8" stroke-dasharray="7 5"/>
+    <path d="M32 165 H768" stroke="#F0C08A" stroke-width="1" stroke-dasharray="7 5" opacity=".7"/>
+
+    <!-- lintel -->
+    <rect x="36" y="174" width="728" height="60" fill="url(#templeDoorsOpen-stone)" stroke="#8E3A20" stroke-width="1"/>
+    <path d="M36 176 H764 M36 231.6 H764" stroke="#F6D2A0" stroke-width="1" opacity=".6"/>
+    <g fill="url(#templeDoorsOpen-stoneDeep)" stroke="#7A2E18" stroke-width=".8">
+      <use xlink:href="#templeDoorsOpen-nicheRow" href="#templeDoorsOpen-nicheRow"/>
+      <use xlink:href="#templeDoorsOpen-nicheRow" href="#templeDoorsOpen-nicheRow" x="424"/>
+    </g>
+    <!-- central lintel block with gold lotus -->
+    <rect x="336" y="168" width="128" height="70" fill="url(#templeDoorsOpen-stoneH)" stroke="#8E3A20" stroke-width="1"/>
+    <rect x="342" y="174" width="116" height="58" fill="none" stroke="url(#templeDoorsOpen-goldH)" stroke-width="2"/>
+    <g transform="translate(400 203)">
+      <use xlink:href="#templeDoorsOpen-lotusPetal" href="#templeDoorsOpen-lotusPetal"/>
+      <use xlink:href="#templeDoorsOpen-lotusPetal" href="#templeDoorsOpen-lotusPetal" transform="rotate(45)"/>
+      <use xlink:href="#templeDoorsOpen-lotusPetal" href="#templeDoorsOpen-lotusPetal" transform="rotate(90)"/>
+      <use xlink:href="#templeDoorsOpen-lotusPetal" href="#templeDoorsOpen-lotusPetal" transform="rotate(135)"/>
+      <use xlink:href="#templeDoorsOpen-lotusPetal" href="#templeDoorsOpen-lotusPetal" transform="rotate(180)"/>
+      <use xlink:href="#templeDoorsOpen-lotusPetal" href="#templeDoorsOpen-lotusPetal" transform="rotate(225)"/>
+      <use xlink:href="#templeDoorsOpen-lotusPetal" href="#templeDoorsOpen-lotusPetal" transform="rotate(270)"/>
+      <use xlink:href="#templeDoorsOpen-lotusPetal" href="#templeDoorsOpen-lotusPetal" transform="rotate(315)"/>
+      <circle r="8" fill="url(#templeDoorsOpen-gem)" stroke="#5E3F0C" stroke-width="1"/>
+      <circle cx="-2.4" cy="-2.6" r="2" fill="#FFE3EA" opacity=".85"/>
+    </g>
+    <path d="M352 190 C346 196 346 210 352 216 M448 190 C454 196 454 210 448 216" fill="none" stroke="#F6E3A6" stroke-width="1.4"/>
+
+    <!-- jambs -->
+    <use xlink:href="#templeDoorsOpen-jamb" href="#templeDoorsOpen-jamb"/>
+    <use xlink:href="#templeDoorsOpen-jamb" href="#templeDoorsOpen-jamb" transform="translate(800 0) scale(-1 1)"/>
+
+    <!-- threshold -->
+    <path d="M22 858 H778 L788 870 H12Z" fill="url(#templeDoorsOpen-stone)" stroke="#8E3A20" stroke-width="1"/>
+    <path d="M22 859.4 H778" stroke="url(#templeDoorsOpen-goldH)" stroke-width="2"/>
+    <rect x="12" y="870" width="776" height="30" fill="url(#templeDoorsOpen-stoneDark)" stroke="#7A2E18" stroke-width="1"/>
+    <path d="M18 885 H782" stroke="#7A2E18" stroke-width="12" stroke-dasharray="14 6" opacity=".6"/>
+    <path d="M18 880 H782" stroke="#F0C08A" stroke-width="1.2" stroke-dasharray="14 6" opacity=".55"/>
+    <path d="M12 872 H788" stroke="#F6D2A0" stroke-width="1" opacity=".6"/>
+  </g>
+
+  <!-- ================= TORAN: mango leaves and marigolds ================= -->
+  <g id="templeDoorsOpen-toran">
+    <path d="M128 240 C300 250 500 250 672 240" fill="none" stroke="#4A0A1A" stroke-width="4.6"/>
+    <path d="M128 240 C300 250 500 250 672 240" fill="none" stroke="#B5122E" stroke-width="3"/>
+    <path d="M128 240 C300 250 500 250 672 240" fill="none" stroke="#F2B705" stroke-width="1.2" stroke-dasharray="4 3"/>
+    <use xlink:href="#templeDoorsOpen-marigold" href="#templeDoorsOpen-marigold" transform="translate(170.8 246.2) scale(0.62)"/>
+    <use xlink:href="#templeDoorsOpen-marigold" href="#templeDoorsOpen-marigold" transform="translate(212.5 247.9) scale(0.7)"/>
+    <use xlink:href="#templeDoorsOpen-marigold" href="#templeDoorsOpen-marigold" transform="translate(254.2 249.3) scale(0.62)"/>
+    <use xlink:href="#templeDoorsOpen-marigold" href="#templeDoorsOpen-marigold" transform="translate(295.8 250.4) scale(0.7)"/>
+    <use xlink:href="#templeDoorsOpen-marigold" href="#templeDoorsOpen-marigold" transform="translate(337.5 251.1) scale(0.62)"/>
+    <use xlink:href="#templeDoorsOpen-marigold" href="#templeDoorsOpen-marigold" transform="translate(379.2 251.5) scale(0.7)"/>
+    <use xlink:href="#templeDoorsOpen-marigold" href="#templeDoorsOpen-marigold" transform="translate(420.8 251.5) scale(0.62)"/>
+    <use xlink:href="#templeDoorsOpen-marigold" href="#templeDoorsOpen-marigold" transform="translate(462.5 251.1) scale(0.7)"/>
+    <use xlink:href="#templeDoorsOpen-marigold" href="#templeDoorsOpen-marigold" transform="translate(504.2 250.4) scale(0.62)"/>
+    <use xlink:href="#templeDoorsOpen-marigold" href="#templeDoorsOpen-marigold" transform="translate(545.8 249.3) scale(0.7)"/>
+    <use xlink:href="#templeDoorsOpen-marigold" href="#templeDoorsOpen-marigold" transform="translate(587.5 247.9) scale(0.62)"/>
+    <use xlink:href="#templeDoorsOpen-marigold" href="#templeDoorsOpen-marigold" transform="translate(629.2 246.2) scale(0.7)"/>
+    <use xlink:href="#templeDoorsOpen-toranUnit" href="#templeDoorsOpen-toranUnit" transform="translate(150 242.2) rotate(6)"/>
+    <use xlink:href="#templeDoorsOpen-toranUnit" href="#templeDoorsOpen-toranUnit" transform="translate(191.7 244.1) rotate(-6)"/>
+    <use xlink:href="#templeDoorsOpen-toranUnit" href="#templeDoorsOpen-toranUnit" transform="translate(233.3 245.7) rotate(6)"/>
+    <use xlink:href="#templeDoorsOpen-toranUnit" href="#templeDoorsOpen-toranUnit" transform="translate(275 246.9) rotate(-6)"/>
+    <use xlink:href="#templeDoorsOpen-toranUnit" href="#templeDoorsOpen-toranUnit" transform="translate(316.7 247.8) rotate(6)"/>
+    <use xlink:href="#templeDoorsOpen-toranUnit" href="#templeDoorsOpen-toranUnit" transform="translate(358.3 248.3) rotate(-6)"/>
+    <use xlink:href="#templeDoorsOpen-toranUnit" href="#templeDoorsOpen-toranUnit" transform="translate(400 248.5) rotate(6)"/>
+    <use xlink:href="#templeDoorsOpen-toranUnit" href="#templeDoorsOpen-toranUnit" transform="translate(441.7 248.3) rotate(-6)"/>
+    <use xlink:href="#templeDoorsOpen-toranUnit" href="#templeDoorsOpen-toranUnit" transform="translate(483.3 247.8) rotate(6)"/>
+    <use xlink:href="#templeDoorsOpen-toranUnit" href="#templeDoorsOpen-toranUnit" transform="translate(525 246.9) rotate(-6)"/>
+    <use xlink:href="#templeDoorsOpen-toranUnit" href="#templeDoorsOpen-toranUnit" transform="translate(566.7 245.7) rotate(6)"/>
+    <use xlink:href="#templeDoorsOpen-toranUnit" href="#templeDoorsOpen-toranUnit" transform="translate(608.3 244.1) rotate(-6)"/>
+    <use xlink:href="#templeDoorsOpen-toranUnit" href="#templeDoorsOpen-toranUnit" transform="translate(650 242.2) rotate(6)"/>
+  </g>
+</svg>

@@ -1,0 +1,258 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <!-- ===== shared medallion defs ===== -->
+    <linearGradient id="iconReception-gold" x1="20" y1="14" x2="220" y2="226" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8A6118"/>
+      <stop offset=".3" stop-color="#D4AF5A"/>
+      <stop offset=".5" stop-color="#F6E3A6"/>
+      <stop offset=".7" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#6E4A12"/>
+    </linearGradient>
+    <linearGradient id="iconReception-goldRev" x1="220" y1="226" x2="20" y2="14" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8A6118"/>
+      <stop offset=".3" stop-color="#D4AF5A"/>
+      <stop offset=".5" stop-color="#F6E3A6"/>
+      <stop offset=".7" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#6E4A12"/>
+    </linearGradient>
+    <radialGradient id="iconReception-pearl" cx=".35" cy=".3" r=".75">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset=".45" stop-color="#FBF5E6"/>
+      <stop offset=".85" stop-color="#E2D2A8"/>
+      <stop offset="1" stop-color="#9C8556"/>
+    </radialGradient>
+    <radialGradient id="iconReception-field" cx=".5" cy=".42" r=".62">
+      <stop offset="0" stop-color="#FFFDF6"/>
+      <stop offset=".6" stop-color="#FBF5E6"/>
+      <stop offset="1" stop-color="#EEDDB6"/>
+    </radialGradient>
+    <radialGradient id="iconReception-gem" cx=".38" cy=".32" r=".7">
+      <stop offset="0" stop-color="#E25A72"/>
+      <stop offset=".45" stop-color="#8B1A2E"/>
+      <stop offset="1" stop-color="#4A0A1A"/>
+    </radialGradient>
+    <filter id="iconReception-soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="2.2"/>
+    </filter>
+    <path id="iconReception-scallop" d="M120.0 14.0 A19 19 0 0 1 147.4 17.6 A19 19 0 0 1 173.0 28.2 A19 19 0 0 1 195.0 45.0 A19 19 0 0 1 211.8 67.0 A19 19 0 0 1 222.4 92.6 A19 19 0 0 1 226.0 120.0 A19 19 0 0 1 222.4 147.4 A19 19 0 0 1 211.8 173.0 A19 19 0 0 1 195.0 195.0 A19 19 0 0 1 173.0 211.8 A19 19 0 0 1 147.4 222.4 A19 19 0 0 1 120.0 226.0 A19 19 0 0 1 92.6 222.4 A19 19 0 0 1 67.0 211.8 A19 19 0 0 1 45.0 195.0 A19 19 0 0 1 28.2 173.0 A19 19 0 0 1 17.6 147.4 A19 19 0 0 1 14.0 120.0 A19 19 0 0 1 17.6 92.6 A19 19 0 0 1 28.2 67.0 A19 19 0 0 1 45.0 45.0 A19 19 0 0 1 67.0 28.2 A19 19 0 0 1 92.6 17.6 A19 19 0 0 1 120.0 14.0Z"/>
+    <circle id="iconReception-p" cx="120" cy="10.6" r="2.7" fill="url(#iconReception-pearl)" stroke="#8A6118" stroke-width=".35"/>
+    <g id="iconReception-pearls">
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(7.5 120 120)"/>
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(22.5 120 120)"/>
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(37.5 120 120)"/>
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(52.5 120 120)"/>
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(67.5 120 120)"/>
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(82.5 120 120)"/>
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(97.5 120 120)"/>
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(112.5 120 120)"/>
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(127.5 120 120)"/>
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(142.5 120 120)"/>
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(157.5 120 120)"/>
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(172.5 120 120)"/>
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(187.5 120 120)"/>
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(202.5 120 120)"/>
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(217.5 120 120)"/>
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(232.5 120 120)"/>
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(247.5 120 120)"/>
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(262.5 120 120)"/>
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(277.5 120 120)"/>
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(292.5 120 120)"/>
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(307.5 120 120)"/>
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(322.5 120 120)"/>
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(337.5 120 120)"/>
+      <use xlink:href="#iconReception-p" href="#iconReception-p" transform="rotate(352.5 120 120)"/>
+    </g>
+    <g id="iconReception-boss">
+      <path d="M120 9 L127.5 19 L120 29 L112.5 19Z" fill="url(#iconReception-gold)" stroke="#5E3F0C" stroke-width=".7"/>
+      <path d="M120 11.5 L125.2 19 L120 26.5" fill="none" stroke="#F6E3A6" stroke-width=".6" opacity=".8"/>
+      <circle cx="120" cy="19" r="3.3" fill="url(#iconReception-gem)" stroke="#5E3F0C" stroke-width=".5"/>
+      <circle cx="118.9" cy="17.9" r=".9" fill="#FFE3EA" opacity=".85"/>
+    </g>
+
+    <!-- ===== motif defs ===== -->
+    <linearGradient id="iconReception-stone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#EBB57A"/>
+      <stop offset=".5" stop-color="#D98450"/>
+      <stop offset="1" stop-color="#C8693F"/>
+    </linearGradient>
+    <linearGradient id="iconReception-stoneH" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#B5502E"/>
+      <stop offset=".35" stop-color="#F0C08A"/>
+      <stop offset=".6" stop-color="#D98450"/>
+      <stop offset="1" stop-color="#A8462A"/>
+    </linearGradient>
+    <linearGradient id="iconReception-stoneDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#C8693F"/>
+      <stop offset="1" stop-color="#8E3A20"/>
+    </linearGradient>
+    <linearGradient id="iconReception-sky" x1="0" y1="82" x2="0" y2="152" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2E0610"/>
+      <stop offset=".35" stop-color="#6B0F24"/>
+      <stop offset=".62" stop-color="#B5502E"/>
+      <stop offset=".82" stop-color="#E8761A"/>
+      <stop offset="1" stop-color="#F7A41D"/>
+    </linearGradient>
+    <linearGradient id="iconReception-brassV" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6E4A12"/>
+      <stop offset=".3" stop-color="#D4AF5A"/>
+      <stop offset=".45" stop-color="#F6E3A6"/>
+      <stop offset=".7" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#5E3F0C"/>
+    </linearGradient>
+    <radialGradient id="iconReception-halo" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#FFF3C4" stop-opacity=".95"/>
+      <stop offset=".4" stop-color="#FFD98A" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#F7A41D" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="iconReception-lampLight" cx=".5" cy=".55" r=".6">
+      <stop offset="0" stop-color="#FFFBEA"/>
+      <stop offset=".5" stop-color="#FFE27A"/>
+      <stop offset="1" stop-color="#F2B705"/>
+    </radialGradient>
+    <linearGradient id="iconReception-flame" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#FFF3C4"/>
+      <stop offset=".45" stop-color="#FFD23F"/>
+      <stop offset="1" stop-color="#E8761A"/>
+    </linearGradient>
+    <linearGradient id="iconReception-clay" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E2A66B"/>
+      <stop offset=".5" stop-color="#C8693F"/>
+      <stop offset="1" stop-color="#8E3A20"/>
+    </linearGradient>
+    <pattern id="iconReception-jali" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="#D98450"/>
+      <path d="M3 .9 L5.1 3 L3 5.1 L.9 3Z" fill="#FFD98A"/>
+      <path d="M3 .9 L5.1 3 L3 5.1 L.9 3Z" fill="none" stroke="#8E3A20" stroke-width=".4"/>
+    </pattern>
+    <g id="iconReception-diya">
+      <ellipse cx="0" cy="13" rx="20" ry="20" fill="url(#iconReception-halo)" transform="translate(0 -22)"/>
+      <path d="M-9 0 C-7 5.4 7 5.4 9 0 L12.6 -2.4 C8 -1 -8 -1 -9 0Z" fill="url(#iconReception-clay)" stroke="#6B2A14" stroke-width=".5"/>
+      <path d="M-9 0 C-5 -2.4 7 -2.6 12.6 -2.4 C7 .4 -5 1 -9 0Z" fill="#5C2A12"/>
+      <path d="M-6 2.6 C-2 3.6 2 3.6 6 2.6" fill="none" stroke="#F0C08A" stroke-width=".5" opacity=".7"/>
+      <path d="M10 -3 C8.8 -7.6 11.4 -10.6 11.2 -15 C13.6 -11.4 15 -7.8 12.6 -3Z" fill="url(#iconReception-flame)"/>
+      <path d="M10.9 -3.2 C10.5 -6 11.6 -8 11.7 -10 C12.8 -7.8 13.2 -5.8 12 -3.2Z" fill="#FFFBEA"/>
+    </g>
+    <g id="iconReception-pillar">
+      <rect x="-5" y="0" width="10" height="66" fill="url(#iconReception-stoneH)" stroke="#8E3A20" stroke-width=".5"/>
+      <path d="M-2.4 10 V58 M0 10 V58 M2.4 10 V58" stroke="#8E3A20" stroke-width=".45" opacity=".7"/>
+      <path d="M-1.4 10 V58" stroke="#FBE3C0" stroke-width=".6" opacity=".6"/>
+      <rect x="-5" y="7" width="10" height="3" fill="url(#iconReception-brassV)"/>
+      <rect x="-5" y="58" width="10" height="3" fill="url(#iconReception-brassV)"/>
+      <path d="M-7 0 L7 0 L5.6 -4.4 L-5.6 -4.4Z" fill="url(#iconReception-brassV)" stroke="#5E3F0C" stroke-width=".4"/>
+      <path d="M-6.4 66 L6.4 66 L7.6 72 L-7.6 72Z" fill="url(#iconReception-stoneH)" stroke="#8E3A20" stroke-width=".5"/>
+    </g>
+    <g id="iconReception-rosette">
+      <circle r="4" fill="url(#iconReception-brassV)" stroke="#5E3F0C" stroke-width=".4"/>
+      <circle r="2.7" fill="none" stroke="#5E3F0C" stroke-width="1.6" stroke-dasharray=".9 .8"/>
+      <circle r="1.2" fill="url(#iconReception-gem)"/>
+    </g>
+  </defs>
+
+  <!-- ===== MEDALLION ===== -->
+  <use xlink:href="#iconReception-scallop" href="#iconReception-scallop" fill="#3B1F10" opacity=".35" transform="translate(0 3)" filter="url(#iconReception-soft)"/>
+  <use xlink:href="#iconReception-scallop" href="#iconReception-scallop" fill="url(#iconReception-gold)" stroke="#5E3F0C" stroke-width="1"/>
+  <use xlink:href="#iconReception-scallop" href="#iconReception-scallop" fill="none" stroke="#F6E3A6" stroke-width=".7" opacity=".75" transform="translate(120 120) scale(.965) translate(-120 -120)"/>
+  <use xlink:href="#iconReception-pearls" href="#iconReception-pearls"/>
+  <circle cx="120" cy="120" r="103" fill="url(#iconReception-goldRev)" stroke="#5E3F0C" stroke-width=".9"/>
+  <circle cx="120" cy="120" r="100.6" fill="none" stroke="#F6E3A6" stroke-width=".6" opacity=".7"/>
+  <circle cx="120" cy="120" r="96" fill="none" stroke="#6B0F24" stroke-width="5.6"/>
+  <circle cx="120" cy="120" r="96" fill="none" stroke="#4A0A1A" stroke-width=".5" opacity=".6"/>
+  <circle cx="120" cy="120" r="96" fill="none" stroke="url(#iconReception-gold)" stroke-width="2.8" stroke-dasharray="0 5.03" stroke-linecap="round"/>
+  <circle cx="120" cy="120" r="92.6" fill="url(#iconReception-gold)" stroke="#5E3F0C" stroke-width=".8"/>
+  <circle cx="120" cy="120" r="90" fill="url(#iconReception-field)" stroke="#5E3F0C" stroke-width=".7"/>
+  <circle cx="120" cy="120" r="85.5" fill="none" stroke="#B8862B" stroke-width=".6" stroke-dasharray="1 2.6" opacity=".55"/>
+  <use xlink:href="#iconReception-boss" href="#iconReception-boss"/>
+  <use xlink:href="#iconReception-boss" href="#iconReception-boss" transform="rotate(90 120 120)"/>
+  <use xlink:href="#iconReception-boss" href="#iconReception-boss" transform="rotate(180 120 120)"/>
+  <use xlink:href="#iconReception-boss" href="#iconReception-boss" transform="rotate(270 120 120)"/>
+
+  <!-- ===== MOTIF: palace jharokha at dusk ===== -->
+  <!-- evening sky seen through the arch -->
+  <path d="M82 152 L82.0 125.6 A7.5 7.5 0 0 1 83.8 113.2 A7.5 7.5 0 0 1 89.0 101.7 A7.5 7.5 0 0 1 97.3 92.2 A7.5 7.5 0 0 1 107.9 85.5 A7.5 7.5 0 0 1 120.0 82.0 A7.5 7.5 0 0 1 132.1 85.5 A7.5 7.5 0 0 1 142.7 92.2 A7.5 7.5 0 0 1 151.0 101.7 A7.5 7.5 0 0 1 156.2 113.2 A7.5 7.5 0 0 1 158.0 125.6 L158 152Z" fill="url(#iconReception-sky)"/>
+  <!-- crescent moon and stars -->
+  <circle cx="98" cy="104" r="4.2" fill="#FFF3C4"/>
+  <circle cx="100.2" cy="102.6" r="3.8" fill="#4A0A1A"/>
+  <g fill="#FFF3C4">
+    <circle cx="133" cy="96" r=".8"/><circle cx="145" cy="108" r=".7"/><circle cx="112" cy="94" r=".6"/><circle cx="90" cy="116" r=".6"/><circle cx="150" cy="118" r=".5"/>
+  </g>
+  <!-- distant palace silhouette with lit windows -->
+  <path d="M82 152 L82 130 L88 130 L88 122 C88 118 91 115 94 114 C97 115 100 118 100 122 L100 130 L106 130 L106 127 L110 127 L110 130 L130 130 L130 124 C130 119 135 115 140 114 C145 115 150 119 150 124 L150 130 L154 130 L154 120 L156 117 L158 120 L158 152Z" fill="#3A0712" opacity=".85"/>
+  <path d="M94 114 V110 M140 114 V109" stroke="#3A0712" stroke-width=".8"/>
+  <g fill="#FFD23F">
+    <rect x="92.6" y="124" width="1.6" height="2.4"/><rect x="95.2" y="124" width="1.6" height="2.4"/>
+    <rect x="136" y="124" width="1.6" height="2.4"/><rect x="139.2" y="124" width="1.6" height="2.4"/><rect x="142.4" y="124" width="1.6" height="2.4"/>
+    <rect x="116" y="133" width="1.6" height="2.4"/><rect x="122" y="133" width="1.6" height="2.4"/>
+  </g>
+
+  <!-- lantern halo (behind the facade edges, inside the arch) -->
+  <circle cx="120" cy="110" r="28" fill="url(#iconReception-halo)"/>
+
+  <!-- roof (bangaldar curved eave) -->
+  <path d="M120 47 L120 41" stroke="#8A6118" stroke-width="1.6"/>
+  <ellipse cx="120" cy="40.4" rx="2.6" ry="2.2" fill="url(#iconReception-brassV)" stroke="#5E3F0C" stroke-width=".4"/>
+  <path d="M120 38.4 L121.2 35 L120 32.4 L118.8 35Z" fill="url(#iconReception-brassV)" stroke="#5E3F0C" stroke-width=".35"/>
+  <path d="M60 73 C66 58 92 48 120 47 C148 48 174 58 180 73Z" fill="url(#iconReception-stone)" stroke="#8E3A20" stroke-width=".7"/>
+  <path d="M74 73 C80 62 98 54 120 51 M88 73 C94 64 106 57 120 55 M104 73 C108 66 114 61 120 59 M166 73 C160 62 142 54 120 51 M152 73 C146 64 134 57 120 55 M136 73 C132 66 126 61 120 59" fill="none" stroke="#A8462A" stroke-width=".6" opacity=".8"/>
+  <path d="M60 73 C66 58 92 48 120 47 C148 48 174 58 180 73" fill="none" stroke="url(#iconReception-brassV)" stroke-width="1.8"/>
+  <path d="M70 64 C80 55 98 50 116 49" fill="none" stroke="#FFF1D6" stroke-width="1" opacity=".7"/>
+  <!-- chajja (projecting eave) -->
+  <path d="M54 72 L186 72 L182 80 L58 80Z" fill="url(#iconReception-stoneDark)" stroke="#6B2A14" stroke-width=".6"/>
+  <path d="M54 72.6 H186" stroke="url(#iconReception-brassV)" stroke-width="1.4"/>
+  <path d="M59 79 H181" stroke="#5C2A12" stroke-width="2" stroke-dasharray="1.4 1.6"/>
+  <circle cx="57" cy="83" r="1.6" fill="url(#iconReception-brassV)" stroke="#5E3F0C" stroke-width=".3"/>
+  <circle cx="183" cy="83" r="1.6" fill="url(#iconReception-brassV)" stroke="#5E3F0C" stroke-width=".3"/>
+
+  <!-- facade with the cusped arch cut out -->
+  <path fill-rule="evenodd" d="M62 80 H178 V152 H62Z M82 152 L82.0 125.6 A7.5 7.5 0 0 1 83.8 113.2 A7.5 7.5 0 0 1 89.0 101.7 A7.5 7.5 0 0 1 97.3 92.2 A7.5 7.5 0 0 1 107.9 85.5 A7.5 7.5 0 0 1 120.0 82.0 A7.5 7.5 0 0 1 132.1 85.5 A7.5 7.5 0 0 1 142.7 92.2 A7.5 7.5 0 0 1 151.0 101.7 A7.5 7.5 0 0 1 156.2 113.2 A7.5 7.5 0 0 1 158.0 125.6 L158 152Z" fill="url(#iconReception-stone)" stroke="#8E3A20" stroke-width=".6"/>
+  <!-- gold arch moulding -->
+  <path d="M82 152 L82.0 125.6 A7.5 7.5 0 0 1 83.8 113.2 A7.5 7.5 0 0 1 89.0 101.7 A7.5 7.5 0 0 1 97.3 92.2 A7.5 7.5 0 0 1 107.9 85.5 A7.5 7.5 0 0 1 120.0 82.0 A7.5 7.5 0 0 1 132.1 85.5 A7.5 7.5 0 0 1 142.7 92.2 A7.5 7.5 0 0 1 151.0 101.7 A7.5 7.5 0 0 1 156.2 113.2 A7.5 7.5 0 0 1 158.0 125.6 L158 152" fill="none" stroke="url(#iconReception-brassV)" stroke-width="2"/>
+  <path d="M77 152 V125.6 A49 49 0 0 1 120 77.2 A49 49 0 0 1 163 125.6 V152" fill="none" stroke="#8E3A20" stroke-width=".7"/>
+  <path d="M78.6 152 V125.6 A47.4 47.4 0 0 1 120 78.8 A47.4 47.4 0 0 1 161.4 125.6 V152" fill="none" stroke="#F0C08A" stroke-width=".7" opacity=".8"/>
+  <use xlink:href="#iconReception-rosette" href="#iconReception-rosette" transform="translate(87 88)"/>
+  <use xlink:href="#iconReception-rosette" href="#iconReception-rosette" transform="translate(153 88)"/>
+
+  <!-- attached pillars -->
+  <use xlink:href="#iconReception-pillar" href="#iconReception-pillar" transform="translate(70 84.6)"/>
+  <use xlink:href="#iconReception-pillar" href="#iconReception-pillar" transform="translate(170 84.6)"/>
+
+  <!-- jali balustrade -->
+  <rect x="82" y="134" width="76" height="16" fill="url(#iconReception-jali)" stroke="#8E3A20" stroke-width=".6"/>
+  <rect x="80" y="131" width="80" height="3.4" fill="url(#iconReception-stoneH)" stroke="#8E3A20" stroke-width=".5"/>
+  <path d="M80 131.6 H160" stroke="#F6E3A6" stroke-width=".7"/>
+  <rect x="99" y="134" width="2.4" height="16" fill="url(#iconReception-stoneH)"/>
+  <rect x="118.8" y="134" width="2.4" height="16" fill="url(#iconReception-stoneH)"/>
+  <rect x="138.6" y="134" width="2.4" height="16" fill="url(#iconReception-stoneH)"/>
+
+  <!-- hanging brass lantern -->
+  <path d="M120 83 V95" stroke="#8A6118" stroke-width=".9" stroke-dasharray="1.4 .8"/>
+  <circle cx="120" cy="95.4" r="1.2" fill="none" stroke="#8A6118" stroke-width=".7"/>
+  <path d="M113 102 C113 98.4 116 96.4 120 96.4 C124 96.4 127 98.4 127 102Z" fill="url(#iconReception-brassV)" stroke="#5E3F0C" stroke-width=".5"/>
+  <rect x="111" y="102" width="18" height="2.2" fill="url(#iconReception-brassV)" stroke="#5E3F0C" stroke-width=".4"/>
+  <path d="M111.6 104.2 L114.2 104.2 L114.2 117 L111.6 117Z M125.8 104.2 L128.4 104.2 L128.4 117 L125.8 117Z" fill="#F2B705" stroke="#5E3F0C" stroke-width=".4"/>
+  <rect x="114.2" y="104.2" width="11.6" height="12.8" fill="url(#iconReception-lampLight)" stroke="#5E3F0C" stroke-width=".4"/>
+  <path d="M120 104.2 V117 M114.2 110.6 H125.8" stroke="#8A6118" stroke-width=".6"/>
+  <path d="M117.1 106 L118.6 107.4 L117.1 108.8 L115.6 107.4Z M122.9 106 L124.4 107.4 L122.9 108.8 L121.4 107.4Z M117.1 112.4 L118.6 113.8 L117.1 115.2 L115.6 113.8Z M122.9 112.4 L124.4 113.8 L122.9 115.2 L121.4 113.8Z" fill="#B8862B" opacity=".75"/>
+  <rect x="111" y="117" width="18" height="2.2" fill="url(#iconReception-brassV)" stroke="#5E3F0C" stroke-width=".4"/>
+  <path d="M112.4 119.2 L127.6 119.2 L123.6 124 L116.4 124Z" fill="url(#iconReception-brassV)" stroke="#5E3F0C" stroke-width=".4"/>
+  <circle cx="120" cy="125.6" r="1.6" fill="url(#iconReception-brassV)" stroke="#5E3F0C" stroke-width=".3"/>
+  <path d="M120 127 L118.8 131.6 L121.2 131.6Z" fill="#8B1A2E"/>
+
+  <!-- balcony floor slab and corbelled base -->
+  <path d="M56 150 H184 L182 158 H58Z" fill="url(#iconReception-stoneH)" stroke="#8E3A20" stroke-width=".6"/>
+  <path d="M56 150.8 H184" stroke="url(#iconReception-brassV)" stroke-width="1.4"/>
+  <path d="M58 156 H182" stroke="#8E3A20" stroke-width=".5"/>
+  <path d="M62 158 H178 L172 165 H68Z" fill="url(#iconReception-stoneDark)" stroke="#8E3A20" stroke-width=".5"/>
+  <path d="M68 165 Q71 169 74 165 Q77 169 80 165 Q83 169 86 165 Q89 169 92 165 Q95 169 98 165 Q101 169 104 165 Q107 169 110 165 Q113 169 116 165 Q119 169 122 165 Q125 169 128 165 Q131 169 134 165 Q137 169 140 165 Q143 169 146 165 Q149 169 152 165 Q155 169 158 165 Q161 169 164 165 Q167 169 172 165Z" fill="url(#iconReception-brassV)" stroke="#5E3F0C" stroke-width=".4"/>
+  <path d="M76 168 H164 L156 175 H84Z" fill="url(#iconReception-stoneH)" stroke="#8E3A20" stroke-width=".5"/>
+  <path d="M88 175 H152 L144 181 H96Z" fill="url(#iconReception-stoneDark)" stroke="#8E3A20" stroke-width=".5"/>
+  <path d="M98 181 H142 C140 188 130 193 120 197 C110 193 100 188 98 181Z" fill="url(#iconReception-stoneH)" stroke="#8E3A20" stroke-width=".5"/>
+  <path d="M108 181 C108 186 113 191 120 195 C127 191 132 186 132 181 M114 181 C114 185 117 189 120 191 C123 189 126 185 126 181" fill="none" stroke="#8E3A20" stroke-width=".5"/>
+  <circle cx="120" cy="198.4" r="1.8" fill="url(#iconReception-brassV)" stroke="#5E3F0C" stroke-width=".35"/>
+  <!-- side brackets -->
+  <path d="M58 158 C55 166 60 174 70 176 C66 172 66 166 70 162 L70 158Z" fill="url(#iconReception-stoneDark)" stroke="#8E3A20" stroke-width=".5"/>
+  <path d="M182 158 C185 166 180 174 170 176 C174 172 174 166 170 162 L170 158Z" fill="url(#iconReception-stoneDark)" stroke="#8E3A20" stroke-width=".5"/>
+
+  <!-- two diyas on the balcony ledge -->
+  <use xlink:href="#iconReception-diya" href="#iconReception-diya" transform="translate(91 150)"/>
+  <use xlink:href="#iconReception-diya" href="#iconReception-diya" transform="translate(149 150) scale(-1 1)"/>
+</svg>

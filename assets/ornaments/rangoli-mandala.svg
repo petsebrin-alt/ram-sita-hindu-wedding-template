@@ -1,0 +1,210 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+  <defs>
+    <linearGradient id="rangoli-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8A6118"/>
+      <stop offset=".3" stop-color="#D4AF5A"/>
+      <stop offset=".5" stop-color="#F6E3A6"/>
+      <stop offset=".7" stop-color="#B8862B"/>
+      <stop offset="1" stop-color="#6E4A12"/>
+    </linearGradient>
+    <linearGradient id="rangoli-goldRing" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="800" y2="800">
+      <stop offset="0" stop-color="#8A6118"/>
+      <stop offset=".2" stop-color="#F6E3A6"/>
+      <stop offset=".4" stop-color="#B8862B"/>
+      <stop offset=".55" stop-color="#F6E3A6"/>
+      <stop offset=".75" stop-color="#8A6118"/>
+      <stop offset=".9" stop-color="#D4AF5A"/>
+      <stop offset="1" stop-color="#6E4A12"/>
+    </linearGradient>
+    <linearGradient id="rangoli-pink" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#C2185B"/>
+      <stop offset=".45" stop-color="#E8638F"/>
+      <stop offset=".8" stop-color="#F48FB1"/>
+      <stop offset="1" stop-color="#FFD1DF"/>
+    </linearGradient>
+    <linearGradient id="rangoli-pinkLight" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#F48FB1"/>
+      <stop offset="1" stop-color="#FFD1DF"/>
+    </linearGradient>
+    <linearGradient id="rangoli-maroon" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#4A0A1A"/>
+      <stop offset=".55" stop-color="#6B0F24"/>
+      <stop offset="1" stop-color="#8B1A2E"/>
+    </linearGradient>
+    <radialGradient id="rangoli-maroonDisc" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#8B1A2E"/>
+      <stop offset=".7" stop-color="#6B0F24"/>
+      <stop offset="1" stop-color="#4A0A1A"/>
+    </radialGradient>
+    <linearGradient id="rangoli-marigold" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#E8761A"/>
+      <stop offset="1" stop-color="#F7A41D"/>
+    </linearGradient>
+    <radialGradient id="rangoli-marigoldR" cx=".5" cy=".5" r=".5" fx=".4" fy=".35">
+      <stop offset="0" stop-color="#F7A41D"/>
+      <stop offset="1" stop-color="#E8761A"/>
+    </radialGradient>
+    <radialGradient id="rangoli-ivory" cx=".5" cy=".5" r=".5">
+      <stop offset=".6" stop-color="#FBF5E6"/>
+      <stop offset="1" stop-color="#EFE2C2"/>
+    </radialGradient>
+    <linearGradient id="rangoli-leaf" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#3E6B3A"/>
+      <stop offset="1" stop-color="#6E8F3A"/>
+    </linearGradient>
+    <radialGradient id="rangoli-pearl" cx=".5" cy=".5" r=".5" fx=".36" fy=".32">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset=".5" stop-color="#FBF5E6"/>
+      <stop offset="1" stop-color="#CDBB95"/>
+    </radialGradient>
+    <filter id="rangoli-shadow" x="-5%" y="-5%" width="112%" height="112%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2.2"/>
+      <feOffset dx="2" dy="3" result="o"/>
+      <feFlood flood-color="#3B1A0A" flood-opacity=".3"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- centre lotus -->
+    <path id="rangoli-cPetal" d="M0,-9C-10,-17 -10,-31 0,-40C10,-31 10,-17 0,-9Z" fill="url(#rangoli-pink)" stroke="#B8862B" stroke-width="1.2"/>
+    <path id="rangoli-cPetal2" d="M0,-9C-5.5,-15 -5.5,-25 0,-31C5.5,-25 5.5,-15 0,-9Z" fill="url(#rangoli-marigold)" stroke="#B8862B" stroke-width="1"/>
+    <!-- ring of 8 lotus petals on maroon -->
+    <g id="rangoli-lotus8">
+      <path d="M0,-44C-28,-60 -32,-100 0,-124C32,-100 28,-60 0,-44Z" fill="url(#rangoli-pink)" stroke="#D4AF5A" stroke-width="1.8"/>
+      <path d="M0,-57C-16,-69 -18,-98 0,-114C18,-98 16,-69 0,-57Z" fill="url(#rangoli-pinkLight)" stroke="#C2185B" stroke-width=".8"/>
+      <path d="M0,-64V-106" stroke="#C2185B" stroke-width="1" opacity=".55"/>
+      <path d="M-5,-70C-9,-82 -9,-94 -4,-104M5,-70C9,-82 9,-94 4,-104" fill="none" stroke="#E8638F" stroke-width=".8" opacity=".7"/>
+    </g>
+    <path id="rangoli-gPetal8" d="M0,-44C-14,-62 -12,-92 0,-112C12,-92 14,-62 0,-44Z" fill="url(#rangoli-gold)" stroke="#5E3F0C" stroke-width="1"/>
+    <!-- paisley (buta) -->
+    <g id="rangoli-paisley">
+      <path d="M0,15C-11,15 -17,7 -16,-3C-15,-15 -5,-23 3,-31C7,-35 10,-40 12,-45C17,-36 18,-25 15,-12C13,-1 9,15 0,15Z" fill="url(#rangoli-marigold)" stroke="#B8862B" stroke-width="1.6"/>
+      <path d="M0,9C-7,9 -10.5,4 -10,-2.5C-9.5,-10 -3,-15 2.5,-21C5,-24 7,-27 8.5,-30C11,-24 11.5,-17 9.5,-9C8,-1 5.5,9 0,9Z" fill="url(#rangoli-maroon)" stroke="#4A0A1A" stroke-width=".6"/>
+      <circle cx="-1" cy="0" r="4.6" fill="url(#rangoli-gold)" stroke="#5E3F0C" stroke-width=".6"/>
+      <circle cx="-1" cy="0" r="1.8" fill="url(#rangoli-pearl)"/>
+      <circle cx="3" cy="-12" r="1.6" fill="#F7A41D"/>
+      <circle cx="5.5" cy="-19" r="1.2" fill="#F7A41D"/>
+    </g>
+    <!-- outer lotus petal (maroon, ivory, pink) -->
+    <g id="rangoli-bigPetal">
+      <path d="M0,-230C-44,-248 -48,-296 0,-324C48,-296 44,-248 0,-230Z" fill="url(#rangoli-maroon)" stroke="#D4AF5A" stroke-width="2.2"/>
+      <path d="M0,-243C-28,-257 -30,-292 0,-311C30,-292 28,-257 0,-243Z" fill="url(#rangoli-ivory)" stroke="#B8862B" stroke-width="1.1"/>
+      <path d="M0,-253C-15,-263 -16,-285 0,-299C16,-285 15,-263 0,-253Z" fill="url(#rangoli-pink)" stroke="#B8862B" stroke-width=".8"/>
+      <circle cy="-246.5" r="2.3" fill="url(#rangoli-gold)"/>
+      <circle cy="-316.5" r="2.6" fill="url(#rangoli-gold)" stroke="#5E3F0C" stroke-width=".4"/>
+    </g>
+    <g id="rangoli-mPetal">
+      <path d="M0,-232C-15,-250 -13,-282 0,-302C13,-282 15,-250 0,-232Z" fill="url(#rangoli-marigold)" stroke="#B8862B" stroke-width="1.3"/>
+      <path d="M0,-242C-6,-254 -6,-276 0,-290C6,-276 6,-254 0,-242Z" fill="#F7A41D" stroke="#FBF5E6" stroke-width=".8" opacity=".9"/>
+    </g>
+    <!-- outer mango leaf -->
+    <g id="rangoli-leafO">
+      <path d="M0,-338C-13,-350 -13,-372 0,-389C13,-372 13,-350 0,-338Z" fill="url(#rangoli-leaf)" stroke="#B8862B" stroke-width="1.2"/>
+      <path d="M0,-342V-382" stroke="#D4AF5A" stroke-width=".8"/>
+      <path d="M0,-352L-5,-358M0,-352L5,-358M0,-362L-5,-368M0,-362L5,-368M0,-372L-3.5,-377M0,-372L3.5,-377" stroke="#D4AF5A" stroke-width=".6"/>
+      <circle cy="-395" r="3.1" fill="url(#rangoli-gold)" stroke="#5E3F0C" stroke-width=".4"/>
+    </g>
+    <!-- marigold flower -->
+    <g id="rangoli-flower">
+      <g fill="url(#rangoli-marigoldR)" stroke="#C7631A" stroke-width=".6">
+        <circle cy="-9.5" r="5"/><circle cy="-9.5" r="5" transform="rotate(36)"/><circle cy="-9.5" r="5" transform="rotate(72)"/><circle cy="-9.5" r="5" transform="rotate(108)"/><circle cy="-9.5" r="5" transform="rotate(144)"/><circle cy="-9.5" r="5" transform="rotate(180)"/><circle cy="-9.5" r="5" transform="rotate(216)"/><circle cy="-9.5" r="5" transform="rotate(252)"/><circle cy="-9.5" r="5" transform="rotate(288)"/><circle cy="-9.5" r="5" transform="rotate(324)"/>
+      </g>
+      <circle r="7.5" fill="#E8761A" stroke="#C7631A" stroke-width=".6"/>
+      <circle r="4.2" fill="url(#rangoli-maroonDisc)"/>
+      <circle r="1.6" cx="-.8" cy="-.8" fill="#F7A41D"/>
+    </g>
+    <!-- one 22.5 deg sector of dot rings -->
+    <g id="rangoli-dots">
+      <circle cy="-138" r="2.7"/>
+      <circle cy="-138" r="2.7" transform="rotate(11.25)"/>
+      <circle cy="-388" r="2.2" transform="rotate(11.25)"/>
+    </g>
+    <g id="rangoli-trio">
+      <circle cy="-178" r="2.6"/><circle cx="-4.6" cy="-186" r="2"/><circle cx="4.6" cy="-186" r="2"/><circle cy="-194" r="2.6"/>
+    </g>
+    <path id="rangoli-lobe" d="M0,0L-62,-311.9Q0,-360 62,-311.9Z"/>
+    <path id="rangoli-lobeEdge" d="M-62,-311.9Q0,-360 62,-311.9"/>
+    <radialGradient id="rangoli-ground" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="340">
+      <stop offset=".6" stop-color="#FBF5E6"/>
+      <stop offset=".85" stop-color="#F6ECD4"/>
+      <stop offset="1" stop-color="#EFE2C2"/>
+    </radialGradient>
+    <circle id="rangoli-scallop" cy="-223" r="7.6"/>
+    <g id="rangoli-scDot"><circle cy="-223.5" r="2.4"/><circle cy="-223.5" r="2.4" transform="rotate(11.25)"/></g>
+  </defs>
+
+  <g filter="url(#rangoli-shadow)">
+    <g transform="translate(400 400)">
+      <!-- 16-lobed lotus ground -->
+      <g fill="url(#rangoli-ground)"><use href="#rangoli-lobe"/><use href="#rangoli-lobe" transform="rotate(22.5)"/><use href="#rangoli-lobe" transform="rotate(45)"/><use href="#rangoli-lobe" transform="rotate(67.5)"/><use href="#rangoli-lobe" transform="rotate(90)"/><use href="#rangoli-lobe" transform="rotate(112.5)"/><use href="#rangoli-lobe" transform="rotate(135)"/><use href="#rangoli-lobe" transform="rotate(157.5)"/><use href="#rangoli-lobe" transform="rotate(180)"/><use href="#rangoli-lobe" transform="rotate(202.5)"/><use href="#rangoli-lobe" transform="rotate(225)"/><use href="#rangoli-lobe" transform="rotate(247.5)"/><use href="#rangoli-lobe" transform="rotate(270)"/><use href="#rangoli-lobe" transform="rotate(292.5)"/><use href="#rangoli-lobe" transform="rotate(315)"/><use href="#rangoli-lobe" transform="rotate(337.5)"/></g>
+      <g fill="none" stroke="url(#rangoli-goldRing)" stroke-width="2.2"><use href="#rangoli-lobeEdge"/><use href="#rangoli-lobeEdge" transform="rotate(22.5)"/><use href="#rangoli-lobeEdge" transform="rotate(45)"/><use href="#rangoli-lobeEdge" transform="rotate(67.5)"/><use href="#rangoli-lobeEdge" transform="rotate(90)"/><use href="#rangoli-lobeEdge" transform="rotate(112.5)"/><use href="#rangoli-lobeEdge" transform="rotate(135)"/><use href="#rangoli-lobeEdge" transform="rotate(157.5)"/><use href="#rangoli-lobeEdge" transform="rotate(180)"/><use href="#rangoli-lobeEdge" transform="rotate(202.5)"/><use href="#rangoli-lobeEdge" transform="rotate(225)"/><use href="#rangoli-lobeEdge" transform="rotate(247.5)"/><use href="#rangoli-lobeEdge" transform="rotate(270)"/><use href="#rangoli-lobeEdge" transform="rotate(292.5)"/><use href="#rangoli-lobeEdge" transform="rotate(315)"/><use href="#rangoli-lobeEdge" transform="rotate(337.5)"/></g>
+      <g fill="none" stroke="#B8862B" stroke-width="3.4" stroke-linecap="round" stroke-dasharray="0 8.2" transform="scale(.965)"><use href="#rangoli-lobeEdge"/><use href="#rangoli-lobeEdge" transform="rotate(22.5)"/><use href="#rangoli-lobeEdge" transform="rotate(45)"/><use href="#rangoli-lobeEdge" transform="rotate(67.5)"/><use href="#rangoli-lobeEdge" transform="rotate(90)"/><use href="#rangoli-lobeEdge" transform="rotate(112.5)"/><use href="#rangoli-lobeEdge" transform="rotate(135)"/><use href="#rangoli-lobeEdge" transform="rotate(157.5)"/><use href="#rangoli-lobeEdge" transform="rotate(180)"/><use href="#rangoli-lobeEdge" transform="rotate(202.5)"/><use href="#rangoli-lobeEdge" transform="rotate(225)"/><use href="#rangoli-lobeEdge" transform="rotate(247.5)"/><use href="#rangoli-lobeEdge" transform="rotate(270)"/><use href="#rangoli-lobeEdge" transform="rotate(292.5)"/><use href="#rangoli-lobeEdge" transform="rotate(315)"/><use href="#rangoli-lobeEdge" transform="rotate(337.5)"/></g>
+      <!-- grounds -->
+      <circle r="206" fill="url(#rangoli-ivory)" stroke="url(#rangoli-goldRing)" stroke-width="2.5"/>
+      <circle r="131" fill="url(#rangoli-maroonDisc)"/>
+
+      <!-- scalloped marigold garland ring -->
+      <g fill="url(#rangoli-marigoldR)" stroke="#C7631A" stroke-width=".8">
+        <use href="#rangoli-scallop"/><use href="#rangoli-scallop" transform="rotate(11.25)"/><use href="#rangoli-scallop" transform="rotate(22.5)"/><use href="#rangoli-scallop" transform="rotate(33.75)"/><use href="#rangoli-scallop" transform="rotate(45)"/><use href="#rangoli-scallop" transform="rotate(56.25)"/><use href="#rangoli-scallop" transform="rotate(67.5)"/><use href="#rangoli-scallop" transform="rotate(78.75)"/><use href="#rangoli-scallop" transform="rotate(90)"/><use href="#rangoli-scallop" transform="rotate(101.25)"/><use href="#rangoli-scallop" transform="rotate(112.5)"/><use href="#rangoli-scallop" transform="rotate(123.75)"/><use href="#rangoli-scallop" transform="rotate(135)"/><use href="#rangoli-scallop" transform="rotate(146.25)"/><use href="#rangoli-scallop" transform="rotate(157.5)"/><use href="#rangoli-scallop" transform="rotate(168.75)"/><use href="#rangoli-scallop" transform="rotate(180)"/><use href="#rangoli-scallop" transform="rotate(191.25)"/><use href="#rangoli-scallop" transform="rotate(202.5)"/><use href="#rangoli-scallop" transform="rotate(213.75)"/><use href="#rangoli-scallop" transform="rotate(225)"/><use href="#rangoli-scallop" transform="rotate(236.25)"/><use href="#rangoli-scallop" transform="rotate(247.5)"/><use href="#rangoli-scallop" transform="rotate(258.75)"/><use href="#rangoli-scallop" transform="rotate(270)"/><use href="#rangoli-scallop" transform="rotate(281.25)"/><use href="#rangoli-scallop" transform="rotate(292.5)"/><use href="#rangoli-scallop" transform="rotate(303.75)"/><use href="#rangoli-scallop" transform="rotate(315)"/><use href="#rangoli-scallop" transform="rotate(326.25)"/><use href="#rangoli-scallop" transform="rotate(337.5)"/><use href="#rangoli-scallop" transform="rotate(348.75)"/>
+      </g>
+      <circle r="214" fill="none" stroke="url(#rangoli-marigoldR)" stroke-width="13"/>
+      <circle r="214" fill="none" stroke="#C7631A" stroke-width=".8" stroke-dasharray="2 4"/>
+      <circle r="207.2" fill="none" stroke="url(#rangoli-goldRing)" stroke-width="2"/>
+      <circle r="220.8" fill="none" stroke="url(#rangoli-goldRing)" stroke-width="1.4"/>
+      <g fill="url(#rangoli-pearl)">
+        <use href="#rangoli-scDot"/><use href="#rangoli-scDot" transform="rotate(22.5)"/><use href="#rangoli-scDot" transform="rotate(45)"/><use href="#rangoli-scDot" transform="rotate(67.5)"/><use href="#rangoli-scDot" transform="rotate(90)"/><use href="#rangoli-scDot" transform="rotate(112.5)"/><use href="#rangoli-scDot" transform="rotate(135)"/><use href="#rangoli-scDot" transform="rotate(157.5)"/><use href="#rangoli-scDot" transform="rotate(180)"/><use href="#rangoli-scDot" transform="rotate(202.5)"/><use href="#rangoli-scDot" transform="rotate(225)"/><use href="#rangoli-scDot" transform="rotate(247.5)"/><use href="#rangoli-scDot" transform="rotate(270)"/><use href="#rangoli-scDot" transform="rotate(292.5)"/><use href="#rangoli-scDot" transform="rotate(315)"/><use href="#rangoli-scDot" transform="rotate(337.5)"/>
+      </g>
+
+      <!-- outer petal ring: 16 maroon lotus petals + 16 marigold petals -->
+      <g>
+        <use href="#rangoli-mPetal" transform="rotate(11.25)"/><use href="#rangoli-mPetal" transform="rotate(33.75)"/><use href="#rangoli-mPetal" transform="rotate(56.25)"/><use href="#rangoli-mPetal" transform="rotate(78.75)"/><use href="#rangoli-mPetal" transform="rotate(101.25)"/><use href="#rangoli-mPetal" transform="rotate(123.75)"/><use href="#rangoli-mPetal" transform="rotate(146.25)"/><use href="#rangoli-mPetal" transform="rotate(168.75)"/><use href="#rangoli-mPetal" transform="rotate(191.25)"/><use href="#rangoli-mPetal" transform="rotate(213.75)"/><use href="#rangoli-mPetal" transform="rotate(236.25)"/><use href="#rangoli-mPetal" transform="rotate(258.75)"/><use href="#rangoli-mPetal" transform="rotate(281.25)"/><use href="#rangoli-mPetal" transform="rotate(303.75)"/><use href="#rangoli-mPetal" transform="rotate(326.25)"/><use href="#rangoli-mPetal" transform="rotate(348.75)"/>
+      </g>
+      <g>
+        <use href="#rangoli-bigPetal"/><use href="#rangoli-bigPetal" transform="rotate(22.5)"/><use href="#rangoli-bigPetal" transform="rotate(45)"/><use href="#rangoli-bigPetal" transform="rotate(67.5)"/><use href="#rangoli-bigPetal" transform="rotate(90)"/><use href="#rangoli-bigPetal" transform="rotate(112.5)"/><use href="#rangoli-bigPetal" transform="rotate(135)"/><use href="#rangoli-bigPetal" transform="rotate(157.5)"/><use href="#rangoli-bigPetal" transform="rotate(180)"/><use href="#rangoli-bigPetal" transform="rotate(202.5)"/><use href="#rangoli-bigPetal" transform="rotate(225)"/><use href="#rangoli-bigPetal" transform="rotate(247.5)"/><use href="#rangoli-bigPetal" transform="rotate(270)"/><use href="#rangoli-bigPetal" transform="rotate(292.5)"/><use href="#rangoli-bigPetal" transform="rotate(315)"/><use href="#rangoli-bigPetal" transform="rotate(337.5)"/>
+      </g>
+
+      <!-- outer fringe: mango leaves and marigold flowers -->
+      <g>
+        <use href="#rangoli-leafO"/><use href="#rangoli-leafO" transform="rotate(22.5)"/><use href="#rangoli-leafO" transform="rotate(45)"/><use href="#rangoli-leafO" transform="rotate(67.5)"/><use href="#rangoli-leafO" transform="rotate(90)"/><use href="#rangoli-leafO" transform="rotate(112.5)"/><use href="#rangoli-leafO" transform="rotate(135)"/><use href="#rangoli-leafO" transform="rotate(157.5)"/><use href="#rangoli-leafO" transform="rotate(180)"/><use href="#rangoli-leafO" transform="rotate(202.5)"/><use href="#rangoli-leafO" transform="rotate(225)"/><use href="#rangoli-leafO" transform="rotate(247.5)"/><use href="#rangoli-leafO" transform="rotate(270)"/><use href="#rangoli-leafO" transform="rotate(292.5)"/><use href="#rangoli-leafO" transform="rotate(315)"/><use href="#rangoli-leafO" transform="rotate(337.5)"/>
+      </g>
+      <g>
+        <use href="#rangoli-flower" transform="rotate(11.25) translate(0 -360)"/><use href="#rangoli-flower" transform="rotate(33.75) translate(0 -360)"/><use href="#rangoli-flower" transform="rotate(56.25) translate(0 -360)"/><use href="#rangoli-flower" transform="rotate(78.75) translate(0 -360)"/><use href="#rangoli-flower" transform="rotate(101.25) translate(0 -360)"/><use href="#rangoli-flower" transform="rotate(123.75) translate(0 -360)"/><use href="#rangoli-flower" transform="rotate(146.25) translate(0 -360)"/><use href="#rangoli-flower" transform="rotate(168.75) translate(0 -360)"/><use href="#rangoli-flower" transform="rotate(191.25) translate(0 -360)"/><use href="#rangoli-flower" transform="rotate(213.75) translate(0 -360)"/><use href="#rangoli-flower" transform="rotate(236.25) translate(0 -360)"/><use href="#rangoli-flower" transform="rotate(258.75) translate(0 -360)"/><use href="#rangoli-flower" transform="rotate(281.25) translate(0 -360)"/><use href="#rangoli-flower" transform="rotate(303.75) translate(0 -360)"/><use href="#rangoli-flower" transform="rotate(326.25) translate(0 -360)"/><use href="#rangoli-flower" transform="rotate(348.75) translate(0 -360)"/>
+      </g>
+
+      <!-- dot rings -->
+      <g fill="url(#rangoli-gold)" stroke="#5E3F0C" stroke-width=".35">
+        <use href="#rangoli-dots"/><use href="#rangoli-dots" transform="rotate(22.5)"/><use href="#rangoli-dots" transform="rotate(45)"/><use href="#rangoli-dots" transform="rotate(67.5)"/><use href="#rangoli-dots" transform="rotate(90)"/><use href="#rangoli-dots" transform="rotate(112.5)"/><use href="#rangoli-dots" transform="rotate(135)"/><use href="#rangoli-dots" transform="rotate(157.5)"/><use href="#rangoli-dots" transform="rotate(180)"/><use href="#rangoli-dots" transform="rotate(202.5)"/><use href="#rangoli-dots" transform="rotate(225)"/><use href="#rangoli-dots" transform="rotate(247.5)"/><use href="#rangoli-dots" transform="rotate(270)"/><use href="#rangoli-dots" transform="rotate(292.5)"/><use href="#rangoli-dots" transform="rotate(315)"/><use href="#rangoli-dots" transform="rotate(337.5)"/>
+      </g>
+
+      <!-- paisley ring on ivory ground -->
+      <g>
+        <use href="#rangoli-paisley" transform="translate(0 -170)"/><use href="#rangoli-paisley" transform="rotate(22.5) translate(0 -170)"/><use href="#rangoli-paisley" transform="rotate(45) translate(0 -170)"/><use href="#rangoli-paisley" transform="rotate(67.5) translate(0 -170)"/><use href="#rangoli-paisley" transform="rotate(90) translate(0 -170)"/><use href="#rangoli-paisley" transform="rotate(112.5) translate(0 -170)"/><use href="#rangoli-paisley" transform="rotate(135) translate(0 -170)"/><use href="#rangoli-paisley" transform="rotate(157.5) translate(0 -170)"/><use href="#rangoli-paisley" transform="rotate(180) translate(0 -170)"/><use href="#rangoli-paisley" transform="rotate(202.5) translate(0 -170)"/><use href="#rangoli-paisley" transform="rotate(225) translate(0 -170)"/><use href="#rangoli-paisley" transform="rotate(247.5) translate(0 -170)"/><use href="#rangoli-paisley" transform="rotate(270) translate(0 -170)"/><use href="#rangoli-paisley" transform="rotate(292.5) translate(0 -170)"/><use href="#rangoli-paisley" transform="rotate(315) translate(0 -170)"/><use href="#rangoli-paisley" transform="rotate(337.5) translate(0 -170)"/>
+      </g>
+      <g fill="#8B1A2E">
+        <use href="#rangoli-trio" transform="rotate(11.25)"/><use href="#rangoli-trio" transform="rotate(33.75)"/><use href="#rangoli-trio" transform="rotate(56.25)"/><use href="#rangoli-trio" transform="rotate(78.75)"/><use href="#rangoli-trio" transform="rotate(101.25)"/><use href="#rangoli-trio" transform="rotate(123.75)"/><use href="#rangoli-trio" transform="rotate(146.25)"/><use href="#rangoli-trio" transform="rotate(168.75)"/><use href="#rangoli-trio" transform="rotate(191.25)"/><use href="#rangoli-trio" transform="rotate(213.75)"/><use href="#rangoli-trio" transform="rotate(236.25)"/><use href="#rangoli-trio" transform="rotate(258.75)"/><use href="#rangoli-trio" transform="rotate(281.25)"/><use href="#rangoli-trio" transform="rotate(303.75)"/><use href="#rangoli-trio" transform="rotate(326.25)"/><use href="#rangoli-trio" transform="rotate(348.75)"/>
+      </g>
+      <circle r="131" fill="none" stroke="url(#rangoli-goldRing)" stroke-width="4"/>
+      <circle r="125.5" fill="none" stroke="#D4AF5A" stroke-width=".8"/>
+
+      <!-- inner lotus ring on maroon -->
+      <g>
+        <use href="#rangoli-gPetal8" transform="rotate(22.5)"/><use href="#rangoli-gPetal8" transform="rotate(67.5)"/><use href="#rangoli-gPetal8" transform="rotate(112.5)"/><use href="#rangoli-gPetal8" transform="rotate(157.5)"/><use href="#rangoli-gPetal8" transform="rotate(202.5)"/><use href="#rangoli-gPetal8" transform="rotate(247.5)"/><use href="#rangoli-gPetal8" transform="rotate(292.5)"/><use href="#rangoli-gPetal8" transform="rotate(337.5)"/>
+      </g>
+      <g>
+        <use href="#rangoli-lotus8"/><use href="#rangoli-lotus8" transform="rotate(45)"/><use href="#rangoli-lotus8" transform="rotate(90)"/><use href="#rangoli-lotus8" transform="rotate(135)"/><use href="#rangoli-lotus8" transform="rotate(180)"/><use href="#rangoli-lotus8" transform="rotate(225)"/><use href="#rangoli-lotus8" transform="rotate(270)"/><use href="#rangoli-lotus8" transform="rotate(315)"/>
+      </g>
+      <g fill="url(#rangoli-pearl)">
+        <circle cy="-119" r="3" transform="rotate(22.5)"/><circle cy="-119" r="3" transform="rotate(67.5)"/><circle cy="-119" r="3" transform="rotate(112.5)"/><circle cy="-119" r="3" transform="rotate(157.5)"/><circle cy="-119" r="3" transform="rotate(202.5)"/><circle cy="-119" r="3" transform="rotate(247.5)"/><circle cy="-119" r="3" transform="rotate(292.5)"/><circle cy="-119" r="3" transform="rotate(337.5)"/>
+      </g>
+
+      <!-- centre medallion -->
+      <circle r="46" fill="url(#rangoli-gold)" stroke="#5E3F0C" stroke-width="1"/>
+      <circle r="41" fill="url(#rangoli-maroonDisc)"/>
+      <use href="#rangoli-cPetal2" transform="rotate(22.5)"/><use href="#rangoli-cPetal2" transform="rotate(67.5)"/><use href="#rangoli-cPetal2" transform="rotate(112.5)"/><use href="#rangoli-cPetal2" transform="rotate(157.5)"/><use href="#rangoli-cPetal2" transform="rotate(202.5)"/><use href="#rangoli-cPetal2" transform="rotate(247.5)"/><use href="#rangoli-cPetal2" transform="rotate(292.5)"/><use href="#rangoli-cPetal2" transform="rotate(337.5)"/>
+      <use href="#rangoli-cPetal"/><use href="#rangoli-cPetal" transform="rotate(45)"/><use href="#rangoli-cPetal" transform="rotate(90)"/><use href="#rangoli-cPetal" transform="rotate(135)"/><use href="#rangoli-cPetal" transform="rotate(180)"/><use href="#rangoli-cPetal" transform="rotate(225)"/><use href="#rangoli-cPetal" transform="rotate(270)"/><use href="#rangoli-cPetal" transform="rotate(315)"/>
+      <circle r="11" fill="url(#rangoli-gold)" stroke="#5E3F0C" stroke-width=".8"/>
+      <circle r="6.6" fill="url(#rangoli-maroonDisc)"/>
+      <circle r="3.6" cx="-.4" cy="-.4" fill="url(#rangoli-pearl)"/>
+    </g>
+  </g>
+</svg>

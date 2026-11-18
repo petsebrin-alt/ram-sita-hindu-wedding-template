@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="480" viewBox="0 0 240 480">
+<defs>
+<linearGradient id="lotusBud-g" gradientUnits="userSpaceOnUse" x1="0" y1="306" x2="0" y2="34"><stop offset="0" stop-color="#F3EBCF"/><stop offset=".16" stop-color="#FFE6EE"/><stop offset=".42" stop-color="#FFD1DF"/><stop offset=".66" stop-color="#F48FB1"/><stop offset=".86" stop-color="#E8638F"/><stop offset="1" stop-color="#C2185B"/></linearGradient>
+<linearGradient id="lotusBud-gd" gradientUnits="userSpaceOnUse" x1="0" y1="306" x2="0" y2="34"><stop offset="0" stop-color="#E9DDB8"/><stop offset=".2" stop-color="#F8C6D6"/><stop offset=".5" stop-color="#EE86AA"/><stop offset=".8" stop-color="#D94F83"/><stop offset="1" stop-color="#A3174F"/></linearGradient>
+<linearGradient id="lotusBud-cup" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#A3174F" stop-opacity=".46"/><stop offset=".28" stop-color="#E8638F" stop-opacity="0"/><stop offset=".68" stop-color="#E8638F" stop-opacity="0"/><stop offset="1" stop-color="#A3174F" stop-opacity=".52"/></linearGradient>
+<linearGradient id="lotusBud-hl" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".45" stop-color="#fff" stop-opacity=".62"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<linearGradient id="lotusBud-stem" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2F5530"/><stop offset=".3" stop-color="#6E8F3A"/><stop offset=".55" stop-color="#9DB86A"/><stop offset="1" stop-color="#2F5530"/></linearGradient>
+<filter id="lotusBud-sh" x="-20%" y="-10%" width="140%" height="120%"><feGaussianBlur in="SourceAlpha" stdDeviation="2.6"/><feOffset dx="-1" dy="2" result="b"/><feFlood flood-color="#6B0F24" flood-opacity=".3"/><feComposite in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<path id="lotusBud-bl" d="M120,302C76,298 46,258 48,204C50,144 86,86 122,34C112,100 106,200 120,302Z"/>
+<path id="lotusBud-br" d="M120,302C164,298 194,258 192,204C190,144 156,86 122,34C132,100 136,200 120,302Z"/>
+<path id="lotusBud-l" d="M120,305C80,301 55,262 56,209C57,150 90,92 122,38C113,120 111,220 120,305Z"/>
+<path id="lotusBud-r" d="M120,305C161,300 185,262 184,209C183,150 152,92 122,38C129,120 129,220 120,305Z"/>
+<path id="lotusBud-f" d="M117,306C87,303 63,266 64,212C65,150 96,90 122,37C147,92 172,152 171,212C170,266 147,303 117,306Z"/>
+</defs>
+<path d="M107,290C113,304 115,322 114,342C111,392 104,440 105,480H121C120,440 125,392 126,342C126,322 128,304 134,290Z" fill="url(#lotusBud-stem)"/>
+<path d="M119,312C118,360 113,420 112,476" fill="none" stroke="#C9DB9A" stroke-width="1.4" opacity=".55"/>
+<path d="M115.5,352h0M123.5,378h0M110,424h0M118.5,448h0M113,400h0M121,330h0" stroke="#2F5530" stroke-width="1.8" stroke-linecap="round" opacity=".55"/>
+<g filter="url(#lotusBud-sh)">
+<use href="#lotusBud-bl" fill="url(#lotusBud-gd)"/><use href="#lotusBud-bl" fill="url(#lotusBud-cup)" stroke="#A3174F" stroke-width=".8" stroke-opacity=".45"/>
+<use href="#lotusBud-br" fill="url(#lotusBud-gd)"/><use href="#lotusBud-br" fill="url(#lotusBud-cup)" stroke="#A3174F" stroke-width=".8" stroke-opacity=".45"/>
+</g>
+<g filter="url(#lotusBud-sh)">
+<use href="#lotusBud-l" fill="url(#lotusBud-g)"/><use href="#lotusBud-l" fill="url(#lotusBud-cup)" stroke="#A3174F" stroke-width=".8" stroke-opacity=".45"/>
+<path d="M118,298C92,280 70,240 72,200C74,160 92,118 116,60M110,300C86,270 76,236 80,192" fill="none" stroke="#B8205A" stroke-width=".7" opacity=".3"/>
+</g>
+<g filter="url(#lotusBud-sh)">
+<use href="#lotusBud-r" fill="url(#lotusBud-g)"/><use href="#lotusBud-r" fill="url(#lotusBud-cup)" stroke="#A3174F" stroke-width=".8" stroke-opacity=".45"/>
+<path d="M124,298C150,280 170,240 170,200C170,160 152,118 128,62M132,298C156,268 166,232 164,190" fill="none" stroke="#B8205A" stroke-width=".7" opacity=".3"/>
+<path d="M176,236C182,200 178,160 160,118C170,160 172,200 170,236Z" fill="url(#lotusBud-hl)" opacity=".6"/>
+</g>
+<g filter="url(#lotusBud-sh)">
+<use href="#lotusBud-f" fill="url(#lotusBud-g)"/>
+<path d="M117,302C96,270 88,200 104,120C110,92 116,64 121,44M117,302C108,250 106,170 118,90M118,302C128,250 136,170 128,96M119,302C142,272 154,210 146,150C142,118 132,82 124,48M116,302C84,274 76,230 78,190" fill="none" stroke="#B8205A" stroke-width=".7" opacity=".3"/>
+<path d="M98,284C84,246 82,170 104,96C106,150 104,220 108,286Z" fill="url(#lotusBud-hl)"/>
+<path d="M112,292C134,282 150,250 154,210C156,174 146,140 136,116" fill="none" stroke="#FFF7FA" stroke-width="1.4" opacity=".35"/>
+<use href="#lotusBud-f" fill="url(#lotusBud-cup)" stroke="#A3174F" stroke-width=".8" stroke-opacity=".5"/>
+</g>
+<path d="M104,300C110,310 130,310 136,300C130,305 110,305 104,300Z" fill="#9DB86A" opacity=".55"/>
+</svg>

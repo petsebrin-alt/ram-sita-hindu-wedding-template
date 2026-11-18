@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="160" viewBox="0 0 80 160">
+<defs>
+<radialGradient id="flame01-glow" cx=".5" cy=".62" r=".5"><stop offset="0" stop-color="#FFE27A" stop-opacity=".55"/><stop offset=".45" stop-color="#FFB020" stop-opacity=".22"/><stop offset="1" stop-color="#FF7A1A" stop-opacity="0"/></radialGradient>
+<radialGradient id="flame01-out" cx=".5" cy=".78" r=".62" fx=".5" fy=".82"><stop offset="0" stop-color="#FFFBE6"/><stop offset=".28" stop-color="#FFE27A"/><stop offset=".55" stop-color="#FFB020"/><stop offset=".82" stop-color="#FF7A1A"/><stop offset="1" stop-color="#D2380F"/></radialGradient>
+<linearGradient id="flame01-tip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF7A1A" stop-opacity=".85"/><stop offset=".35" stop-color="#FF7A1A" stop-opacity="0"/><stop offset=".86" stop-color="#D2380F" stop-opacity="0"/><stop offset="1" stop-color="#D2380F" stop-opacity=".55"/></linearGradient>
+<radialGradient id="flame01-mid" cx=".5" cy=".74" r=".6"><stop offset="0" stop-color="#FFFBE6"/><stop offset=".45" stop-color="#FFE27A"/><stop offset="1" stop-color="#FFB020"/></radialGradient>
+<radialGradient id="flame01-core" cx=".5" cy=".62" r=".6"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".6" stop-color="#FFFBE6"/><stop offset="1" stop-color="#FFE27A"/></radialGradient>
+<filter id="flame01-soft" x="-50%" y="-30%" width="200%" height="160%"><feGaussianBlur stdDeviation="3.2"/></filter>
+<path id="flame01-f" d="M40,12C44,34 60,64 61,100C62,126 52,146 40,148C28,146 18,126 19,100C20,64 36,34 40,12Z"/>
+</defs>
+<ellipse cx="40" cy="98" rx="40" ry="62" fill="url(#flame01-glow)"/>
+<use href="#flame01-f" fill="#FF7A1A" opacity=".55" filter="url(#flame01-soft)" transform="translate(40 148) scale(1.12 1.06) translate(-40 -148)"/>
+<use href="#flame01-f" fill="url(#flame01-out)"/>
+<use href="#flame01-f" fill="url(#flame01-tip)"/>
+<path d="M40,40C43,58 53,80 53,106C53,126 47,140 40,141C33,140 27,126 27,106C27,80 37,58 40,40Z" fill="url(#flame01-mid)"/>
+<path d="M40,80C42,92 47,104 47,118C47,130 44,138 40,138C36,138 33,130 33,118C33,104 38,92 40,80Z" fill="url(#flame01-core)"/>
+<ellipse cx="40" cy="145" rx="7" ry="3" fill="#D2380F" opacity=".45"/>
+</svg>
