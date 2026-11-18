@@ -28,7 +28,7 @@ To publish it, upload the whole folder to any static host (Netlify, Vercel, GitH
 | 06 | **Ram Bhakt Hanuman** (`#hanuman`) | Hanuman kneels in prayer; a glow builds at his heart, which opens to show Ram & Sita. Verse from the Hanuman Chalisa. |
 | 07 | **Our Story** (`#story`) | A gold thread draws down the page. Four round badges, embroidered lotus on the front, turn over one by one to show Ram & Sita, each with one short line: Pushpa Vatika, Shiva Dhanush, Swayamvar, Saptapadi. Tap a badge to turn it again. |
 | 08 | **Our Families** (`#families`) | Shri Dasharatha & Smt. Kausalya (Ayodhya), and Shri Janaka & Smt. Sunaina (Mithila). |
-| 09 | **Wedding Events** (`#events`) | "Through the Palace Doors": every celebration has its own palace window with carved doors and a marigold toran. The doors open onto that event's card, then the next window rises into place and opens: Engagement, Haldi, Mehendi, Sangeet, Wedding, Reception. |
+| 09 | **Wedding Events** (`#events`) | "Through the Palace Doors": every celebration has its own palace window with carved doors. The doors open onto that event's card, then the next window rises into place and opens: Engagement, Haldi, Mehendi, Sangeet, Wedding, Reception. |
 | 10 | **Wishing Wall** (`#wishes`) | Guests write a blessing, and it floats onto the wall with a petal burst. |
 | 11 | **RSVP** (`#rsvp`) | A maroon envelope opens when you tap the gold seal. The card slides out with an "Accept" or "Decline with blessings" choice, and a button sends the reply on WhatsApp. |
 | 12 | **The Venue** (`#venue`) | An embedded Google Map inside an arch, the venue address, where each event takes place, and directions buttons. |

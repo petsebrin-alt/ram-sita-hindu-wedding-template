@@ -319,7 +319,6 @@
       gsap.fromTo(el, { y: () => -s * innerHeight }, { y: () => s * innerHeight, ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true, invalidateOnRefresh: true } });
     });
     // gentle drifts on decorative pieces
-    $$('.toran-top, .garland-top').forEach(el => gsap.fromTo(el, { yPercent: -18 }, { yPercent: 0, ease: 'none', scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'top 30%', scrub: true } }));
     $$('.corner').forEach(el => gsap.from(el, { opacity: 0, scale: .6, duration: 1.2, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 92%', once: true } }));
     gsap.fromTo('.couple__center img', { rotate: -25, scale: .6 }, { rotate: 0, scale: 1, ease: 'none', scrollTrigger: { trigger: '.couple__center', start: 'top bottom', end: 'center center', scrub: true } });
     gsap.from('.person__portrait', { y: 80, opacity: 0, duration: 1.4, ease: 'power3.out', stagger: .2, scrollTrigger: { trigger: '.couple__grid', start: 'top 80%', once: true } });

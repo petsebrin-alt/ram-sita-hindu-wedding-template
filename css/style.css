@@ -160,11 +160,6 @@ section { position: relative; }
 .corner--tr { top: 18px; right: 18px; }
 .corner--bl { bottom: 18px; left: 18px; }
 .corner--br { bottom: 18px; right: 18px; }
-.toran-top, .garland-top {
-  position: absolute; top: -4px; left: 50%; transform: translateX(-50%);
-  width: min(1200px, 130vw); max-width: none; pointer-events: none; z-index: 1;
-}
-.garland-top--jasmine { top: -10px; opacity: .95; }
 
 /* =========================================================================
    PRELOADER
@@ -655,7 +650,7 @@ html.anim .hn__glow { opacity: 0; }
 /* =========================================================================
    06 · FAMILIES
    ========================================================================= */
-.families { padding: clamp(150px, 22vh, 220px) 0 clamp(90px, 14vh, 150px); overflow: hidden; }
+.families { padding: clamp(100px, 15vh, 160px) 0 clamp(90px, 14vh, 150px); overflow: hidden; }
 .families__grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: clamp(20px, 3vw, 40px); align-items: stretch; }
 .family {
   text-align: center; padding: clamp(28px, 4vw, 44px) clamp(18px, 3vw, 34px);
@@ -716,7 +711,6 @@ html.anim .hn__glow { opacity: 0; }
   box-shadow: 0 0 0 6px #6b4410, 0 0 0 9px var(--gold-500), 0 0 0 14px #3b1f10, 0 0 0 16px var(--gold-600), 0 40px 90px rgba(0, 0, 0, .65);
 }
 .ev-window__light { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 55%, #fff6d2 0%, #ffd27a 30%, #f08a24 62%, #6a2306 100%); opacity: .85; }
-.ev-window__toran { position: absolute; z-index: 4; top: -13%; left: -10%; width: 120%; max-width: none; pointer-events: none; filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .5)); }
 .ev-window .event-card { position: absolute; inset: 14px; width: auto; opacity: 1; visibility: visible; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
 .event-card {
   grid-area: 1 / 1;
@@ -755,13 +749,13 @@ html:not(.anim) .events__viewport, html:not(.anim) .events__track { position: st
 html:not(.anim) .events__track { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 40px 26px; max-width: 1180px; margin: 0 auto; }
 html:not(.anim) .ev-unit { width: auto; height: auto; margin: 0; }
 html:not(.anim) .ev-window { height: auto; box-shadow: none; }
-html:not(.anim) .door, html:not(.anim) .ev-window__light, html:not(.anim) .ev-window__toran, html:not(.anim) .events__progress { display: none; }
+html:not(.anim) .door, html:not(.anim) .ev-window__light, html:not(.anim) .events__progress { display: none; }
 html:not(.anim) .ev-window .event-card { position: relative; inset: auto; }
 
 /* =========================================================================
    08 · WISHING WALL
    ========================================================================= */
-.wishes { padding: clamp(150px, 22vh, 220px) 0 clamp(90px, 14vh, 150px); background: var(--paper-noise), linear-gradient(180deg, var(--pink-100), #fbefe9 60%, var(--ivory-100)); overflow: hidden; }
+.wishes { padding: clamp(100px, 15vh, 160px) 0 clamp(90px, 14vh, 150px); background: var(--paper-noise), linear-gradient(180deg, var(--pink-100), #fbefe9 60%, var(--ivory-100)); overflow: hidden; }
 .wishes__layout { display: grid; grid-template-columns: minmax(280px, 380px) 1fr; gap: clamp(26px, 4vw, 54px); align-items: start; }
 .wish-form {
   position: relative; padding: 70px 30px 30px;
@@ -1024,8 +1018,7 @@ html:not(.anim) .ev-window .event-card { position: relative; inset: auto; }
   .events__arch--r { right: -46vw; }
   .events { --ev-h: min(500px, calc(100svh - var(--header-h) - 290px)); }
   .events__viewport { top: calc(var(--header-h) + 128px); bottom: 10vh; }
-  .ev-window__toran { top: -8%; }
-  .event-card__desc { display: none; }
+    .event-card__desc { display: none; }
   .contact__bell { display: none; }
   .corner { width: 64px; }
   .info-card { border-radius: 120px 120px 16px 16px; }
