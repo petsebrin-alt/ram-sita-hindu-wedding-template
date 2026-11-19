@@ -30,7 +30,7 @@ To publish it, upload the whole folder to any static host (Netlify, Vercel, GitH
 | 07 | **Our Story** (`#story`) | A gold thread draws down the page. Four round badges, embroidered lotus on the front, turn over one by one to show the couple’s photos, each with one short line: Pushpa Vatika, Shiva Dhanush, Swayamvar, Saptapadi. Tap a badge to turn it again. |
 | 08 | **Our Families** (`#families`) | One big gold medallion per family with both parents together. As you scroll, a single gold line with a glowing tip draws each arched frame (up, over the arch, down and along the bottom), then the card fills in and five lotuses bloom on the bottom line. |
 | 09 | **Wedding Events** (`#events`) | "Through the Palace Doors": one palace window per celebration. The doors open on a picture of the event, a details card pops up with a glowing Get directions button (Google Maps), then the doors close and the next window rises into place. |
-| 10 | **Wishing Wall** (`#wishes`) | A peacock perched on a golden lotus frame holds a hanging scroll that shows one blessing at a time, with arrows to move through them (it also turns by itself every few seconds). Guests write a blessing below; the lotus carries it up to the scroll, petals fall, and the new blessing appears first. |
+| 10 | **Wishing Wall** (`#wishes`) | The whole section sits in a soft pink sunset sky. Jatayu, the divine eagle, flies above a golden lotus frame holding a hanging scroll that shows one blessing at a time, with arrows to move through them (it also turns by itself every few seconds). Guests write a blessing below; the lotus carries it up to the scroll, petals fall, and the new blessing appears first. |
 | 11 | **RSVP** (`#rsvp`) | A maroon envelope opens to a simple card: "Dear (your name)", a short quote and the invitation from Sita & Ram, with one Accept the invitation button. On accepting, the card turns to show Ram & Sita with a thank-you and a shower of petals, and a Replay button to see it again. No sound plays here. |
 | 12 | **Venue & Travel** (`#venue`) | Shri Ram Mandir in a gold arch, Rambagh Palace with Get directions and Open in Maps, then three cards: By Road & Bus, By Train & Air, Where to Stay. |
 | 13 | **Contact** (`#contact`) | Family contacts with call, WhatsApp and email buttons. |
@@ -87,7 +87,7 @@ assets/
 │               lotus-zari-drawing.json (lotus drawing, stitched in gold and filled pink as it scrolls into view in Vadhu & Vara and Our Story)
 │               temple-flag-saffron (.png/.webp, Ram Mandir flag from your photo, on the Save the Date poles)
 ├── intro/      scene-portrait · scene-wide (.webp, the opening background) · layer-sita · layer-sita-end · layer-ram · layer-blossom · layer-feather (.webp, the moving pieces) · hands-lotus-bud · hands-lotus-bloom (your two source pictures)
-├── wishes/     peacock-scroll-board.webp (the Wishing Wall board)
+├── wishes/     jatayu-scroll-board.webp (the Wishing Wall board), wishes-bg-sky.webp (its sky background)
 ├── story/      lotus-embroidery (.png/.webp, badge front) · story-couple-train · story-couple-promise · story-couple-temple · story-couple-sunset (.webp, badge backs)
 └── effects/    sparkle-gold · particles-gold · light-rays · firework-gold · firework-pink
 ```

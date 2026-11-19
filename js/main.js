@@ -959,7 +959,7 @@
         const s = scroll.getBoundingClientRect();
         petalBurst(s.left + s.width / 2, s.top + s.height / 2, 22);
         show(0, 1);
-        note.textContent = 'Your blessing now hangs on the peacock’s scroll. Dhanyavaad!';
+        note.textContent = 'Your blessing now hangs on Jatayu’s scroll. Dhanyavaad!';
       };
       if (!ANIM || !lotus) { land(); return; }
       // the lotus lifts off the form and carries the wish up to the scroll (it follows the scroll even while the page moves)
