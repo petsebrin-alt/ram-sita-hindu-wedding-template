@@ -950,7 +950,7 @@
     let opened = false;
     function openEnvelope() {
       if (opened) return; opened = true;
-      env.classList.add('is-open'); bell();
+      env.classList.add('is-open');
       if (!ANIM) { flap.style.transform = 'rotateX(180deg)'; flap.style.zIndex = 0; card.style.zIndex = 6; card.style.height = 'auto'; card.style.transform = 'translateY(-14%)'; return; }
       gsap.timeline()
         .to(seal, { scale: 1.35, autoAlpha: 0, duration: .45, ease: 'back.in(2)' })
@@ -969,7 +969,6 @@
     function showDone(r, celebrate) {
       const name = r.name || 'dear guest';
       $('#rsvpThanksTitle').textContent = `Thank you, ${name}!`;
-      $('#rsvpWhatsApp').href = `https://wa.me/${CONFIG.rsvpWhatsApp}?text=${encodeURIComponent(`Namaste! ${name} joyfully accepts the invitation to ${CONFIG.couple}'s wedding on 27 March 2027 in Jaipur.`)}`;
       const swap = () => { form.hidden = true; done.hidden = false; };
       if (!ANIM || !celebrate) { swap(); return; }
       // the card turns over to Ram & Sita, and petals rain down
@@ -978,13 +977,22 @@
         .add(swap)
         .fromTo(card, { rotateY: -90 }, { rotateY: 0, duration: .55, ease: 'power2.out' })
         .from('.rsvp-card__couple img', { y: 30, scale: .85, opacity: 0, duration: .8, ease: 'back.out(1.6)' }, '-=.2')
-        .from('#rsvpThanksTitle, #rsvpThanksText, #rsvpWhatsApp', { y: 16, opacity: 0, stagger: .1, duration: .6, ease: 'power3.out' }, '-=.4');
+        .from('#rsvpThanksTitle, #rsvpThanksText, #rsvpReplay', { y: 16, opacity: 0, stagger: .1, duration: .6, ease: 'power3.out' }, '-=.4');
       const b = card.getBoundingClientRect();
       [0, 350, 700].forEach(d => setTimeout(() => petalBurst(b.left + b.width * (.3 + Math.random() * .4), b.top + b.height * .3, 28), d));
     }
     $('#rsvpAccept').addEventListener('click', () => {
       const r = { name: nameIn.value.trim().slice(0, 60), status: 'accept', at: new Date().toISOString() };
-      store.set(KEY, r); bell(); showDone(r, true);
+      store.set(KEY, r); showDone(r, true);
+    });
+    // Replay: turn back to the invitation so it can be accepted again
+    $('#rsvpReplay').addEventListener('click', () => {
+      const swap = () => { done.hidden = true; form.hidden = false; };
+      if (!ANIM) return swap();
+      gsap.timeline()
+        .to(card, { rotateY: 90, duration: .4, ease: 'power2.in' })
+        .add(swap)
+        .fromTo(card, { rotateY: -90 }, { rotateY: 0, duration: .5, ease: 'power2.out' });
     });
     const saved = store.get(KEY, null);
     if (saved && saved.status === 'accept') { nameIn.value = saved.name || ''; showDone(saved, false); }
