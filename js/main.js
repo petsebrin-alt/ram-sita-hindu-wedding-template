@@ -317,58 +317,66 @@
         const id = 'sl' + si;
         const svg = el('svg', { viewBox: `0 0 ${data.w} ${data.h}`, 'aria-hidden': 'true' }, slot);
         const defs = el('defs', {}, svg);
-        const grad = (gid, a, b) => { const g = el('linearGradient', { id: gid, x1: 0, y1: 0, x2: 1, y2: 1 }, defs); el('stop', { offset: 0, 'stop-color': a }, g); el('stop', { offset: 1, 'stop-color': b }, g); };
-        grad(id + 'pink', '#fbc3d6', '#e7709d'); grad(id + 'deep', '#f39ab9', '#c94478'); grad(id + 'light', '#fde3ec', '#f2a3c0'); grad(id + 'leaf', '#f6dc95', '#b9862a');
-        // satin stitch texture laid over every fill
-        const pat = el('pattern', { id: id + 'satin', width: 6, height: 6, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(35)' }, defs);
-        el('line', { x1: 0, y1: 0, x2: 0, y2: 6, stroke: 'rgba(255,255,255,.45)', 'stroke-width': 1.4 }, pat);
+        const grad = (gid, stops, units) => {
+          const g = el('linearGradient', Object.assign({ id: gid, x1: 0, y1: 0, x2: 1, y2: 1 }, units || {}), defs);
+          stops.forEach(([o, c]) => el('stop', { offset: o, 'stop-color': c }, g));
+        };
+        grad(id + 'pink', [[0, '#fcd0de'], [1, '#e8769f']]);
+        grad(id + 'deep', [[0, '#f6a6c1'], [1, '#cf4a7f']]);
+        grad(id + 'light', [[0, '#fde7ef'], [1, '#f3aac5']]);
+        grad(id + 'leaf', [[0, '#b8dc9c'], [.55, '#79b067'], [1, '#3f7a44']]);
+        // gold that catches the light along the whole drawing
+        grad(id + 'gold', [[0, '#8a5a14'], [.22, '#e9c46f'], [.4, '#fff1c4'], [.58, '#c99a3a'], [.78, '#f2d585'], [1, '#8a5a14']],
+          { gradientUnits: 'userSpaceOnUse', x1: 0, y1: 0, x2: data.w, y2: data.h });
+        // satin stitch texture on petals and leaves
+        const sat = el('pattern', { id: id + 'satin', width: 5, height: 5, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(35)' }, defs);
+        el('line', { x1: 0, y1: 0, x2: 0, y2: 5, stroke: 'rgba(255,255,255,.4)', 'stroke-width': 1.2 }, sat);
+        // tiny gold beads strung along the thread
+        const bead = el('pattern', { id: id + 'beads', width: 5, height: 5, patternUnits: 'userSpaceOnUse' }, defs);
+        el('circle', { cx: 2.5, cy: 2.5, r: 1.7, fill: 'rgba(255,248,215,.55)' }, bead);
+        el('circle', { cx: 2, cy: 2, r: .7, fill: 'rgba(255,255,255,.85)' }, bead);
         const mask = el('mask', { id: id + 'mask', maskUnits: 'userSpaceOnUse', x: 0, y: 0, width: data.w, height: data.h }, defs);
 
-        // petals (under the gold outlines)
         const fillG = el('g', {}, svg);
         const fills = data.fills.slice().reverse().map(f => {
           const g = el('g', { opacity: ANIM ? 0 : 1 }, fillG);
-          el('path', { d: f.d, fill: `url(#${id}${f.k})`, opacity: .92 }, g);
+          el('path', { d: f.d, fill: `url(#${id}${f.k})` }, g);
           el('path', { d: f.d, fill: `url(#${id}satin)` }, g);
           return g;
         });
-        // gold zari thread: running stitches, a darker twist and a light highlight
-        const thread = el('g', { class: 'sl-thread', mask: ANIM ? `url(#${id}mask)` : '' }, svg);
-        const reveals = [];
-        data.lines.forEach(l => {
-          el('path', { d: l.d, stroke: '#94640f', 'stroke-width': 8 }, thread);
-          el('path', { d: l.d, stroke: '#e6bd5f', 'stroke-width': 5.6, 'stroke-dasharray': '9 2.4' }, thread);
-          el('path', { d: l.d, stroke: '#fff3cf', 'stroke-width': 1.8, 'stroke-dasharray': '4 7.4', opacity: .85 }, thread);
-          if (ANIM) reveals.push(el('path', { d: l.d, fill: 'none', stroke: '#fff', 'stroke-width': 14, 'stroke-linecap': 'round' }, mask));
-        });
+        // one seamless gold thread (the drawing's own line shape), beaded, with a fine dark edge
+        const thread = el('g', { mask: ANIM ? `url(#${id}mask)` : '' }, svg);
+        el('path', { d: data.thread, fill: `url(#${id}gold)`, stroke: '#7a4f10', 'stroke-width': .7, 'stroke-linejoin': 'round', 'fill-rule': 'evenodd' }, thread);
+        el('path', { d: data.thread, fill: `url(#${id}beads)`, 'fill-rule': 'evenodd' }, thread);
         if (!ANIM) return;
-        const needle = el('g', { class: 'sl-needle' }, svg);
+        const reveals = data.lines.map(l => el('path', { d: l.d, fill: 'none', stroke: '#fff', 'stroke-width': 26, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, mask));
+        const needle = el('g', { opacity: 0 }, svg);
         el('line', { x1: 0, y1: -40, x2: 0, y2: 6, stroke: '#8f8f8f', 'stroke-width': 3.4, 'stroke-linecap': 'round' }, needle);
-        el('circle', { cx: 0, cy: 6, r: 5 }, needle);
+        el('circle', { cx: 0, cy: 6, r: 5, fill: '#f4f4f4', stroke: '#8a8a8a', 'stroke-width': 1.2 }, needle);
 
         const lens = reveals.map(r => { const L = r.getTotalLength(); r.style.strokeDasharray = L; r.style.strokeDashoffset = L; return L; });
-        const tl = gsap.timeline({ paused: true });
-        const N = reveals.length, SPAN = 4.2;
+        const tl = gsap.timeline({ paused: true, onComplete: () => thread.removeAttribute('mask') });
+        const N = reveals.length, SPAN = 3.8;
+        let lead = -1;
         reveals.forEach((r, i) => {
-          const at = (i / N) * SPAN, dur = .18 + Math.min(lens[i], 400) / 420;
           tl.to(r, {
-            strokeDashoffset: 0, duration: dur, ease: 'none',
+            strokeDashoffset: 0, duration: .25 + Math.min(lens[i], 400) / 380, ease: 'sine.inOut',
             onUpdate() {
-              if (i < tl._lead) return;
-              tl._lead = i;
+              if (i < lead) return;
+              lead = i;
               const pt = r.getPointAtLength(lens[i] * this.progress());
               needle.setAttribute('transform', `translate(${pt.x} ${pt.y})`);
             }
-          }, at);
+          }, (i / N) * SPAN);
         });
-        tl._lead = 0;
-        tl.set(needle, { opacity: 1 }, 0)
-          .to(needle, { opacity: 0, duration: .4 }, SPAN + .5);
-        fills.forEach((g, i) => tl.to(g, { opacity: 1, duration: .45, ease: 'power1.out' }, SPAN * .55 + i * .11));
-        ScrollTrigger.create({ trigger: slot, start: 'top 92%', once: true, onEnter: () => tl.play() });
+        tl.set(needle, { attr: { opacity: 1 } }, 0)
+          .to(needle, { attr: { opacity: 0 }, duration: .5 }, SPAN + .6);
+        fills.forEach((g, i) => tl.to(g, { attr: { opacity: 1 }, duration: .6, ease: 'sine.out' }, SPAN * .45 + i * .085));
+        ScrollTrigger.create({ trigger: slot, start: 'top 90%', once: true, onEnter: () => tl.play() });
       });
     }).catch(() => {});
   }
+
 
   /* ---------------------------------------------------------------------
      06 · FAMILIES — each card's gold outline is drawn stroke by stroke as you
@@ -378,23 +386,35 @@
     const cards = $$('.family');
     if (!cards.length) return;
     const NS = 'http://www.w3.org/2000/svg';
-    const arch = (w, h, d, side) => {
-      // one half of the arch outline, from bottom centre round to top centre, inset by d
+    const el = (tag, attrs, parent) => { const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; };
+    // ONE continuous line: from the bottom-left corner up the left side, over the arch,
+    // down the right side and back along the bottom line to where it started (inset by d)
+    const loop = (w, h, d) => {
       const R = Math.max(0, Math.min(200, w / 2, h / 2) - d), r = Math.max(0, 18 - d);
-      const L = d, T = d, B = h - d, X = side < 0 ? d : w - d, cx = w / 2, sx = side < 0 ? 1 : -1;
-      return `M${cx} ${B} H${X + sx * r} Q${X} ${B} ${X} ${B - r} V${T + R} A${R} ${R} 0 0 ${side < 0 ? 1 : 0} ${X + sx * R} ${T} H${cx}`;
+      const L = d, T = d, Rt = w - d, B = h - d;
+      return `M${L} ${B - r} V${T + R} A${R} ${R} 0 0 1 ${L + R} ${T} H${Rt - R} A${R} ${R} 0 0 1 ${Rt} ${T + R}` +
+             ` V${B - r} Q${Rt} ${B} ${Rt - r} ${B} H${L + r} Q${L} ${B} ${L} ${B - r}`;
     };
-    cards.forEach(card => {
-      const svg = document.createElementNS(NS, 'svg');
-      svg.setAttribute('class', 'family__outline'); svg.setAttribute('aria-hidden', 'true');
-      const paths = [];
-      [['o1', 1], ['o2', 9]].forEach(([cls, d]) => [-1, 1].forEach(side => {
-        const p = document.createElementNS(NS, 'path');
-        p.setAttribute('class', cls); p.setAttribute('pathLength', '1');
-        p._d = d; p._side = side; svg.appendChild(p); paths.push(p);
-      }));
+    cards.forEach((card, ci) => {
+      const id = 'fam' + ci;
+      const svg = el('svg', { class: 'family__outline', 'aria-hidden': 'true' });
+      const defs = el('defs', {}, svg);
+      const glow = el('filter', { id: id + 'glow', x: '-30%', y: '-30%', width: '160%', height: '160%' }, defs);
+      el('feGaussianBlur', { stdDeviation: 3 }, glow);
+      const spk = el('radialGradient', { id: id + 'spark' }, defs);
+      [[0, '#ffffff', 1], [.25, '#fff6d0', 1], [.6, '#f5c860', .75], [1, '#e8a83a', 0]].forEach(([o, c, op]) => el('stop', { offset: o, 'stop-color': c, 'stop-opacity': op }, spk));
+
+      const mk = (cls, w, extra) => el('path', Object.assign({ class: cls, pathLength: 1, 'stroke-width': w }, extra || {}), svg);
+      const outer = { halo: mk('o1 halo', 6, { stroke: '#f3cf76', opacity: .4, filter: `url(#${id}glow)` }), line: mk('o1', 2.2) };
+      const inner = { halo: mk('o2 halo', 3, { stroke: '#f3cf76', opacity: .3, filter: `url(#${id}glow)` }), line: mk('o2', 1.1) };
+      // the lightning: a short white-gold streak and a spark at the tip of the moving line
+      const bolt = mk('o1 glint', 4, { stroke: '#fffbe8', filter: `url(#${id}glow)`, opacity: 0 });
+      const boltCore = mk('o1 glint', 1.6, { stroke: '#ffffff', opacity: 0 });
+      const spark = el('circle', { r: 11, fill: `url(#${id}spark)`, opacity: 0 }, svg);
       card.prepend(svg);
-      const flowers = [0, 1, 2, 3, 4, 5, 6].map(() => {
+
+      // five lotus flowers resting along the bottom line
+      const flowers = [0, 1, 2, 3, 4].map(() => {
         const f = document.createElement('img');
         f.className = 'family__flower'; f.src = 'assets/flowers/lotus-photo-bloom-01.webp'; f.alt = ''; f.setAttribute('aria-hidden', 'true');
         card.appendChild(f); return f;
@@ -402,27 +422,49 @@
       const layout = () => {
         const w = card.offsetWidth, h = card.offsetHeight;
         svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
-        paths.forEach(p => p.setAttribute('d', arch(w, h, p._d, p._side)));
-        const R = Math.min(200, w / 2, h / 2), k = 1 - Math.SQRT1_2;
-        [[w / 2, 0], [R * k, R * k], [w - R * k, R * k], [0, h * .58], [w, h * .58], [10, h - 10], [w - 10, h - 10]]
-          .forEach(([x, y], i) => { flowers[i].style.left = x + 'px'; flowers[i].style.top = y + 'px'; });
+        const o = loop(w, h, 1), n = loop(w, h, 9);
+        [outer.halo, outer.line, bolt, boltCore].forEach(p => p.setAttribute('d', o));
+        [inner.halo, inner.line].forEach(p => p.setAttribute('d', n));
+        [.1, .3, .5, .7, .9].forEach((x, i) => { flowers[i].style.left = (w * x) + 'px'; flowers[i].style.top = (h - 6) + 'px'; });
       };
       layout();
       if ('ResizeObserver' in window) new ResizeObserver(layout).observe(card);
       if (!ANIM) return;
+
       const content = $$(':scope > :not(.family__outline):not(.family__flower)', card);
       gsap.set(card, { '--fill': 0 });
-      gsap.set(paths, { strokeDasharray: 1, strokeDashoffset: 1 });
-      gsap.set(content, { opacity: 0, y: 18 });
-      gsap.set(flowers, { scale: 0, rotate: -90, opacity: 0 });
-      gsap.timeline({ scrollTrigger: { trigger: card, start: 'top 88%', end: 'top 22%', scrub: .8 } })
-        .to(paths.filter(p => p._d === 1), { strokeDashoffset: 0, duration: 1, ease: 'power1.inOut' }, 0)
-        .to(paths.filter(p => p._d === 9), { strokeDashoffset: 0, duration: 1, ease: 'power1.inOut' }, .3)
-        .to(card, { '--fill': 1, duration: .6 }, .9)
-        .to(content, { opacity: 1, y: 0, duration: .5, stagger: .12 }, 1.05)
-        .to(flowers, { scale: 1, rotate: 0, opacity: 1, duration: .45, stagger: .07, ease: 'back.out(2)' }, 1.5);
+      gsap.set(content, { opacity: 0, y: 16 });
+      gsap.set(flowers, { scale: 0, y: 10, opacity: 0 });
+      const TAIL = .045;
+      const pen = { a: 0, b: 0 };   // a: outer line drawn so far, b: inner line drawn so far
+      const draw = () => {
+        const a = pen.a, b = pen.b;
+        [outer.halo, outer.line].forEach(p => { p.style.strokeDasharray = '1 2'; p.style.strokeDashoffset = 1 - a; });
+        [inner.halo, inner.line].forEach(p => { p.style.strokeDasharray = '1 2'; p.style.strokeDashoffset = 1 - b; });
+        const live = a > .001 && a < .999;
+        [bolt, boltCore].forEach(p => {
+          p.style.strokeDasharray = `${TAIL} 2`; p.style.strokeDashoffset = TAIL - a;
+          p.setAttribute('opacity', live ? 1 : 0);
+        });
+        spark.setAttribute('opacity', live ? 1 : 0);
+        if (live) {
+          const len = outer.line.getTotalLength(), pt = outer.line.getPointAtLength(len * a);
+          spark.setAttribute('cx', pt.x); spark.setAttribute('cy', pt.y);
+        }
+      };
+      draw();
+      // drawn slowly as you scroll: up, over the arch, down, and along the bottom to close
+      gsap.timeline({ scrollTrigger: { trigger: card, start: 'top 92%', end: 'top 12%', scrub: 1.2 } })
+        .to(pen, { a: 1, duration: 3, ease: 'none', onUpdate: draw }, 0)
+        .to(pen, { b: 1, duration: 3, ease: 'none', onUpdate: draw }, .4)
+        .to(card, { '--fill': 1, duration: .6 }, 3.2)
+        .to(content, { opacity: 1, y: 0, duration: .5, stagger: .14 }, 3.3)
+        .to(flowers, { scale: 1, y: 0, opacity: 1, duration: .45, stagger: { each: .08, from: 'center' }, ease: 'back.out(1.8)' }, 3.7);
     });
   }
+
+
+
 
   /* ---------------------------------------------------------------------
      Generic reveals + parallax
@@ -722,11 +764,13 @@
     const dots = $$('.events__progress li');
     const track = $('.events__track'), vp = $('.events__viewport');
     if (!units.length || !track) return;
-    // vertical position of the track that centres window i in the viewport
     const step = () => units[0].offsetHeight + (parseFloat(getComputedStyle(units[0]).marginBottom) || 0);
     const yAt = i => () => (vp.clientHeight - units[0].offsetHeight) / 2 - i * step();
     gsap.set(track, { y: yAt(0)() });
-    units.forEach(u => gsap.set($('.ev-window__light', u), { opacity: .4 }));
+    units.forEach(u => {
+      gsap.set($('.ev-window__light', u), { opacity: .4 });
+      gsap.set($('.ev-pop', u), { autoAlpha: 0, y: 40, scale: .92 });
+    });
     const labels = [];
     let tl = null;
     const syncDots = self => {
@@ -738,7 +782,7 @@
     tl = gsap.timeline({
       defaults: { ease: 'power2.inOut' },
       scrollTrigger: {
-        trigger: '#events', start: 'top top', end: () => '+=' + innerHeight * (units.length * 1.15 + .4),
+        trigger: '#events', start: 'top top', end: () => '+=' + innerHeight * (units.length * 1.5 + .4),
         scrub: 1, pin: true, anticipatePin: 1, invalidateOnRefresh: true,
         onUpdate: syncDots,
         onRefresh: self => requestAnimationFrame(() => syncDots(self))
@@ -748,23 +792,34 @@
       .fromTo('.events__head', { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: .5 })
       .to({}, { duration: .2 });
     units.forEach((u, i) => {
-      const L = $('.door--left', u), R = $('.door--right', u), light = $('.ev-window__light', u), card = $('.event-card', u);
+      const L = $('.door--left', u), R = $('.door--right', u), light = $('.ev-window__light', u);
+      const scene = $('.ev-scene', u), pop = $('.ev-pop', u);
       if (i > 0) {
-        // the opened window rises away and the next closed window comes into place
+        // the closed window rises away and the next one comes up into place
         tl.to(track, { y: yAt(i), duration: 1.2 })
           .to(units[i - 1], { opacity: 0, duration: .45, ease: 'power1.in' }, '<');
       }
       const lbl = 'ev' + i;
       tl.addLabel(lbl); labels.push(tl.labels[lbl]);
+      // 1. doors open onto the picture of the celebration
       tl.to(L, { rotateY: -108, duration: 1 }, lbl)
         .to(R, { rotateY: 108, duration: 1 }, lbl)
         .to(light, { opacity: 1, duration: 1 }, lbl)
-        .fromTo(card, { scale: .9 }, { scale: 1, duration: 1, ease: 'power2.out' }, lbl + '+=.3')
-        .to({}, { duration: .8 });
+        .fromTo(scene, { scale: 1.12 }, { scale: 1, duration: 1.3, ease: 'power2.out' }, lbl)
+        // 2. the details card pops up beneath it
+        .to(pop, { autoAlpha: 1, y: 0, scale: 1, duration: .7, ease: 'back.out(1.6)' }, lbl + '+=.75')
+        .to({}, { duration: .9 });
+      // 3. card tucks away and the doors close before the next window
+      if (i < units.length - 1) {
+        tl.to(pop, { autoAlpha: 0, y: 24, scale: .96, duration: .45, ease: 'power1.in' })
+          .to([L, R], { rotateY: 0, duration: .8 }, '<.15')
+          .to(light, { opacity: .4, duration: .8 }, '<');
+      }
     });
     tl.to({}, { duration: .4 });
     dots[0]?.classList.add('is-active');
   }
+
 
 
   /* ---------------------------------------------------------------------
