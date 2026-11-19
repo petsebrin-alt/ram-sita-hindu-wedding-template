@@ -16,14 +16,14 @@ Then open <http://127.0.0.1:5501>. A local server is needed because some browser
 
 To publish it, upload the whole folder to any static host (Netlify, Vercel, GitHub Pages, Cloudflare Pages or your own server).
 
-## The 15 sections
+## The 14 sections
 
 | # | Section | What happens on scroll |
 |---|---------|------------------------|
 | 00 | **Opening** (`#intro`) | Sita's hand reaches down to a lotus bud held in Ram's palm; at her touch it blossoms with a golden glow and petals, the view drifts into the lotus and a burst of sunlight opens onto the Ram Mandir. A Skip button jumps straight in. |
 | 01 | **Welcome** (`#welcome`) | Every stage fills the screen edge to edge (wide photos on laptops, upright photos on phones). The night-time Ram Mandir appears with the names "Ram & Sita" in a starry sky. As you scroll, the temple lights come on and you move forward into the lotus pond. Real lotus buds rise from the water and open into full blooms. Then the realistic 3D Ram & Sita rise into place in front of the temple, holding their varmalas, the Ram Mandir still in full view behind them. Four brass vilakku light up at their feet, and the date ribbon unfurls. |
 | 02 | **The Invitation** (`#invitation`) | "Welcome, dear friends & family" with Bhagavad Gita 6.30. On a soft pink, gently moving light background, a rani-pink gatefold with the gold chakra and seal swings open. Shri Hanuman rises onto the top of the ivory card to bless it; the card has lotus-embroidered corners and short lines: Ram (son of Dasharatha & Kausalya), Sita (daughter of Janaka & Sunaina), the date and venue. |
-| 03 | **Vadhu & Vara** (`#couple`) | Bride and groom portraits in gold jharokha frames, with parallax. |
+| 03 | **Vadhu & Vara** (`#couple`) | Bride and groom portraits in gold jharokha frames with their parents' names. Between them a gold line writes a heart, two green leaves unfurl and a lotus blossoms at the end of the stem. |
 | 04 | **Save the Date** (`#save-the-date`) | On a crimson background with falling marigold petals, Shri Ram's golden bow draws back. The arrow flies (tap the bow, or it releases by itself), breaks a golden seal with a cracker "pop" and a burst of marigolds, and the date appears in a gold ring between two rising gold poles flying Shri Ram Mandir saffron flags. Includes an Add to calendar button (.ics). |
 | 05 | **Countdown** (`#countdown`) | "The Royal Timepiece": the gold lotus chakra as a clock dial (days in the centre, hours, minutes and seconds around it, a ticking gold hand), with countdown tiles below. |
 | 06 | **Ram Bhakt Hanuman** (`#hanuman`) | Hanuman kneels in prayer; a glow builds at his heart, which opens to show Ram & Sita. Verse from the Hanuman Chalisa. |
@@ -31,11 +31,10 @@ To publish it, upload the whole folder to any static host (Netlify, Vercel, GitH
 | 08 | **Our Families** (`#families`) | One big gold medallion per family with both parents together. As you scroll, a single gold line with a glowing tip draws each arched frame (up, over the arch, down and along the bottom), then the card fills in and five lotuses bloom on the bottom line. |
 | 09 | **Wedding Events** (`#events`) | "Through the Palace Doors": one palace window per celebration. The doors open on a picture of the event, a details card pops up with a glowing Get directions button (Google Maps), then the doors close and the next window rises into place. |
 | 10 | **Wishing Wall** (`#wishes`) | Guests write a blessing, and it floats onto the wall with a petal burst. |
-| 11 | **RSVP** (`#rsvp`) | A maroon envelope opens when you tap the gold seal. The card slides out with an "Accept" or "Decline with blessings" choice, and a button sends the reply on WhatsApp. |
-| 12 | **The Venue** (`#venue`) | Shri Ram Mandir in a gold arch with a slow, glowing zoom; the venue address, where each event takes place, and Get directions / Open in Maps buttons. |
-| 13 | **Travel & Stay** (`#travel`) | Pink City cards: by air, by rail, by road, where to stay, weather, things to explore, and dress notes. |
-| 14 | **Contact** (`#contact`) | Family contacts with call, WhatsApp and email buttons. |
-| 15 | **Thank You** (`#thank-you`) | Pink and gold fireworks over the temple, with a verse from Tulsidas. |
+| 11 | **RSVP** (`#rsvp`) | A maroon envelope opens to a simple card: "Dear (your name)", a short quote and the invitation from Sita & Ram, with one Accept the invitation button. On accepting, the card turns to show Ram & Sita with a thank-you and a shower of petals, plus a link to tell the family on WhatsApp. |
+| 12 | **Venue & Travel** (`#venue`) | Shri Ram Mandir in a gold arch, Rambagh Palace with Get directions and Open in Maps, then three cards: By Road & Bus, By Train & Air, Where to Stay. |
+| 13 | **Contact** (`#contact`) | Family contacts with call, WhatsApp and email buttons. |
+| 14 | **Thank You** (`#thank-you`) | Pink and gold fireworks over the temple, with a verse from Tulsidas. |
 
 ## Customising
 

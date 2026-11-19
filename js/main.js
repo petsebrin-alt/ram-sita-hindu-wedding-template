@@ -532,6 +532,23 @@
 
 
 
+  /* Between Sita and Ram: a gold line writes a heart, leaves unfurl, the lotus blossoms */
+  function initHeartDraw() {
+    const box = $('#heartdraw'); if (!box) return;
+    const lines = $$('.hd-line', box), leaves = $$('.hd-leaf', box), lotus = $('.heartdraw__lotus', box);
+    if (!ANIM) return;
+    lines.forEach(p => { p.setAttribute('pathLength', 1); p.style.strokeDasharray = 1; p.style.strokeDashoffset = 1; });
+    gsap.set(leaves, { scale: 0, opacity: 0 });
+    gsap.set(lotus, { scale: .12, opacity: 0, rotate: -10 });
+    gsap.timeline({ scrollTrigger: { trigger: box, start: 'top 78%', once: true } })
+      .to(lines[0], { strokeDashoffset: 0, duration: 1.4, ease: 'sine.inOut' })
+      .to(leaves, { scale: 1, opacity: 1, duration: .7, stagger: .2, ease: 'back.out(1.8)' }, .6)
+      .to(lines[1], { strokeDashoffset: 0, duration: 2.2, ease: 'sine.inOut' }, 1.1)
+      .to(lotus, { opacity: 1, duration: .5 }, 1.4)
+      .to(lotus, { scale: 1, rotate: 0, duration: 1.8, ease: 'back.out(1.4)' }, 1.4)
+      .call(() => { const r = lotus.getBoundingClientRect(); petalBurst(r.left + r.width / 2, r.top + r.height / 2, 12); }, null, 2.2);
+  }
+
   /* ---------------------------------------------------------------------
      Generic reveals + parallax
      --------------------------------------------------------------------- */
@@ -928,16 +945,9 @@
      --------------------------------------------------------------------- */
   function initRSVP() {
     const env = $('#envelope'), seal = $('#envelopeSeal'), flap = $('.envelope__flap'), card = $('#rsvpCard');
-    const form = $('#rsvpForm'), done = $('#rsvpDone'), nameIn = $('#rsvpName'), guestsOut = $('#rsvpGuests');
+    const form = $('#rsvpForm'), done = $('#rsvpDone'), nameIn = $('#rsvpName');
     const KEY = 'rs-rsvp';
-    let guests = 2;
     let opened = false;
-
-    $$('.stepper').forEach(b => b.addEventListener('click', () => {
-      guests = Math.min(8, Math.max(1, guests + parseInt(b.dataset.step, 10)));
-      guestsOut.textContent = guests;
-    }));
-
     function openEnvelope() {
       if (opened) return; opened = true;
       env.classList.add('is-open'); bell();
@@ -949,54 +959,37 @@
         .to(card, { yPercent: -66, duration: .9, ease: 'power2.out' })
         .set(card, { zIndex: 6 })
         .to(card, { yPercent: -14, scale: 1.03, height: 'auto', duration: .9, ease: 'power3.inOut' })
-        .add(() => { ScrollTrigger.refresh(); nameIn.focus({ preventScroll: true }); });
+        .add(() => ScrollTrigger.refresh());
     }
     seal.addEventListener('click', openEnvelope);
-    // also open automatically once the envelope is well in view
     if ('IntersectionObserver' in window) {
       const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setTimeout(openEnvelope, 700); io.disconnect(); } }, { threshold: .6 });
       io.observe(env);
     }
-
-    function showDone(r) {
-      form.hidden = true; done.hidden = false;
-      const accepted = r.status === 'accept';
-      $('.stamp span', done).textContent = accepted ? 'Accepted' : 'With love';
-      $('#rsvpThanksTitle').textContent = accepted ? `Thank you, ${r.name}!` : `We’ll miss you, ${r.name}`;
-      $('#rsvpThanksText').textContent = accepted
-        ? `Your ${r.guests > 1 ? r.guests + ' seats are' : 'seat is'} reserved with love. We can’t wait to welcome you in Jaipur.`
-        : 'Thank you for your blessings — you will be in our hearts at the mandap.';
-      const msg = accepted
-        ? `Namaste! ${r.name} joyfully accepts the invitation to ${CONFIG.couple}'s wedding on 27 March 2027 in Jaipur — ${r.guests} guest${r.guests > 1 ? 's' : ''}.`
-        : `Namaste! ${r.name} regretfully cannot attend ${CONFIG.couple}'s wedding, but sends heartfelt blessings.`;
-      $('#rsvpWhatsApp').href = `https://wa.me/${CONFIG.rsvpWhatsApp}?text=${encodeURIComponent(msg)}`;
-      if (ANIM) gsap.from(done.children, { y: 20, opacity: 0, stagger: .08, duration: .7, ease: 'power3.out' });
-      if (ANIM) gsap.from('.stamp', { scale: 2.4, opacity: 0, rotate: -40, duration: .6, ease: 'back.out(2)', delay: .2 });
+    function showDone(r, celebrate) {
+      const name = r.name || 'dear guest';
+      $('#rsvpThanksTitle').textContent = `Thank you, ${name}!`;
+      $('#rsvpWhatsApp').href = `https://wa.me/${CONFIG.rsvpWhatsApp}?text=${encodeURIComponent(`Namaste! ${name} joyfully accepts the invitation to ${CONFIG.couple}'s wedding on 27 March 2027 in Jaipur.`)}`;
+      const swap = () => { form.hidden = true; done.hidden = false; };
+      if (!ANIM || !celebrate) { swap(); return; }
+      // the card turns over to Ram & Sita, and petals rain down
+      gsap.timeline()
+        .to(card, { rotateY: 90, duration: .45, ease: 'power2.in' })
+        .add(swap)
+        .fromTo(card, { rotateY: -90 }, { rotateY: 0, duration: .55, ease: 'power2.out' })
+        .from('.rsvp-card__couple img', { y: 30, scale: .85, opacity: 0, duration: .8, ease: 'back.out(1.6)' }, '-=.2')
+        .from('#rsvpThanksTitle, #rsvpThanksText, #rsvpWhatsApp', { y: 16, opacity: 0, stagger: .1, duration: .6, ease: 'power3.out' }, '-=.4');
+      const b = card.getBoundingClientRect();
+      [0, 350, 700].forEach(d => setTimeout(() => petalBurst(b.left + b.width * (.3 + Math.random() * .4), b.top + b.height * .3, 28), d));
     }
-    function respond(status) {
-      const name = nameIn.value.trim();
-      if (!name) {
-        nameIn.placeholder = 'Please write your name';
-        nameIn.focus();
-        if (ANIM) gsap.fromTo(nameIn, { x: -8 }, { x: 0, duration: .5, ease: 'elastic.out(1, .3)' });
-        return;
-      }
-      const r = { name: name.slice(0, 60), guests: status === 'accept' ? guests : 0, status, at: new Date().toISOString() };
-      store.set(KEY, r);
-      showDone(r);
-      if (status === 'accept') {
-        bell();
-        const b = card.getBoundingClientRect();
-        petalBurst(b.left + b.width / 2, b.top + b.height * .4, 26);
-      }
-    }
-    $('#rsvpAccept').addEventListener('click', () => respond('accept'));
-    $('#rsvpDecline').addEventListener('click', () => respond('decline'));
-    $('#rsvpEdit').addEventListener('click', () => { done.hidden = true; form.hidden = false; nameIn.focus(); });
-
+    $('#rsvpAccept').addEventListener('click', () => {
+      const r = { name: nameIn.value.trim().slice(0, 60), status: 'accept', at: new Date().toISOString() };
+      store.set(KEY, r); bell(); showDone(r, true);
+    });
     const saved = store.get(KEY, null);
-    if (saved && saved.name) { nameIn.value = saved.name; if (saved.guests) { guests = saved.guests; guestsOut.textContent = guests; } showDone(saved); }
+    if (saved && saved.status === 'accept') { nameIn.value = saved.name || ''; showDone(saved, false); }
   }
+
 
   /* ---------------------------------------------------------------------
      13 · THANK YOU — pink & gold fireworks over the temple
@@ -1056,7 +1049,7 @@
      --------------------------------------------------------------------- */
   // pinned sections are created top-to-bottom so later triggers account for their spacing
   // each section boots independently so one failure never blanks the rest of the invitation
-  [initHero, initGatefold, initSave, initCountdown, initHanuman, initStory, initStitchLotus, initFamilies, initEvents, initReveals, initWishes, initRSVP, initFireworks].forEach(fn => {
+  [initHero, initGatefold, initSave, initCountdown, initHanuman, initStory, initStitchLotus, initHeartDraw, initFamilies, initEvents, initReveals, initWishes, initRSVP, initFireworks].forEach(fn => {
     try { fn(); } catch (e) { console.error('[wedding] ' + fn.name + ' failed:', e && e.stack || e); }
   });
   if (ANIM) {

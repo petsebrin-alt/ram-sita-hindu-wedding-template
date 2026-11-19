@@ -21,7 +21,7 @@
   <link rel="preload" as="image" href="assets/intro/hands-lotus-bloom.webp">
   <link rel="preload" as="image" href="assets/hero/hero-temple-river-night-wide.webp" media="(min-aspect-ratio: 1/1)">
   <link rel="preload" as="image" href="assets/hero/hero-temple-river-night.webp" media="(max-aspect-ratio: 1/1)">
-  <link rel="stylesheet" href="css/style.css?v=2.9.2">
+  <link rel="stylesheet" href="css/style.css?v=3.0.1">
 </head>
 <body>
 
@@ -110,10 +110,9 @@
       <li><a href="#events"><span>09</span>Wedding Events</a></li>
       <li><a href="#wishes"><span>10</span>Wishing Wall</a></li>
       <li><a href="#rsvp"><span>11</span>RSVP</a></li>
-      <li><a href="#venue"><span>12</span>The Venue</a></li>
-      <li><a href="#travel"><span>13</span>Travel &amp; Stay</a></li>
-      <li><a href="#contact"><span>14</span>Contact</a></li>
-      <li><a href="#thank-you"><span>15</span>Thank You</a></li>
+      <li><a href="#venue"><span>12</span>Venue &amp; Travel</a></li>
+      <li><a href="#contact"><span>13</span>Contact</a></li>
+      <li><a href="#thank-you"><span>14</span>Thank You</a></li>
     </ol>
     <img class="menu__chakra" src="assets/ornaments/chakra-lotus-mandala-gold.webp" alt="">
   </div>
@@ -271,11 +270,25 @@
         <p class="eyebrow">The Bride · Vadhu</p>
         <h3 class="person__name">Sita</h3>
         <p class="person__parents">Daughter of Shri Janaka &amp; Smt. Sunaina, Mithila</p>
-        <p class="person__bio">Born, as the stories say, from the blessed earth of Mithila — gentle as a lotus and steady as the earth itself. She paints, she sings the old bhajans her grandmother taught her, and she never lets anyone leave her home hungry.</p>
       </article>
       <div class="couple__center" aria-hidden="true">
-        <img src="assets/flowers/lotus-photo-bloom-01.webp" alt="">
-        <span class="script">&amp;</span>
+        <!-- a gold line writes a heart, two leaves unfurl and the lotus blossoms at the end of the stem -->
+        <div class="heartdraw" id="heartdraw">
+          <svg viewBox="100 110 500 520">
+            <defs>
+              <linearGradient id="hdGold" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#8a5a14"/><stop offset=".3" stop-color="#e2b257"/><stop offset=".5" stop-color="#fff0c0"/>
+                <stop offset=".7" stop-color="#d4a346"/><stop offset="1" stop-color="#8a5a14"/>
+              </linearGradient>
+              <linearGradient id="hdLeaf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a6d38c"/><stop offset="1" stop-color="#3f8a45"/></linearGradient>
+            </defs>
+            <path class="hd-leaf" d="M214 372 C188 356 148 370 122 400 C158 412 194 400 214 372 Z"/>
+            <path class="hd-leaf" d="M236 408 C212 416 202 452 210 488 C232 468 246 442 236 408 Z"/>
+            <path class="hd-line hd-stem" d="M205 268 C198 360 226 440 326 520 C376 560 398 590 394 614"/>
+            <path class="hd-line hd-heart" d="M420 612 C398 566 418 522 470 470 C540 402 592 334 552 288 C512 244 442 266 422 318 C406 358 398 388 412 384 C432 378 424 336 396 312 C362 272 302 266 286 300 C276 320 280 334 286 342"/>
+          </svg>
+          <img class="heartdraw__lotus" src="assets/flowers/lotus-bloom-heart.webp" alt="">
+        </div>
       </div>
       <article class="person" data-speed="-0.06">
         <div class="person__portrait">
@@ -285,7 +298,6 @@
         <p class="eyebrow">The Groom · Vara</p>
         <h3 class="person__name">Ram</h3>
         <p class="person__parents">Son of Shri Dasharatha &amp; Smt. Kausalya, Ayodhya</p>
-        <p class="person__bio">Eldest son of the house of Raghu — calm, kind and true to his word, always. An archer at heart and a patient listener by nature, he keeps every promise he makes, and he made one very important promise to Sita.</p>
       </article>
     </div>
   </div>
@@ -766,28 +778,19 @@
         <span class="card-corners" aria-hidden="true"></span>
         <div class="rsvp-card" id="rsvpForm">
           <p class="deva rsvp-card__om">॥ सीताराम ॥</p>
-          <p class="small-caps">The honour of your presence</p>
-          <label class="rsvp-card__line">
-            <span class="visually-hidden">Your name</span>
-            <input type="text" id="rsvpName" maxlength="60" placeholder="Your name" autocomplete="name">
+          <label class="rsvp-card__dear">
+            <span>Dear</span>
+            <input type="text" id="rsvpName" maxlength="60" placeholder="your name" autocomplete="name" aria-label="Your name">
           </label>
-          <p class="rsvp-card__text">would be the greatest blessing at the wedding of <strong>Ram &amp; Sita</strong> in Jaipur.</p>
-          <div class="rsvp-card__guests">
-            <span>Guests</span>
-            <button type="button" class="stepper" data-step="-1" aria-label="Fewer guests">−</button>
-            <output id="rsvpGuests">2</output>
-            <button type="button" class="stepper" data-step="1" aria-label="More guests">+</button>
-          </div>
-          <button type="button" class="btn btn--maroon btn--wide" id="rsvpAccept"><svg><use href="#i-lotus"/></svg>Joyfully accept</button>
-          <button type="button" class="link-btn" id="rsvpDecline">Regretfully decline, sending blessings</button>
+          <p class="rsvp-card__quote">“Where there is love, there the Lord resides.”</p>
+          <p class="rsvp-card__text"><strong>Sita &amp; Ram</strong> invite you to share the most blessed moment of their lives — Saturday, 27 March 2027, Jaipur.</p>
+          <button type="button" class="btn btn--maroon btn--wide" id="rsvpAccept"><svg><use href="#i-lotus"/></svg>Accept the invitation</button>
         </div>
         <div class="rsvp-card rsvp-card--done" id="rsvpDone" hidden>
-          <div class="stamp" aria-hidden="true"><span>Accepted</span></div>
-          <p class="deva rsvp-card__om">॥ शुभमस्तु ॥</p>
+          <div class="rsvp-card__couple"><img src="assets/hero/couple-ram-sita-3d-cutout.webp" alt="Ram and Sita"></div>
           <h3 class="rsvp-card__thanks" id="rsvpThanksTitle">Thank you!</h3>
-          <p class="rsvp-card__text" id="rsvpThanksText">We can’t wait to welcome you in Jaipur.</p>
-          <a class="btn btn--gold btn--wide" id="rsvpWhatsApp" href="#" target="_blank" rel="noopener"><svg><use href="#i-chat"/></svg>Send RSVP to the family</a>
-          <button type="button" class="link-btn" id="rsvpEdit">Change my response</button>
+          <p class="rsvp-card__text" id="rsvpThanksText">Your presence will make our celebration complete. We can’t wait to welcome you in Jaipur.</p>
+          <a class="link-btn" id="rsvpWhatsApp" href="#" target="_blank" rel="noopener">Let the family know on WhatsApp</a>
         </div>
       </div>
       <div class="envelope__pocket"></div>
@@ -820,75 +823,30 @@
       <div class="venue__info" data-reveal>
         <h3 class="venue__name">Rambagh Palace</h3>
         <p class="venue__addr">Bhawani Singh Road, Rambagh<br>Jaipur, Rajasthan 302005</p>
-        <p>Once the residence of the Maharaja of Jaipur, its marble corridors, Mughal gardens and lotus courtyards will hold every celebration — from the first haldi to the last dance.</p>
-        <ul class="venue__list">
-          <li><span>Engagement · Reception</span>Durbar Hall</li>
-          <li><span>Haldi</span>Lotus Courtyard</li>
-          <li><span>Mehendi</span>The Mughal Gardens</li>
-          <li><span>Sangeet</span>Sheesh Mahal Terrace</li>
-          <li><span>Wedding</span>Royal Mandap, Palace Lawns</li>
-        </ul>
         <div class="btn-row">
           <a class="btn btn--maroon" href="https://www.google.com/maps/dir/?api=1&amp;destination=Rambagh+Palace+Jaipur" target="_blank" rel="noopener"><svg><use href="#i-compass"/></svg>Get directions</a>
           <a class="btn btn--outline" href="https://www.google.com/maps/search/?api=1&amp;query=Rambagh+Palace+Jaipur" target="_blank" rel="noopener"><svg><use href="#i-pin"/></svg>Open in Maps</a>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- =====================================================
-     11 · TRAVEL & STAY
-     ===================================================== -->
-<section class="travel" id="travel" aria-labelledby="travelTitle">
-  <div class="container">
-    <header class="section-head">
-      <p class="eyebrow" data-reveal>Padhariye · Welcome to the Pink City</p>
-      <h2 class="title" id="travelTitle" data-reveal>Travel &amp; Stay</h2>
-      <svg class="divider" data-reveal><use href="#i-divider"/></svg>
-    </header>
-    <div class="travel__grid">
+    <!-- travel & stay -->
+    <div class="travel__grid travel__grid--three">
       <article class="info-card" data-reveal>
-        <div class="info-card__icon"><svg><use href="#i-plane"/></svg></div>
-        <h3>By Air</h3>
-        <p>Jaipur International Airport (JAI) is about 25 minutes from the palace. Our welcome desk will greet arriving guests on 24–27 March.</p>
+        <div class="info-card__icon"><svg><use href="#i-car"/></svg></div>
+        <h3>By Road &amp; Bus</h3>
+        <p>About 5 hours from Delhi on the expressway. Shuttles run between the guest hotels and every event.</p>
       </article>
       <article class="info-card" data-reveal>
         <div class="info-card__icon"><svg><use href="#i-train"/></svg></div>
-        <h3>By Rail</h3>
-        <p>Jaipur Junction (JP) is roughly 15 minutes away. Shatabdi and Vande Bharat trains connect from Delhi in about 4½ hours.</p>
-      </article>
-      <article class="info-card" data-reveal>
-        <div class="info-card__icon"><svg><use href="#i-car"/></svg></div>
-        <h3>By Road</h3>
-        <p>About 5 hours from Delhi on the Delhi–Jaipur expressway. Shuttles will run between the guest hotels and every event.</p>
+        <h3>By Train &amp; Air</h3>
+        <p>Jaipur Junction is 15 minutes away and the airport 25 minutes. Our welcome desk will meet you on 24–27 March.</p>
       </article>
       <article class="info-card" data-reveal>
         <div class="info-card__icon"><svg><use href="#i-hotel"/></svg></div>
         <h3>Where to Stay</h3>
-        <p>Rooms are held for our guests at the palace and two nearby hotels. Share your dates with the hospitality desk and we’ll arrange the rest.</p>
+        <p>Rooms are held for our guests at the palace and two nearby hotels. Share your dates and we’ll arrange the rest.</p>
       </article>
-      <article class="info-card" data-reveal>
-        <div class="info-card__icon"><svg><use href="#i-sun"/></svg></div>
-        <h3>Weather</h3>
-        <p>Late March is warm by day (around 32°C) and pleasant at night (around 18°C). Light cottons for daytime, a shawl for the evenings.</p>
-      </article>
-      <article class="info-card" data-reveal>
-        <div class="info-card__icon"><svg><use href="#i-compass"/></svg></div>
-        <h3>Explore Jaipur</h3>
-        <p>Amer Fort at sunrise, Hawa Mahal, City Palace, Jantar Mantar and the bangle lanes of Johari Bazaar — ask us for a guided morning.</p>
-      </article>
-    </div>
-    <div class="dress" data-reveal>
-      <h3 class="dress__title">Dress notes</h3>
-      <ul class="dress__chips">
-        <li style="--c:#7A1229">Engagement · Jewel tones</li>
-        <li style="--c:#F2B705">Haldi · Yellow</li>
-        <li style="--c:#5B6B2E">Mehendi · Green</li>
-        <li style="--c:#C2185B">Sangeet · Sparkle</li>
-        <li style="--c:#B5502E">Wedding · Traditional</li>
-        <li style="--c:#2A0B10">Reception · Indo-western</li>
-      </ul>
     </div>
   </div>
 </section>
@@ -970,6 +928,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="js/main.js?v=2.9.0"></script>
+<script src="js/main.js?v=3.0.0"></script>
 </body>
 </html>
