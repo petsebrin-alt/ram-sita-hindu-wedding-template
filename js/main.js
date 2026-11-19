@@ -901,6 +901,62 @@
     });
     tl.to({}, { duration: .4 });
     dots[0]?.classList.add('is-active');
+    // Hanuman's blessing: a lotus blooms, he rises from it with his hand raised, petals fall
+    const bl = $('.events__blessing');
+    if (bl) {
+      const lotus = $('.events__lotus', bl), han = $('.events__hanuman', bl), halo = $('.events__halo', bl);
+      // place Hanuman so his raised hand sits just above the window; if the title leaves too little room,
+      // he takes the space and the title gives way as he rises
+      const head = $('.events__head');
+      const place = () => {
+        const winTop = vp.offsetTop + (vp.clientHeight - units[0].offsetHeight) / 2 - 18; // above the gold frame rings
+        const headB = head.offsetTop + head.offsetHeight;
+        const top0 = (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 64) + 6;
+        let hn = (winTop - headB - 2) / .8, hide = false;
+        if (hn < 150) { hn = (winTop - top0) / .8; hide = true; }
+        hn = Math.max(120, Math.min(270, hn));
+        bl.style.setProperty('--hn', hn + 'px');
+        bl.style.setProperty('--hn-top', (winTop - hn * .8) + 'px');
+        bl.dataset.hide = hide ? '1' : '';
+      };
+      place(); addEventListener('resize', place); ScrollTrigger.addEventListener('refresh', place);
+      gsap.set(lotus, { opacity: 0, scale: .15, rotate: -24 });
+      gsap.set(halo, { opacity: 0, scale: .3 });
+      gsap.set(han, { opacity: 0, y: 70, scale: .86, transformOrigin: '50% 100%' });
+      const btl = gsap.timeline({ paused: true })
+        .to(lotus, { opacity: 1, duration: .5, ease: 'sine.out' }, 0)
+        .to(lotus, { scale: 1, rotate: 0, duration: 1.6, ease: 'back.out(1.2)' }, 0)
+        .to(halo, { opacity: 1, scale: 1, duration: 1.3, ease: 'power2.out' }, .6)
+        .to(han, { opacity: 1, duration: .8, ease: 'sine.out' }, .8)
+        .to(han, { y: 0, scale: 1, duration: 1.6, ease: 'power3.out' }, .8)
+        .to(head.children, { opacity: () => bl.dataset.hide ? 0 : 1, duration: .9, ease: 'sine.inOut' }, .6)
+        .call(() => { const r = han.getBoundingClientRect(); petalBurst(r.left + r.width * .42, r.top + r.height * .55, small() ? 12 : 22); }, null, 1.9);
+      ScrollTrigger.create({ trigger: '#events', start: 'top 65%', onEnter: () => btl.play(), onLeaveBack: () => btl.reverse() });
+      // then petals keep falling from his raised hand, a blessing that never stops
+      const stage = $('.events__stage');
+      const shower = document.createElement('div'); shower.className = 'events__shower'; stage.appendChild(shower);
+      let rain = null;
+      const drop = () => {
+        if (btl.progress() < .7) return;
+        const s = stage.getBoundingClientRect(), r = han.getBoundingClientRect();
+        const x = r.left - s.left + r.width * (.4 + Math.random() * .1), y = r.top - s.top + r.height * (.62 + Math.random() * .1);
+        const p = document.createElement('img');
+        p.src = `assets/flowers/petal-pink-0${1 + Math.floor(Math.random() * 5)}.webp`; p.alt = '';
+        const w = 12 + Math.random() * 14; p.style.width = w + 'px';
+        shower.appendChild(p);
+        const side = Math.random() < .5 ? -1 : 1, fall = s.height - y + 40;
+        gsap.timeline({ onComplete: () => p.remove() })
+          .fromTo(p, { x, y, opacity: 0, scale: .4, rotation: Math.random() * 360 },
+            { opacity: 1, scale: 1, duration: .5, ease: 'sine.out' })
+          .to(p, { x: x + side * (40 + Math.random() * (s.width * .32)), duration: 5 + Math.random() * 3, ease: 'sine.inOut' }, 0)
+          .to(p, { y: y + fall, duration: 5 + Math.random() * 3, ease: 'power1.in' }, 0)
+          .to(p, { rotation: '+=' + (side * (180 + Math.random() * 360)), duration: 6, ease: 'none' }, 0)
+          .to(p, { opacity: 0, duration: .8 }, '>-1');
+      };
+      // runs from the moment the section appears until the last celebration (Reception) has scrolled away
+      ScrollTrigger.create({ trigger: '#events', start: 'top bottom', end: () => tl.scrollTrigger.end + innerHeight,
+        onToggle: self => { clearInterval(rain); rain = self.isActive ? setInterval(drop, small() ? 520 : 340) : null; } });
+    }
   }
 
 
@@ -989,55 +1045,60 @@
      09 · RSVP — envelope opens, card slides out
      --------------------------------------------------------------------- */
   function initRSVP() {
-    const env = $('#envelope'), seal = $('#envelopeSeal'), flap = $('.envelope__flap'), card = $('#rsvpCard');
-    const form = $('#rsvpForm'), done = $('#rsvpDone'), nameIn = $('#rsvpName');
+    const stage = $('#rsvpStage'), scene = $('#rsvpScene'), seal = $('#envelopeSeal'), card = $('#rsvpCard');
+    const done = $('#rsvpDone'), nameIn = $('#rsvpName');
+    if (!stage) return;
     const KEY = 'rs-rsvp';
     let opened = false;
-    function openEnvelope() {
+    // tap the wax seal: a burst of light, and the invitation comes out of the envelope
+    function openInvite() {
       if (opened) return; opened = true;
-      env.classList.add('is-open');
-      if (!ANIM) { flap.style.transform = 'rotateX(180deg)'; flap.style.zIndex = 0; card.style.zIndex = 6; card.style.height = 'auto'; card.style.transform = 'translateY(-14%)'; return; }
+      stage.classList.add('is-open');
+      if (!ANIM) { gsap.set(card, { autoAlpha: 1 }); return; }
+      const st = stage.getBoundingClientRect(), s = seal.getBoundingClientRect();
+      const sx = s.left + s.width / 2 - (st.left + st.width / 2), sy = s.top + s.height / 2 - (st.top + st.height / 2);
+      petalBurst(s.left + s.width / 2, s.top + s.height / 2, small() ? 14 : 22);
       gsap.timeline()
-        .to(seal, { scale: 1.35, autoAlpha: 0, duration: .45, ease: 'back.in(2)' })
-        .to(flap, { rotateX: 180, duration: .8, ease: 'power2.inOut' }, '-=.1')
-        .set(flap, { zIndex: 0 })
-        .to(card, { yPercent: -66, duration: .9, ease: 'power2.out' })
-        .set(card, { zIndex: 6 })
-        .to(card, { yPercent: -14, scale: 1.03, height: 'auto', duration: .9, ease: 'power3.inOut' })
-        .add(() => ScrollTrigger.refresh());
+        .to(scene, { opacity: .4, scale: .97, duration: .9, ease: 'power2.inOut' }, .15)
+        .fromTo(card, { autoAlpha: 0, x: sx, y: sy, scale: .08, rotate: -6 },
+          { autoAlpha: 1, x: 0, y: 0, scale: 1, rotate: 0, duration: 1.1, ease: 'back.out(1.25)' }, .1)
+        .from('#rsvpForm > *', { y: 14, opacity: 0, stagger: .07, duration: .5, ease: 'power2.out' }, .7)
+        .add(() => nameIn.focus({ preventScroll: true }));
     }
-    seal.addEventListener('click', openEnvelope);
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setTimeout(openEnvelope, 700); io.disconnect(); } }, { threshold: .6 });
-      io.observe(env);
-    }
+    seal.addEventListener('click', openInvite);
+
     function showDone(r, celebrate) {
       const name = r.name || 'dear guest';
       $('#rsvpThanksTitle').textContent = `Thank you, ${name}!`;
-      const swap = () => { form.hidden = true; done.hidden = false; };
-      if (!ANIM || !celebrate) { swap(); return; }
-      // the card turns over to Ram & Sita, and petals rain down
+      const swap = () => { gsap.set([scene, card], { autoAlpha: 0 }); done.hidden = false; };
+      if (!ANIM || !celebrate) { stage.classList.add('is-open'); opened = true; swap(); return; }
+      // Hanuman, the hill and the card all fade away; Ram & Sita appear to thank the guest
       gsap.timeline()
-        .to(card, { rotateY: 90, duration: .45, ease: 'power2.in' })
+        .to(card, { autoAlpha: 0, scale: .92, y: -20, duration: .55, ease: 'power2.in' })
+        .to(scene, { autoAlpha: 0, scale: .9, duration: .7, ease: 'power2.in' }, 0)
         .add(swap)
-        .fromTo(card, { rotateY: -90 }, { rotateY: 0, duration: .55, ease: 'power2.out' })
-        .from('.rsvp-card__couple img', { y: 30, scale: .85, opacity: 0, duration: .8, ease: 'back.out(1.6)' }, '-=.2')
-        .from('#rsvpThanksTitle, #rsvpThanksText, #rsvpReplay', { y: 16, opacity: 0, stagger: .1, duration: .6, ease: 'power3.out' }, '-=.4');
-      const b = card.getBoundingClientRect();
-      [0, 350, 700].forEach(d => setTimeout(() => petalBurst(b.left + b.width * (.3 + Math.random() * .4), b.top + b.height * .3, 28), d));
+        .fromTo('.rsvp-thanks__couple', { y: 50, scale: .85, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 1.1, ease: 'back.out(1.4)' })
+        .fromTo('#rsvpThanksTitle, #rsvpThanksText, #rsvpReplay', { y: 16, opacity: 0 }, { y: 0, opacity: 1, stagger: .12, duration: .6, ease: 'power3.out' }, '-=.5')
+        .add(() => {
+          const b = stage.getBoundingClientRect();
+          [0, 350, 700].forEach(d => setTimeout(() => petalBurst(b.left + b.width * (.3 + Math.random() * .4), b.top + b.height * .3, 26), d));
+        }, '<');
     }
     $('#rsvpAccept').addEventListener('click', () => {
       const r = { name: nameIn.value.trim().slice(0, 60), status: 'accept', at: new Date().toISOString() };
       store.set(KEY, r); showDone(r, true);
     });
-    // Replay: turn back to the invitation so it can be accepted again
+    // Replay: back to Hanuman and the sealed envelope
     $('#rsvpReplay').addEventListener('click', () => {
-      const swap = () => { done.hidden = true; form.hidden = false; };
-      if (!ANIM) return swap();
+      const reset = () => {
+        done.hidden = true; opened = false; stage.classList.remove('is-open');
+        gsap.set(card, { autoAlpha: 0 });
+      };
+      if (!ANIM) { reset(); gsap.set(scene, { autoAlpha: 1, scale: 1 }); return; }
       gsap.timeline()
-        .to(card, { rotateY: 90, duration: .4, ease: 'power2.in' })
-        .add(swap)
-        .fromTo(card, { rotateY: -90 }, { rotateY: 0, duration: .5, ease: 'power2.out' });
+        .to(done, { autoAlpha: 0, duration: .45, ease: 'power1.in' })
+        .add(reset).set(done, { autoAlpha: 1 })
+        .fromTo(scene, { autoAlpha: 0, scale: .94 }, { autoAlpha: 1, scale: 1, duration: .9, ease: 'power2.out' });
     });
     const saved = store.get(KEY, null);
     if (saved && saved.status === 'accept') { nameIn.value = saved.name || ''; showDone(saved, false); }
