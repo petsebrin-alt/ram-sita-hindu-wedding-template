@@ -909,20 +909,41 @@
      08 · WISHING WALL
      --------------------------------------------------------------------- */
   function initWishes() {
-    const wall = $('#wishWall'), form = $('#wishForm'), note = $('#wishNote');
+    const form = $('#wishForm'), note = $('#wishNote');
+    const scroll = $('#wishScroll'), text = $('#wishText'), wWish = $('#wishWish'), wName = $('#wishName'), count = $('#wishCount');
+    if (!scroll) return;
     const KEY = 'rs-wishes';
     const mine = store.get(KEY, []);
-    function card(w, isNew) {
-      const el = document.createElement('article');
-      el.className = 'wish' + (isNew ? ' wish--new' : '');
-      el.style.setProperty('--r', ((Math.random() - .5) * 2.4).toFixed(2) + 'deg');
-      const p = document.createElement('p'); p.textContent = '“' + w.wish + '”';
-      const f = document.createElement('footer'); f.textContent = '— ' + w.name;
-      el.append(p, f);
-      return el;
-    }
-    [...mine, ...CONFIG.seedWishes].forEach(w => wall.appendChild(card(w)));
-    if (ANIM) gsap.from('.wish', { y: 40, opacity: 0, stagger: .08, duration: .9, ease: 'power3.out', scrollTrigger: { trigger: wall, start: 'top 85%', once: true } });
+    const list = [...mine, ...CONFIG.seedWishes];
+    let i = 0;
+    // shrink the writing until it fits the scroll
+    const fit = () => {
+      let fs = 18;
+      text.style.setProperty('--fs', fs + 'px');
+      while (fs > 11 && text.scrollHeight > scroll.clientHeight - 6) { fs -= 1; text.style.setProperty('--fs', fs + 'px'); }
+    };
+    const fill = () => {
+      const w = list[i];
+      wWish.textContent = '“' + w.wish + '”';
+      wName.textContent = '— ' + w.name;
+      count.textContent = (i + 1) + ' / ' + list.length;
+      fit();
+    };
+    const show = (next, dir = 1) => {
+      i = (next + list.length) % list.length;
+      if (!ANIM) return fill();
+      gsap.timeline()
+        .to(text, { opacity: 0, y: -14 * dir, duration: .35, ease: 'power1.in' })
+        .add(fill)
+        .fromTo(text, { opacity: 0, y: 14 * dir }, { opacity: 1, y: 0, duration: .55, ease: 'power2.out' });
+    };
+    fill();
+    $('#wishPrev').addEventListener('click', () => show(i - 1, -1));
+    $('#wishNext').addEventListener('click', () => show(i + 1, 1));
+    addEventListener('resize', fit);
+    // a slow, gentle turn through the blessings while nobody is touching the arrows
+    let auto = setInterval(() => show(i + 1, 1), 7000);
+    ['#wishPrev', '#wishNext'].forEach(s => $(s).addEventListener('click', () => { clearInterval(auto); auto = setInterval(() => show(i + 1, 1), 9000); }));
 
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -930,15 +951,39 @@
       const w = { name: String(fd.get('name')).trim().slice(0, 60), wish: String(fd.get('wish')).trim().slice(0, 280) };
       if (!w.name || !w.wish) { note.textContent = 'Please add your name and a blessing.'; return; }
       mine.unshift(w); store.set(KEY, mine.slice(0, 30));
-      const el = card(w, true);
-      wall.prepend(el); wall.scrollTo({ top: 0, behavior: 'smooth' });
-      if (ANIM) gsap.from(el, { scale: .7, opacity: 0, y: -30, duration: 1, ease: 'back.out(1.7)' });
-      const r = form.querySelector('button').getBoundingClientRect();
-      petalBurst(r.left + r.width / 2, r.top + r.height / 2, 16);
+      list.unshift(w);
       form.reset();
-      note.textContent = 'Your wish is floating on the wall. Dhanyavaad!';
+      note.textContent = 'Your blessing is on its way to the scroll…';
+      const lotus = $('.wish-form__lotus', form);
+      const land = () => {
+        const s = scroll.getBoundingClientRect();
+        petalBurst(s.left + s.width / 2, s.top + s.height / 2, 22);
+        show(0, 1);
+        note.textContent = 'Your blessing now hangs on the peacock’s scroll. Dhanyavaad!';
+      };
+      if (!ANIM || !lotus) { land(); return; }
+      // the lotus lifts off the form and carries the wish up to the scroll (it follows the scroll even while the page moves)
+      const a = lotus.getBoundingClientRect();
+      const fly = lotus.cloneNode(); fly.className = 'wish-flyer'; fly.style.opacity = 0;
+      Object.assign(fly.style, { left: '0px', top: '0px', width: a.width + 'px' });
+      document.body.appendChild(fly);
+      const sx = a.left, sy = a.top, st = { t: 0 };
+      gsap.fromTo(fly, { opacity: 0 }, { opacity: 1, duration: .35 });
+      const place = () => {
+        const s = scroll.getBoundingClientRect(), t = st.t;
+        const tx = s.left + s.width / 2 - a.width / 2, ty = s.top + s.height / 2 - a.height / 2;
+        const x = sx + (tx - sx) * t, y = sy + (ty - sy) * t - Math.sin(Math.PI * t) * 120;
+        fly.style.transform = `translate(${x}px, ${y}px) rotate(${-8 + 20 * t}deg) scale(${1 - .5 * t})`;
+      };
+      place();
+      if (lenis) lenis.scrollTo('#wishBoard', { offset: -70, duration: 1.6 });
+      else $('#wishBoard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      gsap.timeline({ onComplete: () => { fly.remove(); land(); } })
+        .to(st, { t: 1, duration: 2, ease: 'sine.inOut', onUpdate: place })
+        .to(fly, { opacity: 0, duration: .35, ease: 'power2.in' }, 1.75);
     });
   }
+
 
   /* ---------------------------------------------------------------------
      09 · RSVP — envelope opens, card slides out
