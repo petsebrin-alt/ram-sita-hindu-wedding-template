@@ -27,7 +27,7 @@ To publish it, upload the whole folder to any static host (Netlify, Vercel, GitH
 | 05 | **Countdown** (`#countdown`) | "The Royal Timepiece": the gold lotus chakra as a clock dial (days in the centre, hours, minutes and seconds around it, a ticking gold hand), with countdown tiles below. |
 | 06 | **Ram Bhakt Hanuman** (`#hanuman`) | Hanuman kneels in prayer; a glow builds at his heart, which opens to show Ram & Sita. Verse from the Hanuman Chalisa. |
 | 07 | **Our Story** (`#story`) | A gold thread draws down the page. Four round badges, embroidered lotus on the front, turn over one by one to show the couple’s photos, each with one short line: Pushpa Vatika, Shiva Dhanush, Swayamvar, Saptapadi. Tap a badge to turn it again. |
-| 08 | **Our Families** (`#families`) | Shri Dasharatha & Smt. Kausalya (Ayodhya), and Shri Janaka & Smt. Sunaina (Mithila). |
+| 08 | **Our Families** (`#families`) | Photos of both sets of parents in gold medallions. As you scroll, each arched card is drawn in gold strokes, fills in, and lotus flowers bloom around it. |
 | 09 | **Wedding Events** (`#events`) | "Through the Palace Doors": every celebration has its own palace window with carved doors. The doors open onto that event's card, then the next window rises into place and opens: Engagement, Haldi, Mehendi, Sangeet, Wedding, Reception. |
 | 10 | **Wishing Wall** (`#wishes`) | Guests write a blessing, and it floats onto the wall with a petal burst. |
 | 11 | **RSVP** (`#rsvp`) | A maroon envelope opens when you tap the gold seal. The card slides out with an "Accept" or "Decline with blessings" choice, and a button sends the reply on WhatsApp. |
@@ -83,6 +83,8 @@ assets/
 │               chakra-lotus-mandala-maroon.webp (your original) · chakra-lotus-mandala-gold(.png/.webp/-2000.png, transparent)
 │               hanuman-ram-bhakt (.png/.webp, your Hanuman picture, transparent) · heart-ram-sita-3d.webp (shown in his heart)
 │               hanuman-blessing (.png/.webp, blessing Hanuman on top of the invitation card) · corner-lotus-embroidery.svg (card corners)
+│               corner-zari-thread.svg (gold-thread corner of the invitation) · lotus-bead-embroidery (.png/.webp, bead-work lotus in that corner)
+│               lotus-zari-drawing.json (lotus drawing, stitched in gold and filled pink as it scrolls into view in Vadhu & Vara and Our Story)
 │               temple-flag-saffron (.png/.webp, Ram Mandir flag from your photo, on the Save the Date poles)
 ├── story/      lotus-embroidery (.png/.webp, badge front) · story-couple-train · story-couple-promise · story-couple-temple · story-couple-sunset (.webp, badge backs)
 └── effects/    sparkle-gold · particles-gold · light-rays · firework-gold · firework-pink

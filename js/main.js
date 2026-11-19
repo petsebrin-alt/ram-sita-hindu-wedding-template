@@ -304,6 +304,127 @@
   }
 
   /* ---------------------------------------------------------------------
+     Embroidered lotus: the drawing is stitched in gold zari, path by path,
+     with a needle running along the thread; then the petals fill with pink silk
+     --------------------------------------------------------------------- */
+  function initStitchLotus() {
+    const slots = $$('.stitch-lotus');
+    if (!slots.length) return;
+    const NS = 'http://www.w3.org/2000/svg';
+    const el = (tag, attrs, parent) => { const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; };
+    fetch('assets/ornaments/lotus-zari-drawing.json').then(r => r.json()).then(data => {
+      slots.forEach((slot, si) => {
+        const id = 'sl' + si;
+        const svg = el('svg', { viewBox: `0 0 ${data.w} ${data.h}`, 'aria-hidden': 'true' }, slot);
+        const defs = el('defs', {}, svg);
+        const grad = (gid, a, b) => { const g = el('linearGradient', { id: gid, x1: 0, y1: 0, x2: 1, y2: 1 }, defs); el('stop', { offset: 0, 'stop-color': a }, g); el('stop', { offset: 1, 'stop-color': b }, g); };
+        grad(id + 'pink', '#fbc3d6', '#e7709d'); grad(id + 'deep', '#f39ab9', '#c94478'); grad(id + 'light', '#fde3ec', '#f2a3c0'); grad(id + 'leaf', '#f6dc95', '#b9862a');
+        // satin stitch texture laid over every fill
+        const pat = el('pattern', { id: id + 'satin', width: 6, height: 6, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(35)' }, defs);
+        el('line', { x1: 0, y1: 0, x2: 0, y2: 6, stroke: 'rgba(255,255,255,.45)', 'stroke-width': 1.4 }, pat);
+        const mask = el('mask', { id: id + 'mask', maskUnits: 'userSpaceOnUse', x: 0, y: 0, width: data.w, height: data.h }, defs);
+
+        // petals (under the gold outlines)
+        const fillG = el('g', {}, svg);
+        const fills = data.fills.slice().reverse().map(f => {
+          const g = el('g', { opacity: ANIM ? 0 : 1 }, fillG);
+          el('path', { d: f.d, fill: `url(#${id}${f.k})`, opacity: .92 }, g);
+          el('path', { d: f.d, fill: `url(#${id}satin)` }, g);
+          return g;
+        });
+        // gold zari thread: running stitches, a darker twist and a light highlight
+        const thread = el('g', { class: 'sl-thread', mask: ANIM ? `url(#${id}mask)` : '' }, svg);
+        const reveals = [];
+        data.lines.forEach(l => {
+          el('path', { d: l.d, stroke: '#94640f', 'stroke-width': 8 }, thread);
+          el('path', { d: l.d, stroke: '#e6bd5f', 'stroke-width': 5.6, 'stroke-dasharray': '9 2.4' }, thread);
+          el('path', { d: l.d, stroke: '#fff3cf', 'stroke-width': 1.8, 'stroke-dasharray': '4 7.4', opacity: .85 }, thread);
+          if (ANIM) reveals.push(el('path', { d: l.d, fill: 'none', stroke: '#fff', 'stroke-width': 14, 'stroke-linecap': 'round' }, mask));
+        });
+        if (!ANIM) return;
+        const needle = el('g', { class: 'sl-needle' }, svg);
+        el('line', { x1: 0, y1: -40, x2: 0, y2: 6, stroke: '#8f8f8f', 'stroke-width': 3.4, 'stroke-linecap': 'round' }, needle);
+        el('circle', { cx: 0, cy: 6, r: 5 }, needle);
+
+        const lens = reveals.map(r => { const L = r.getTotalLength(); r.style.strokeDasharray = L; r.style.strokeDashoffset = L; return L; });
+        const tl = gsap.timeline({ paused: true });
+        const N = reveals.length, SPAN = 4.2;
+        reveals.forEach((r, i) => {
+          const at = (i / N) * SPAN, dur = .18 + Math.min(lens[i], 400) / 420;
+          tl.to(r, {
+            strokeDashoffset: 0, duration: dur, ease: 'none',
+            onUpdate() {
+              if (i < tl._lead) return;
+              tl._lead = i;
+              const pt = r.getPointAtLength(lens[i] * this.progress());
+              needle.setAttribute('transform', `translate(${pt.x} ${pt.y})`);
+            }
+          }, at);
+        });
+        tl._lead = 0;
+        tl.set(needle, { opacity: 1 }, 0)
+          .to(needle, { opacity: 0, duration: .4 }, SPAN + .5);
+        fills.forEach((g, i) => tl.to(g, { opacity: 1, duration: .45, ease: 'power1.out' }, SPAN * .55 + i * .11));
+        ScrollTrigger.create({ trigger: slot, start: 'top 92%', once: true, onEnter: () => tl.play() });
+      });
+    }).catch(() => {});
+  }
+
+  /* ---------------------------------------------------------------------
+     06 · FAMILIES — each card's gold outline is drawn stroke by stroke as you
+     scroll, then the card fills in, the details appear and lotus flowers bloom
+     --------------------------------------------------------------------- */
+  function initFamilies() {
+    const cards = $$('.family');
+    if (!cards.length) return;
+    const NS = 'http://www.w3.org/2000/svg';
+    const arch = (w, h, d, side) => {
+      // one half of the arch outline, from bottom centre round to top centre, inset by d
+      const R = Math.max(0, Math.min(200, w / 2, h / 2) - d), r = Math.max(0, 18 - d);
+      const L = d, T = d, B = h - d, X = side < 0 ? d : w - d, cx = w / 2, sx = side < 0 ? 1 : -1;
+      return `M${cx} ${B} H${X + sx * r} Q${X} ${B} ${X} ${B - r} V${T + R} A${R} ${R} 0 0 ${side < 0 ? 1 : 0} ${X + sx * R} ${T} H${cx}`;
+    };
+    cards.forEach(card => {
+      const svg = document.createElementNS(NS, 'svg');
+      svg.setAttribute('class', 'family__outline'); svg.setAttribute('aria-hidden', 'true');
+      const paths = [];
+      [['o1', 1], ['o2', 9]].forEach(([cls, d]) => [-1, 1].forEach(side => {
+        const p = document.createElementNS(NS, 'path');
+        p.setAttribute('class', cls); p.setAttribute('pathLength', '1');
+        p._d = d; p._side = side; svg.appendChild(p); paths.push(p);
+      }));
+      card.prepend(svg);
+      const flowers = [0, 1, 2, 3, 4, 5, 6].map(() => {
+        const f = document.createElement('img');
+        f.className = 'family__flower'; f.src = 'assets/flowers/lotus-photo-bloom-01.webp'; f.alt = ''; f.setAttribute('aria-hidden', 'true');
+        card.appendChild(f); return f;
+      });
+      const layout = () => {
+        const w = card.offsetWidth, h = card.offsetHeight;
+        svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+        paths.forEach(p => p.setAttribute('d', arch(w, h, p._d, p._side)));
+        const R = Math.min(200, w / 2, h / 2), k = 1 - Math.SQRT1_2;
+        [[w / 2, 0], [R * k, R * k], [w - R * k, R * k], [0, h * .58], [w, h * .58], [10, h - 10], [w - 10, h - 10]]
+          .forEach(([x, y], i) => { flowers[i].style.left = x + 'px'; flowers[i].style.top = y + 'px'; });
+      };
+      layout();
+      if ('ResizeObserver' in window) new ResizeObserver(layout).observe(card);
+      if (!ANIM) return;
+      const content = $$(':scope > :not(.family__outline):not(.family__flower)', card);
+      gsap.set(card, { '--fill': 0 });
+      gsap.set(paths, { strokeDasharray: 1, strokeDashoffset: 1 });
+      gsap.set(content, { opacity: 0, y: 18 });
+      gsap.set(flowers, { scale: 0, rotate: -90, opacity: 0 });
+      gsap.timeline({ scrollTrigger: { trigger: card, start: 'top 88%', end: 'top 22%', scrub: .8 } })
+        .to(paths.filter(p => p._d === 1), { strokeDashoffset: 0, duration: 1, ease: 'power1.inOut' }, 0)
+        .to(paths.filter(p => p._d === 9), { strokeDashoffset: 0, duration: 1, ease: 'power1.inOut' }, .3)
+        .to(card, { '--fill': 1, duration: .6 }, .9)
+        .to(content, { opacity: 1, y: 0, duration: .5, stagger: .12 }, 1.05)
+        .to(flowers, { scale: 1, rotate: 0, opacity: 1, duration: .45, stagger: .07, ease: 'back.out(2)' }, 1.5);
+    });
+  }
+
+  /* ---------------------------------------------------------------------
      Generic reveals + parallax
      --------------------------------------------------------------------- */
   function initReveals() {
@@ -814,7 +935,7 @@
      --------------------------------------------------------------------- */
   // pinned sections are created top-to-bottom so later triggers account for their spacing
   // each section boots independently so one failure never blanks the rest of the invitation
-  [initHero, initGatefold, initSave, initCountdown, initHanuman, initStory, initEvents, initReveals, initWishes, initRSVP, initFireworks].forEach(fn => {
+  [initHero, initGatefold, initSave, initCountdown, initHanuman, initStory, initStitchLotus, initFamilies, initEvents, initReveals, initWishes, initRSVP, initFireworks].forEach(fn => {
     try { fn(); } catch (e) { console.error('[wedding] ' + fn.name + ' failed:', e && e.stack || e); }
   });
   if (ANIM) {

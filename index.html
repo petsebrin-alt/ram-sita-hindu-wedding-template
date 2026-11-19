@@ -17,7 +17,7 @@
 
   <link rel="preload" as="image" href="assets/hero/hero-temple-river-night-wide.webp" media="(min-aspect-ratio: 1/1)">
   <link rel="preload" as="image" href="assets/hero/hero-temple-river-night.webp" media="(max-aspect-ratio: 1/1)">
-  <link rel="stylesheet" href="css/style.css?v=1.9.3">
+  <link rel="stylesheet" href="css/style.css?v=2.1.1">
 </head>
 <body>
 
@@ -190,8 +190,8 @@
      ===================================================== -->
 <section class="invite" id="invitation" aria-labelledby="inviteTitle">
   <div class="invite__lights" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-  <img class="corner corner--tl" src="assets/ornaments/corner-gold-top-left.svg" alt="">
-  <img class="corner corner--tr" src="assets/ornaments/corner-gold-top-right.svg" alt="">
+  <div class="zari-corner zari-corner--tl" aria-hidden="true"><img class="zari-corner__thread" src="assets/ornaments/corner-zari-thread.svg" alt=""><img class="zari-corner__lotus" src="assets/ornaments/lotus-bead-embroidery.webp" alt=""></div>
+  <div class="zari-corner zari-corner--tr" aria-hidden="true"><img class="zari-corner__thread" src="assets/ornaments/corner-zari-thread.svg" alt=""><img class="zari-corner__lotus" src="assets/ornaments/lotus-bead-embroidery.webp" alt=""></div>
   <div class="container invite__intro">
     <p class="eyebrow" data-reveal>Swagatam</p>
     <h2 class="title" id="inviteTitle" data-reveal>Welcome, dear friends &amp; family</h2>
@@ -278,6 +278,7 @@
       </article>
     </div>
   </div>
+  <div class="stitch-lotus" aria-hidden="true"></div>
 </section>
 
 <!-- =====================================================
@@ -495,6 +496,7 @@
       </article>
     </div>
   </div>
+  <div class="stitch-lotus" aria-hidden="true"></div>
 </section>
 
 <!-- =====================================================
@@ -509,31 +511,30 @@
       <p class="lede" data-reveal>Two royal houses, one sacred bond. Our parents welcome you with folded hands and open hearts.</p>
     </header>
     <div class="families__grid">
-      <article class="family" data-reveal>
+      <article class="family">
         <p class="eyebrow">The Groom’s Family · Raghukul</p>
         <div class="family__parents">
           <figure class="parent">
-            <div class="parent__medal"><img class="parent__frame" src="assets/frames/portrait-frame-round.svg" alt=""><span class="parent__initial">D</span></div>
+            <div class="parent__medal"><img class="parent__frame" src="assets/frames/portrait-frame-round.svg" alt=""><img class="parent__photo" src="assets/families/parent-dasharatha.webp" alt="Portrait of Shri Dasharatha"></div>
             <figcaption><strong>Shri Dasharatha</strong><span>Father of the Groom</span></figcaption>
           </figure>
           <figure class="parent">
-            <div class="parent__medal"><img class="parent__frame" src="assets/frames/portrait-frame-round.svg" alt=""><span class="parent__initial">K</span></div>
+            <div class="parent__medal"><img class="parent__frame" src="assets/frames/portrait-frame-round.svg" alt=""><img class="parent__photo" src="assets/families/parent-kausalya.webp" alt="Portrait of Smt. Kausalya"></div>
             <figcaption><strong>Smt. Kausalya</strong><span>Mother of the Groom</span></figcaption>
           </figure>
         </div>
         <p class="family__home"><svg><use href="#i-pin"/></svg>Ayodhya, Uttar Pradesh</p>
         <p class="family__siblings">Eagerly awaiting with brothers <strong>Lakshman, Bharat &amp; Shatrughan</strong></p>
       </article>
-      <div class="families__knot" aria-hidden="true"><img src="assets/ornaments/temple-bell.svg" alt=""><img src="assets/ornaments/temple-bell.svg" alt=""></div>
-      <article class="family" data-reveal>
+      <article class="family">
         <p class="eyebrow">The Bride’s Family · Videha</p>
         <div class="family__parents">
           <figure class="parent">
-            <div class="parent__medal"><img class="parent__frame" src="assets/frames/portrait-frame-round.svg" alt=""><span class="parent__initial">J</span></div>
+            <div class="parent__medal"><img class="parent__frame" src="assets/frames/portrait-frame-round.svg" alt=""><img class="parent__photo" src="assets/families/parent-janaka.webp" alt="Portrait of Shri Janaka"></div>
             <figcaption><strong>Shri Janaka</strong><span>Father of the Bride</span></figcaption>
           </figure>
           <figure class="parent">
-            <div class="parent__medal"><img class="parent__frame" src="assets/frames/portrait-frame-round.svg" alt=""><span class="parent__initial">S</span></div>
+            <div class="parent__medal"><img class="parent__frame" src="assets/frames/portrait-frame-round.svg" alt=""><img class="parent__photo" src="assets/families/parent-sunaina.webp" alt="Portrait of Smt. Sunaina"></div>
             <figcaption><strong>Smt. Sunaina</strong><span>Mother of the Bride</span></figcaption>
           </figure>
         </div>
@@ -552,8 +553,6 @@
     <div class="events__corridor" aria-hidden="true">
       <img class="events__arch events__arch--l" src="assets/temple/temple-arch.svg" alt="">
       <img class="events__arch events__arch--r" src="assets/temple/temple-arch.svg" alt="">
-      <img class="events__bell events__bell--l" src="assets/ornaments/temple-bell.svg" alt="">
-      <img class="events__bell events__bell--r" src="assets/ornaments/temple-bell.svg" alt="">
       <div class="events__lamp events__lamp--l">
         <img src="assets/diya/diya-brass-photo-01.webp" alt="">
         <img src="assets/diya/diya-brass-photo-02.webp" alt="">
@@ -873,8 +872,6 @@
      12 · CONTACT
      ===================================================== -->
 <section class="contact paper" id="contact" aria-labelledby="contactTitle">
-  <img class="contact__bell contact__bell--l" src="assets/ornaments/temple-bell.svg" alt="" aria-hidden="true">
-  <img class="contact__bell contact__bell--r" src="assets/ornaments/temple-bell.svg" alt="" aria-hidden="true">
   <div class="container">
     <header class="section-head">
       <p class="eyebrow" data-reveal>We are here for you</p>
@@ -948,6 +945,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="js/main.js?v=1.9.3"></script>
+<script src="js/main.js?v=2.1.1"></script>
 </body>
 </html>
