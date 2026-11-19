@@ -93,18 +93,20 @@
     const stage = q('#introStage'), bg = q('.intro__bg'), ram = q('.intro__ram'), sita = q('.intro__sita');
     const blossom = q('.intro__blossom'), fin = q('.intro__final'), glow = q('#introGlow'), flash = q('#introFlash');
     // a point of the picture (fractions of its width/height) on screen, for the cover-fitted layers
-    const toScreen = (fx, fy) => {
-      const iw = bg.naturalWidth || 764, ih = bg.naturalHeight || 1024, vw = innerWidth, vh = innerHeight;
-      const s = Math.max(vw / iw, vh / ih), rw = iw * s, rh = ih * s;
-      return { x: (vw - rw) * .5 + rw * fx, y: (vh - rh) * .62 + rh * fy };
+    // a point of the picture (fractions of its width/height) inside the framed panel (cover-fitted)
+    const local = (fx, fy) => {
+      const iw = bg.naturalWidth || 764, ih = bg.naturalHeight || 1024, w = stage.offsetWidth, h = stage.offsetHeight;
+      const s = Math.max(w / iw, h / ih), rw = iw * s, rh = ih * s;
+      return { x: (w - rw) * .5 + rw * fx, y: (h - rh) * .5 + rh * fy };
     };
-    let heart, base;
+    let heart, base, heartScreen;
     const place = () => {
-      heart = toScreen(.53, .625); base = toScreen(.55, .74);
+      heart = local(.53, .625); base = local(.55, .74);
+      heartScreen = { x: stage.offsetLeft + heart.x, y: stage.offsetTop + heart.y };
       stage.style.transformOrigin = `${heart.x}px ${heart.y}px`;
       blossom.style.transformOrigin = `${base.x}px ${base.y}px`;
       glow.style.left = heart.x + 'px'; glow.style.top = heart.y + 'px';
-      flash.style.setProperty('--fx', heart.x + 'px'); flash.style.setProperty('--fy', heart.y + 'px');
+      flash.style.setProperty('--fx', heartScreen.x + 'px'); flash.style.setProperty('--fy', heartScreen.y + 'px');
     };
     place(); addEventListener('resize', place);
     let finished = false;
@@ -119,7 +121,7 @@
     gsap.set(blossom, { scale: .2, rotate: -6 });
     const tl = gsap.timeline({ onComplete: finish });
     tl.to(bg, { opacity: 1, duration: 1.2, ease: 'sine.out' }, 0)
-      .fromTo(stage, { scale: 1.08 }, { scale: 1, duration: 5.6, ease: 'sine.inOut' }, 0)
+      .fromTo(stage, { scale: .96 }, { scale: 1, duration: 5.6, ease: 'sine.inOut' }, 0)
       // Sita's hand glides in from the top corner, Ram's hand rises from below holding the bud
       .to(sita, { opacity: 1, duration: .9, ease: 'sine.out' }, .3)
       .to(sita, { xPercent: 0, yPercent: 0, duration: 3.4, ease: 'power2.out' }, .3)
@@ -131,12 +133,12 @@
       .fromTo(glow, { opacity: 0, scale: .25 }, { opacity: .95, scale: 1, duration: 1.2, ease: 'power2.out' }, 4.3)
       .to(blossom, { opacity: 1, duration: .7, ease: 'sine.out' }, 4.45)
       .to(blossom, { scale: 1, rotate: 0, duration: 2.1, ease: 'power3.out' }, 4.45)
-      .call(() => petalBurst(heart.x, heart.y, small() ? 16 : 26), null, 4.9)
+      .call(() => petalBurst(heartScreen.x, heartScreen.y, small() ? 16 : 26), null, 4.9)
       // the finished picture settles in (her fingers resting on the open lotus)
       .to(fin, { opacity: 1, duration: 1.1, ease: 'sine.inOut' }, 6.0)
       .to(glow, { opacity: .6, scale: 1.3, duration: 1 }, 6.0)
       // drift into the heart of the lotus, then sunlight opens the temple
-      .to(stage, { scale: 3.3, duration: 2.2, ease: 'power2.in' }, 6.9)
+      .to(stage, { scale: 2.6, duration: 2.2, ease: 'power2.in' }, 6.9)
       .to(glow, { opacity: 1, scale: 2.8, duration: 1.7, ease: 'power2.in' }, 7.3)
       .to(flash, { opacity: 1, duration: .9, ease: 'power2.in' }, 8.2)
       .to({}, { duration: .25 });
