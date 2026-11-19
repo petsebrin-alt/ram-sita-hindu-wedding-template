@@ -21,7 +21,7 @@
   <link rel="preload" as="image" href="assets/intro/hands-lotus-bloom.webp">
   <link rel="preload" as="image" href="assets/hero/hero-temple-river-night-wide.webp" media="(min-aspect-ratio: 1/1)">
   <link rel="preload" as="image" href="assets/hero/hero-temple-river-night.webp" media="(max-aspect-ratio: 1/1)">
-  <link rel="stylesheet" href="css/style.css?v=3.9.0">
+  <link rel="stylesheet" href="css/style.css?v=4.2.0">
 </head>
 <body>
 
@@ -785,36 +785,38 @@
     <!-- Hanuman lifts the hill with the RSVP envelope; tapping the wax seal opens the invitation -->
     <div class="rsvp-stage" id="rsvpStage" data-reveal>
       <div class="rsvp-scene" id="rsvpScene">
-        <img class="rsvp-scene__art" src="assets/rsvp/hanuman-rsvp-hill.webp" alt="Hanuman lifting a hill that carries the RSVP envelope, sealed with a lotus wax seal">
-        <span class="rsvp-scene__glow" aria-hidden="true"></span>
-        <button type="button" class="rsvp-scene__seal" id="envelopeSeal" aria-label="Tap the wax seal to open your invitation"><span class="rsvp-scene__ring"></span><span class="rsvp-scene__ring"></span></button>
-        <div class="rsvp-scene__hint" aria-hidden="true">
-          <svg class="rsvp-scene__hand" viewBox="0 0 24 24"><path d="M9 11.24V7.5C9 6.12 10.12 5 11.5 5S14 6.12 14 7.5v3.74c1.21-.81 2-2.18 2-3.74C16 5.01 13.99 3 11.5 3S7 5.01 7 7.5c0 1.56.79 2.93 2 3.74zm9.84 4.63l-4.54-2.26c-.17-.07-.35-.11-.54-.11H13v-6c0-.83-.67-1.5-1.5-1.5S10 6.670 10 7.5v10.74l-3.43-.72c-.08-.01-.15-.03-.24-.03-.31 0-.59.13-.79.33l-.79.8 4.94 4.94c.27.27.65.44 1.06.44h6.790c.75 0 1.33-.55 1.44-1.28l.75-5.27c.01-.07.02-.14.02-.2 0-.62-.38-1.16-.91-1.38z"/></svg>
-          <span class="rsvp-scene__label">Tap the seal</span>
+        <!-- Hanuman flies in from above carrying the hill; the envelope on it starts closed -->
+        <div class="rsvp-fly" id="rsvpFly">
+          <div class="rsvp-fly__float">
+            <div class="rsvp-env" id="rsvpEnv">
+              <div class="rsvp-env__back"></div>
+              <div class="rsvp-env__letter"><span>RSVP</span></div>
+              <div class="rsvp-env__front"></div>
+              <div class="rsvp-env__flap"></div>
+              <button type="button" class="rsvp-env__seal" id="envelopeSeal" aria-label="Tap the wax seal to open the RSVP envelope"><span>RSVP</span></button>
+            </div>
+            <img class="rsvp-fly__art" src="assets/rsvp/hanuman-flying-hill.webp" alt="Hanuman flying in, lifting a hill that carries the RSVP envelope">
+            <div class="rsvp-hand rsvp-hand--seal" aria-hidden="true"><svg class="rsvp-hand__icon" viewBox="0 0 24 24"><path d="M9 11.24V7.5C9 6.12 10.12 5 11.5 5S14 6.12 14 7.5v3.74c1.21-.81 2-2.18 2-3.74C16 5.01 13.99 3 11.5 3S7 5.01 7 7.5c0 1.56.79 2.93 2 3.74zm9.84 4.63l-4.54-2.26c-.17-.07-.35-.11-.54-.11H13v-6c0-.83-.67-1.5-1.5-1.5S10 6.67 10 7.5v10.74l-3.43-.72c-.08-.01-.15-.03-.24-.03-.31 0-.59.13-.79.33l-.79.8 4.94 4.94c.27.27.65.44 1.06.44h6.79c.75 0 1.33-.55 1.44-1.28l.75-5.27c.01-.07.02-.14.02-.2 0-.62-.38-1.16-.91-1.38z"/></svg><span class="rsvp-hand__label">Tap the seal</span></div>
+          </div>
         </div>
-      </div>
 
-      <!-- the invitation that comes out of the envelope -->
-      <div class="rsvp-invite" id="rsvpCard" role="dialog" aria-labelledby="rsvpInviteTitle">
-        <span class="card-corners" aria-hidden="true"></span>
-        <div class="rsvp-card" id="rsvpForm">
-          <p class="deva rsvp-card__om">॥ सीताराम ॥</p>
-          <p class="rsvp-card__invited" id="rsvpInviteTitle">You are invited</p>
-          <label class="rsvp-card__dear">
-            <span>Dear</span>
-            <input type="text" id="rsvpName" maxlength="60" placeholder="your name" autocomplete="name" aria-label="Your name">
-          </label>
-          <p class="rsvp-card__quote">“Where there is love, there the Lord resides.”</p>
-          <p class="rsvp-card__text">With the blessings of Hanuman ji, <strong>Ram &amp; Sita</strong> invite you to share the most blessed moment of their lives — Saturday, 27 March 2027, Jaipur.</p>
-          <button type="button" class="btn btn--maroon btn--wide" id="rsvpAccept"><svg><use href="#i-lotus"/></svg>Accept the invitation</button>
+        <!-- the invitation that comes out of the envelope -->
+        <div class="rsvp-invite" id="rsvpCard" role="group" aria-labelledby="rsvpInviteTitle">
+          <div class="rsvp-card" id="rsvpForm">
+            <p class="deva rsvp-card__om">॥ सीताराम ॥</p>
+            <p class="rsvp-card__dear" id="rsvpInviteTitle">Dear Ramayana Family,</p>
+            <p class="rsvp-card__text">With the blessings of Hanuman ji, we humbly request your presence as <strong>Ram &amp; Sita</strong> are united in marriage — Saturday, 27 March 2027, Jaipur.</p>
+            <button type="button" class="btn btn--maroon" id="rsvpAccept"><svg><use href="#i-lotus"/></svg>Accept the invitation</button>
+          </div>
+          <div class="rsvp-hand rsvp-hand--accept" aria-hidden="true"><svg class="rsvp-hand__icon" viewBox="0 0 24 24"><path d="M9 11.24V7.5C9 6.12 10.12 5 11.5 5S14 6.12 14 7.5v3.74c1.21-.81 2-2.18 2-3.74C16 5.01 13.99 3 11.5 3S7 5.01 7 7.5c0 1.56.79 2.93 2 3.74zm9.84 4.63l-4.54-2.26c-.17-.07-.35-.11-.54-.11H13v-6c0-.83-.67-1.5-1.5-1.5S10 6.67 10 7.5v10.74l-3.43-.72c-.08-.01-.15-.03-.24-.03-.31 0-.59.13-.79.33l-.79.8 4.94 4.94c.27.27.65.44 1.06.44h6.79c.75 0 1.33-.55 1.44-1.28l.75-5.27c.01-.07.02-.14.02-.2 0-.62-.38-1.16-.91-1.38z"/></svg><span class="rsvp-hand__label">Tap to accept</span></div>
         </div>
       </div>
 
       <!-- after accepting: Ram & Sita say thank you -->
       <div class="rsvp-thanks" id="rsvpDone" hidden>
         <div class="rsvp-thanks__couple"><span class="rsvp-thanks__halo" aria-hidden="true"></span><img src="assets/hero/couple-ram-sita-3d-cutout.webp" alt="Ram and Sita thanking you"></div>
-        <h3 class="rsvp-thanks__title" id="rsvpThanksTitle">Thank you!</h3>
-        <p class="rsvp-thanks__text" id="rsvpThanksText">Thank you for accepting our invitation. Your presence will make our celebration complete — we can’t wait to welcome you in Jaipur.</p>
+        <h3 class="rsvp-thanks__title" id="rsvpThanksTitle">Thank you for accepting!</h3>
+        <p class="rsvp-thanks__text" id="rsvpThanksText">Your presence will make our celebration complete — we can’t wait to welcome you in Jaipur.</p>
         <button type="button" class="link-btn rsvp-thanks__replay" id="rsvpReplay">↺ Replay</button>
       </div>
     </div>
@@ -948,6 +950,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="js/main.js?v=3.9.0"></script>
+<script src="js/main.js?v=4.2.0"></script>
 </body>
 </html>

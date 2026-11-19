@@ -1045,54 +1045,81 @@
      09 · RSVP — envelope opens, card slides out
      --------------------------------------------------------------------- */
   function initRSVP() {
-    const stage = $('#rsvpStage'), scene = $('#rsvpScene'), seal = $('#envelopeSeal'), card = $('#rsvpCard');
-    const done = $('#rsvpDone'), nameIn = $('#rsvpName');
+    const stage = $('#rsvpStage'), scene = $('#rsvpScene'), done = $('#rsvpDone');
     if (!stage) return;
+    const fly = $('#rsvpFly'), env = $('#rsvpEnv'), seal = $('#envelopeSeal'), card = $('#rsvpCard');
+    const flap = $('.rsvp-env__flap', env), letter = $('.rsvp-env__letter', env);
     const KEY = 'rs-rsvp';
     let opened = false;
-    // tap the wax seal: a burst of light, and the invitation comes out of the envelope
-    function openInvite() {
+
+    // 1. Hanuman flies down from the sky and settles in the middle, holding the hill
+    if (ANIM) {
+      const start = () => gsap.set(fly, { autoAlpha: 0, x: '-14vw', y: '-75vh', rotate: -12, scale: .7 });
+      start();
+      let flyIn = null;
+      ScrollTrigger.create({
+        trigger: stage, start: 'top 85%',
+        onEnter: () => {
+          flyIn = gsap.timeline()
+            .to(fly, { autoAlpha: 1, duration: .8, ease: 'sine.out' }, 0)
+            .to(fly, { x: 0, duration: 3.4, ease: 'sine.out' }, 0)
+            .to(fly, { y: 0, duration: 3.4, ease: 'power3.out' }, 0)
+            .to(fly, { rotate: 0, scale: 1, duration: 3.6, ease: 'power2.out' }, 0)
+            .add(() => { const r = env.getBoundingClientRect(); petalBurst(r.left + r.width / 2, r.top + r.height / 2, small() ? 12 : 20); }, 3.1);
+        },
+        onLeaveBack: () => { if (flyIn) flyIn.kill(); if (!opened) start(); }
+      });
+    }
+
+    // 2. tap the wax seal: it breaks, the flap opens, the letter rises and the invitation comes out
+    function openEnvelope() {
       if (opened) return; opened = true;
       stage.classList.add('is-open');
       if (!ANIM) { gsap.set(card, { autoAlpha: 1 }); return; }
-      const st = stage.getBoundingClientRect(), s = seal.getBoundingClientRect();
-      const sx = s.left + s.width / 2 - (st.left + st.width / 2), sy = s.top + s.height / 2 - (st.top + st.height / 2);
-      petalBurst(s.left + s.width / 2, s.top + s.height / 2, small() ? 14 : 22);
+      const s = seal.getBoundingClientRect();
+      petalBurst(s.left + s.width / 2, s.top + s.height / 2, small() ? 12 : 18);
+      gsap.set(card, { autoAlpha: 0 });
+      const e = env.getBoundingClientRect(), c = card.getBoundingClientRect();
+      const dx = e.left + e.width / 2 - (c.left + c.width / 2), dy = e.top + e.height / 2 - (c.top + c.height / 2);
       gsap.timeline()
-        .to(scene, { opacity: .4, scale: .97, duration: .9, ease: 'power2.inOut' }, .15)
-        .fromTo(card, { autoAlpha: 0, x: sx, y: sy, scale: .08, rotate: -6 },
-          { autoAlpha: 1, x: 0, y: 0, scale: 1, rotate: 0, duration: 1.1, ease: 'back.out(1.25)' }, .1)
-        .from('#rsvpForm > *', { y: 14, opacity: 0, stagger: .07, duration: .5, ease: 'power2.out' }, .7)
-        .add(() => nameIn.focus({ preventScroll: true }));
+        .to(seal, { autoAlpha: 0, duration: .35, ease: 'power2.in' })
+        .to(flap, { rotateX: 180, duration: .8, ease: 'power2.inOut' }, .2)
+        .to(letter, { yPercent: -75, duration: .7, ease: 'power2.out' }, .85)
+        .fromTo(card, { autoAlpha: 0, x: dx, y: dy, scale: .12, rotate: -4 },
+          { autoAlpha: 1, x: 0, y: 0, scale: 1, rotate: 0, duration: 1.2, ease: 'power3.out' }, 1.35)
+        .to(letter, { autoAlpha: 0, duration: .4 }, 1.4)
+        .from('#rsvpForm > *', { y: 12, opacity: 0, stagger: .08, duration: .5, ease: 'power2.out' }, 2.0)
+        .add(() => { if (card.getBoundingClientRect().bottom > innerHeight - 60) card.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 2.6);
     }
-    seal.addEventListener('click', openInvite);
+    seal.addEventListener('click', openEnvelope);
 
-    function showDone(r, celebrate) {
-      const name = r.name || 'dear guest';
-      $('#rsvpThanksTitle').textContent = `Thank you, ${name}!`;
-      const swap = () => { gsap.set([scene, card], { autoAlpha: 0 }); done.hidden = false; };
-      if (!ANIM || !celebrate) { stage.classList.add('is-open'); opened = true; swap(); return; }
-      // Hanuman, the hill and the card all fade away; Ram & Sita appear to thank the guest
+    // 3. accept: Hanuman, the hill, the envelope and the card fade away; Ram & Sita say thank you
+    function showDone(celebrate) {
+      const swap = () => { gsap.set(scene, { autoAlpha: 0 }); done.hidden = false; };
+      if (!ANIM || !celebrate) { swap(); return; }
+      const a = $('#rsvpAccept').getBoundingClientRect();
+      petalBurst(a.left + a.width / 2, a.top + a.height / 2, small() ? 16 : 26);
       gsap.timeline()
-        .to(card, { autoAlpha: 0, scale: .92, y: -20, duration: .55, ease: 'power2.in' })
-        .to(scene, { autoAlpha: 0, scale: .9, duration: .7, ease: 'power2.in' }, 0)
+        .to(scene, { autoAlpha: 0, scale: .94, duration: .8, ease: 'power2.in' }, .15)
         .add(swap)
+        .add(() => { const c = $('.rsvp-thanks__couple'); if (c.getBoundingClientRect().top < 70 || c.getBoundingClientRect().bottom > innerHeight) done.scrollIntoView({ behavior: 'smooth', block: 'center' }); })
         .fromTo('.rsvp-thanks__couple', { y: 50, scale: .85, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 1.1, ease: 'back.out(1.4)' })
         .fromTo('#rsvpThanksTitle, #rsvpThanksText, #rsvpReplay', { y: 16, opacity: 0 }, { y: 0, opacity: 1, stagger: .12, duration: .6, ease: 'power3.out' }, '-=.5')
         .add(() => {
-          const b = stage.getBoundingClientRect();
+          const b = done.getBoundingClientRect();
           [0, 350, 700].forEach(d => setTimeout(() => petalBurst(b.left + b.width * (.3 + Math.random() * .4), b.top + b.height * .3, 26), d));
         }, '<');
     }
     $('#rsvpAccept').addEventListener('click', () => {
-      const r = { name: nameIn.value.trim().slice(0, 60), status: 'accept', at: new Date().toISOString() };
-      store.set(KEY, r); showDone(r, true);
+      store.set(KEY, { status: 'accept', at: new Date().toISOString() });
+      showDone(true);
     });
-    // Replay: back to Hanuman and the sealed envelope
+
+    // Replay: back to Hanuman with the closed envelope
     $('#rsvpReplay').addEventListener('click', () => {
       const reset = () => {
         done.hidden = true; opened = false; stage.classList.remove('is-open');
-        gsap.set(card, { autoAlpha: 0 });
+        gsap.set(card, { autoAlpha: 0 }); gsap.set(flap, { rotateX: 0 }); gsap.set(letter, { yPercent: 0, autoAlpha: 1 }); gsap.set(seal, { autoAlpha: 1 });
       };
       if (!ANIM) { reset(); gsap.set(scene, { autoAlpha: 1, scale: 1 }); return; }
       gsap.timeline()
@@ -1101,7 +1128,7 @@
         .fromTo(scene, { autoAlpha: 0, scale: .94 }, { autoAlpha: 1, scale: 1, duration: .9, ease: 'power2.out' });
     });
     const saved = store.get(KEY, null);
-    if (saved && saved.status === 'accept') { nameIn.value = saved.name || ''; showDone(saved, false); }
+    if (saved && saved.status === 'accept') { opened = true; showDone(false); }
   }
 
 
