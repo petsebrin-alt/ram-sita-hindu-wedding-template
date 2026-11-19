@@ -90,12 +90,12 @@
     const intro = $('#intro');
     if (!intro) return done();
     const q = s => $(s, intro);
-    const stage = q('#introStage'), bg = q('.intro__bg'), ram = q('.intro__ram'), sita = q('.intro__sita');
-    const blossom = q('.intro__blossom'), fin = q('.intro__final'), glow = q('#introGlow'), flash = q('#introFlash');
+    const stage = q('#introStage'), ram = q('.intro__ram'), sita = q('.intro__sita'), sitaEnd = q('.intro__sita-end'), feather = q('.intro__feather');
+    const blossom = q('.intro__blossom'), glow = q('#introGlow'), flash = q('#introFlash');
     // a point of the picture (fractions of its width/height) on screen, for the cover-fitted layers
     // a point of the picture (fractions of its width/height) inside the framed panel (cover-fitted)
     const local = (fx, fy) => {
-      const iw = bg.naturalWidth || 764, ih = bg.naturalHeight || 1024, w = stage.offsetWidth, h = stage.offsetHeight;
+      const iw = ram.naturalWidth || 764, ih = ram.naturalHeight || 1024, w = stage.offsetWidth, h = stage.offsetHeight;
       const s = Math.max(w / iw, h / ih), rw = iw * s, rh = ih * s;
       return { x: (w - rw) * .5 + rw * fx, y: (h - rh) * .5 + rh * fy };
     };
@@ -115,32 +115,32 @@
       done();
       gsap.to(intro, { opacity: 0, duration: 1.2, ease: 'power2.out', onComplete: () => intro.remove() });
     };
-    gsap.set([bg, ram, sita], { opacity: 0 });
+    gsap.set([ram, sita, feather], { opacity: 0 });
     gsap.set(sita, { xPercent: -34, yPercent: -30 });
     gsap.set(ram, { xPercent: 6, yPercent: 20 });
+    gsap.set(feather, { xPercent: 8, rotate: 6, transformOrigin: '70% 75%' });
     gsap.set(blossom, { scale: .2, rotate: -6 });
     const tl = gsap.timeline({ onComplete: finish });
-    tl.to(bg, { opacity: 1, duration: 1.2, ease: 'sine.out' }, 0)
-      .fromTo(stage, { scale: .96 }, { scale: 1, duration: 5.6, ease: 'sine.inOut' }, 0)
+    tl.fromTo(stage, { scale: .96 }, { scale: 1, duration: 5.6, ease: 'sine.inOut' }, 0)
+      .to(feather, { opacity: 1, xPercent: 0, rotate: 0, duration: 2.6, ease: 'sine.out' }, .2)
       // Sita's hand glides in from the top corner, Ram's hand rises from below holding the bud
       .to(sita, { opacity: 1, duration: .9, ease: 'sine.out' }, .3)
       .to(sita, { xPercent: 0, yPercent: 0, duration: 3.4, ease: 'power2.out' }, .3)
       .to(ram, { opacity: 1, duration: .9, ease: 'sine.out' }, .6)
       .to(ram, { xPercent: 0, yPercent: 0, duration: 3.1, ease: 'power2.out' }, .6)
-      // her fingertip comes down to touch the bud
-      .to(sita, { yPercent: 5, xPercent: .6, duration: .9, ease: 'sine.inOut' }, 3.7)
-      // at the touch the bud blossoms, petal by petal opening outward
+      // her fingers come down onto the flower
+      .to(sitaEnd, { opacity: 1, duration: 1.1, ease: 'sine.inOut' }, 3.9)
+      .to(sita, { opacity: 0, duration: 1.1, ease: 'sine.inOut' }, 3.9)
+      // at the touch the bud blossoms, petals opening outward
       .fromTo(glow, { opacity: 0, scale: .25 }, { opacity: .95, scale: 1, duration: 1.2, ease: 'power2.out' }, 4.3)
       .to(blossom, { opacity: 1, duration: .7, ease: 'sine.out' }, 4.45)
       .to(blossom, { scale: 1, rotate: 0, duration: 2.1, ease: 'power3.out' }, 4.45)
       .call(() => petalBurst(heartScreen.x, heartScreen.y, small() ? 16 : 26), null, 4.9)
-      // the finished picture settles in (her fingers resting on the open lotus)
-      .to(fin, { opacity: 1, duration: 1.1, ease: 'sine.inOut' }, 6.0)
       .to(glow, { opacity: .6, scale: 1.3, duration: 1 }, 6.0)
       // drift into the heart of the lotus, then sunlight opens the temple
-      .to(stage, { scale: 2.6, duration: 2.2, ease: 'power2.in' }, 6.9)
-      .to(glow, { opacity: 1, scale: 2.8, duration: 1.7, ease: 'power2.in' }, 7.3)
-      .to(flash, { opacity: 1, duration: .9, ease: 'power2.in' }, 8.2)
+      .to(stage, { scale: 2.6, duration: 2.2, ease: 'power2.in' }, 6.6)
+      .to(glow, { opacity: 1, scale: 2.8, duration: 1.7, ease: 'power2.in' }, 7.0)
+      .to(flash, { opacity: 1, duration: .9, ease: 'power2.in' }, 7.9)
       .to({}, { duration: .25 });
     q('#introSkip').addEventListener('click', () => { tl.kill(); finish(); });
   }

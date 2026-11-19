@@ -87,7 +87,7 @@ assets/
 │               corner-gold-lotus-frame.svg (gold corner of the invitation and Vadhu & Vara) · lotus-bead-embroidery (.png/.webp, bead-work lotus in that corner)
 │               lotus-zari-drawing.json (lotus drawing, stitched in gold and filled pink as it scrolls into view in Vadhu & Vara and Our Story)
 │               temple-flag-saffron (.png/.webp, Ram Mandir flag from your photo, on the Save the Date poles)
-├── intro/      hands-lotus-bud · hands-lotus-bloom (.webp, the two frames of the opening)
+├── intro/      scene-portrait · scene-wide (.webp, the opening background) · layer-sita · layer-sita-end · layer-ram · layer-blossom · layer-feather (.webp, the moving pieces) · hands-lotus-bud · hands-lotus-bloom (your two source pictures)
 ├── story/      lotus-embroidery (.png/.webp, badge front) · story-couple-train · story-couple-promise · story-couple-temple · story-couple-sunset (.webp, badge backs)
 └── effects/    sparkle-gold · particles-gold · light-rays · firework-gold · firework-pink
 ```
