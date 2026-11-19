@@ -20,6 +20,7 @@ To publish it, upload the whole folder to any static host (Netlify, Vercel, GitH
 
 | # | Section | What happens on scroll |
 |---|---------|------------------------|
+| 00 | **Opening** (`#intro`) | Sita's hand reaches down to a lotus bud held in Ram's palm; at her touch it blossoms with a golden glow and petals, the view drifts into the lotus and a burst of sunlight opens onto the Ram Mandir. A Skip button jumps straight in. |
 | 01 | **Welcome** (`#welcome`) | Every stage fills the screen edge to edge (wide photos on laptops, upright photos on phones). The night-time Ram Mandir appears with the names "Ram & Sita" in a starry sky. As you scroll, the temple lights come on and you move forward into the lotus pond. Real lotus buds rise from the water and open into full blooms. Then the realistic 3D Ram & Sita rise into place in front of the temple, holding their varmalas, the Ram Mandir still in full view behind them. Four brass vilakku light up at their feet, and the date ribbon unfurls. |
 | 02 | **The Invitation** (`#invitation`) | "Welcome, dear friends & family" with Bhagavad Gita 6.30. On a soft pink, gently moving light background, a rani-pink gatefold with the gold chakra and seal swings open. Shri Hanuman rises onto the top of the ivory card to bless it; the card has lotus-embroidered corners and short lines: Ram (son of Dasharatha & Kausalya), Sita (daughter of Janaka & Sunaina), the date and venue. |
 | 03 | **Vadhu & Vara** (`#couple`) | Bride and groom portraits in gold jharokha frames, with parallax. |
@@ -86,6 +87,7 @@ assets/
 │               corner-gold-lotus-frame.svg (gold corner of the invitation and Vadhu & Vara) · lotus-bead-embroidery (.png/.webp, bead-work lotus in that corner)
 │               lotus-zari-drawing.json (lotus drawing, stitched in gold and filled pink as it scrolls into view in Vadhu & Vara and Our Story)
 │               temple-flag-saffron (.png/.webp, Ram Mandir flag from your photo, on the Save the Date poles)
+├── intro/      hands-lotus-bud · hands-lotus-bloom (.webp, the two frames of the opening)
 ├── story/      lotus-embroidery (.png/.webp, badge front) · story-couple-train · story-couple-promise · story-couple-temple · story-couple-sunset (.webp, badge backs)
 └── effects/    sparkle-gold · particles-gold · light-rays · firework-gold · firework-pink
 ```

@@ -71,15 +71,79 @@
     const pre = $('#preloader');
     pre?.classList.add('is-done');
     setTimeout(() => pre?.remove(), 1100);
-    document.body.classList.remove('is-locked');
-    if (ANIM) { toTop(); lenis?.scrollTo(0, { immediate: true, force: true }); }
-    lenis?.start();
-    heroIntro();
-    if (ANIM) ScrollTrigger.refresh();
     const deep = location.hash && document.getElementById(location.hash.slice(1));
-    if (deep) setTimeout(() => scrollToEl(deep), 300);
+    const start = () => {
+      document.body.classList.remove('is-locked');
+      if (ANIM) { toTop(); lenis?.scrollTo(0, { immediate: true, force: true }); }
+      lenis?.start();
+      heroIntro();
+      if (ANIM) ScrollTrigger.refresh();
+      if (deep) setTimeout(() => scrollToEl(deep), 300);
+    };
+    if (ANIM && !deep) playOpening(start); else { $('#intro')?.remove(); start(); }
   }
-  window.addEventListener('load', () => setTimeout(hidePreloader, 650));
+
+  /* Opening: the scene fades in, Sita's hand comes down to the lotus bud, at her touch it
+     blossoms with a golden glow and petals, the view drifts into the lotus and a burst of
+     sunlight opens onto the Ram Mandir (the first page). Tap Skip to go straight in. */
+  function playOpening(done) {
+    const intro = $('#intro');
+    if (!intro) return done();
+    const q = s => $(s, intro);
+    const stage = q('#introStage'), bg = q('.intro__bg'), ram = q('.intro__ram'), sita = q('.intro__sita');
+    const blossom = q('.intro__blossom'), fin = q('.intro__final'), glow = q('#introGlow'), flash = q('#introFlash');
+    // a point of the picture (fractions of its width/height) on screen, for the cover-fitted layers
+    const toScreen = (fx, fy) => {
+      const iw = bg.naturalWidth || 764, ih = bg.naturalHeight || 1024, vw = innerWidth, vh = innerHeight;
+      const s = Math.max(vw / iw, vh / ih), rw = iw * s, rh = ih * s;
+      return { x: (vw - rw) * .5 + rw * fx, y: (vh - rh) * .62 + rh * fy };
+    };
+    let heart, base;
+    const place = () => {
+      heart = toScreen(.53, .625); base = toScreen(.55, .74);
+      stage.style.transformOrigin = `${heart.x}px ${heart.y}px`;
+      blossom.style.transformOrigin = `${base.x}px ${base.y}px`;
+      glow.style.left = heart.x + 'px'; glow.style.top = heart.y + 'px';
+      flash.style.setProperty('--fx', heart.x + 'px'); flash.style.setProperty('--fy', heart.y + 'px');
+    };
+    place(); addEventListener('resize', place);
+    let finished = false;
+    const finish = () => {
+      if (finished) return; finished = true;
+      done();
+      gsap.to(intro, { opacity: 0, duration: 1.2, ease: 'power2.out', onComplete: () => intro.remove() });
+    };
+    gsap.set([bg, ram, sita], { opacity: 0 });
+    gsap.set(sita, { xPercent: -34, yPercent: -30 });
+    gsap.set(ram, { xPercent: 6, yPercent: 20 });
+    gsap.set(blossom, { scale: .2, rotate: -6 });
+    const tl = gsap.timeline({ onComplete: finish });
+    tl.to(bg, { opacity: 1, duration: 1.2, ease: 'sine.out' }, 0)
+      .fromTo(stage, { scale: 1.08 }, { scale: 1, duration: 5.6, ease: 'sine.inOut' }, 0)
+      // Sita's hand glides in from the top corner, Ram's hand rises from below holding the bud
+      .to(sita, { opacity: 1, duration: .9, ease: 'sine.out' }, .3)
+      .to(sita, { xPercent: 0, yPercent: 0, duration: 3.4, ease: 'power2.out' }, .3)
+      .to(ram, { opacity: 1, duration: .9, ease: 'sine.out' }, .6)
+      .to(ram, { xPercent: 0, yPercent: 0, duration: 3.1, ease: 'power2.out' }, .6)
+      // her fingertip comes down to touch the bud
+      .to(sita, { yPercent: 5, xPercent: .6, duration: .9, ease: 'sine.inOut' }, 3.7)
+      // at the touch the bud blossoms, petal by petal opening outward
+      .fromTo(glow, { opacity: 0, scale: .25 }, { opacity: .95, scale: 1, duration: 1.2, ease: 'power2.out' }, 4.3)
+      .to(blossom, { opacity: 1, duration: .7, ease: 'sine.out' }, 4.45)
+      .to(blossom, { scale: 1, rotate: 0, duration: 2.1, ease: 'power3.out' }, 4.45)
+      .call(() => petalBurst(heart.x, heart.y, small() ? 16 : 26), null, 4.9)
+      // the finished picture settles in (her fingers resting on the open lotus)
+      .to(fin, { opacity: 1, duration: 1.1, ease: 'sine.inOut' }, 6.0)
+      .to(glow, { opacity: .6, scale: 1.3, duration: 1 }, 6.0)
+      // drift into the heart of the lotus, then sunlight opens the temple
+      .to(stage, { scale: 3.3, duration: 2.2, ease: 'power2.in' }, 6.9)
+      .to(glow, { opacity: 1, scale: 2.8, duration: 1.7, ease: 'power2.in' }, 7.3)
+      .to(flash, { opacity: 1, duration: .9, ease: 'power2.in' }, 8.2)
+      .to({}, { duration: .25 });
+    q('#introSkip').addEventListener('click', () => { tl.kill(); finish(); });
+  }
+
+  window.addEventListener('load', () => setTimeout(hidePreloader, 120));
   setTimeout(hidePreloader, 6000);
 
   function scrollToEl(el) {

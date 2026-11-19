@@ -1108,3 +1108,19 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
 .ev-pop__map:hover { filter: brightness(1.12); }
 @keyframes map-glow { 0%, 100% { box-shadow: 0 0 0 1.5px var(--gold-500), 0 0 10px rgba(255, 196, 92, .45), 0 6px 14px -4px rgba(74, 10, 26, .6); } 50% { box-shadow: 0 0 0 1.5px #f6e3a6, 0 0 24px rgba(255, 206, 110, .95), 0 6px 14px -4px rgba(74, 10, 26, .6); } }
 @keyframes map-sweep { 0%, 35% { left: -40%; } 75%, 100% { left: 120%; } }
+
+/* =========================================================================
+   OPENING — Sita's touch, the lotus blossoms, sunlight opens the temple
+   ========================================================================= */
+.intro { position: fixed; inset: 0; z-index: 150; overflow: hidden; background: #f6e6d4; }
+.intro__stage { position: absolute; inset: 0; will-change: transform; }
+.intro__layer { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; will-change: transform, opacity; }
+.intro__final, .intro__blossom { opacity: 0; }
+.intro__glow { position: absolute; width: 46vmin; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; opacity: 0; pointer-events: none; mix-blend-mode: screen;
+  background: radial-gradient(closest-side, rgba(255, 252, 230, .95), rgba(255, 220, 140, .6) 35%, rgba(255, 180, 120, 0) 72%); }
+.intro__flash { position: absolute; inset: 0; opacity: 0; pointer-events: none;
+  background: radial-gradient(circle at var(--fx, 50%) var(--fy, 60%), #fffef6 0%, #fff4d2 30%, #ffe2a6 60%, #f7c98a 100%); }
+.intro__skip { position: absolute; right: 18px; bottom: 18px; z-index: 2; padding: 8px 18px; border-radius: 999px; cursor: pointer;
+  font-family: var(--f-caps); font-size: .7rem; letter-spacing: .24em; text-transform: uppercase; color: #6b0f24;
+  background: rgba(255, 250, 238, .75); border: 1px solid rgba(184, 134, 43, .6); }
+html:not(.anim) .intro { display: none; }
