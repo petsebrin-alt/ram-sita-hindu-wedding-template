@@ -1222,8 +1222,9 @@ html:not(.anim) .rsvp-stage.is-open .rsvp-invite { opacity: 1; visibility: visib
 @media (max-width: 560px) { .rsvp-thanks__couple { --h: clamp(220px, 38svh, 320px); } }
 .rsvp-thanks__halo { position: absolute; left: 50%; top: 42%; width: 150%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 228, 160, .6), rgba(255, 180, 90, .2) 55%, transparent); animation: halo-breathe 4s ease-in-out infinite; }
 .rsvp-thanks__title { margin-top: 10px; font-family: var(--f-script); font-weight: 400; font-size: clamp(2.4rem, 5vw, 3.4rem); color: var(--gold-300); line-height: 1.1; text-shadow: 0 2px 14px rgba(40, 0, 20, .6); }
-.rsvp-thanks__text { max-width: 34ch; margin: 8px auto 0; font-style: italic; color: var(--ivory-100); line-height: 1.55; }
-.rsvp-thanks__replay { margin-top: 14px; color: var(--gold-300); }
+.rsvp-thanks__text { max-width: 34ch; margin: 8px auto 0; font-style: italic; font-size: clamp(1.05rem, 2.2vw, 1.25rem); font-weight: 500; color: var(--maroon-900); line-height: 1.55; text-shadow: 0 1px 2px rgba(255, 240, 245, 0.4); }
+.rsvp-thanks__replay { margin-top: 14px; font-weight: 600; color: var(--maroon-800); text-decoration-color: var(--maroon-600); }
+.rsvp-thanks__replay:hover { color: var(--maroon-950); }
 
 /* ---- every section melts softly into the one before it (no hard line between sections) ---- */
 :root { --seam: clamp(70px, 11vh, 120px); }
