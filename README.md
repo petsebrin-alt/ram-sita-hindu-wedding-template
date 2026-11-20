@@ -4,6 +4,8 @@ A single-page, scroll-animated wedding invitation website themed on the Ramayana
 
 **Wedding date:** Saturday, 27 March 2027 · **Venue:** Rambagh Palace, Jaipur, Rajasthan
 
+> Every section melts softly into the one before it, so there is no hard line between sections.
+
 ## Run it locally
 
 Open a terminal in this folder and run:
@@ -30,8 +32,8 @@ To publish it, upload the whole folder to any static host (Netlify, Vercel, GitH
 | 07 | **Our Story** (`#story`) | A gold thread draws down the page. Four round badges, embroidered lotus on the front, turn over one by one to show the couple’s photos, each with one short line: Pushpa Vatika, Shiva Dhanush, Swayamvar, Saptapadi. Tap a badge to turn it again. |
 | 08 | **Our Families** (`#families`) | One big gold medallion per family with both parents together. As you scroll, a single gold line with a glowing tip draws each arched frame (up, over the arch, down and along the bottom), then the card fills in and five lotuses bloom on the bottom line. |
 | 09 | **Wedding Events** (`#events`) | "Through the Palace Doors", on a rani pink background with a slowly turning gold chakra. As the section comes into view a lotus blooms and Hanuman rises from it, blessing every celebration. One palace window per celebration. The doors open on a picture of the event, a details card pops up with a glowing Get directions button (Google Maps), then the doors close and the next window rises into place. |
-| 10 | **Wishing Wall** (`#wishes`) | The whole section sits in a soft pink sunset sky. Jatayu, the divine eagle, flies above a golden lotus frame holding a hanging scroll that shows one blessing at a time, with arrows to move through them (it also turns by itself every few seconds). Guests write a blessing below; the lotus carries it up to the scroll, petals fall, and the new blessing appears first. |
-| 11 | **RSVP** (`#rsvp`) | A golden arch on a rani pink sky with clouds. As the section comes into view, Hanuman flies slowly down from the sky and settles in the middle, holding a hill with a closed envelope sealed with an RSVP wax seal; a pointing hand says "Tap the seal". Tapping it breaks the seal, the flap opens, the letter rises and the invitation card ("Dear Ramayana Family, ...") comes out and settles below Hanuman, with the Accept the invitation button and a "Tap to accept" hand. On accepting, Hanuman, the hill, the envelope and the card fade away and Ram & Sita appear to say thank you, with petals and a Replay button. No sound plays here. |
+| 10 | **Wishing Wall** (`#wishes`) | The whole section sits in a soft pink sunset sky. Jatayu, the divine eagle, flies above a golden lotus frame holding a hanging scroll that shows one blessing at a time, with arrows to move through them (it also turns by itself every few seconds). Guests write a blessing below; the lotus carries it up to the scroll, petals fall, and the new blessing appears first. A "View all wishes" button brings Jatayu flying down holding a royal scroll by two golden ropes; the scroll unrolls from top to bottom to show every blessing, each with its own lotus, and closes by rolling back up. |
+| 11 | **RSVP** (`#rsvp`) | A golden arch on a rani pink sky with clouds. As the section comes into view, Hanuman flies slowly down from the sky and settles in the middle, holding a hill with a closed envelope sealed with an RSVP wax seal; a pointing hand says "Tap the seal". Tapping it breaks the seal, the flap opens, the letter rises and the invitation card ("Dear Ramayana Family, ...") comes out and settles below Hanuman, with the Accept the invitation button and a "Tap to accept" hand. On accepting, Hanuman, the hill, the envelope and the card fade away; Ram walks in from the left and Sita from the right with a gentle, natural pace, they meet in the middle, and the thank you appears with petals and a Replay button. Every visit starts fresh: scrolling back up above the section resets it, so Hanuman flies in again each time. No sound plays here. |
 | 12 | **Venue & Travel** (`#venue`) | Shri Ram Mandir in a gold arch, Rambagh Palace with Get directions and Open in Maps, then three cards: By Road & Bus, By Train & Air, Where to Stay. |
 | 13 | **Contact** (`#contact`) | Family contacts with call, WhatsApp and email buttons. |
 | 14 | **Thank You** (`#thank-you`) | Pink and gold fireworks over the temple, with a verse from Tulsidas. |
@@ -87,8 +89,8 @@ assets/
 │               lotus-zari-drawing.json (lotus drawing, stitched in gold and filled pink as it scrolls into view in Vadhu & Vara and Our Story)
 │               temple-flag-saffron (.png/.webp, Ram Mandir flag from your photo, on the Save the Date poles)
 ├── intro/      scene-portrait · scene-wide (.webp, the opening background) · layer-sita · layer-sita-end · layer-ram · layer-blossom · layer-feather (.webp, the moving pieces) · hands-lotus-bud · hands-lotus-bloom (your two source pictures)
-├── rsvp/       hanuman-flying-hill.webp (Hanuman with the hill), rsvp-arch-bg.webp (the RSVP background)
-├── wishes/     jatayu-scroll-board.webp (the Wishing Wall board), wishes-bg-sky.webp (its sky background)
+├── rsvp/       hanuman-flying-hill.webp (Hanuman with the hill), rsvp-arch-bg.webp (the RSVP background), ram-walk.webp & sita-walk.webp (the thank-you walk)
+├── wishes/     jatayu-scroll-board.webp (the Wishing Wall board), jatayu-full.webp (Jatayu, full wings), royal-scroll.webp (the all-wishes scroll), wishes-bg-sky.webp (its sky background)
 ├── story/      lotus-embroidery (.png/.webp, badge front) · story-couple-train · story-couple-promise · story-couple-temple · story-couple-sunset (.webp, badge backs)
 └── effects/    sparkle-gold · particles-gold · light-rays · firework-gold · firework-pink
 ```

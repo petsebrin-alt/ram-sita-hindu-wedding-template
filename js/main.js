@@ -873,6 +873,7 @@
     });
     tl.fromTo(track, { y: yAt(0) }, { y: yAt(0), duration: .01 })
       .fromTo('.events__head', { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: .5 })
+      .to('.events__seam', { opacity: 0, duration: .5 }, '<')
       .to({}, { duration: .2 });
     units.forEach((u, i) => {
       const L = $('.door--left', u), R = $('.door--right', u), light = $('.ev-window__light', u);
@@ -972,6 +973,62 @@
     const mine = store.get(KEY, []);
     const list = [...mine, ...CONFIG.seedWishes];
     let i = 0;
+    // "View all wishes": every blessing in a pop-up under Jatayu, each with its own lotus
+    const modal = $('#wishModal'), mList = $('#wishModalList'), vCount = $('#wishViewCount');
+    const LOTUS = ['assets/flowers/lotus-bloom-01.webp', 'assets/flowers/lotus-bloom-02.webp', 'assets/flowers/lotus-photo-bloom-01.webp'];
+    const countAll = () => { if (vCount) vCount.textContent = '(' + list.length + ')'; };
+    let lastFocus = null;
+    function openAll() {
+      mList.textContent = '';
+      list.forEach((w, k) => {
+        const li = document.createElement('li'); li.className = 'wish-modal__item';
+        const img = document.createElement('img'); img.src = LOTUS[k % LOTUS.length]; img.alt = ''; img.loading = 'lazy';
+        const body = document.createElement('div');
+        const p = document.createElement('p'); p.className = 'wish-modal__wish'; p.textContent = '\u201c' + w.wish + '\u201d';
+        const n = document.createElement('p'); n.className = 'wish-modal__name'; n.textContent = '\u2014 ' + w.name;
+        body.append(p, n); li.append(img, body); mList.appendChild(li);
+      });
+      $('#wishModalSub').textContent = list.length + (list.length === 1 ? ' blessing' : ' blessings') + ' for Ram & Sita';
+      lastFocus = document.activeElement;
+      modal.hidden = false; if (lenis) lenis.stop();
+      $('.wish-modal__close', modal).focus({ preventScroll: true });
+      if (!ANIM) return;
+      const stage = $('#wscrollStage'), bird = $('.wscroll__jatayu', modal), paper = $('#wscrollPaper'), rod = $('#wscrollBottom');
+      const travel = () => -paper.offsetHeight;
+      if (openTl) openTl.kill();
+      openTl = gsap.timeline()
+        .fromTo('.wish-modal__backdrop', { opacity: 0 }, { opacity: 1, duration: .45 })
+        // Jatayu flies down from the sky holding the rolled-up scroll
+        .fromTo(stage, { y: -innerHeight * .95, rotate: -4, opacity: 0 }, { y: 0, rotate: 0, opacity: 1, duration: 1.5, ease: 'power3.out' }, 0)
+        .fromTo(bird, { scaleY: 1 }, { scaleY: .86, duration: .2, yoyo: true, repeat: 7, ease: 'sine.inOut' }, 0)
+        .set(paper, { clipPath: 'inset(0 0 100% 0)' }, 0)
+        .set(rod, { y: travel }, 0)
+        .set(mList.children, { opacity: 0, y: 10 }, 0)
+        // then the scroll unrolls from top to bottom
+        .to(paper, { clipPath: 'inset(0 0 0% 0)', duration: 1.3, ease: 'power2.inOut' }, 1.45)
+        .to(rod, { y: 0, duration: 1.3, ease: 'power2.inOut' }, 1.45)
+        .to(mList.children, { opacity: 1, y: 0, stagger: .06, duration: .45, ease: 'power2.out' }, 2.45);
+    }
+    let openTl = null;
+    function closeAll() {
+      const end = () => { modal.hidden = true; if (lenis) lenis.start(); if (lastFocus) lastFocus.focus({ preventScroll: true }); };
+      if (!ANIM) return end();
+      const stage = $('#wscrollStage'), paper = $('#wscrollPaper'), rod = $('#wscrollBottom');
+      if (openTl) openTl.kill();
+      // roll the scroll back up, then Jatayu flies away
+      gsap.timeline({ onComplete: end })
+        .to(paper, { clipPath: 'inset(0 0 100% 0)', duration: .7, ease: 'power2.in' })
+        .to(rod, { y: -paper.offsetHeight, duration: .7, ease: 'power2.in' }, 0)
+        .to(stage, { y: -innerHeight, opacity: 0, duration: .8, ease: 'power2.in' }, .6)
+        .to('.wish-modal__backdrop', { opacity: 0, duration: .45 }, .9);
+    }
+    if (modal) {
+      document.body.appendChild(modal);  // outside the section so nothing clips it
+      countAll();
+      $('#wishViewAll').addEventListener('click', openAll);
+      modal.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', closeAll));
+      addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden) closeAll(); });
+    }
     // shrink the writing until it fits the scroll
     const fit = () => {
       let fs = 18;
@@ -1008,6 +1065,7 @@
       if (!w.name || !w.wish) { note.textContent = 'Please add your name and a blessing.'; return; }
       mine.unshift(w); store.set(KEY, mine.slice(0, 30));
       list.unshift(w);
+      countAll();
       form.reset();
       note.textContent = 'Your blessing is on its way to the scroll…';
       const lotus = $('.wish-form__lotus', form);
@@ -1067,7 +1125,7 @@
             .to(fly, { rotate: 0, scale: 1, duration: 3.6, ease: 'power2.out' }, 0)
             .add(() => { const r = env.getBoundingClientRect(); petalBurst(r.left + r.width / 2, r.top + r.height / 2, small() ? 12 : 20); }, 3.1);
         },
-        onLeaveBack: () => { if (flyIn) flyIn.kill(); if (!opened) start(); }
+        onLeaveBack: () => { if (flyIn) flyIn.kill(); resetAll(); start(); }
       });
     }
 
@@ -1093,7 +1151,33 @@
     }
     seal.addEventListener('click', openEnvelope);
 
-    // 3. accept: Hanuman, the hill, the envelope and the card fade away; Ram & Sita say thank you
+    // 3. accept: Hanuman, the hill, the envelope and the card fade away;
+    //    Ram walks in from the left, Sita from the right, and they meet in the middle to thank the guest
+    const ram = $('.rsvp-walker--ram'), sita = $('.rsvp-walker--sita');
+    const bodies = [$('.rsvp-walker__body', ram), $('.rsvp-walker__body', sita)];
+    let walkTl = null;
+    function walkIn() {
+      const off = Math.max(innerWidth * .62, 320);
+      gsap.set(ram, { x: -off, autoAlpha: 0 }); gsap.set(sita, { x: off, autoAlpha: 0 });
+      gsap.set('.rsvp-thanks__halo', { opacity: 0, scale: .4 });
+      gsap.set('#rsvpThanksTitle, #rsvpThanksText, #rsvpReplay', { opacity: 0, y: 16 });
+      const T = small() ? 3.4 : 3.8, step = .46, steps = Math.round(T / step) - 1;
+      walkTl = gsap.timeline()
+        .to([ram, sita], { autoAlpha: 1, duration: .9, ease: 'sine.out' }, 0)
+        // an unhurried, even pace that slows gently as they come close
+        .to([ram, sita], { x: 0, duration: T, ease: 'power1.out' }, 0)
+        // the soft rise and fall of each step, and a slight sway of the body
+        .fromTo(bodies, { y: 0 }, { y: -4, duration: step / 2, ease: 'sine.inOut', yoyo: true, repeat: steps * 2 - 1, stagger: .12 }, 0)
+        .fromTo(bodies, { rotate: -.6 }, { rotate: .6, duration: step, ease: 'sine.inOut', yoyo: true, repeat: steps - 1, stagger: .12 }, 0)
+        .to(bodies, { y: 0, rotate: 0, duration: .5, ease: 'sine.out' }, T - .3)
+        // they meet: a warm glow, the thank you, and petals
+        .to('.rsvp-thanks__halo', { opacity: 1, scale: 1, duration: 1.4, ease: 'power2.out' }, T - .5)
+        .to('#rsvpThanksTitle, #rsvpThanksText, #rsvpReplay', { y: 0, opacity: 1, stagger: .14, duration: .7, ease: 'power3.out' }, T - .1)
+        .add(() => {
+          const b = $('.rsvp-thanks__couple').getBoundingClientRect();
+          [0, 350, 700].forEach(d => setTimeout(() => petalBurst(b.left + b.width * (.3 + Math.random() * .4), b.top + b.height * .25, small() ? 16 : 24), d));
+        }, T - .2);
+    }
     function showDone(celebrate) {
       const swap = () => { gsap.set(scene, { autoAlpha: 0 }); done.hidden = false; };
       if (!ANIM || !celebrate) { swap(); return; }
@@ -1102,13 +1186,16 @@
       gsap.timeline()
         .to(scene, { autoAlpha: 0, scale: .94, duration: .8, ease: 'power2.in' }, .15)
         .add(swap)
-        .add(() => { const c = $('.rsvp-thanks__couple'); if (c.getBoundingClientRect().top < 70 || c.getBoundingClientRect().bottom > innerHeight) done.scrollIntoView({ behavior: 'smooth', block: 'center' }); })
-        .fromTo('.rsvp-thanks__couple', { y: 50, scale: .85, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 1.1, ease: 'back.out(1.4)' })
-        .fromTo('#rsvpThanksTitle, #rsvpThanksText, #rsvpReplay', { y: 16, opacity: 0 }, { y: 0, opacity: 1, stagger: .12, duration: .6, ease: 'power3.out' }, '-=.5')
-        .add(() => {
-          const b = done.getBoundingClientRect();
-          [0, 350, 700].forEach(d => setTimeout(() => petalBurst(b.left + b.width * (.3 + Math.random() * .4), b.top + b.height * .3, 26), d));
-        }, '<');
+        .add(() => { const c = $('.rsvp-thanks__couple'); if (c.getBoundingClientRect().top < 70 || done.getBoundingClientRect().bottom > innerHeight + 40) done.scrollIntoView({ behavior: 'smooth', block: 'center' }); })
+        .add(walkIn, '+=.25');
+    }
+    // back to the very beginning: Hanuman with the closed envelope
+    function resetAll() {
+      if (walkTl) walkTl.kill();
+      done.hidden = true; opened = false; stage.classList.remove('is-open');
+      gsap.set(done, { autoAlpha: 1 });
+      gsap.set(scene, { autoAlpha: 1, scale: 1 });
+      gsap.set(card, { autoAlpha: 0, x: 0, y: 0 }); gsap.set(flap, { rotateX: 0 }); gsap.set(letter, { yPercent: 0, autoAlpha: 1 }); gsap.set(seal, { autoAlpha: 1 });
     }
     $('#rsvpAccept').addEventListener('click', () => {
       store.set(KEY, { status: 'accept', at: new Date().toISOString() });
@@ -1117,18 +1204,13 @@
 
     // Replay: back to Hanuman with the closed envelope
     $('#rsvpReplay').addEventListener('click', () => {
-      const reset = () => {
-        done.hidden = true; opened = false; stage.classList.remove('is-open');
-        gsap.set(card, { autoAlpha: 0 }); gsap.set(flap, { rotateX: 0 }); gsap.set(letter, { yPercent: 0, autoAlpha: 1 }); gsap.set(seal, { autoAlpha: 1 });
-      };
-      if (!ANIM) { reset(); gsap.set(scene, { autoAlpha: 1, scale: 1 }); return; }
+      if (!ANIM) { resetAll(); return; }
       gsap.timeline()
         .to(done, { autoAlpha: 0, duration: .45, ease: 'power1.in' })
-        .add(reset).set(done, { autoAlpha: 1 })
+        .add(resetAll)
         .fromTo(scene, { autoAlpha: 0, scale: .94 }, { autoAlpha: 1, scale: 1, duration: .9, ease: 'power2.out' });
     });
-    const saved = store.get(KEY, null);
-    if (saved && saved.status === 'accept') { opened = true; showDone(false); }
+    // the answer is remembered, but every visit starts again with Hanuman flying in
   }
 
 

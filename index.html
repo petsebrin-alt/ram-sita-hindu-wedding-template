@@ -21,7 +21,7 @@
   <link rel="preload" as="image" href="assets/intro/hands-lotus-bloom.webp">
   <link rel="preload" as="image" href="assets/hero/hero-temple-river-night-wide.webp" media="(min-aspect-ratio: 1/1)">
   <link rel="preload" as="image" href="assets/hero/hero-temple-river-night.webp" media="(max-aspect-ratio: 1/1)">
-  <link rel="stylesheet" href="css/style.css?v=4.2.0">
+  <link rel="stylesheet" href="css/style.css?v=4.6.0">
 </head>
 <body>
 
@@ -567,6 +567,7 @@
      ===================================================== -->
 <section class="events" id="events" aria-labelledby="eventsTitle">
   <div class="events__stage">
+    <span class="events__seam" aria-hidden="true"></span>
     <div class="events__corridor" aria-hidden="true">
       <span class="events__chakra"></span>
       <!-- Hanuman rises from a blooming lotus and blesses every celebration -->
@@ -740,7 +741,10 @@
     </header>
     <!-- Jatayu holds a hanging scroll; it shows one blessing at a time -->
     <div class="wish-board" id="wishBoard">
-      <img class="wish-board__art" src="assets/wishes/jatayu-scroll-board.webp" alt="Jatayu, the divine eagle, holding a hanging scroll of blessings over a golden lotus frame">
+      <div class="wish-board__sway">
+        <img class="wish-board__art" src="assets/wishes/jatayu-scroll-board.webp" alt="A hanging scroll of blessings over a golden lotus frame">
+        <img class="wish-board__jatayu" src="assets/wishes/jatayu-full.webp" alt="Jatayu, the divine eagle, wings spread, holding the scroll">
+      </div>
       <div class="wish-board__scroll" id="wishScroll" aria-live="polite">
         <div class="wish-board__text" id="wishText">
           <p class="wish-board__wish" id="wishWish"></p>
@@ -767,6 +771,33 @@
         <button class="btn btn--maroon" type="submit"><svg><use href="#i-lotus"/></svg>Float my wish</button>
         <p class="form-note" id="wishNote" role="status"></p>
       </form>
+      <button type="button" class="wish-viewall" id="wishViewAll" aria-haspopup="dialog"><svg><use href="#i-lotus"/></svg>View all wishes <span class="wish-viewall__count" id="wishViewCount"></span></button>
+    </div>
+  </div>
+  <!-- all the blessings, under Jatayu's wings -->
+  <div class="wish-modal" id="wishModal" role="dialog" aria-modal="true" aria-labelledby="wishModalTitle" hidden>
+    <div class="wish-modal__backdrop" data-close></div>
+    <div class="wscroll-stage" id="wscrollStage">
+      <div class="wscroll-stage__hover">
+        <svg class="wscroll__ropes" viewBox="0 0 100 167" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M44 28.6 L17 48.6 M55.5 28.6 L83 48.6" class="wscroll__rope"/>
+          <path d="M44 28.6 L17 48.6 M55.5 28.6 L83 48.6" class="wscroll__rope wscroll__rope--twist"/>
+        </svg>
+        <img class="wscroll__jatayu" src="assets/wishes/jatayu-full.webp" alt="Jatayu holding the scroll of blessings">
+        <div class="wscroll">
+          <div class="wscroll__paper" id="wscrollPaper">
+            <img class="wscroll__img wscroll__img--mid" src="assets/wishes/royal-scroll.webp" alt="">
+            <div class="wscroll__content">
+              <h3 class="wish-modal__title" id="wishModalTitle">All the blessings</h3>
+              <p class="wish-modal__sub" id="wishModalSub"></p>
+              <ol class="wish-modal__list" id="wishModalList" data-lenis-prevent></ol>
+            </div>
+          </div>
+          <div class="wscroll__rod wscroll__rod--top"><img class="wscroll__img wscroll__img--top" src="assets/wishes/royal-scroll.webp" alt=""></div>
+          <div class="wscroll__rod wscroll__rod--bottom" id="wscrollBottom"><img class="wscroll__img wscroll__img--bottom" src="assets/wishes/royal-scroll.webp" alt=""></div>
+          <button type="button" class="wish-modal__close" data-close aria-label="Close">&times;</button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -814,7 +845,12 @@
 
       <!-- after accepting: Ram & Sita say thank you -->
       <div class="rsvp-thanks" id="rsvpDone" hidden>
-        <div class="rsvp-thanks__couple"><span class="rsvp-thanks__halo" aria-hidden="true"></span><img src="assets/hero/couple-ram-sita-3d-cutout.webp" alt="Ram and Sita thanking you"></div>
+        <!-- Ram walks in from the left and Sita from the right; they meet in the middle -->
+        <div class="rsvp-thanks__couple" role="img" aria-label="Ram and Sita walking towards each other and meeting">
+          <span class="rsvp-thanks__halo" aria-hidden="true"></span>
+          <div class="rsvp-walker rsvp-walker--ram"><span class="rsvp-walker__shadow"></span><div class="rsvp-walker__body"><img src="assets/rsvp/ram-walk.webp" alt=""></div></div>
+          <div class="rsvp-walker rsvp-walker--sita"><span class="rsvp-walker__shadow"></span><div class="rsvp-walker__body"><img src="assets/rsvp/sita-walk.webp" alt=""></div></div>
+        </div>
         <h3 class="rsvp-thanks__title" id="rsvpThanksTitle">Thank you for accepting!</h3>
         <p class="rsvp-thanks__text" id="rsvpThanksText">Your presence will make our celebration complete — we can’t wait to welcome you in Jaipur.</p>
         <button type="button" class="link-btn rsvp-thanks__replay" id="rsvpReplay">↺ Replay</button>
@@ -950,6 +986,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="js/main.js?v=4.2.0"></script>
+<script src="js/main.js?v=4.6.0"></script>
 </body>
 </html>
