@@ -1176,32 +1176,351 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
 @keyframes map-sweep { 0%, 35% { left: -40%; } 75%, 100% { left: 120%; } }
 
 /* =========================================================================
-   OPENING — Sita's touch, the lotus blossoms, sunlight opens the temple
+   ROYAL OPENING SEQUENCE — Palace Entrance, Divine Doors, Jatayu & Scroll
    ========================================================================= */
-.intro { position: fixed; inset: 0; z-index: 150; overflow: hidden; background: #f6e4d6 url("../assets/intro/scene-wide.webp") 50% 50% / cover no-repeat; }
-/* the whole picture is shown (not cropped), as a framed panel that fits the screen */
-.intro__stage {
-  --sh: calc(100svh - 56px); --sw: calc(var(--sh) * .7461);
-  position: absolute; width: var(--sw); height: var(--sh); left: calc(50% - var(--sw) / 2); top: calc(50% - var(--sh) / 2);
-  overflow: hidden; will-change: transform;
-  /* no frame: the hands melt softly into the background at every edge */
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 13%, #000 87%, transparent 100%), linear-gradient(180deg, transparent 0, #000 9%, #000 91%, transparent 100%);
-  -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(90deg, transparent 0, #000 13%, #000 87%, transparent 100%), linear-gradient(180deg, transparent 0, #000 9%, #000 91%, transparent 100%);
-  mask-composite: intersect;
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  overflow: hidden;
+  background: #180309;
+  user-select: none;
 }
-@media (max-aspect-ratio: 3/4) { .intro { background-image: url("../assets/intro/scene-portrait.webp"); background-position: 50% 50%; } }
-@media (max-aspect-ratio: 3/4) { .intro__stage { --sh: min(84svh, calc((100vw - 28px) / .7461 * 1.22)); } }
-.intro__layer { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; will-change: transform, opacity; }
-.intro__blossom, .intro__sita-end { opacity: 0; }
-.intro__glow { position: absolute; width: 46vmin; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; opacity: 0; pointer-events: none; mix-blend-mode: screen;
-  background: radial-gradient(closest-side, rgba(255, 252, 230, .95), rgba(255, 220, 140, .6) 35%, rgba(255, 180, 120, 0) 72%); }
-.intro__flash { position: absolute; inset: 0; opacity: 0; pointer-events: none;
-  background: radial-gradient(circle at var(--fx, 50%) var(--fy, 60%), #fffef6 0%, #fff4d2 30%, #ffe2a6 60%, #f7c98a 100%); }
-.intro__skip { position: absolute; right: 18px; bottom: 18px; z-index: 2; padding: 8px 18px; border-radius: 999px; cursor: pointer;
-  font-family: var(--f-caps); font-size: .7rem; letter-spacing: .24em; text-transform: uppercase; color: #6b0f24;
-  background: rgba(255, 250, 238, .75); border: 1px solid rgba(184, 134, 43, .6); }
-html:not(.anim) .intro { display: none; }
+
+.intro__fx {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* 9:16 mobile-first viewport, elegantly framed on desktop */
+.intro__viewport {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: 100vw;
+  height: 100svh;
+  max-width: calc(100svh * (576 / 1024));
+  aspect-ratio: 576 / 1024;
+  overflow: hidden;
+  perspective: 1200px;
+  box-shadow: 0 0 80px rgba(0, 0, 0, 0.85);
+}
+
+@media (max-aspect-ratio: 576/1024) {
+  .intro__viewport {
+    width: 100vw;
+    height: 100svh;
+    max-width: none;
+    aspect-ratio: auto;
+  }
+}
+
+.intro__scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  will-change: transform, opacity;
+}
+
+.intro__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Scene A: Palace Entrance & 3D Double Doors */
+.intro__scene--entrance {
+  z-index: 2;
+  transform-origin: 50% 50%;
+}
+
+.intro__doorway {
+  position: absolute;
+  left: 29.51%;
+  top: 32.71%;
+  width: 40.97%;
+  height: 39.06%;
+  perspective: 900px;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.intro__door {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.intro__door--left {
+  left: 0;
+  transform-origin: 0% 50%;
+}
+
+.intro__door--right {
+  left: 50%;
+  transform-origin: 100% 50%;
+}
+
+.intro__door img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 4px 12px rgba(40, 5, 15, 0.45));
+}
+
+.intro__beam {
+  position: absolute;
+  left: 50%;
+  top: 4%;
+  width: 8px;
+  height: 92%;
+  translate: -50% 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 245, 200, 0.95) 45%, #fff 50%, rgba(255, 245, 200, 0.95) 55%, transparent);
+  box-shadow: 0 0 35px 12px rgba(255, 215, 100, 0.85), 0 0 70px 25px rgba(255, 160, 40, 0.5);
+  pointer-events: none;
+  opacity: 0;
+  border-radius: 999px;
+  transform-origin: center;
+}
+
+/* Scene B: Palace Courtyard & Soaring Jatayu */
+.intro__scene--courtyard {
+  z-index: 1;
+  display: none;
+  transform-origin: 50% 50%;
+}
+
+.intro__jatayu-soar {
+  position: absolute;
+  left: 5.2%;
+  top: 9.8%;
+  width: 90.3%;
+  height: 34.2%;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.intro__jatayu-soar img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 20px 30px rgba(70, 20, 30, 0.45));
+}
+
+/* Scene C: Jatayu with Unfurling Scroll */
+.intro__scene--scroll {
+  z-index: 3;
+  display: none;
+}
+
+.intro__bg--unfurled {
+  clip-path: inset(0 0 100% 0);
+  will-change: clip-path;
+}
+
+.intro__scroll-wrap {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.intro__parchment {
+  position: absolute;
+  left: 22.9%;
+  top: 36.2%;
+  width: 54.2%;
+  height: 36.4%;
+  overflow: hidden;
+  clip-path: inset(0 0 100% 0);
+  will-change: clip-path;
+  pointer-events: auto;
+}
+
+.intro__roller-bot {
+  position: absolute;
+  left: 15.6%;
+  top: 71.8%;
+  width: 68.75%;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.intro__roller-bot img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 14px 20px rgba(50, 10, 20, 0.4));
+}
+
+/* Scroll Invitation Typography & Layout */
+.intro-scroll__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8px 12px;
+  color: var(--maroon-900);
+}
+
+.intro-scroll__deva {
+  font-family: var(--f-deva);
+  font-size: clamp(0.9rem, 2.4vw, 1.15rem);
+  color: var(--maroon-800);
+  margin: 0 0 2px;
+  text-shadow: 0 1px 2px rgba(255, 230, 180, 0.6);
+}
+
+.intro-scroll__dear {
+  font-family: var(--f-script);
+  font-size: clamp(1.6rem, 4.4vw, 2.35rem);
+  font-weight: 400;
+  color: var(--maroon-800);
+  line-height: 1.1;
+  margin: 0;
+  text-shadow: 0 1px 2px rgba(255, 230, 180, 0.6);
+}
+
+.intro-scroll__msg {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: clamp(0.72rem, 1.8vw, 0.95rem);
+  color: #551222;
+  line-height: 1.35;
+  margin: 4px 0 2px;
+  max-width: 24ch;
+}
+
+.intro-scroll__couple {
+  font-family: var(--f-display);
+  font-size: clamp(1.15rem, 3vw, 1.65rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--maroon-900);
+  margin: 2px 0;
+  text-shadow: 0 1px 3px rgba(255, 220, 150, 0.5);
+}
+
+.intro-scroll__divider {
+  width: 24px;
+  height: 12px;
+  margin: 2px 0 3px;
+  color: var(--gold-600);
+}
+
+.intro-scroll__divider svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.intro-scroll__date {
+  font-family: var(--f-caps);
+  font-size: clamp(0.66rem, 1.6vw, 0.82rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--maroon-800);
+  margin: 0;
+}
+
+.intro-scroll__venue {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: clamp(0.7rem, 1.6vw, 0.86rem);
+  color: #5d1929;
+  margin: 2px 0 8px;
+}
+
+.intro-scroll__btn {
+  margin-top: 4px;
+  padding: 8px 20px;
+  font-family: var(--f-caps);
+  font-size: clamp(0.72rem, 1.7vw, 0.86rem);
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--gold-300);
+  background: linear-gradient(135deg, var(--maroon-700), var(--maroon-900));
+  border: 1.5px solid var(--gold-500);
+  border-radius: 999px;
+  box-shadow: 0 4px 18px rgba(74, 10, 26, 0.5), inset 0 0 10px rgba(212, 175, 90, 0.25);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), filter 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.intro-scroll__btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 25px rgba(212, 175, 90, 0.65), 0 0 15px rgba(255, 220, 120, 0.4);
+  filter: brightness(1.1);
+}
+
+.intro-scroll__btn svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  fill: none;
+}
+
+.intro__flash {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+  background: radial-gradient(circle at 50% 50%, #fffef6 0%, #fff0c8 35%, #ffd28a 70%, #d88040 100%);
+}
+
+.intro__skip {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 12;
+  padding: 8px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: var(--f-caps);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--maroon-800);
+  background: rgba(255, 250, 238, 0.88);
+  border: 1px solid rgba(184, 134, 43, 0.7);
+  box-shadow: 0 4px 14px rgba(40, 5, 15, 0.35);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.intro__skip:hover {
+  transform: scale(1.06);
+  background: #fffdf5;
+  color: var(--maroon-950);
+}
+
+html:not(.anim) .intro {
+  display: none;
+}
 
 /* simple RSVP invitation card */
 .rsvp-card__dear { display: flex; align-items: baseline; justify-content: center; gap: 10px; margin: 10px 0 6px; font-family: var(--f-script); font-size: clamp(1.8rem, 3vw, 2.3rem); color: var(--maroon-700); }

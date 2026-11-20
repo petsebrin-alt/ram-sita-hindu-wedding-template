@@ -83,66 +83,233 @@
     if (ANIM && !deep) playOpening(start); else { $('#intro')?.remove(); start(); }
   }
 
-  /* Opening: the scene fades in, Sita's hand comes down to the lotus bud, at her touch it
-     blossoms with a golden glow and petals, the view drifts into the lotus and a burst of
-     sunlight opens onto the Ram Mandir (the first page). Tap Skip to go straight in. */
+  /* Royal Opening: Palace entrance, divine 3D door opening, camera glide into the courtyard,
+     Jatayu eagle flight, scroll unfurling, and guest invitation reveal. */
   function playOpening(done) {
     const intro = $('#intro');
     if (!intro) return done();
+
     const q = s => $(s, intro);
-    const stage = q('#introStage'), ram = q('.intro__ram'), sita = q('.intro__sita'), sitaEnd = q('.intro__sita-end'), feather = q('.intro__feather');
-    const blossom = q('.intro__blossom'), glow = q('#introGlow'), flash = q('#introFlash');
-    // a point of the picture (fractions of its width/height) on screen, for the cover-fitted layers
-    // a point of the picture (fractions of its width/height) inside the framed panel (cover-fitted)
-    const local = (fx, fy) => {
-      const iw = ram.naturalWidth || 764, ih = ram.naturalHeight || 1024, w = stage.offsetWidth, h = stage.offsetHeight;
-      const s = Math.max(w / iw, h / ih), rw = iw * s, rh = ih * s;
-      return { x: (w - rw) * .5 + rw * fx, y: (h - rh) * .5 + rh * fy };
-    };
-    let heart, base, heartScreen;
-    const place = () => {
-      heart = local(.53, .625); base = local(.55, .74);
-      heartScreen = { x: stage.offsetLeft + heart.x, y: stage.offsetTop + heart.y };
-      stage.style.transformOrigin = `${heart.x}px ${heart.y}px`;
-      blossom.style.transformOrigin = `${base.x}px ${base.y}px`;
-      glow.style.left = heart.x + 'px'; glow.style.top = heart.y + 'px';
-      flash.style.setProperty('--fx', heartScreen.x + 'px'); flash.style.setProperty('--fy', heartScreen.y + 'px');
-    };
-    place(); addEventListener('resize', place);
+    const viewport = q('#introViewport');
+    const sceneEntrance = q('#sceneEntrance');
+    const sceneCourtyard = q('#sceneCourtyard');
+    const sceneScroll = q('#sceneScroll');
+    const doorLeft = q('#doorLeft');
+    const doorRight = q('#doorRight');
+    const doorBeam = q('#doorBeam');
+    const bgClosed = q('.intro__bg--closed');
+    const bgOpen = q('.intro__bg--open');
+    const bgRolled = q('#bgRolled');
+    const bgUnfurled = q('#bgUnfurled');
+    const jatayuSoar = q('#jatayuSoar');
+    const scrollWrap = q('#scrollWrap');
+    const parchmentBody = q('#parchmentBody');
+    const rollerBot = q('#rollerBot');
+    const scrollContent = q('#scrollContent');
+    const openBtn = q('#introOpenBtn');
+    const skipBtn = q('#introSkip');
+    const flash = q('#introFlash');
+    const fxCanvas = q('#introFx');
+
+    // Atmospheric canvas particle system: floating petals and golden sparks
+    let fxRunning = true, fxRaf = null;
+    if (fxCanvas) {
+      const ctx = fxCanvas.getContext('2d');
+      let w = fxCanvas.width = window.innerWidth;
+      let h = fxCanvas.height = window.innerHeight;
+      const onResize = () => {
+        if (!fxCanvas) return;
+        w = fxCanvas.width = window.innerWidth;
+        h = fxCanvas.height = window.innerHeight;
+      };
+      window.addEventListener('resize', onResize);
+
+      // Floating flower petals and glowing diya sparks
+      const particles = [];
+      const petalColors = ['rgba(244,143,177,0.75)', 'rgba(255,183,77,0.75)', 'rgba(232,99,143,0.65)', 'rgba(255,213,79,0.75)'];
+      for (let i = 0; i < 22; i++) {
+        particles.push({
+          type: 'petal',
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: 5 + Math.random() * 8,
+          vx: -0.4 + Math.random() * 0.8,
+          vy: 0.6 + Math.random() * 1.2,
+          rot: Math.random() * Math.PI * 2,
+          vrot: (Math.random() - 0.5) * 0.04,
+          color: petalColors[i % petalColors.length]
+        });
+      }
+      for (let i = 0; i < 18; i++) {
+        particles.push({
+          type: 'spark',
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: 1 + Math.random() * 2.2,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: -0.4 - Math.random() * 0.8,
+          alpha: 0.2 + Math.random() * 0.7,
+          dAlpha: 0.01 + Math.random() * 0.02
+        });
+      }
+
+      function drawFx() {
+        if (!fxRunning) return;
+        ctx.clearRect(0, 0, w, h);
+        particles.forEach(p => {
+          if (p.type === 'petal') {
+            p.x += p.vx + Math.sin(p.y * 0.02) * 0.3;
+            p.y += p.vy;
+            p.rot += p.vrot;
+            if (p.y > h + 20) { p.y = -20; p.x = Math.random() * w; }
+            if (p.x < -20) p.x = w + 20;
+            if (p.x > w + 20) p.x = -20;
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rot);
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.ellipse(0, 0, p.r, p.r * 0.5, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+          } else {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.alpha += p.dAlpha;
+            if (p.alpha > 0.9 || p.alpha < 0.2) p.dAlpha = -p.dAlpha;
+            if (p.y < -10) { p.y = h + 10; p.x = Math.random() * w; }
+            ctx.fillStyle = `rgba(255, 220, 120, ${Math.max(0, p.alpha)})`;
+            ctx.shadowColor = 'rgba(255, 200, 80, 0.8)';
+            ctx.shadowBlur = 6;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        });
+        fxRaf = requestAnimationFrame(drawFx);
+      }
+      drawFx();
+    }
+
     let finished = false;
     const finish = () => {
-      if (finished) return; finished = true;
+      if (finished) return;
+      finished = true;
+      fxRunning = false;
+      if (fxRaf) cancelAnimationFrame(fxRaf);
       done();
-      gsap.to(intro, { opacity: 0, duration: 1.2, ease: 'power2.out', onComplete: () => intro.remove() });
+      gsap.to(intro, {
+        opacity: 0,
+        duration: 1.1,
+        ease: 'power2.out',
+        onComplete: () => intro.remove()
+      });
     };
-    gsap.set([ram, sita, feather], { opacity: 0 });
-    gsap.set(sita, { xPercent: -34, yPercent: -30 });
-    gsap.set(ram, { xPercent: 6, yPercent: 20 });
-    gsap.set(feather, { xPercent: 8, rotate: 6, transformOrigin: '70% 75%' });
-    gsap.set(blossom, { scale: .2, rotate: -6 });
-    const tl = gsap.timeline({ onComplete: finish });
-    tl.fromTo(stage, { scale: .96 }, { scale: 1, duration: 5.6, ease: 'sine.inOut' }, 0)
-      .to(feather, { opacity: 1, xPercent: 0, rotate: 0, duration: 2.6, ease: 'sine.out' }, .2)
-      // Sita's hand glides in from the top corner, Ram's hand rises from below holding the bud
-      .to(sita, { opacity: 1, duration: .9, ease: 'sine.out' }, .3)
-      .to(sita, { xPercent: 0, yPercent: 0, duration: 3.4, ease: 'power2.out' }, .3)
-      .to(ram, { opacity: 1, duration: .9, ease: 'sine.out' }, .6)
-      .to(ram, { xPercent: 0, yPercent: 0, duration: 3.1, ease: 'power2.out' }, .6)
-      // her fingers come down onto the flower
-      .to(sitaEnd, { opacity: 1, duration: 1.1, ease: 'sine.inOut' }, 3.9)
-      .to(sita, { opacity: 0, duration: 1.1, ease: 'sine.inOut' }, 3.9)
-      // at the touch the bud blossoms, petals opening outward
-      .fromTo(glow, { opacity: 0, scale: .25 }, { opacity: .95, scale: 1, duration: 1.2, ease: 'power2.out' }, 4.3)
-      .to(blossom, { opacity: 1, duration: .7, ease: 'sine.out' }, 4.45)
-      .to(blossom, { scale: 1, rotate: 0, duration: 2.1, ease: 'power3.out' }, 4.45)
-      .call(() => petalBurst(heartScreen.x, heartScreen.y, small() ? 16 : 26), null, 4.9)
-      .to(glow, { opacity: .6, scale: 1.3, duration: 1 }, 6.0)
-      // drift into the heart of the lotus, then sunlight opens the temple
-      .to(stage, { scale: 2.6, duration: 2.2, ease: 'power2.in' }, 6.6)
-      .to(glow, { opacity: 1, scale: 2.8, duration: 1.7, ease: 'power2.in' }, 7.0)
-      .to(flash, { opacity: 1, duration: .9, ease: 'power2.in' }, 7.9)
-      .to({}, { duration: .25 });
-    q('#introSkip').addEventListener('click', () => { tl.kill(); finish(); });
+
+    // Reduced motion accessibility
+    if (reduced) {
+      gsap.set(sceneEntrance, { display: 'none' });
+      gsap.set(sceneCourtyard, { display: 'none' });
+      gsap.set(sceneScroll, { display: 'block', opacity: 1 });
+      gsap.set(bgUnfurled, { clipPath: 'inset(0 0 0% 0)' });
+      gsap.set(parchmentBody, { clipPath: 'inset(0 0 0% 0)' });
+      gsap.set(rollerBot, { y: 0 });
+      gsap.set(scrollContent.children, { opacity: 1, y: 0 });
+      if (openBtn) openBtn.addEventListener('click', finish);
+      if (skipBtn) skipBtn.addEventListener('click', finish);
+      return;
+    }
+
+    // Initial positioning
+    gsap.set(sceneEntrance, { display: 'block', opacity: 1, scale: 1 });
+    gsap.set(sceneCourtyard, { display: 'none', opacity: 0 });
+    gsap.set(sceneScroll, { display: 'none', opacity: 0 });
+    gsap.set(doorLeft, { rotateY: 0 });
+    gsap.set(doorRight, { rotateY: 0 });
+    gsap.set(doorBeam, { opacity: 0, scaleX: 0.1 });
+    gsap.set(bgOpen, { opacity: 0 });
+    gsap.set(jatayuSoar, { xPercent: 28, yPercent: -42, scale: 0.35, opacity: 0 });
+    gsap.set(bgUnfurled, { clipPath: 'inset(0 0 100% 0)' });
+    gsap.set(parchmentBody, { clipPath: 'inset(0 0 100% 0)' });
+    gsap.set(rollerBot, { y: -360 });
+    gsap.set(scrollContent.children, { opacity: 0, y: 14 });
+
+    const tl = gsap.timeline({ onComplete: () => {} });
+
+    // Scene 1: Camera slowly glides toward grand palace entrance (0s - 2.8s)
+    tl.to(sceneEntrance, { scale: 1.08, duration: 3.4, ease: 'sine.inOut' }, 0)
+
+    // Scene 2: Divine door opening (2.6s - 5.4s)
+    .to(doorBeam, { opacity: 1, scaleX: 1.2, duration: 0.8, ease: 'power2.in' }, 2.4)
+    .to(doorBeam, { opacity: 0.8, duration: 1.6, ease: 'sine.inOut' }, 3.2)
+    .to(bgOpen, { opacity: 1, duration: 1.2, ease: 'power2.out' }, 3.0)
+    // Doors open symmetrically inward in 3D perspective
+    .to(doorLeft, { rotateY: -76, duration: 2.2, ease: 'power2.inOut' }, 3.0)
+    .to(doorRight, { rotateY: 76, duration: 2.2, ease: 'power2.inOut' }, 3.0)
+
+    // Scene 3: Camera moves inside through doorway into courtyard (5.0s - 7.2s)
+    .to(sceneEntrance, {
+      scale: 2.6,
+      yPercent: -14,
+      duration: 2.2,
+      ease: 'power2.in'
+    }, 4.8)
+    .to(flash, { opacity: 0.55, duration: 0.7, ease: 'power1.in' }, 6.2)
+    .set(sceneCourtyard, { display: 'block', opacity: 1, scale: 1.14 }, 6.6)
+    .to(sceneEntrance, { opacity: 0, duration: 0.5, ease: 'power1.out' }, 6.6)
+    .to(flash, { opacity: 0, duration: 1.0, ease: 'power2.out' }, 6.8)
+
+    // Scene 4: Grand Courtyard & Jatayu soaring in from the sky (6.8s - 9.8s)
+    .to(sceneCourtyard, { scale: 1.0, duration: 3.2, ease: 'power2.out' }, 6.8)
+    .to(jatayuSoar, {
+      opacity: 1,
+      xPercent: 0,
+      yPercent: 0,
+      scale: 1.0,
+      duration: 2.8,
+      ease: 'power3.out'
+    }, 7.0)
+
+    // Scene 5 & 6: Jatayu descends with scroll & scroll unfurls (9.6s - 13.0s)
+    .set(sceneScroll, { display: 'block', opacity: 0 }, 9.5)
+    .to(sceneScroll, { opacity: 1, duration: 1.0, ease: 'power2.inOut' }, 9.6)
+    .to(sceneCourtyard, { opacity: 0, duration: 1.0, ease: 'power2.inOut' }, 9.6)
+    .fromTo(sceneScroll, { y: -30 }, { y: 0, duration: 1.4, ease: 'back.out(1.2)' }, 9.6)
+    // Scroll unfurls smoothly: rollerBot descends and parchment expands
+    .to(rollerBot, { y: 0, duration: 2.2, ease: 'power2.inOut' }, 10.8)
+    .to(bgUnfurled, { clipPath: 'inset(0 0 0% 0)', duration: 2.2, ease: 'power2.inOut' }, 10.8)
+    .to(parchmentBody, { clipPath: 'inset(0 0 0% 0)', duration: 2.2, ease: 'power2.inOut' }, 10.8)
+
+    // Scene 7: Invitation text reveals with staggered elegance (12.8s onwards)
+    .to(scrollContent.children, {
+      opacity: 1,
+      y: 0,
+      stagger: 0.16,
+      duration: 0.8,
+      ease: 'power2.out'
+    }, 12.6)
+    .fromTo(openBtn, { scale: 0.94 }, { scale: 1, duration: 0.6, ease: 'back.out(1.4)' }, 13.6);
+
+    // Skip button logic:
+    // If during animation, jump directly to the invitation ready to read
+    // If clicked on invitation or double-clicked, enter site
+    if (skipBtn) {
+      skipBtn.addEventListener('click', () => {
+        if (tl.progress() < 0.88) {
+          tl.progress(0.92);
+        } else {
+          tl.kill();
+          finish();
+        }
+      });
+    }
+
+    if (openBtn) {
+      openBtn.addEventListener('click', () => {
+        tl.kill();
+        finish();
+      });
+    }
   }
 
   window.addEventListener('load', () => setTimeout(hidePreloader, 120));
