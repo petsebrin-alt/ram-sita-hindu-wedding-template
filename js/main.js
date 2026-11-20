@@ -1330,10 +1330,22 @@
      --------------------------------------------------------------------- */
   function initFireworks() {
     const cv = $('#fireworks'); if (!cv) return;
-    if (ANIM) gsap.to('.thanks__bg--lit', { opacity: 1, ease: 'none', scrollTrigger: { trigger: '#thank-you', start: 'top 60%', end: 'center center', scrub: true } });
+    // petals drifting down over the sky, endlessly
+    const pbox = $('#thanksPetals');
+    if (pbox && !reduced) {
+      const n = small() ? 14 : 26;
+      for (let i = 0; i < n; i++) {
+        const p = document.createElement('img');
+        p.src = `assets/flowers/petal-pink-0${1 + (i % 5)}.svg`; p.alt = '';
+        const t = 9 + Math.random() * 9;
+        p.style.cssText = `--x:${Math.random() * 100}%;--w:${14 + Math.random() * 18}px;--t:${t}s;--d:${-Math.random() * t}s;--sway:${(20 + Math.random() * 50) * (Math.random() < .5 ? -1 : 1)}px`;
+        pbox.appendChild(p);
+      }
+    }
     if (reduced) return;
     const ctx = cv.getContext('2d');
-    const palettes = [['#FFD1DF', '#F48FB1', '#E8638F', '#F6E3A6'], ['#F6E3A6', '#D4AF5A', '#FFB020', '#FFF3C4'], ['#FFF0F5', '#F48FB1', '#D4AF5A', '#C2185B']];
+    // rich colours that show up against the light sunrise sky
+    const palettes = [['#C2185B', '#E8638F', '#F48FB1', '#D4AF5A'], ['#B8862B', '#E0A526', '#FF8F00', '#D4AF5A'], ['#9C1B3A', '#C2185B', '#D4AF5A', '#F06292'], ['#E65100', '#FFB300', '#C2185B', '#B8862B']];
     let W, H, dpr, rockets = [], sparks = [], running = false, lastLaunch = 0;
     function size() { dpr = Math.min(devicePixelRatio || 1, 2); W = cv.width = cv.offsetWidth * dpr; H = cv.height = cv.offsetHeight * dpr; }
     size(); addEventListener('resize', size);
@@ -1356,10 +1368,10 @@
       if (now - lastLaunch > 650 + Math.random() * 700) { launch(); lastLaunch = now; }
       ctx.globalCompositeOperation = 'destination-out';
       ctx.fillStyle = 'rgba(0,0,0,.2)'; ctx.fillRect(0, 0, W, H);
-      ctx.globalCompositeOperation = 'lighter';
+      ctx.globalCompositeOperation = 'source-over';
       rockets = rockets.filter(r => {
         r.x += r.vx; r.y += r.vy; r.vy += .12 * dpr;
-        ctx.fillStyle = '#FFE9B0'; ctx.beginPath(); ctx.arc(r.x, r.y, 1.8 * dpr, 0, 6.283); ctx.fill();
+        ctx.fillStyle = '#E0A526'; ctx.beginPath(); ctx.arc(r.x, r.y, 2 * dpr, 0, 6.283); ctx.fill();
         if (r.y <= r.ty || r.vy >= 0) { explode(r); return false; }
         return true;
       });

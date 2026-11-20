@@ -1350,3 +1350,34 @@ html:not(.anim) .rbook-intro { display: none; }
 
 /* performance: decorative loops pause while their section is off screen */
 section.is-offscreen *, section.is-offscreen::before, section.is-offscreen::after { animation-play-state: paused !important; }
+
+/* ---- Dhanyavaad: the golden bow over the Ram Mandir at sunrise ---- */
+.thanks { min-height: 0; aspect-ratio: 1199 / 1312; color: #4a2410; background: #f6d7c8 url("../assets/thanks/thanks-temple-sunset.webp") center top / cover no-repeat; }
+.thanks__fireworks, .thanks__bursts { mix-blend-mode: normal; }
+.thanks__bursts img { filter: saturate(1.3) drop-shadow(0 0 6px rgba(255, 255, 255, .6)); }
+.thanks__inner { padding-top: 18.6%; padding-bottom: 0; }
+.thanks__inner::before { background: radial-gradient(ellipse 46% 52% at 50% 46%, rgba(255, 244, 232, .55), transparent 75%); height: 100%; }
+.thanks__title { margin-top: 0; font-size: clamp(3.4rem, 7vw, 5.8rem); line-height: 1.05; background: linear-gradient(180deg, #a01d34 10%, #7a0f24 55%, #b8862b 100%); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 2px 3px rgba(255, 240, 220, .8)); animation: none; }
+.thanks__names { font-family: var(--f-display); font-weight: 700; font-size: clamp(1.5rem, 3.2vw, 2.4rem); color: #7a0f24; text-shadow: 0 1px 0 rgba(255, 245, 230, .8); margin-top: 2px; }
+.thanks__names .script { color: #b8862b; }
+.thanks__divider { color: #b8862b; margin: 4px auto; width: min(300px, 70vw); }
+.thanks__text { max-width: 46ch; margin: 2px auto 0; font-style: italic; font-size: clamp(1.02rem, .7vw + .8rem, 1.3rem); color: #4a2410; text-shadow: 0 1px 6px rgba(255, 244, 232, .9); }
+.thanks__verse { color: #8a2a12; font-size: clamp(.98rem, 1vw + .6rem, 1.3rem); text-shadow: 0 1px 6px rgba(255, 244, 232, .9); }
+.thanks__verse-en { color: #5a2a1a; opacity: 1; font-style: italic; font-size: clamp(.86rem, .5vw + .7rem, 1.02rem); text-shadow: 0 1px 6px rgba(255, 244, 232, .9); }
+.thanks__tag { margin-top: 8px; color: #7a0f24; font-weight: 600; }
+.thanks .footer { color: #fff6e6; text-shadow: 0 1px 6px rgba(60, 20, 0, .7); }
+/* a gentle, endless fall of petals over the sky */
+.thanks__petals { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.thanks__petals img { position: absolute; top: -40px; left: var(--x); width: var(--w); opacity: .95; filter: drop-shadow(0 3px 4px rgba(150, 30, 70, .25)); animation: thanks-fall var(--t) linear var(--d) infinite; }
+@keyframes thanks-fall { 0% { transform: translate(0, 0) rotate(0deg); } 25% { transform: translate(calc(var(--sway) * 1), 28vh) rotate(110deg); } 50% { transform: translate(calc(var(--sway) * -.6), 56vh) rotate(200deg); } 75% { transform: translate(calc(var(--sway) * .8), 84vh) rotate(290deg); } 100% { transform: translate(0, 118vh) rotate(380deg); } }
+@media (max-width: 700px) {
+  .thanks { aspect-ratio: auto; min-height: 165svh; background-size: auto 100%; background-position: 55% top; }
+  .thanks__inner { padding-top: 35svh; }
+  .thanks__title { font-size: clamp(3rem, 14vw, 4rem); }
+  .thanks__names { font-size: 1.35rem; }
+  .thanks__divider { margin: 2px auto; }
+  .thanks__text { font-size: .95rem; line-height: 1.45; }
+  .thanks__verse { font-size: .9rem; }
+  .thanks__verse-en { font-size: .78rem; }
+  .thanks__tag { font-size: .58rem; letter-spacing: .18em; }
+}
