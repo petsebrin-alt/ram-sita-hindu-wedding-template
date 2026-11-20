@@ -6,6 +6,8 @@ A single-page, scroll-animated wedding invitation website themed on the Ramayana
 
 > Every section melts softly into the one before it, so there is no hard line between sections.
 
+> Performance: looping decorations pause while their section is off screen, pictures decode in the background, oversized pictures are scaled down, and the phone address bar no longer makes the page re-measure mid-scroll.
+
 ## Run it locally
 
 Open a terminal in this folder and run:
@@ -29,7 +31,7 @@ To publish it, upload the whole folder to any static host (Netlify, Vercel, GitH
 | 04 | **Save the Date** (`#save-the-date`) | On a crimson background with falling marigold petals, Shri Ram's golden bow draws back. The arrow flies (tap the bow, or it releases by itself), breaks a golden seal with a cracker "pop" and a burst of marigolds, and the date appears in a gold ring between two rising gold poles flying Shri Ram Mandir saffron flags. Includes an Add to calendar button (.ics). |
 | 05 | **Countdown** (`#countdown`) | "The Royal Timepiece": the gold lotus chakra as a clock dial (days in the centre, hours, minutes and seconds around it, a ticking gold hand), with countdown tiles below. |
 | 06 | **Ram Bhakt Hanuman** (`#hanuman`) | Hanuman kneels in prayer; a glow builds at his heart, which opens to show Ram & Sita. Verse from the Hanuman Chalisa. |
-| 07 | **Our Story** (`#story`) | A gold thread draws down the page. Four round badges, embroidered lotus on the front, turn over one by one to show the couple’s photos, each with one short line: Pushpa Vatika, Shiva Dhanush, Swayamvar, Saptapadi. Tap a badge to turn it again. |
+| 07 | **Our Story** (`#story`) | Our love story as a Ramayana book. As you arrive, the maroon-and-gold Ramayana book appears and its cover opens. Each page turn first blooms a lotus, then the couple's photo is taped in like a scrapbook and a short chapter is written beside it (Bala, Ayodhya, Kishkindha, Sundara Kanda, then "…and the story continues"). Pages turn by themselves every few seconds, or with the ‹ › buttons, a tap on the page or a swipe. From the first page, ‹ closes the book: the cover turns back and the grand Ramayana book returns, with "Tap to open the book". On phones one page shows at a time. Embroidered lotuses sit in the page corners. |
 | 08 | **Our Families** (`#families`) | One big gold medallion per family with both parents together. As you scroll, a single gold line with a glowing tip draws each arched frame (up, over the arch, down and along the bottom), then the card fills in and five lotuses bloom on the bottom line. |
 | 09 | **Wedding Events** (`#events`) | "Through the Palace Doors", on a rani pink background with a slowly turning gold chakra. As the section comes into view a lotus blooms and Hanuman rises from it, blessing every celebration. One palace window per celebration. The doors open on a picture of the event, a details card pops up with a glowing Get directions button (Google Maps), then the doors close and the next window rises into place. |
 | 10 | **Wishing Wall** (`#wishes`) | The whole section sits in a soft pink sunset sky. Jatayu, the divine eagle, flies above a golden lotus frame holding a hanging scroll that shows one blessing at a time, with arrows to move through them (it also turns by itself every few seconds). Guests write a blessing below; the lotus carries it up to the scroll, petals fall, and the new blessing appears first. A "View all wishes" button brings Jatayu flying down holding a royal scroll by two golden ropes; the scroll unrolls from top to bottom to show every blessing, each with its own lotus, and closes by rolling back up. |
@@ -90,6 +92,7 @@ assets/
 │               temple-flag-saffron (.png/.webp, Ram Mandir flag from your photo, on the Save the Date poles)
 ├── intro/      scene-portrait · scene-wide (.webp, the opening background) · layer-sita · layer-sita-end · layer-ram · layer-blossom · layer-feather (.webp, the moving pieces) · hands-lotus-bud · hands-lotus-bloom (your two source pictures)
 ├── rsvp/       hanuman-flying-hill.webp (Hanuman with the hill), rsvp-arch-bg.webp (the RSVP background), ram-walk.webp & sita-walk.webp (the thank-you walk)
+├── story/      ramayana-book.webp, ramayana-cover.webp (the Our Story book)
 ├── wishes/     jatayu-scroll-board.webp (the Wishing Wall board), jatayu-full.webp (Jatayu, full wings), royal-scroll.webp (the all-wishes scroll), wishes-bg-sky.webp (its sky background)
 ├── story/      lotus-embroidery (.png/.webp, badge front) · story-couple-train · story-couple-promise · story-couple-temple · story-couple-sunset (.webp, badge backs)
 └── effects/    sparkle-gold · particles-gold · light-rays · firework-gold · firework-pink

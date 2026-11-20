@@ -246,6 +246,14 @@
     })(0);
   })();
 
+  // performance: pause each section's looping decorations while it is off screen,
+  // and don't let the phone's address bar showing/hiding re-measure the whole page mid-scroll
+  if (window.ScrollTrigger) ScrollTrigger.config({ ignoreMobileResize: true });
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('is-offscreen', !e.isIntersecting)), { rootMargin: '200px 0px' });
+    document.querySelectorAll('main > section').forEach(s => io.observe(s));
+  }
+
   (function petals() {
     const box = $('#petals'); if (!box || reduced) return;
     const n = innerWidth < 600 ? 7 : 12;
@@ -575,33 +583,136 @@
      04 · STORY — gold thread draws, medallions roll in
      --------------------------------------------------------------------- */
   function initStory() {
-    // tap a badge to turn it (lotus <-> Ram & Sita)
-    $$('.chapter .badge').forEach(btn => {
-      const inner = $('.badge__inner', btn);
-      let turn = ANIM ? 0 : 180;
-      if (!ANIM) inner.style.transform = 'rotateY(180deg)';
-      btn.addEventListener('click', () => {
-        turn += 180;
-        if (ANIM) gsap.to(inner, { rotateY: turn, duration: 1.1, ease: 'power2.inOut', overwrite: true });
-        else inner.style.transform = 'rotateY(' + turn + 'deg)';
-      });
-      btn._turn = v => { turn = v; };
-    });
-    const path = $('.timeline__line path');
-    if (!ANIM || !path) return;
-    path.setAttribute('pathLength', '1');
-    gsap.fromTo(path, { strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDashoffset: 0, ease: 'none', scrollTrigger: { trigger: '.timeline', start: 'top 70%', end: 'bottom 70%', scrub: true } });
-    $$('.chapter').forEach((ch, i) => {
-      const badge = $('.badge', ch), inner = $('.badge__inner', ch), body = $('.chapter__body', ch);
-      const fromLeft = small() ? false : i % 2 === 0;
-      gsap.timeline({ scrollTrigger: { trigger: ch, start: 'top 78%', once: true } })
-        .from(badge, { scale: .6, opacity: 0, rotate: fromLeft ? 14 : -14, duration: 1.1, ease: 'back.out(1.5)' })
-        .from(body, { x: small() ? 0 : (fromLeft ? -50 : 50), y: small() ? 24 : 0, opacity: 0, duration: 1.1, ease: 'power3.out' }, '-=.75')
-        // hold on the lotus for a breath, then turn to Ram & Sita
-        .to(inner, { rotateY: 180, duration: 1.5, ease: 'power2.inOut', onComplete: () => badge._turn && badge._turn(180) }, '+=.35');
-    });
-  }
+    const stage = $('#rbookStage'), book = $('#rbook');
+    if (!stage || !book) return;
+    const leaves = $$('.rbook__leaf', book), intro = $('#rbookIntro');
+    const prevB = $('#rbookPrev'), nextB = $('#rbookNext'), count = $('#rbookCount');
+    const SPREADS = leaves.length - 1;               // the cover leaf plus one leaf per spread
+    const narrow = () => matchMedia('(max-width: 700px)').matches;
+    let spread = -1;                                  // -1 = closed
+    let busy = false, auto = null, idleTimer = null;
+    // stacking: pages still on the right lie top-down in order; turned pages pile up on the left
+    const zRight = i => 60 - i, zLeft = i => 10 + i;
+    leaves.forEach((l, i) => gsap.set(l, { zIndex: zRight(i), rotateY: 0 }));
+    // a closed book sits centred on its cover
+    const closedX = () => narrow() ? 0 : -book.offsetWidth / 4;
 
+    // the lotus blooms first, then the photo is taped in and the words appear
+    function reveal(k, instant) {
+      const right = leaves[k + 1] && $('.rbook__face--front .rpage', leaves[k + 1]);
+      const left = $('.rbook__face--back .rpage', leaves[k]);
+      const tl = gsap.timeline();
+      if (left) {
+        const bloom = $('.rpage__bloom', left), words = left.querySelectorAll('.rpage__om, .rpage__verse, .rpage__sub');
+        tl.fromTo(bloom, { opacity: 0, scale: .15, rotate: -40 }, { opacity: 1, scale: 1, rotate: 0, duration: 1.3, ease: 'back.out(1.4)' }, 0)
+          .fromTo(words, { opacity: 0, y: 10 }, { opacity: 1, y: 0, stagger: .15, duration: .6, ease: 'power2.out' }, .7);
+      }
+      if (right && !right.classList.contains('rpage--end')) {
+        const bloom = $('.rpage__bloom', right), pol = $('.polaroid', right), tape = $('.polaroid__tape', right);
+        const words = right.querySelectorAll('.rpage__kanda, .rpage__title, .rpage__text, .rpage__num');
+        tl.fromTo(bloom, { opacity: 0, scale: .15, rotate: -40 }, { opacity: 1, scale: 1, rotate: 0, duration: 1.1, ease: 'back.out(1.5)' }, 0)
+          .to(bloom, { opacity: 0, scale: 1.25, duration: .6, ease: 'power2.in' }, 1.4)
+          .fromTo(pol, { opacity: 0, y: -30, scale: .9, rotate: -6 }, { opacity: 1, y: 0, scale: 1, rotate: 0, duration: .9, ease: 'power3.out' }, 1.55)
+          .fromTo(tape, { scaleX: 0 }, { scaleX: 1, duration: .45, ease: 'power2.out' }, 2.15)
+          .fromTo(words, { opacity: 0, y: 12 }, { opacity: 1, y: 0, stagger: .12, duration: .55, ease: 'power2.out' }, 2.2);
+      } else if (right) {
+        tl.fromTo(right.children, { opacity: 0, y: 12 }, { opacity: 1, y: 0, stagger: .12, duration: .6, ease: 'power2.out' }, 0);
+      }
+      if (instant) tl.progress(1);
+      return tl;
+    }
+    // hide what is on a spread so it can bloom again when it is shown
+    function prime(k) {
+      const right = leaves[k + 1] && $('.rbook__face--front .rpage', leaves[k + 1]);
+      const left = $('.rbook__face--back .rpage', leaves[k]);
+      if (left) gsap.set([$('.rpage__bloom', left), ...left.querySelectorAll('.rpage__om, .rpage__verse, .rpage__sub')], { opacity: 0 });
+      if (right && !right.classList.contains('rpage--end')) gsap.set([$('.rpage__bloom', right), $('.polaroid', right), ...right.querySelectorAll('.rpage__kanda, .rpage__title, .rpage__text, .rpage__num')], { opacity: 0 });
+      else if (right) gsap.set(right.children, { opacity: 0 });
+    }
+    const update = () => {
+      count.textContent = spread < 0 ? 'Cover' : (spread + 1) + ' / ' + SPREADS;
+      prevB.disabled = spread < 0; nextB.disabled = spread >= SPREADS - 1;
+      prevB.setAttribute('aria-label', spread === 0 ? 'Close the book' : 'Previous page');
+      nextB.setAttribute('aria-label', spread < 0 ? 'Open the book' : 'Next page');
+    };
+    const hint = $('#rbookOpen');
+
+    // turn one leaf with a soft shadow sweeping across it
+    function turn(i, forward, after) {
+      const leaf = leaves[i], faces = $$('.rbook__face', leaf);
+      gsap.set(leaf, { zIndex: 100 });
+      const d = ANIM ? 1.35 : 0;
+      gsap.timeline({ onComplete: () => { gsap.set(leaf, { zIndex: forward ? zLeft(i) : zRight(i) }); busy = false; after && after(); } })
+        .to(leaf, { rotateY: forward ? -180 : 0, duration: d, ease: 'power2.inOut' }, 0)
+        .fromTo(faces, { '--shade': 0 }, { '--shade': .55, duration: d / 2, ease: 'sine.in', yoyo: true, repeat: 1 }, 0);
+    }
+    function go(to, user) {
+      if (to === -1 && spread === 0) return close();
+      if (to >= 0 && spread < 0) return open();
+      if (busy || to < 0 || to > SPREADS - 1 || to === spread) return;
+      if (user) pause();
+      busy = true;
+      if (to > spread) { const k = spread + 1; prime(k); turn(k, true); setTimeout(() => reveal(k), ANIM ? 900 : 0); spread = k; }
+      else { const k = spread - 1; prime(k); turn(spread, false); setTimeout(() => reveal(k), ANIM ? 900 : 0); spread = k; }
+      update();
+    }
+    // the book opens: cover turns, the first spread blooms
+    function open() {
+      if (spread >= 0 || busy) return;
+      busy = true; spread = 0; update(); prime(0);
+      book.classList.add('is-open'); stage.classList.remove('is-closed');
+      const tl = gsap.timeline();
+      if (hint) tl.to(hint, { autoAlpha: 0, duration: .3 }, 0);
+      if (ANIM && intro) tl.to(intro, { opacity: 0, y: -30, scale: 1.06, duration: .9, ease: 'power2.in' }, 0);
+      gsap.set(book, { x: closedX() });
+      tl.fromTo(book, { opacity: 0, scale: .92 }, { opacity: 1, scale: 1, duration: ANIM ? .9 : 0, ease: 'power2.out' }, ANIM ? .45 : 0)
+        .add(() => turn(0, true, startAuto), ANIM ? 1.3 : 0)
+        .to(book, { x: () => narrow() ? 0 : 0, duration: ANIM ? 1.35 : 0, ease: 'power2.inOut' }, ANIM ? 1.4 : 0)
+        .add(() => reveal(0), ANIM ? 2.1 : 0);
+    }
+    // close the book again: the cover turns back, then the grand Ramayana book returns
+    function close() {
+      if (busy || spread !== 0) return;
+      busy = true; stopAuto(); clearTimeout(idleTimer);
+      spread = -1; update();
+      book.classList.remove('is-open');
+      const tl = gsap.timeline({ onComplete: () => { busy = false; stage.classList.add('is-closed'); } });
+      tl.add(() => turn(0, false), 0);
+      busy = true;
+      tl.to(book, { x: closedX(), duration: ANIM ? 1.35 : 0, ease: 'power2.inOut' }, 0);
+      if (ANIM && intro) {
+        tl.to(book, { opacity: 0, scale: .94, duration: .7, ease: 'power2.in' }, 1.5)
+          .fromTo(intro, { opacity: 0, y: 24, scale: .96 }, { opacity: 1, y: 0, scale: 1, duration: 1, ease: 'power3.out' }, 1.75);
+      }
+      if (hint) tl.fromTo(hint, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: .6, ease: 'power2.out' }, ANIM ? 2.3 : 0);
+    }
+    if (hint) hint.addEventListener('click', () => open());
+    if (intro) intro.addEventListener('click', () => { if (spread < 0) open(); });
+    // pages also turn by themselves, slowly; any touch pauses that for a while
+    function startAuto() { stopAuto(); auto = setInterval(() => { if (spread >= SPREADS - 1) return stopAuto(); go(spread + 1); }, 7000); }
+    function stopAuto() { clearInterval(auto); auto = null; }
+    function pause() { stopAuto(); clearTimeout(idleTimer); idleTimer = setTimeout(startAuto, 14000); }
+
+    prevB.addEventListener('click', () => go(spread - 1, true));
+    nextB.addEventListener('click', () => go(spread + 1, true));
+    // tap the right page to go forward, the left page to go back; swipe on phones
+    book.addEventListener('click', e => {
+      if (spread < 0) return open();
+      const r = book.getBoundingClientRect(), mid = narrow() ? r.left + r.width * .5 : r.left + r.width / 2;
+      go(e.clientX > mid ? spread + 1 : spread - 1, true);
+    });
+    let sx = null;
+    stage.addEventListener('pointerdown', e => { sx = e.clientX; });
+    stage.addEventListener('pointerup', e => { if (sx == null) return; const dx = e.clientX - sx; sx = null; if (Math.abs(dx) > 50) go(dx < 0 ? spread + 1 : spread - 1, true); });
+    stage.addEventListener('pointercancel', () => { sx = null; });
+
+    update();
+    if (!ANIM) { if (intro) intro.remove(); open(); return; }
+    gsap.set(book, { opacity: 0, x: closedX() });
+    ScrollTrigger.create({ trigger: stage, start: 'top 72%', once: true, onEnter: open });
+    // stop turning pages when the book is out of view
+    ScrollTrigger.create({ trigger: stage, start: 'top bottom', end: 'bottom top', onToggle: s => { if (!s.isActive) stopAuto(); else if (spread >= 0 && !auto) startAuto(); } });
+  }
 
   /* ---------------------------------------------------------------------
      Shared sound (Web Audio, no files): unlocked on the guest's first tap
