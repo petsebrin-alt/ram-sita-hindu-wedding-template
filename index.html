@@ -69,84 +69,64 @@
   <!-- Atmospheric floating marigold petals & diya sparks canvas -->
   <canvas class="intro__fx" id="introFx" aria-hidden="true"></canvas>
 
-  <!-- Viewport container: Fullscreen on desktop/laptop and mobile -->
+  <!-- Viewport container: Fullscreen on all screen sizes -->
   <div class="intro__viewport" id="introViewport">
 
-    <!-- SCENE A: Grand Palace Entrance & 3D Divine Door Opening -->
+    <!-- SCENE A: Palace Entrance & 3D Door Opening -->
     <div class="intro__scene intro__scene--entrance" id="sceneEntrance">
-      <!-- Facade Background (Wide for desktop/laptop, Portrait for mobile) -->
-      <picture class="intro__bg-pic">
-        <source media="(min-aspect-ratio: 1/1)" srcset="assets/intro/palace-entrance-wide.webp">
-        <img decoding="async" class="intro__bg intro__bg--entrance" src="assets/intro/palace-entrance-closed.webp" alt="Grand Royal Palace Entrance">
-      </picture>
+      <!-- Background: open courtyard visible behind doors -->
+      <img decoding="async" class="intro__bg intro__bg--open" src="assets/intro/palace-entrance-open.webp" alt="">
+      <!-- Palace exterior facade with closed doors -->
+      <img decoding="async" class="intro__bg intro__bg--closed" src="assets/intro/palace-entrance-closed.webp" alt="Grand Royal Palace Entrance">
 
-      <!-- 3D Carved Wooden Doorway -->
+      <!-- 3D Carved Wooden Double Doors -->
       <div class="intro__doorway" id="introDoorway" aria-hidden="true">
-        <!-- Sunlit Palace Courtyard portal visible through the doorway -->
-        <div class="intro__portal">
-          <picture>
-            <source media="(min-aspect-ratio: 1/1)" srcset="assets/intro/palace-courtyard-wide.webp">
-            <img class="intro__portal-img" src="assets/intro/palace-courtyard.webp" alt="">
-          </picture>
-          <div class="intro__portal-glow"></div>
-        </div>
-
-        <!-- 3D Left and Right Carved Door Leaves -->
         <div class="intro__door intro__door--left" id="doorLeft">
           <img decoding="async" src="assets/intro/door-leaf-left.webp" alt="">
-          <div class="intro__door-shade"></div>
         </div>
         <div class="intro__door intro__door--right" id="doorRight">
           <img decoding="async" src="assets/intro/door-leaf-right.webp" alt="">
-          <div class="intro__door-shade"></div>
         </div>
-
-        <!-- Divine golden light beam bursting through door seam -->
+        <!-- Divine golden light beam bursting through door crack -->
         <div class="intro__beam" id="doorBeam"></div>
       </div>
     </div>
 
-    <!-- SCENE B & C: Grand Palace Courtyard, Jatayu Eagle Flight & Unfurling Scroll -->
+    <!-- SCENE B: Grand Palace Courtyard with Soaring Jatayu -->
     <div class="intro__scene intro__scene--courtyard" id="sceneCourtyard">
-      <!-- Courtyard Background (Wide for desktop/laptop, Portrait for mobile) -->
-      <picture class="intro__bg-pic">
-        <source media="(min-aspect-ratio: 1/1)" srcset="assets/intro/palace-courtyard-wide.webp">
-        <img decoding="async" class="intro__bg intro__bg--courtyard" id="bgCourtyard" src="assets/intro/palace-courtyard.webp" alt="Grand Palace Courtyard with Lotus Pools and Royal Architecture">
-      </picture>
+      <img decoding="async" class="intro__bg" src="assets/intro/palace-courtyard.webp" alt="Grand Palace Courtyard with Lotus Pools">
+      <!-- Jatayu soaring through the sky -->
+      <div class="intro__jatayu-soar" id="jatayuSoar" aria-hidden="true">
+        <img decoding="async" src="assets/intro/jatayu-soaring.webp" alt="">
+      </div>
+    </div>
 
-      <!-- Jatayu Soaring & Scroll Carrier Stage -->
-      <div class="intro__flight-stage" id="flightStage">
-        <!-- Royal Jatayu Eagle holding the golden scroll with claws -->
-        <div class="intro__jatayu-carrier" id="jatayuCarrier">
-          <img decoding="async" class="intro__jatayu-img" id="jatayuImg" src="assets/intro/jatayu-scroll.webp" alt="Royal Jatayu holding the golden scroll">
+    <!-- SCENE C: Jatayu Descends with the Royal Invitation Scroll -->
+    <div class="intro__scene intro__scene--scroll" id="sceneScroll">
+      <!-- Jatayu holding rolled scroll, then unfurled scroll -->
+      <img decoding="async" class="intro__bg intro__bg--rolled" id="bgRolled" src="assets/intro/palace-jatayu-rolled.webp" alt="">
+      <img decoding="async" class="intro__bg intro__bg--unfurled" id="bgUnfurled" src="assets/intro/palace-jatayu-scroll.webp" alt="">
+
+      <!-- Interactive Invitation Scroll & Typography -->
+      <div class="intro__scroll-wrap" id="scrollWrap">
+        <div class="intro__parchment" id="parchmentBody">
+          <div class="intro-scroll__content" id="scrollContent">
+            <p class="intro-scroll__deva deva">॥ श्री सीताराम ॥</p>
+            <h2 class="intro-scroll__dear">Dear Honoured Guest,</h2>
+            <p class="intro-scroll__msg">You are cordially invited to celebrate the beautiful union of</p>
+            <h3 class="intro-scroll__couple">Ram &amp; Sita</h3>
+            <div class="intro-scroll__divider"><svg viewBox="0 0 24 24"><use href="#i-lotus"/></svg></div>
+            <p class="intro-scroll__date">Saturday, 27 March 2027</p>
+            <p class="intro-scroll__venue">Rambagh Palace · Jaipur, Rajasthan</p>
+            <button type="button" class="btn btn--maroon intro-scroll__btn" id="introOpenBtn">
+              <span>Open the Invitation</span>
+              <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
         </div>
-
-        <!-- Interactive Royal Invitation Scroll -->
-        <div class="intro__scroll-wrap" id="scrollWrap">
-          <!-- Unfurling Parchment Body -->
-          <div class="intro__parchment" id="parchmentBody">
-            <img decoding="async" class="intro__parchment-bg" src="assets/intro/scroll-body.webp" alt="">
-            <div class="intro-scroll__content" id="scrollContent">
-              <p class="intro-scroll__deva deva">॥ श्री सीताराम ॥</p>
-              <h2 class="intro-scroll__dear">Dear Honoured Guest,</h2>
-              <p class="intro-scroll__msg">You are cordially invited to celebrate the beautiful union of</p>
-              <h3 class="intro-scroll__couple">Ram &amp; Sita</h3>
-              <div class="intro-scroll__divider" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><use href="#i-lotus"/></svg>
-              </div>
-              <p class="intro-scroll__date">Saturday, 27 March 2027</p>
-              <p class="intro-scroll__venue">Rambagh Palace · Jaipur, Rajasthan</p>
-              <button type="button" class="intro-scroll__btn" id="introOpenBtn" aria-label="Open the wedding invitation">
-                <span class="intro-scroll__btn-text">Open the Invitation</span>
-                <span class="intro-scroll__btn-arrow" aria-hidden="true">&rsaquo;</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Bottom Roller that physically glides down -->
-          <div class="intro__roller-bot" id="rollerBot" aria-hidden="true">
-            <img decoding="async" src="assets/intro/scroll-bottom-roller.webp" alt="">
-          </div>
+        <!-- Bottom Roller glides down during unfurl -->
+        <div class="intro__roller-bot" id="rollerBot" aria-hidden="true">
+          <img decoding="async" src="assets/intro/scroll-bottom-roller.webp" alt="">
         </div>
       </div>
     </div>
