@@ -93,15 +93,12 @@
     const viewport = q('#introViewport');
     const sceneEntrance = q('#sceneEntrance');
     const sceneCourtyard = q('#sceneCourtyard');
-    const sceneScroll = q('#sceneScroll');
     const doorLeft = q('#doorLeft');
     const doorRight = q('#doorRight');
     const doorBeam = q('#doorBeam');
-    const bgClosed = q('.intro__bg--closed');
-    const bgOpen = q('.intro__bg--open');
-    const bgRolled = q('#bgRolled');
-    const bgUnfurled = q('#bgUnfurled');
-    const jatayuSoar = q('#jatayuSoar');
+    const flightStage = q('#flightStage');
+    const jatayuCarrier = q('#jatayuCarrier');
+    const jatayuImg = q('#jatayuImg');
     const scrollWrap = q('#scrollWrap');
     const parchmentBody = q('#parchmentBody');
     const rollerBot = q('#rollerBot');
@@ -206,92 +203,118 @@
       });
     };
 
+    // Calculate parchment scroll height dynamically for responsive precision
+    const getScrollHeight = () => (parchmentBody ? parchmentBody.offsetHeight : 420);
+
     // Reduced motion accessibility
     if (reduced) {
       gsap.set(sceneEntrance, { display: 'none' });
-      gsap.set(sceneCourtyard, { display: 'none' });
-      gsap.set(sceneScroll, { display: 'block', opacity: 1 });
-      gsap.set(bgUnfurled, { clipPath: 'inset(0 0 0% 0)' });
+      gsap.set(sceneCourtyard, { opacity: 1 });
+      gsap.set(flightStage, { opacity: 1 });
+      gsap.set(jatayuCarrier, { scale: 1, y: 0, opacity: 1, rotation: 0 });
       gsap.set(parchmentBody, { clipPath: 'inset(0 0 0% 0)' });
-      gsap.set(rollerBot, { y: 0 });
+      gsap.set(rollerBot, { y: getScrollHeight() });
       gsap.set(scrollContent.children, { opacity: 1, y: 0 });
       if (openBtn) openBtn.addEventListener('click', finish);
       if (skipBtn) skipBtn.addEventListener('click', finish);
       return;
     }
 
-    // Initial positioning
-    gsap.set(sceneEntrance, { display: 'block', opacity: 1, scale: 1 });
-    gsap.set(sceneCourtyard, { display: 'none', opacity: 0 });
-    gsap.set(sceneScroll, { display: 'none', opacity: 0 });
+    // Initial starting states
+    gsap.set(sceneEntrance, { opacity: 1, scale: 1 });
+    gsap.set(sceneCourtyard, { opacity: 0, scale: 1.16 });
     gsap.set(doorLeft, { rotateY: 0 });
     gsap.set(doorRight, { rotateY: 0 });
+    gsap.set('.intro__door-shade', { opacity: 0 });
     gsap.set(doorBeam, { opacity: 0, scaleX: 0.1 });
-    gsap.set(bgOpen, { opacity: 0 });
-    gsap.set(jatayuSoar, { xPercent: 28, yPercent: -42, scale: 0.35, opacity: 0 });
-    gsap.set(bgUnfurled, { clipPath: 'inset(0 0 100% 0)' });
+    gsap.set(flightStage, { opacity: 0 });
+    gsap.set(jatayuCarrier, { scale: 0.16, yPercent: -45, xPercent: -6, opacity: 0, rotation: -3.5 });
     gsap.set(parchmentBody, { clipPath: 'inset(0 0 100% 0)' });
-    gsap.set(rollerBot, { y: -360 });
+    gsap.set(rollerBot, { y: 0 });
     gsap.set(scrollContent.children, { opacity: 0, y: 14 });
 
     const tl = gsap.timeline({ onComplete: () => {} });
 
     // Scene 1: Camera slowly glides toward grand palace entrance (0s - 2.8s)
-    tl.to(sceneEntrance, { scale: 1.08, duration: 3.4, ease: 'sine.inOut' }, 0)
+    tl.to(sceneEntrance, { scale: 1.07, duration: 3.4, ease: 'sine.inOut' }, 0)
 
-    // Scene 2: Divine door opening (2.6s - 5.4s)
-    .to(doorBeam, { opacity: 1, scaleX: 1.2, duration: 0.8, ease: 'power2.in' }, 2.4)
-    .to(doorBeam, { opacity: 0.8, duration: 1.6, ease: 'sine.inOut' }, 3.2)
-    .to(bgOpen, { opacity: 1, duration: 1.2, ease: 'power2.out' }, 3.0)
-    // Doors open symmetrically inward in 3D perspective
-    .to(doorLeft, { rotateY: -76, duration: 2.2, ease: 'power2.inOut' }, 3.0)
-    .to(doorRight, { rotateY: 76, duration: 2.2, ease: 'power2.inOut' }, 3.0)
+    // Scene 2: Divine door opening with golden light beam (2.2s - 4.8s)
+    .to(doorBeam, { opacity: 1, scaleX: 1.4, duration: 0.8, ease: 'power2.in' }, 2.0)
+    .to(doorBeam, { opacity: 0.75, scaleX: 1.0, duration: 1.6, ease: 'sine.inOut' }, 2.8)
+    // Symmetrical 3D door swing inward
+    .to(doorLeft, { rotateY: -78, duration: 2.2, ease: 'power2.inOut' }, 2.6)
+    .to(doorRight, { rotateY: 78, duration: 2.2, ease: 'power2.inOut' }, 2.6)
+    .to('.intro__door-shade', { opacity: 0.5, duration: 2.2, ease: 'power2.inOut' }, 2.6)
 
-    // Scene 3: Camera moves inside through doorway into courtyard (5.0s - 7.2s)
+    // Scene 3: Camera moves forward through doorway into courtyard (4.4s - 6.8s)
     .to(sceneEntrance, {
-      scale: 2.6,
-      yPercent: -14,
-      duration: 2.2,
-      ease: 'power2.in'
-    }, 4.8)
-    .to(flash, { opacity: 0.55, duration: 0.7, ease: 'power1.in' }, 6.2)
-    .set(sceneCourtyard, { display: 'block', opacity: 1, scale: 1.14 }, 6.6)
-    .to(sceneEntrance, { opacity: 0, duration: 0.5, ease: 'power1.out' }, 6.6)
-    .to(flash, { opacity: 0, duration: 1.0, ease: 'power2.out' }, 6.8)
+      scale: 3.2,
+      yPercent: -12,
+      duration: 2.3,
+      ease: 'power2.inOut'
+    }, 4.2)
+    .to(flash, { opacity: 0.65, duration: 0.8, ease: 'power2.in' }, 5.6)
+    .set(sceneCourtyard, { opacity: 1 }, 6.2)
+    .to(sceneEntrance, { opacity: 0, duration: 0.5, ease: 'power1.out' }, 6.2)
+    .to(flash, { opacity: 0, duration: 1.0, ease: 'power2.out' }, 6.4)
+    .to(sceneCourtyard, { scale: 1.0, duration: 3.2, ease: 'power2.out' }, 6.4)
 
-    // Scene 4: Grand Courtyard & Jatayu soaring in from the sky (6.8s - 9.8s)
-    .to(sceneCourtyard, { scale: 1.0, duration: 3.2, ease: 'power2.out' }, 6.8)
-    .to(jatayuSoar, {
-      opacity: 1,
-      xPercent: 0,
-      yPercent: 0,
+    // Scene 4: Grand Courtyard revealed & Jatayu flying in from the sky (6.6s - 10.0s)
+    .set(flightStage, { opacity: 1 }, 6.5)
+    .to(jatayuCarrier, { opacity: 1, duration: 0.8, ease: 'power1.in' }, 6.6)
+    .to(jatayuCarrier, {
       scale: 1.0,
-      duration: 2.8,
-      ease: 'power3.out'
-    }, 7.0)
+      yPercent: 0,
+      xPercent: 0,
+      rotation: 0,
+      duration: 3.4,
+      ease: 'power2.out'
+    }, 6.6)
+    // Dynamic wing flap & aerodynamic banking oscillation during approach
+    .to(jatayuCarrier, { scaleY: 0.94, rotation: 2.5, duration: 0.35, yoyo: true, repeat: 7, ease: 'sine.inOut' }, 6.6)
 
-    // Scene 5 & 6: Jatayu descends with scroll & scroll unfurls (9.6s - 13.0s)
-    .set(sceneScroll, { display: 'block', opacity: 0 }, 9.5)
-    .to(sceneScroll, { opacity: 1, duration: 1.0, ease: 'power2.inOut' }, 9.6)
-    .to(sceneCourtyard, { opacity: 0, duration: 1.0, ease: 'power2.inOut' }, 9.6)
-    .fromTo(sceneScroll, { y: -30 }, { y: 0, duration: 1.4, ease: 'back.out(1.2)' }, 9.6)
-    // Scroll unfurls smoothly: rollerBot descends and parchment expands
-    .to(rollerBot, { y: 0, duration: 2.2, ease: 'power2.inOut' }, 10.8)
-    .to(bgUnfurled, { clipPath: 'inset(0 0 0% 0)', duration: 2.2, ease: 'power2.inOut' }, 10.8)
-    .to(parchmentBody, { clipPath: 'inset(0 0 0% 0)', duration: 2.2, ease: 'power2.inOut' }, 10.8)
+    // Scene 5: Jatayu settles and hovers gracefully in the center (10.0s - 10.8s)
+    .to(jatayuCarrier, {
+      y: 0,
+      scaleY: 1.0,
+      rotation: 0,
+      duration: 0.8,
+      ease: 'back.out(1.15)'
+    }, 10.0)
 
-    // Scene 7: Invitation text reveals with staggered elegance (12.8s onwards)
+    // Scene 6: Royal invitation scroll unfurls smoothly from top to bottom (10.6s - 13.0s)
+    .to(rollerBot, {
+      y: () => getScrollHeight(),
+      duration: 2.3,
+      ease: 'power2.inOut'
+    }, 10.6)
+    .to(parchmentBody, {
+      clipPath: 'inset(0 0 0% 0)',
+      duration: 2.3,
+      ease: 'power2.inOut'
+    }, 10.6)
+
+    // Subtle gentle breathing hover for Jatayu while scroll is held open
+    .to(jatayuCarrier, {
+      y: -6,
+      duration: 1.8,
+      yoyo: true,
+      repeat: -1,
+      ease: 'sine.inOut'
+    }, 12.8)
+
+    // Scene 7: Invitation typography reveals with staggered elegance (12.6s - 14.0s)
     .to(scrollContent.children, {
       opacity: 1,
       y: 0,
-      stagger: 0.16,
-      duration: 0.8,
+      stagger: 0.14,
+      duration: 0.75,
       ease: 'power2.out'
-    }, 12.6)
-    .fromTo(openBtn, { scale: 0.94 }, { scale: 1, duration: 0.6, ease: 'back.out(1.4)' }, 13.6);
+    }, 12.5)
+    .fromTo(openBtn, { scale: 0.93 }, { scale: 1.0, duration: 0.6, ease: 'back.out(1.4)' }, 13.7);
 
     // Skip button logic:
-    // If during animation, jump directly to the invitation ready to read
+    // If during animation, jump directly to unrolled invitation ready to read
     // If clicked on invitation or double-clicked, enter site
     if (skipBtn) {
       skipBtn.addEventListener('click', () => {
