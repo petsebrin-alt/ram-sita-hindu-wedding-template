@@ -307,7 +307,7 @@
       gsap.set(scrollClosed,    { display: 'none' });
       gsap.set(scrollOpen,      { opacity: 1 });
       gsap.set(scrollParchment, { clipPath: 'inset(0 0 0% 0)' });
-      gsap.set(scrollBotRoller, { top: '83.2%' });
+      gsap.set(scrollBotRoller, { top: '80.8%' });
       gsap.set(Array.from(scrollBody.children), { opacity: 1, y: 0 });
       if (openBtn) openBtn.addEventListener('click', finish);
       if (skipBtn) skipBtn.addEventListener('click', finish);
@@ -316,7 +316,7 @@
 
     /* ── Initial Element States ──────────────────────────────────────────── */
     gsap.set(sceneRama,    { opacity: 1, scale: 1 });
-    gsap.set(bgTemple,     { scale: 1.0, transformOrigin: '50% 65%' });
+    gsap.set(bgTemple,     { scale: 1.0, transformOrigin: '50% 45%' });
     gsap.set(introRays,    { opacity: 0, scale: 0.95 });
     gsap.set(skyAura,      { opacity: 0, scale: 0.85 });
     gsap.set(bowCharge,    { opacity: 0, scale: 0.2 });
@@ -325,8 +325,8 @@
     gsap.set(arrowFlight, {
       opacity: 0,
       scale: 0.65,
-      rotation: 135,
-      left: '80%',
+      rotation: 138,
+      left: '86%',
       top: '18%',
       transformOrigin: '15% 50%'
     });
@@ -334,220 +334,202 @@
 
     /* Magic burst & Royal Scroll */
     gsap.set(magicBurst,      { opacity: 0, scale: 0.2 });
-    gsap.set(scrollClosed,    { opacity: 0, scale: 0.8, y: -40, rotation: -2 });
+    gsap.set(scrollClosed,    { opacity: 0, scale: 0.85, y: -25, rotation: -1 });
     gsap.set(scrollOpen,      { opacity: 0 });
-    gsap.set(scrollParchment, { clipPath: 'inset(0 0 79.5% 0)' });
-    gsap.set(scrollBotRoller, { top: '14%' });
-    gsap.set(Array.from(scrollBody.children), { opacity: 0, y: 16 });
+    gsap.set(scrollParchment, { clipPath: 'inset(0 0 90.3% 0)' });
+    gsap.set(scrollBotRoller, { top: '9.7%' });
+    gsap.set(Array.from(scrollBody.children), { opacity: 0, y: 14 });
 
     /* ── Main GSAP Cinematic Timeline ────────────────────────────────────── */
     const tl = gsap.timeline();
 
     /*
-     * SCENE 01 — DIVINE TEMPLE & RAMA IN SKY (0.0s → 3.5s)
-     * Temple background subtle zoom, volumetric rays, divine sky aura radiates
+     * SCENE 01 — FRACTION-OF-A-SECOND DIVINE REVEAL (0.0s → 0.85s)
+     * Volumetric sun rays & divine sky aura immediately radiate from Lord Rama
+     * Holy Ramayana blessing audio initiates without delay
      */
     tl
-      /* Slow cinematic camera push into the temple */
+      /* Slow majestic camera push */
       .to(bgTemple, {
-        scale: 1.05,
-        duration: 4.0,
+        scale: 1.04,
+        duration: 3.5,
         ease: 'sine.inOut'
       }, 0)
 
-      /* Golden volumetric sun rays radiate */
+      /* Golden sun rays stream down instantly */
       .to(introRays, {
-        opacity: 0.8,
-        scale: 1.04,
-        duration: 2.8,
-        ease: 'power2.out'
-      }, 0.4)
-
-      /* Divine aura blooms around Lord Rama in the sunset sky */
-      .to(skyAura, {
         opacity: 0.9,
-        scale: 1.15,
-        duration: 2.5,
+        scale: 1.03,
+        duration: 1.0,
         ease: 'power2.out'
-      }, 1.0)
+      }, 0.1)
 
-    /*
-     * SCENE 02 — LORD RAMA DRAWS HIS DIVINE BOW (2.8s → 5.5s)
-     * Sacred Ramayana holy blessing sound initiates, golden lightning ignites at Rama's bow
-     */
-      /* Holy blessing sound begins as lightning / golden energy ignites at bow */
+      /* Divine blessing audio initiates in a fraction of a second */
       .call(() => {
         playBlessingSound();
-      }, [], 2.8)
+      }, [], 0.2)
 
+      /* Sky aura blooms around Lord Rama */
+      .to(skyAura, {
+        opacity: 0.95,
+        scale: 1.2,
+        duration: 1.2,
+        ease: 'power2.out'
+      }, 0.2)
+
+      /* Concentrated celestial golden lightning charges at Rama's drawn bow */
       .to(bowCharge, {
         opacity: 1,
-        scale: 1.4,
-        duration: 1.2,
+        scale: 1.5,
+        duration: 0.45,
         ease: 'back.out(2)'
-      }, 2.8)
+      }, 0.3)
       .to(bowCharge, {
-        scale: 1.8,
-        opacity: 0.95,
-        duration: 0.5,
-        yoyo: true,
-        repeat: 3,
-        ease: 'sine.inOut'
-      }, 3.8)
+        scale: 2.2,
+        opacity: 1,
+        duration: 0.2,
+        ease: 'power1.in'
+      }, 0.75)
 
     /*
-     * SCENE 03 — DIVINE ARROW RELEASE & FLIGHT FROM SKY (5.2s → 7.1s)
-     * Celestial flash at bow, golden arrow releases and soars in a parabolic arc
-     * from Rama in the sky straight down to the center of the frame
+     * SCENE 02 — DIVINE ARROW RELEASE & DYNAMIC SKY FLIGHT (0.85s → 1.55s)
+     * Celestial flash at bow, arrow launches on a parabolic trajectory to center
      */
       /* Bow flash at release */
       .to(bowCharge, {
-        scale: 2.8,
+        scale: 3.2,
         opacity: 1,
-        duration: 0.2,
+        duration: 0.1,
         ease: 'power2.in'
-      }, 5.2)
+      }, 0.85)
       .to(bowCharge, {
         opacity: 0,
         scale: 0.2,
-        duration: 0.35,
+        duration: 0.25,
         ease: 'power2.out'
-      }, 5.4)
+      }, 0.95)
 
-      /* Arrow launches from Rama's bow */
+      /* Arrow launches dynamically */
       .to(arrowFlight, {
         opacity: 1,
         scale: 1.0,
-        duration: 0.15
-      }, 5.3)
+        duration: 0.1
+      }, 0.88)
       .to(arrowTrail, {
         opacity: 1,
         scaleX: 1.0,
-        duration: 0.25,
+        duration: 0.2,
         ease: 'power1.out'
-      }, 5.35)
+      }, 0.9)
 
-      /* Parabolic trajectory from upper-right sky directly to center */
+      /* Parabolic trajectory from Rama's bow in the sky directly to center */
       .to(arrowFlight, {
-        left: '65%',
-        top: '34%',
-        rotation: 140,
+        left: '68%',
+        top: '32%',
+        rotation: 142,
         scale: 1.2,
-        duration: 0.85,
+        duration: 0.35,
         ease: 'power2.in'
-      }, 5.4)
+      }, 0.92)
       .to(arrowFlight, {
         left: '50%',
-        top: '50%',
-        rotation: 145,
+        top: '48%',
+        rotation: 146,
         scale: 1.35,
-        duration: 0.85,
+        duration: 0.32,
         ease: 'power1.out'
-      }, 6.25)
+      }, 1.25)
 
       /* Arrow strikes center */
       .to(arrowFlight, {
         opacity: 0,
         scale: 1.6,
-        duration: 0.25,
+        duration: 0.15,
         ease: 'power2.in'
-      }, 7.05)
+      }, 1.55)
 
     /*
-     * SCENE 04 — GOLDEN LIGHT BURST & CLOSED SCROLL MANIFESTATION (7.1s → 9.6s)
-     * Expanding mandala ring of sacred light + spark burst in center,
-     * closed horizontal royal scroll appears and settles
+     * SCENE 03 — CELESTIAL LIGHT BURST & GOLDEN ROD REVEAL (1.55s → 1.85s)
+     * Golden spark explosion & expanding mandala ring manifest royal golden rod
      */
-      /* Trigger canvas spark explosion at exact center */
+      /* Canvas spark explosion at center */
       .call(() => {
-        triggerGoldenBurst(window.innerWidth * 0.5, window.innerHeight * 0.5);
-      }, [], 7.1)
+        triggerGoldenBurst(window.innerWidth * 0.5, window.innerHeight * 0.48);
+      }, [], 1.55)
 
-      /* Expanding divine mandala ring */
+      /* Expanding mandala of sacred golden light */
       .to(magicBurst, {
         opacity: 1,
-        scale: 1.8,
-        duration: 0.4,
+        scale: 1.9,
+        duration: 0.3,
         ease: 'power2.out'
-      }, 7.1)
+      }, 1.55)
       .to(magicBurst, {
-        scale: 4.2,
+        scale: 3.6,
         opacity: 0,
-        duration: 0.85,
+        duration: 0.5,
         ease: 'power2.inOut'
-      }, 7.5)
+      }, 1.85)
 
-      /* Closed royal scroll appears from within the golden light */
+      /* Closed royal scroll appears at center */
       .to(scrollClosed, {
         opacity: 1,
         scale: 1.0,
         y: 0,
         rotation: 0,
-        duration: 1.2,
-        ease: 'back.out(1.2)'
-      }, 7.4)
-
-      /* Gentle royal sway as it settles */
-      .to(scrollClosed, {
-        rotation: 1.5,
-        duration: 0.6,
-        ease: 'sine.inOut'
-      }, 8.6)
-      .to(scrollClosed, {
-        rotation: 0,
-        duration: 0.6,
-        ease: 'sine.inOut'
-      }, 9.2)
+        duration: 0.35,
+        ease: 'back.out(1.5)'
+      }, 1.6)
 
     /*
-     * SCENE 05 — REALISTIC PHYSICAL SCROLL UNROLLING & INVITATION REVEAL (9.6s → 12.8s)
-     * Bottom roller physically rolls downwards from top roller to bottom,
-     * unfurling the clean antique parchment and revealing the invitation without inner border overlap
+     * SCENE 04 — NATURAL SMOOTH SCROLL UNROLLING (1.85s → 3.10s)
+     * Golden rod unrolls top to bottom smoothly like in user's video:
+     * Bottom roller physically rolls downwards in lockstep with unfurling ivory parchment
      */
-      /* Crossfade closed scroll into open scroll top */
+      /* Seamless crossfade into open scroll top golden rod */
       .to(scrollClosed, {
         opacity: 0,
-        scale: 0.95,
-        duration: 0.35,
+        scale: 0.97,
+        duration: 0.25,
         ease: 'power1.in'
-      }, 9.6)
-      .set(scrollOpen, { opacity: 1 }, 9.6)
+      }, 1.85)
+      .set(scrollOpen, { opacity: 1 }, 1.85)
 
-      /* Physical unrolling physics: bottom roller glides down in lockstep with unfurling parchment */
+      /* Physical unrolling physics: bottom roller glides down smoothly over 1.25s */
       .fromTo(scrollBotRoller, {
-        top: '14%'
+        top: '9.7%'
       }, {
-        top: '83.2%',
-        duration: 2.2,
-        ease: 'power2.inOut'
-      }, 9.7)
+        top: '80.8%',
+        duration: 1.25,
+        ease: 'power2.out'
+      }, 1.88)
       .fromTo(scrollParchment, {
-        clipPath: 'inset(0 0 79.5% 0)'
+        clipPath: 'inset(0 0 90.3% 0)'
       }, {
         clipPath: 'inset(0 0 0% 0)',
-        duration: 2.2,
-        ease: 'power2.inOut'
-      }, 9.7)
+        duration: 1.25,
+        ease: 'power2.out'
+      }, 1.88)
 
       /* Stagger reveal of invitation text lines */
       .to(Array.from(scrollBody.children), {
         opacity: 1,
         y: 0,
-        stagger: 0.12,
-        duration: 0.7,
+        stagger: 0.08,
+        duration: 0.55,
         ease: 'power2.out'
-      }, 10.8)
+      }, 2.35)
 
-      /* Call to action button bounces in with golden glow */
+      /* Call to action button bounces in with golden glow aura */
       .fromTo(openBtn, {
         scale: 0.88,
-        boxShadow: '0 0 0 rgba(255, 215, 80, 0)'
+        boxShadow: '0 0 0 rgba(212, 175, 90, 0)'
       }, {
         scale: 1.0,
-        boxShadow: '0 8px 28px rgba(212, 175, 90, 0.75)',
-        duration: 0.65,
+        boxShadow: '0 4px 20px rgba(74, 10, 26, 0.45), 0 0 18px rgba(212, 175, 90, 0.55)',
+        duration: 0.5,
         ease: 'back.out(1.6)'
-      }, 11.8);
+      }, 3.1);
 
     /* ── Button Event Listeners ──────────────────────────────────────────── */
     if (skipBtn) {
