@@ -90,58 +90,106 @@
     if (!intro) return done();
 
     const q = s => $(s, intro);
-    const sceneEntrance = q('#sceneEntrance');
+
+    /* ── Element references ──────────────────────────────────────────────── */
+    const sceneEntrance  = q('#sceneEntrance');
     const sceneCourtyard = q('#sceneCourtyard');
-    const sceneScroll = q('#sceneScroll');
-    const doorLeft = q('#doorLeft');
-    const doorRight = q('#doorRight');
-    const doorBeam = q('#doorBeam');
-    const bgOpen = q('.intro__bg--open');
-    const bgRolled = q('#bgRolled');
-    const bgUnfurled = q('#bgUnfurled');
-    const jatayuSoar = q('#jatayuSoar');
-    const jatayuImg = jatayuSoar ? jatayuSoar.querySelector('img') : null;
-    const parchmentBody = q('#parchmentBody');
-    const rollerBot = q('#rollerBot');
-    const scrollContent = q('#scrollContent');
-    const openBtn = q('#introOpenBtn');
-    const skipBtn = q('#introSkip');
-    const flash = q('#introFlash');
+    const sceneScroll    = q('#sceneScroll');
+    const doorLeft    = q('#doorLeft');
+    const doorRight   = q('#doorRight');
+    const doorBeam    = q('#doorBeam');
+    const doorVeil    = q('#doorVeil');
+    const bgDoorOpen  = q('#bgDoorOpen');
+    const bgRolled    = q('#bgRolled');
+    const bgUnfurled  = q('#bgUnfurled');
+    const jatayuSoar  = q('#jatayuSoar');
+    const jatayuImg   = jatayuSoar ? jatayuSoar.querySelector('img') : null;
+    const wingShadow  = q('#wingShadow');
+    const parchmentBody  = q('#parchmentBody');
+    const rollerBot      = q('#rollerBot');
+    const scrollContent  = q('#scrollContent');
+    const openBtn  = q('#introOpenBtn');
+    const skipBtn  = q('#introSkip');
+    const flash    = q('#introFlash');
     const fxCanvas = q('#introFx');
 
-    // ── Atmospheric particle system (petals + golden sparks) ──────────────
+    /* ── Atmospheric particle system (petals + golden sparks) ─────────────── */
     let fxRunning = true, fxRaf = null;
     if (fxCanvas) {
       const ctx = fxCanvas.getContext('2d');
-      let w = fxCanvas.width = window.innerWidth;
+      let w = fxCanvas.width  = window.innerWidth;
       let h = fxCanvas.height = window.innerHeight;
       window.addEventListener('resize', () => {
         if (!fxCanvas) return;
-        w = fxCanvas.width = window.innerWidth;
+        w = fxCanvas.width  = window.innerWidth;
         h = fxCanvas.height = window.innerHeight;
       });
       const particles = [];
-      const petalColors = ['rgba(244,143,177,0.75)','rgba(255,183,77,0.75)','rgba(232,99,143,0.65)','rgba(255,213,79,0.75)'];
-      for (let i = 0; i < 22; i++) particles.push({ type:'petal', x:Math.random()*w, y:Math.random()*h, r:5+Math.random()*8, vx:-0.4+Math.random()*0.8, vy:0.6+Math.random()*1.2, rot:Math.random()*Math.PI*2, vrot:(Math.random()-0.5)*0.04, color:petalColors[i%petalColors.length] });
-      for (let i = 0; i < 18; i++) particles.push({ type:'spark', x:Math.random()*w, y:Math.random()*h, r:1+Math.random()*2.2, vx:(Math.random()-0.5)*0.5, vy:-0.4-Math.random()*0.8, alpha:0.2+Math.random()*0.7, dAlpha:0.01+Math.random()*0.02 });
+      const petalColors = [
+        'rgba(244,143,177,0.7)',
+        'rgba(255,183,77,0.75)',
+        'rgba(232,99,143,0.65)',
+        'rgba(255,213,79,0.72)',
+        'rgba(252,170,100,0.6)'
+      ];
+      /* petals */
+      for (let i = 0; i < 26; i++) {
+        particles.push({
+          type: 'petal',
+          x: Math.random() * w, y: Math.random() * h,
+          r: 4 + Math.random() * 7,
+          vx: -0.35 + Math.random() * 0.7,
+          vy: 0.5 + Math.random() * 1.1,
+          rot: Math.random() * Math.PI * 2,
+          vrot: (Math.random() - 0.5) * 0.045,
+          sway: Math.random() * 0.025,
+          color: petalColors[i % petalColors.length]
+        });
+      }
+      /* golden sparks */
+      for (let i = 0; i < 20; i++) {
+        particles.push({
+          type: 'spark',
+          x: Math.random() * w, y: Math.random() * h,
+          r: 1 + Math.random() * 2,
+          vx: (Math.random() - 0.5) * 0.45,
+          vy: -0.35 - Math.random() * 0.75,
+          alpha: 0.25 + Math.random() * 0.65,
+          dAlpha: 0.008 + Math.random() * 0.016
+        });
+      }
+
       function drawFx() {
         if (!fxRunning) return;
         ctx.clearRect(0, 0, w, h);
         particles.forEach(p => {
           if (p.type === 'petal') {
-            p.x += p.vx + Math.sin(p.y*0.02)*0.3; p.y += p.vy; p.rot += p.vrot;
-            if (p.y > h+20) { p.y = -20; p.x = Math.random()*w; }
-            if (p.x < -20) p.x = w+20; if (p.x > w+20) p.x = -20;
-            ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot);
-            ctx.fillStyle = p.color; ctx.beginPath();
-            ctx.ellipse(0, 0, p.r, p.r*0.5, 0, 0, Math.PI*2); ctx.fill(); ctx.restore();
+            p.x += p.vx + Math.sin(p.y * p.sway) * 0.4;
+            p.y += p.vy;
+            p.rot += p.vrot;
+            if (p.y > h + 20) { p.y = -20; p.x = Math.random() * w; }
+            if (p.x < -20)  p.x = w + 20;
+            if (p.x > w + 20) p.x = -20;
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rot);
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.ellipse(0, 0, p.r, p.r * 0.46, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
           } else {
-            p.x += p.vx; p.y += p.vy; p.alpha += p.dAlpha;
-            if (p.alpha > 0.9 || p.alpha < 0.2) p.dAlpha = -p.dAlpha;
-            if (p.y < -10) { p.y = h+10; p.x = Math.random()*w; }
-            ctx.fillStyle = `rgba(255,220,120,${Math.max(0,p.alpha)})`;
-            ctx.shadowColor = 'rgba(255,200,80,0.8)'; ctx.shadowBlur = 6;
-            ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill();
+            p.x += p.vx; p.y += p.vy;
+            p.alpha += p.dAlpha;
+            if (p.alpha > 0.9 || p.alpha < 0.15) p.dAlpha = -p.dAlpha;
+            if (p.y < -10) { p.y = h + 10; p.x = Math.random() * w; }
+            ctx.shadowColor = 'rgba(255,205,80,0.8)';
+            ctx.shadowBlur = 7;
+            ctx.fillStyle = `rgba(255,222,110,${Math.max(0, p.alpha)})`;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
           }
         });
         fxRaf = requestAnimationFrame(drawFx);
@@ -149,7 +197,7 @@
       drawFx();
     }
 
-    // ── Finish & transition to main website ───────────────────────────────
+    /* ── Finish & transition to main website ─────────────────────────────── */
     let finished = false;
     const finish = () => {
       if (finished) return;
@@ -157,115 +205,290 @@
       fxRunning = false;
       if (fxRaf) cancelAnimationFrame(fxRaf);
       done();
-      gsap.to(intro, { opacity: 0, duration: 1.1, ease: 'power2.out', onComplete: () => intro.remove() });
+      gsap.to(intro, {
+        opacity: 0, duration: 1.1, ease: 'power2.out',
+        onComplete: () => intro.remove()
+      });
     };
 
-    // ── Reduced motion: skip straight to invitation ────────────────────────
+    /* ── Reduced motion: skip straight to invitation ─────────────────────── */
     if (reduced) {
-      gsap.set(sceneEntrance, { display: 'none' });
+      gsap.set(sceneEntrance,  { display: 'none' });
       gsap.set(sceneCourtyard, { display: 'none' });
-      gsap.set(sceneScroll, { display: 'block', opacity: 1 });
-      gsap.set(bgUnfurled, { clipPath: 'inset(0 0 0% 0)' });
-      gsap.set(parchmentBody, { clipPath: 'inset(0 0 0% 0)' });
-      gsap.set(rollerBot, { y: 0 });
-      gsap.set(scrollContent.children, { opacity: 1, y: 0 });
+      gsap.set(sceneScroll,    { display: 'block', opacity: 1 });
+      gsap.set(bgUnfurled,     { clipPath: 'inset(0 0 0% 0)' });
+      gsap.set(parchmentBody,  { clipPath: 'inset(0 0 0% 0)' });
+      gsap.set(rollerBot,      { y: 0 });
+      gsap.set(Array.from(scrollContent.children), { opacity: 1, y: 0 });
       if (openBtn) openBtn.addEventListener('click', finish);
       if (skipBtn) skipBtn.addEventListener('click', finish);
       return;
     }
 
-    // ── Wing-flap animation loop using CSS transform via GSAP ─────────────
-    let wingFlap = null;
+    /* ── Wing-flap animation — smooth sinusoidal body-wave like a real eagle ─ */
+    let wingFlapTl = null;
+
     const startWingFlap = () => {
       if (!jatayuImg) return;
-      wingFlap = gsap.to(jatayuImg, {
-        scaleY: 0.88,
-        duration: 0.28,
+      /* Primary flap: wings sweep up & down with a slight body rise/fall */
+      wingFlapTl = gsap.timeline({ repeat: -1 });
+      wingFlapTl
+        /* DOWN-stroke — wings power down, body rises slightly */
+        .to(jatayuImg, {
+          scaleY: 0.84,
+          scaleX: 1.06,
+          y: -4,
+          duration: 0.32,
+          ease: 'sine.in'
+        })
+        /* UP-stroke — wings recover, body settles */
+        .to(jatayuImg, {
+          scaleY: 1.0,
+          scaleX: 1.0,
+          y: 0,
+          duration: 0.42,
+          ease: 'sine.out'
+        })
+        /* brief glide pause before next flap */
+        .to(jatayuImg, {
+          scaleY: 0.97,
+          duration: 0.18,
+          ease: 'none'
+        })
+        .to(jatayuImg, {
+          scaleY: 1.0,
+          duration: 0.14,
+          ease: 'sine.out'
+        });
+      /* Independent gentle banking sway on the wrapper */
+      gsap.to(jatayuSoar, {
+        rotation: 2.5,
+        duration: 2.1,
         ease: 'sine.inOut',
         yoyo: true,
         repeat: -1,
-        transformOrigin: '50% 30%'
+        transformOrigin: '50% 50%'
       });
     };
-    const stopWingFlap = () => { if (wingFlap) { wingFlap.kill(); wingFlap = null; } };
 
-    // ── Initial state ─────────────────────────────────────────────────────
-    gsap.set(sceneEntrance, { opacity: 1, scale: 1 });
+    const stopWingFlap = () => {
+      if (wingFlapTl) { wingFlapTl.kill(); wingFlapTl = null; }
+      gsap.killTweensOf(jatayuSoar, 'rotation');
+      /* snap back to neutral */
+      if (jatayuImg) gsap.to(jatayuImg, { scaleY: 1, scaleX: 1, y: 0, duration: 0.3, ease: 'sine.out' });
+    };
+
+    /* ── Initial state ───────────────────────────────────────────────────── */
+    /* Scene A */
+    gsap.set(sceneEntrance,  { opacity: 1, scale: 1 });
+    gsap.set(bgDoorOpen,     { opacity: 0 });
+    gsap.set(doorVeil,       { opacity: 0 });
+    gsap.set(doorLeft,       { rotateY: 0 });
+    gsap.set(doorRight,      { rotateY: 0 });
+    gsap.set(doorBeam,       { opacity: 0, scaleX: 0.08, scaleY: 0.5 });
+    if (q('.intro__diya--l')) gsap.set([q('.intro__diya--l'), q('.intro__diya--r')], { opacity: 0 });
+
+    /* Scene B */
     gsap.set(sceneCourtyard, { display: 'none', opacity: 0 });
-    gsap.set(sceneScroll, { display: 'none', opacity: 0 });
-    gsap.set(doorLeft, { rotateY: 0 });
-    gsap.set(doorRight, { rotateY: 0 });
-    gsap.set(doorBeam, { opacity: 0, scaleX: 0.1 });
-    gsap.set(bgOpen, { opacity: 0 });
-    // Jatayu starts far upper-right, tiny (distant sky)
-    gsap.set(jatayuSoar, { xPercent: 32, yPercent: -50, scale: 0.22, opacity: 0, rotation: -6 });
-    gsap.set(bgUnfurled, { clipPath: 'inset(0 0 100% 0)' });
-    gsap.set(parchmentBody, { clipPath: 'inset(0 0 100% 0)' });
-    gsap.set(rollerBot, { y: -360 });
-    gsap.set(scrollContent.children, { opacity: 0, y: 14 });
+    gsap.set(jatayuSoar,  { xPercent: 38, yPercent: -55, scale: 0.18, opacity: 0, rotation: -8 });
+    if (jatayuImg) gsap.set(jatayuImg, { scaleY: 1, scaleX: 1, y: 0, transformOrigin: '50% 35%' });
+    if (wingShadow) gsap.set(wingShadow, { opacity: 0, scaleX: 0.3 });
 
-    // ── Main GSAP cinematic timeline ──────────────────────────────────────
-    const tl = gsap.timeline({ onComplete: () => {} });
+    /* Scene C */
+    gsap.set(sceneScroll,    { display: 'none', opacity: 0 });
+    gsap.set(bgUnfurled,     { clipPath: 'inset(0 0 100% 0)' });
+    gsap.set(parchmentBody,  { clipPath: 'inset(0 0 100% 0)' });
+    gsap.set(rollerBot,      { y: -400 });
+    gsap.set(Array.from(scrollContent.children), { opacity: 0, y: 16 });
 
-    // Scene 1 — Camera slowly glides toward the palace entrance (0s → 3.2s)
-    tl.to(sceneEntrance, { scale: 1.08, duration: 3.6, ease: 'sine.inOut' }, 0)
+    /* ── Main GSAP cinematic timeline ──────────────────────────────────────── */
+    const tl = gsap.timeline();
 
-    // Scene 2 — Divine golden light & doors swing open (2.2s → 5.0s)
-    .to(doorBeam, { opacity: 1, scaleX: 1.3, duration: 0.75, ease: 'power2.in' }, 2.2)
-    .to(doorBeam, { opacity: 0.8, duration: 1.6, ease: 'sine.inOut' }, 2.95)
-    .to(bgOpen, { opacity: 1, duration: 1.2, ease: 'power2.out' }, 2.8)
-    // Smooth 3D symmetrical door swing — like a real heavy carved door
-    .to(doorLeft,  { rotateY: -78, duration: 2.4, ease: 'power2.inOut' }, 2.8)
-    .to(doorRight, { rotateY:  78, duration: 2.4, ease: 'power2.inOut' }, 2.8)
+    /*
+     * SCENE 1 — Slow cinematic approach (0 → 3.5s)
+     * Camera drifts toward the palace as ambient diyas flicker in
+     */
+    tl
+      .to(sceneEntrance, {
+        scale: 1.07,
+        duration: 3.8,
+        ease: 'power1.inOut'
+      }, 0)
 
-    // Scene 3 — Camera zooms through the doorway into the palace (5.0s → 7.0s)
-    .to(sceneEntrance, { scale: 2.8, yPercent: -15, duration: 2.2, ease: 'power2.in' }, 4.8)
-    .to(flash, { opacity: 0.6, duration: 0.7, ease: 'power1.in' }, 6.2)
-    .set(sceneCourtyard, { display: 'block', opacity: 1, scale: 1.14 }, 6.65)
-    .to(sceneEntrance, { opacity: 0, duration: 0.5, ease: 'power1.out' }, 6.65)
-    .to(flash, { opacity: 0, duration: 1.0, ease: 'power2.out' }, 6.8)
+    /*
+     * SCENE 2 — Divine light & doors (2.0 → 5.5s)
+     * Thin beam appears at the crack, then doors sweep open smoothly,
+     * the warm veil crossfades, and the open courtyard behind is revealed.
+     */
+      /* Diya glows flicker in softly */
+      .to(q('.intro__diya--l') ? [q('.intro__diya--l'), q('.intro__diya--r')] : [], {
+        opacity: 0.85, duration: 1.4, ease: 'power2.out'
+      }, 1.4)
 
-    // Scene 4 — Courtyard settles; Jatayu glides in naturally from distant sky (6.8s → 10.0s)
-    .to(sceneCourtyard, { scale: 1.0, duration: 3.2, ease: 'power2.out' }, 6.8)
-    // Fade in and begin smooth curved approach trajectory
-    .to(jatayuSoar, { opacity: 1, duration: 0.6, ease: 'power1.in' }, 7.0)
-    // Add call to start wing flap loop once visible
-    .call(startWingFlap, [], 7.0)
-    // Smooth arc glide: starts far & small, curves to center & grows naturally
-    .to(jatayuSoar, {
-      xPercent: 0,
-      yPercent: 0,
-      scale: 1.0,
-      rotation: 0,
-      duration: 3.0,
-      ease: 'power2.out'
-    }, 7.0)
-    // Gentle banking tilt as it levels out
-    .to(jatayuSoar, { rotation: 3, duration: 0.8, ease: 'sine.inOut' }, 8.5)
-    .to(jatayuSoar, { rotation: 0, duration: 0.8, ease: 'sine.inOut' }, 9.3)
+      /* Beam: appears as a thin crack, widens slightly */
+      .to(doorBeam, {
+        opacity: 1, scaleX: 1.0, scaleY: 1.0,
+        duration: 0.6, ease: 'power2.out'
+      }, 2.0)
 
-    // Scene 5 — Jatayu descends & scroll scene begins (9.6s → 11.0s)
-    .call(stopWingFlap, [], 9.5)
-    .set(sceneScroll, { display: 'block', opacity: 0 }, 9.5)
-    .to(sceneScroll, { opacity: 1, duration: 1.0, ease: 'power2.inOut' }, 9.6)
-    .to(sceneCourtyard, { opacity: 0, duration: 1.0, ease: 'power2.inOut' }, 9.6)
-    .fromTo(sceneScroll, { y: -28 }, { y: 0, duration: 1.4, ease: 'back.out(1.15)' }, 9.6)
+      /* Beam brightens as doors begin to move */
+      .to(doorBeam, {
+        opacity: 0.75, scaleX: 1.6,
+        duration: 1.8, ease: 'sine.inOut'
+      }, 2.5)
 
-    // Scene 6 — Scroll unfurls smoothly top→bottom (10.8s → 13.2s)
-    .to(rollerBot, { y: 0, duration: 2.2, ease: 'power2.inOut' }, 10.8)
-    .to(bgUnfurled, { clipPath: 'inset(0 0 0% 0)', duration: 2.2, ease: 'power2.inOut' }, 10.8)
-    .to(parchmentBody, { clipPath: 'inset(0 0 0% 0)', duration: 2.2, ease: 'power2.inOut' }, 10.8)
+      /* LEFT door sweeps open — heavy door with slight overshoot feel */
+      .to(doorLeft, {
+        rotateY: -82,
+        duration: 2.6,
+        ease: 'power3.inOut'
+      }, 2.5)
 
-    // Scene 7 — Invitation text appears (12.6s → 14.2s)
-    .to(scrollContent.children, { opacity: 1, y: 0, stagger: 0.15, duration: 0.75, ease: 'power2.out' }, 12.6)
-    .fromTo(openBtn, { scale: 0.94 }, { scale: 1, duration: 0.6, ease: 'back.out(1.4)' }, 13.6);
+      /* RIGHT door mirror-opens simultaneously */
+      .to(doorRight, {
+        rotateY: 82,
+        duration: 2.6,
+        ease: 'power3.inOut'
+      }, 2.5)
 
-    // ── Skip & Open buttons ───────────────────────────────────────────────
+      /* Warm golden veil fades in as doors open (light flooding through) */
+      .to(doorVeil, {
+        opacity: 1, duration: 1.0, ease: 'power2.out'
+      }, 2.9)
+      .to(doorVeil, {
+        opacity: 0, duration: 1.0, ease: 'power2.in'
+      }, 3.9)
+
+      /* Crossfade to open-door background */
+      .to(bgDoorOpen, {
+        opacity: 1, duration: 1.0, ease: 'power2.out'
+      }, 2.9)
+
+    /*
+     * SCENE 3 — Camera zooms through the doorway (5.0 → 7.0s)
+     * Dramatic push-in then flash-cut to courtyard
+     */
+      .to(sceneEntrance, {
+        scale: 3.0, yPercent: -18,
+        duration: 2.0, ease: 'power2.in'
+      }, 5.0)
+
+      /* Flash at peak of zoom */
+      .to(flash, {
+        opacity: 0.75, duration: 0.55, ease: 'power1.in'
+      }, 6.6)
+
+      /* Switch to courtyard scene during flash peak */
+      .set(sceneCourtyard, { display: 'block', opacity: 1, scale: 1.18 }, 6.9)
+      .to(sceneEntrance,   { opacity: 0, duration: 0.4 }, 6.9)
+
+      /* Flash fades */
+      .to(flash, {
+        opacity: 0, duration: 0.9, ease: 'power2.out'
+      }, 7.0)
+
+    /*
+     * SCENE 4 — Courtyard settles; Jatayu glides in from the distant sky (7.0 → 10.5s)
+     * Courtyard gently de-zooms, Jatayu arcs in from upper-right,
+     * wing-flap loop runs throughout.
+     */
+      .to(sceneCourtyard, {
+        scale: 1.0, duration: 3.0, ease: 'power2.out'
+      }, 7.0)
+
+      /* Jatayu fades in while still small & far */
+      .to(jatayuSoar, {
+        opacity: 1, duration: 0.7, ease: 'power1.in'
+      }, 7.1)
+      .call(startWingFlap, [], 7.1)
+
+      /* Wing shadow appears and grows with the bird */
+      .to(wingShadow ? wingShadow : [], {
+        opacity: 0.45, scaleX: 1.0, duration: 1.4, ease: 'power2.out'
+      }, 7.5)
+
+      /* Main arc-glide: Jatayu sweeps in with a curved S-path */
+      .to(jatayuSoar, {
+        xPercent: -8,
+        yPercent: -6,
+        scale: 0.72,
+        rotation: -3,
+        duration: 1.6,
+        ease: 'power2.out'
+      }, 7.1)
+      .to(jatayuSoar, {
+        xPercent: 0,
+        yPercent: 0,
+        scale: 1.0,
+        rotation: 0,
+        duration: 1.6,
+        ease: 'power1.inOut'
+      }, 8.7)
+
+      /* Gentle final levelling */
+      .to(jatayuSoar, {
+        rotation: 1.5, duration: 0.5, ease: 'sine.out'
+      }, 10.0)
+      .to(jatayuSoar, {
+        rotation: 0, duration: 0.6, ease: 'sine.inOut'
+      }, 10.5)
+
+    /*
+     * SCENE 5 — Jatayu descends & scroll scene begins (10.6 → 12.2s)
+     * Cross-dissolve from courtyard to scroll scene.
+     */
+      .call(stopWingFlap, [], 10.5)
+      .to(wingShadow ? wingShadow : [], {
+        opacity: 0, duration: 0.8
+      }, 10.5)
+
+      .set(sceneScroll, { display: 'block', opacity: 0 }, 10.5)
+      .to(sceneScroll, {
+        opacity: 1, duration: 1.1, ease: 'power2.inOut'
+      }, 10.6)
+      .to(sceneCourtyard, {
+        opacity: 0, duration: 1.1, ease: 'power2.inOut'
+      }, 10.6)
+
+      /* Scroll scene gently settles downward */
+      .fromTo(sceneScroll, { y: -22 }, {
+        y: 0, duration: 1.5, ease: 'back.out(1.1)'
+      }, 10.6)
+
+    /*
+     * SCENE 6 — Scroll unfurls smoothly top → bottom (11.8 → 14.4s)
+     * Both the background unfurl and the parchment clip-path animate
+     * in unison, while the bottom roller tracks downward.
+     */
+      .to(rollerBot, {
+        y: 0, duration: 2.4, ease: 'power2.inOut'
+      }, 11.8)
+      .to(bgUnfurled, {
+        clipPath: 'inset(0 0 0% 0)', duration: 2.4, ease: 'power2.inOut'
+      }, 11.8)
+      .to(parchmentBody, {
+        clipPath: 'inset(0 0 0% 0)', duration: 2.4, ease: 'power2.inOut'
+      }, 11.8)
+
+    /*
+     * SCENE 7 — Invitation text reveals (14.0 → 15.8s)
+     * Lines stagger in from below, button bounces in last.
+     */
+      .to(Array.from(scrollContent.children), {
+        opacity: 1, y: 0, stagger: 0.14,
+        duration: 0.72, ease: 'power2.out'
+      }, 14.0)
+      .fromTo(openBtn, { scale: 0.9 }, {
+        scale: 1, duration: 0.65, ease: 'back.out(1.6)'
+      }, 14.75);
+
+    /* ── Skip & Open buttons ─────────────────────────────────────────────── */
     if (skipBtn) {
       skipBtn.addEventListener('click', () => {
         stopWingFlap();
-        if (tl.progress() < 0.88) {
-          tl.progress(0.92);
+        const p = tl.progress();
+        if (p < 0.88) {
+          tl.progress(0.92);           // jump to invitation-visible state
         } else {
           tl.kill();
           finish();

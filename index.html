@@ -15,13 +15,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Pinyon+Script&family=Caveat:wght@500;600&family=Tiro+Devanagari+Sanskrit:ital@0;1&display=swap" rel="stylesheet">
 
-  <link rel="preload" as="image" href="assets/intro/scene-wide.webp">
-  <link rel="preload" as="image" href="assets/intro/layer-sita.webp">
-  <link rel="preload" as="image" href="assets/intro/layer-ram.webp">
-  <link rel="preload" as="image" href="assets/intro/hands-lotus-bloom.webp">
+  <link rel="preload" as="image" href="assets/intro/palace-entrance-closed.webp">
+  <link rel="preload" as="image" href="assets/intro/palace-entrance-open.webp">
+  <link rel="preload" as="image" href="assets/intro/palace-courtyard.webp">
+  <link rel="preload" as="image" href="assets/intro/jatayu-soaring.webp">
   <link rel="preload" as="image" href="assets/hero/hero-temple-river-night-wide.webp" media="(min-aspect-ratio: 1/1)">
   <link rel="preload" as="image" href="assets/hero/hero-temple-river-night.webp" media="(max-aspect-ratio: 1/1)">
-  <link rel="stylesheet" href="css/style.css?v=4.9.0">
+  <link rel="stylesheet" href="css/style.css?v=5.0.0">
 </head>
 <body>
 
@@ -74,10 +74,12 @@
 
     <!-- SCENE A: Palace Entrance & 3D Door Opening -->
     <div class="intro__scene intro__scene--entrance" id="sceneEntrance">
-      <!-- Background: open courtyard visible behind doors -->
-      <img decoding="async" class="intro__bg intro__bg--open" src="assets/intro/palace-entrance-open.webp" alt="">
-      <!-- Palace exterior facade with closed doors -->
+      <!-- Background: open courtyard visible behind doors (revealed as doors open) -->
+      <img decoding="async" class="intro__bg intro__bg--open" id="bgDoorOpen" src="assets/intro/palace-entrance-open.webp" alt="">
+      <!-- Palace exterior facade with closed doors (starting frame) -->
       <img decoding="async" class="intro__bg intro__bg--closed" src="assets/intro/palace-entrance-closed.webp" alt="Grand Royal Palace Entrance">
+      <!-- Warm golden light veil that fades over closed facade as doors open -->
+      <div class="intro__door-veil" id="doorVeil" aria-hidden="true"></div>
 
       <!-- 3D Carved Wooden Double Doors -->
       <div class="intro__doorway" id="introDoorway" aria-hidden="true">
@@ -90,25 +92,33 @@
         <!-- Divine golden light beam bursting through door crack -->
         <div class="intro__beam" id="doorBeam"></div>
       </div>
+      <!-- Diya glow spots on the floor left & right -->
+      <div class="intro__diya intro__diya--l" aria-hidden="true"></div>
+      <div class="intro__diya intro__diya--r" aria-hidden="true"></div>
     </div>
 
     <!-- SCENE B: Grand Palace Courtyard with Soaring Jatayu -->
     <div class="intro__scene intro__scene--courtyard" id="sceneCourtyard">
       <img decoding="async" class="intro__bg" src="assets/intro/palace-courtyard.webp" alt="Grand Palace Courtyard with Lotus Pools">
+      <!-- Wing shadow overlay pulsing with flap rhythm -->
+      <div class="intro__wing-shadow" id="wingShadow" aria-hidden="true"></div>
       <!-- Jatayu soaring through the sky -->
       <div class="intro__jatayu-soar" id="jatayuSoar" aria-hidden="true">
-        <img decoding="async" src="assets/intro/jatayu-soaring.webp" alt="">
+        <img decoding="async" id="jatayuImg" src="assets/intro/jatayu-soaring.webp" alt="">
       </div>
     </div>
 
     <!-- SCENE C: Jatayu Descends with the Royal Invitation Scroll -->
     <div class="intro__scene intro__scene--scroll" id="sceneScroll">
-      <!-- Jatayu holding rolled scroll, then unfurled scroll -->
+      <!-- Background: Jatayu holding rolled scroll -->
       <img decoding="async" class="intro__bg intro__bg--rolled" id="bgRolled" src="assets/intro/palace-jatayu-rolled.webp" alt="">
+      <!-- Background: Jatayu with fully unfurled scroll -->
       <img decoding="async" class="intro__bg intro__bg--unfurled" id="bgUnfurled" src="assets/intro/palace-jatayu-scroll.webp" alt="">
 
       <!-- Interactive Invitation Scroll & Typography -->
       <div class="intro__scroll-wrap" id="scrollWrap">
+        <!-- Top roller (always visible in scene C) -->
+        <div class="intro__roller-top" aria-hidden="true"></div>
         <div class="intro__parchment" id="parchmentBody">
           <div class="intro-scroll__content" id="scrollContent">
             <p class="intro-scroll__deva deva">॥ श्री सीताराम ॥</p>
@@ -124,7 +134,7 @@
             </button>
           </div>
         </div>
-        <!-- Bottom Roller glides down during unfurl -->
+        <!-- Bottom Roller slides down as scroll unfurls -->
         <div class="intro__roller-bot" id="rollerBot" aria-hidden="true">
           <img decoding="async" src="assets/intro/scroll-bottom-roller.webp" alt="">
         </div>

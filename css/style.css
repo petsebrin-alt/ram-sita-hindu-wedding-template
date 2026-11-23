@@ -1183,7 +1183,7 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
   inset: 0;
   z-index: 150;
   overflow: hidden;
-  background: #180309;
+  background: #0d0205;
   user-select: none;
 }
 
@@ -1198,7 +1198,7 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
 
 /*
  * Viewport: fullscreen on desktop/laptop (no pillarbox sidebars),
- * and naturally portrait on mobile phones.
+ * naturally portrait on mobile phones.
  */
 .intro__viewport {
   position: absolute;
@@ -1206,7 +1206,8 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
   width: 100%;
   height: 100%;
   overflow: hidden;
-  perspective: 1200px;
+  perspective: 1400px;
+  perspective-origin: 50% 45%;
 }
 
 .intro__scene {
@@ -1228,10 +1229,24 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
   display: block;
 }
 
-/* Scene A: Palace Entrance & 3D Double Doors */
+/* ── Scene A: Palace Entrance & 3D Double Doors ─────────────────────────── */
 .intro__scene--entrance {
   z-index: 2;
-  transform-origin: 50% 50%;
+  transform-origin: 50% 55%;
+}
+
+/* warm golden veil that crossfades closed→open background */
+.intro__door-veil {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 42%,
+    rgba(255,220,120,0.55) 0%,
+    rgba(255,160,40,0.25) 55%,
+    transparent 100%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  will-change: opacity;
 }
 
 .intro__doorway {
@@ -1240,12 +1255,12 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
   top: 32.71%;
   width: 40.97%;
   height: 39.06%;
-  perspective: 900px;
+  perspective: 1100px;
   transform-style: preserve-3d;
   pointer-events: none;
+  z-index: 2;
 }
 
-/* On wide screens the doorway sits in a different proportion of the image */
 @media (min-aspect-ratio: 3/2) {
   .intro__doorway {
     left: 36%;
@@ -1262,6 +1277,7 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
   width: 50%;
   transform-style: preserve-3d;
   will-change: transform;
+  backface-visibility: hidden;
 }
 
 .intro__door--left {
@@ -1278,37 +1294,78 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
   width: 100%;
   height: 100%;
   display: block;
-  filter: drop-shadow(0 4px 12px rgba(40, 5, 15, 0.45));
+  filter: drop-shadow(0 6px 18px rgba(40, 5, 15, 0.55));
 }
 
+/* Narrow gold light crack between the doors before they open */
 .intro__beam {
   position: absolute;
   left: 50%;
-  top: 4%;
-  width: 8px;
-  height: 92%;
+  top: 2%;
+  width: 6px;
+  height: 96%;
   translate: -50% 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 245, 200, 0.95) 45%, #fff 50%, rgba(255, 245, 200, 0.95) 55%, transparent);
-  box-shadow: 0 0 35px 12px rgba(255, 215, 100, 0.85), 0 0 70px 25px rgba(255, 160, 40, 0.5);
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(255, 245, 200, 0.9) 40%,
+    rgba(255,255,245,1) 50%,
+    rgba(255, 245, 200, 0.9) 60%,
+    transparent);
+  box-shadow:
+    0 0 28px 10px rgba(255, 220, 100, 0.9),
+    0 0 60px 22px rgba(255, 170, 40, 0.55),
+    0 0 120px 40px rgba(255, 130, 20, 0.25);
   pointer-events: none;
   opacity: 0;
   border-radius: 999px;
-  transform-origin: center;
+  transform-origin: center top;
+  will-change: opacity, transform;
 }
 
-/* Scene B: Palace Courtyard & Soaring Jatayu */
+/* Floor-level diya glow spots */
+.intro__diya {
+  position: absolute;
+  bottom: 12%;
+  width: clamp(80px, 12vw, 160px);
+  height: clamp(80px, 12vw, 160px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,180,30,0.7) 0%, rgba(255,100,20,0.35) 45%, transparent 75%);
+  pointer-events: none;
+  opacity: 0;
+  will-change: opacity;
+  z-index: 1;
+}
+.intro__diya--l { left: 6%; }
+.intro__diya--r { right: 6%; }
+
+/* ── Scene B: Palace Courtyard & Soaring Jatayu ─────────────────────────── */
 .intro__scene--courtyard {
   z-index: 1;
   display: none;
   transform-origin: 50% 50%;
 }
 
+/* subtle bird-shadow bloom on the ground */
+.intro__wing-shadow {
+  position: absolute;
+  bottom: 32%;
+  left: 50%;
+  translate: -50% 0;
+  width: 55%;
+  height: 8%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(60,10,20,0.35) 0%, transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
 .intro__jatayu-soar {
   position: absolute;
-  left: 5.2%;
-  top: 9.8%;
-  width: 90.3%;
-  height: 34.2%;
+  left: 5%;
+  top: 8%;
+  width: 90%;
+  height: 36%;
   pointer-events: none;
   will-change: transform, opacity;
 }
@@ -1318,10 +1375,11 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
   height: 100%;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 20px 30px rgba(70, 20, 30, 0.45));
+  filter: drop-shadow(0 18px 32px rgba(70, 20, 30, 0.5));
+  transform-origin: 50% 35%;
 }
 
-/* Scene C: Jatayu with Unfurling Scroll */
+/* ── Scene C: Jatayu with Unfurling Scroll ──────────────────────────────── */
 .intro__scene--scroll {
   z-index: 3;
   display: none;
@@ -1338,12 +1396,23 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
   pointer-events: none;
 }
 
+/* invisible top-roller anchor so parchment appears attached to Jatayu */
+.intro__roller-top {
+  position: absolute;
+  left: 22%;
+  top: 35%;
+  width: 56%;
+  height: 2.5%;
+  background: transparent;
+  pointer-events: none;
+}
+
 .intro__parchment {
   position: absolute;
   left: 22.9%;
-  top: 36.2%;
+  top: 37%;
   width: 54.2%;
-  height: 36.4%;
+  height: 35.8%;
   overflow: hidden;
   clip-path: inset(0 0 100% 0);
   will-change: clip-path;
@@ -1366,7 +1435,7 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
   filter: drop-shadow(0 14px 20px rgba(50, 10, 20, 0.4));
 }
 
-/* Scroll Invitation Typography & Layout */
+/* ── Scroll Invitation Typography ─────────────────────────────────────────── */
 .intro-scroll__content {
   position: absolute;
   inset: 0;
@@ -1450,7 +1519,7 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
 
 .intro-scroll__btn {
   margin-top: 4px;
-  padding: 8px 20px;
+  padding: 8px 22px;
   font-family: var(--f-caps);
   font-size: clamp(0.72rem, 1.7vw, 0.86rem);
   letter-spacing: 0.14em;
@@ -1469,10 +1538,12 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
   gap: 8px;
 }
 
-.intro-scroll__btn:hover {
+.intro-scroll__btn:hover,
+.intro-scroll__btn:focus-visible {
   transform: translateY(-2px) scale(1.04);
-  box-shadow: 0 8px 25px rgba(212, 175, 90, 0.65), 0 0 15px rgba(255, 220, 120, 0.4);
-  filter: brightness(1.1);
+  box-shadow: 0 8px 28px rgba(212, 175, 90, 0.7), 0 0 18px rgba(255, 220, 120, 0.45);
+  filter: brightness(1.12);
+  outline: none;
 }
 
 .intro-scroll__btn svg {
@@ -1483,13 +1554,19 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
   fill: none;
 }
 
+/* ── Flash / Skip ───────────────────────────────────────────────────────── */
 .intro__flash {
   position: absolute;
   inset: 0;
   opacity: 0;
   pointer-events: none;
   z-index: 10;
-  background: radial-gradient(circle at 50% 50%, #fffef6 0%, #fff0c8 35%, #ffd28a 70%, #d88040 100%);
+  background: radial-gradient(circle at 50% 48%,
+    rgba(255,255,250,1) 0%,
+    rgba(255,240,200,0.95) 25%,
+    rgba(255,200,100,0.7) 55%,
+    rgba(210,120,30,0.3) 80%,
+    transparent 100%);
 }
 
 .intro__skip {
