@@ -1183,7 +1183,7 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
   inset: 0;
   z-index: 150;
   overflow: hidden;
-  background: #0d0205;
+  background: #0b0205;
   user-select: none;
 }
 
@@ -1192,13 +1192,13 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
   inset: 0;
   width: 100%;
   height: 100%;
-  z-index: 5;
+  z-index: 10;
   pointer-events: none;
 }
 
 /*
- * Viewport: fullscreen on desktop/laptop (no pillarbox sidebars),
- * naturally portrait on mobile phones.
+ * Viewport: fullscreen on desktop/laptop (no dark pillarbox bars),
+ * naturally responsive across desktop, tablet, and mobile.
  */
 .intro__viewport {
   position: absolute;
@@ -1207,7 +1207,7 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
   height: 100%;
   overflow: hidden;
   perspective: 1400px;
-  perspective-origin: 50% 45%;
+  perspective-origin: 50% 50%;
 }
 
 .intro__scene {
@@ -1225,311 +1225,363 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center bottom;
   display: block;
+  will-change: transform;
 }
 
-/* ── Scene A: Palace Entrance & 3D Double Doors ─────────────────────────── */
-.intro__scene--entrance {
-  z-index: 2;
-  transform-origin: 50% 55%;
-}
-
-/* warm golden veil that crossfades closed→open background */
-.intro__door-veil {
+/* ── Volumetric Sun Rays & Sacred Mist ──────────────────────────────────── */
+.intro__rays {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 60% 50% at 50% 42%,
-    rgba(255,220,120,0.55) 0%,
-    rgba(255,160,40,0.25) 55%,
-    transparent 100%);
-  opacity: 0;
   pointer-events: none;
-  z-index: 1;
+  background: radial-gradient(circle at 72% 28%,
+    rgba(255, 230, 140, 0.45) 0%,
+    rgba(255, 175, 45, 0.22) 35%,
+    rgba(255, 120, 20, 0.08) 60%,
+    transparent 78%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.intro__clouds {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.intro__clouds--1 {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 52%;
+  background: radial-gradient(ellipse at 40% 30%, rgba(255, 215, 135, 0.35) 0%, transparent 70%);
+  filter: blur(28px);
+}
+
+.intro__clouds--2 {
+  top: 10%;
+  right: -10%;
+  width: 85%;
+  height: 55%;
+  background: radial-gradient(ellipse at 70% 35%, rgba(255, 180, 80, 0.3) 0%, transparent 70%);
+  filter: blur(36px);
+}
+
+/* ── River Water Reflection Shimmer ─────────────────────────────────────── */
+.intro__water-shimmer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 34%;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(255, 195, 75, 0.15) 30%,
+    rgba(255, 150, 30, 0.26) 70%,
+    rgba(255, 110, 10, 0.32) 100%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  opacity: 0;
   will-change: opacity;
 }
 
-.intro__doorway {
+/* ── Lord Rama Cutout & Divine Aura ─────────────────────────────────────── */
+.intro__rama-wrap {
   position: absolute;
-  left: 29.51%;
-  top: 32.71%;
-  width: 40.97%;
-  height: 39.06%;
-  perspective: 1100px;
-  transform-style: preserve-3d;
+  top: -1%;
+  right: 5%;
+  width: min(560px, 46vw);
+  max-width: 620px;
   pointer-events: none;
-  z-index: 2;
+  z-index: 3;
+  will-change: transform, opacity;
+  opacity: 0;
 }
 
-@media (min-aspect-ratio: 3/2) {
-  .intro__doorway {
-    left: 36%;
-    top: 28%;
-    width: 28%;
-    height: 52%;
+@media (max-width: 768px) {
+  .intro__rama-wrap {
+    top: 2%;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    width: 76vw;
+    max-width: 380px;
   }
 }
 
-.intro__door {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 50%;
-  transform-style: preserve-3d;
-  will-change: transform;
-  backface-visibility: hidden;
-}
-
-.intro__door--left {
-  left: 0;
-  transform-origin: 0% 50%;
-}
-
-.intro__door--right {
-  left: 50%;
-  transform-origin: 100% 50%;
-}
-
-.intro__door img {
+.intro__rama-img {
   width: 100%;
-  height: 100%;
+  height: auto;
   display: block;
-  filter: drop-shadow(0 6px 18px rgba(40, 5, 15, 0.55));
+  filter: drop-shadow(0 0 28px rgba(255, 200, 80, 0.7)) drop-shadow(0 18px 36px rgba(40, 5, 15, 0.55));
 }
 
-/* Narrow gold light crack between the doors before they open */
-.intro__beam {
+.intro__rama-aura {
   position: absolute;
-  left: 50%;
-  top: 2%;
-  width: 6px;
-  height: 96%;
-  translate: -50% 0;
-  background: linear-gradient(90deg,
-    transparent,
-    rgba(255, 245, 200, 0.9) 40%,
-    rgba(255,255,245,1) 50%,
-    rgba(255, 245, 200, 0.9) 60%,
-    transparent);
-  box-shadow:
-    0 0 28px 10px rgba(255, 220, 100, 0.9),
-    0 0 60px 22px rgba(255, 170, 40, 0.55),
-    0 0 120px 40px rgba(255, 130, 20, 0.25);
-  pointer-events: none;
-  opacity: 0;
-  border-radius: 999px;
-  transform-origin: center top;
-  will-change: opacity, transform;
-}
-
-/* Floor-level diya glow spots */
-.intro__diya {
-  position: absolute;
-  bottom: 12%;
-  width: clamp(80px, 12vw, 160px);
-  height: clamp(80px, 12vw, 160px);
+  top: -5%;
+  right: 2%;
+  width: min(650px, 54vw);
+  height: min(650px, 54vw);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,180,30,0.7) 0%, rgba(255,100,20,0.35) 45%, transparent 75%);
+  background: radial-gradient(circle,
+    rgba(255, 240, 160, 0.75) 0%,
+    rgba(255, 190, 60, 0.45) 35%,
+    rgba(255, 130, 20, 0.18) 60%,
+    transparent 78%);
   pointer-events: none;
   opacity: 0;
-  will-change: opacity;
-  z-index: 1;
-}
-.intro__diya--l { left: 6%; }
-.intro__diya--r { right: 6%; }
-
-/* ── Scene B: Palace Courtyard & Soaring Jatayu ─────────────────────────── */
-.intro__scene--courtyard {
-  z-index: 1;
-  display: none;
-  transform-origin: 50% 50%;
-}
-
-/* subtle bird-shadow bloom on the ground */
-.intro__wing-shadow {
-  position: absolute;
-  bottom: 32%;
-  left: 50%;
-  translate: -50% 0;
-  width: 55%;
-  height: 8%;
-  border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(60,10,20,0.35) 0%, transparent 70%);
-  opacity: 0;
-  pointer-events: none;
-  will-change: opacity, transform;
-}
-
-.intro__jatayu-soar {
-  position: absolute;
-  left: 5%;
-  top: 8%;
-  width: 90%;
-  height: 36%;
-  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: blur(20px);
+  z-index: 2;
   will-change: transform, opacity;
 }
 
-.intro__jatayu-soar img {
+@media (max-width: 768px) {
+  .intro__rama-aura {
+    right: 50%;
+    translate: 50% 0;
+    top: 0;
+    width: 82vw;
+    height: 82vw;
+  }
+}
+
+/* Concentrated golden energy charge at the arrowhead */
+.intro__arrow-charge {
+  position: absolute;
+  top: 38%;
+  left: 32%;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:
+    0 0 30px 14px rgba(255, 240, 120, 1),
+    0 0 65px 28px rgba(255, 170, 40, 0.85),
+    0 0 110px 48px rgba(255, 110, 10, 0.5);
+  pointer-events: none;
+  opacity: 0;
+  z-index: 4;
+  will-change: transform, opacity;
+}
+
+/* ── Divine Flying Arrow & Golden Trail ──────────────────────────────────── */
+.intro__arrow-flight {
+  position: absolute;
+  width: clamp(240px, 26vw, 380px);
+  height: clamp(50px, 6vw, 85px);
+  pointer-events: none;
+  z-index: 5;
+  will-change: transform, opacity;
+  opacity: 0;
+}
+
+.intro__arrow-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 18px 32px rgba(70, 20, 30, 0.5));
-  transform-origin: 50% 35%;
+  filter: drop-shadow(0 0 16px rgba(255, 230, 110, 1)) drop-shadow(0 0 38px rgba(255, 170, 40, 0.8));
 }
 
-/* ── Scene C: Jatayu with Unfurling Scroll ──────────────────────────────── */
-.intro__scene--scroll {
-  z-index: 3;
-  display: none;
+.intro__arrow-trail {
+  position: absolute;
+  top: 50%;
+  right: 78%;
+  width: 280px;
+  height: 14px;
+  translate: 0 -50%;
+  border-radius: 999px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 150, 20, 0.5) 30%,
+    rgba(255, 215, 90, 0.85) 70%,
+    #ffffff 100%);
+  box-shadow:
+    0 0 28px 10px rgba(255, 210, 80, 0.9),
+    0 0 55px 18px rgba(255, 140, 25, 0.5);
+  filter: blur(1.5px);
+  pointer-events: none;
 }
 
-.intro__bg--unfurled {
-  clip-path: inset(0 0 100% 0);
-  will-change: clip-path;
+/* ── Magical Energy Burst / Ring ─────────────────────────────────────────── */
+.intro__magic-burst {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  width: 70px;
+  height: 70px;
+  translate: -50% -50%;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 6;
+  background: radial-gradient(circle,
+    #ffffff 0%,
+    rgba(255, 248, 200, 0.95) 25%,
+    rgba(255, 195, 70, 0.75) 50%,
+    rgba(255, 130, 20, 0.25) 75%,
+    transparent 100%);
+  box-shadow:
+    0 0 70px 35px rgba(255, 220, 90, 0.95),
+    0 0 140px 70px rgba(255, 150, 35, 0.65);
+  will-change: transform, opacity;
 }
 
-.intro__scroll-wrap {
+/* ── Descending & Unfurling Royal Invitation Scroll ─────────────────────── */
+.intro__invitation {
   position: absolute;
   inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   pointer-events: none;
+  z-index: 7;
 }
 
-/* invisible top-roller anchor so parchment appears attached to Jatayu */
-.intro__roller-top {
+.intro__scroll-closed {
   position: absolute;
-  left: 22%;
-  top: 35%;
-  width: 56%;
-  height: 2.5%;
-  background: transparent;
+  width: min(340px, 78vw);
+  max-width: 420px;
   pointer-events: none;
+  opacity: 0;
+  will-change: transform, opacity;
 }
 
-.intro__parchment {
-  position: absolute;
-  left: 22.9%;
-  top: 37%;
-  width: 54.2%;
-  height: 35.8%;
-  overflow: hidden;
-  clip-path: inset(0 0 100% 0);
-  will-change: clip-path;
-  pointer-events: auto;
-}
-
-.intro__roller-bot {
-  position: absolute;
-  left: 15.6%;
-  top: 71.8%;
-  width: 68.75%;
-  pointer-events: none;
-  will-change: transform;
-}
-
-.intro__roller-bot img {
+.intro__scroll-closed img {
   width: 100%;
   height: auto;
   display: block;
-  filter: drop-shadow(0 14px 20px rgba(50, 10, 20, 0.4));
+  filter: drop-shadow(0 22px 38px rgba(40, 5, 15, 0.6));
 }
 
-/* ── Scroll Invitation Typography ─────────────────────────────────────────── */
-.intro-scroll__content {
+.intro__scroll-open {
+  position: relative;
+  width: min(540px, 92vw);
+  max-width: 620px;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform, opacity, clip-path;
+}
+
+.intro__scroll-frame {
+  position: relative;
+  width: 100%;
+  pointer-events: none;
+}
+
+.intro__scroll-bg {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 25px 50px rgba(35, 4, 12, 0.65)) drop-shadow(0 0 30px rgba(255, 215, 120, 0.4));
+}
+
+.intro__scroll-body {
   position: absolute;
-  inset: 0;
+  inset: 12% 14% 10% 14%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 8px 12px;
   color: var(--maroon-900);
+  pointer-events: auto;
 }
 
-.intro-scroll__deva {
+/* ── Scroll Typography ─────────────────────────────────────────────────── */
+.scroll__deva {
   font-family: var(--f-deva);
-  font-size: clamp(0.9rem, 2.4vw, 1.15rem);
+  font-size: clamp(0.95rem, 2.2vw, 1.25rem);
   color: var(--maroon-800);
-  margin: 0 0 2px;
+  margin: 0 0 4px;
+  font-weight: 600;
   text-shadow: 0 1px 2px rgba(255, 230, 180, 0.6);
 }
 
-.intro-scroll__dear {
+.scroll__guest {
   font-family: var(--f-script);
-  font-size: clamp(1.6rem, 4.4vw, 2.35rem);
-  font-weight: 400;
-  color: var(--maroon-800);
+  font-size: clamp(1.8rem, 4.4vw, 2.85rem);
+  color: var(--maroon-850, #5c0f24);
   line-height: 1.1;
-  margin: 0;
-  text-shadow: 0 1px 2px rgba(255, 230, 180, 0.6);
+  margin: 0 0 4px;
+  font-weight: 400;
+  text-shadow: 0 1px 2px rgba(255, 235, 190, 0.5);
 }
 
-.intro-scroll__msg {
+.scroll__blessing {
   font-family: var(--f-serif);
   font-style: italic;
-  font-size: clamp(0.72rem, 1.8vw, 0.95rem);
+  font-size: clamp(0.76rem, 1.8vw, 0.98rem);
+  color: #6a1a2e;
+  margin: 0 0 3px;
+  font-weight: 500;
+}
+
+.scroll__lead {
+  font-family: var(--f-serif);
+  font-size: clamp(0.72rem, 1.7vw, 0.92rem);
   color: #551222;
-  line-height: 1.35;
-  margin: 4px 0 2px;
-  max-width: 24ch;
+  margin: 0 0 4px;
 }
 
-.intro-scroll__couple {
+.scroll__couple {
   font-family: var(--f-display);
-  font-size: clamp(1.15rem, 3vw, 1.65rem);
+  font-size: clamp(1.35rem, 3.2vw, 2.1rem);
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   color: var(--maroon-900);
-  margin: 2px 0;
-  text-shadow: 0 1px 3px rgba(255, 220, 150, 0.5);
+  margin: 4px 0 3px;
+  text-shadow: 0 1px 3px rgba(255, 215, 130, 0.55);
 }
 
-.intro-scroll__divider {
-  width: 24px;
-  height: 12px;
-  margin: 2px 0 3px;
+.scroll__divider {
+  width: 28px;
+  height: 14px;
   color: var(--gold-600);
+  margin: 2px 0 4px;
 }
 
-.intro-scroll__divider svg {
+.scroll__divider svg {
   width: 100%;
   height: 100%;
   fill: currentColor;
 }
 
-.intro-scroll__date {
+.scroll__date {
   font-family: var(--f-caps);
-  font-size: clamp(0.66rem, 1.6vw, 0.82rem);
+  font-size: clamp(0.68rem, 1.6vw, 0.88rem);
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--maroon-800);
-  margin: 0;
+  margin: 0 0 2px;
 }
 
-.intro-scroll__venue {
+.scroll__venue {
   font-family: var(--f-serif);
   font-style: italic;
-  font-size: clamp(0.7rem, 1.6vw, 0.86rem);
+  font-size: clamp(0.72rem, 1.7vw, 0.92rem);
   color: #5d1929;
-  margin: 2px 0 8px;
+  margin: 0 0 10px;
 }
 
-.intro-scroll__btn {
-  margin-top: 4px;
-  padding: 8px 22px;
+.intro__open-btn {
+  margin-top: 2px;
+  padding: 9px 24px;
   font-family: var(--f-caps);
-  font-size: clamp(0.72rem, 1.7vw, 0.86rem);
-  letter-spacing: 0.14em;
+  font-size: clamp(0.74rem, 1.7vw, 0.9rem);
+  letter-spacing: 0.16em;
   font-weight: 600;
   text-transform: uppercase;
   color: var(--gold-300);
   background: linear-gradient(135deg, var(--maroon-700), var(--maroon-900));
   border: 1.5px solid var(--gold-500);
   border-radius: 999px;
-  box-shadow: 0 4px 18px rgba(74, 10, 26, 0.5), inset 0 0 10px rgba(212, 175, 90, 0.25);
+  box-shadow: 0 4px 20px rgba(74, 10, 26, 0.55), inset 0 0 12px rgba(212, 175, 90, 0.3);
   cursor: pointer;
   pointer-events: auto;
   transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), filter 0.3s;
@@ -1538,15 +1590,15 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
   gap: 8px;
 }
 
-.intro-scroll__btn:hover,
-.intro-scroll__btn:focus-visible {
-  transform: translateY(-2px) scale(1.04);
-  box-shadow: 0 8px 28px rgba(212, 175, 90, 0.7), 0 0 18px rgba(255, 220, 120, 0.45);
-  filter: brightness(1.12);
+.intro__open-btn:hover,
+.intro__open-btn:focus-visible {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 30px rgba(212, 175, 90, 0.75), 0 0 20px rgba(255, 225, 130, 0.5);
+  filter: brightness(1.15);
   outline: none;
 }
 
-.intro-scroll__btn svg {
+.intro__open-btn svg {
   width: 14px;
   height: 14px;
   stroke: currentColor;
@@ -1554,18 +1606,18 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
   fill: none;
 }
 
-/* ── Flash / Skip ───────────────────────────────────────────────────────── */
+/* ── Flash & Skip ───────────────────────────────────────────────────────── */
 .intro__flash {
   position: absolute;
   inset: 0;
   opacity: 0;
   pointer-events: none;
-  z-index: 10;
-  background: radial-gradient(circle at 50% 48%,
-    rgba(255,255,250,1) 0%,
-    rgba(255,240,200,0.95) 25%,
-    rgba(255,200,100,0.7) 55%,
-    rgba(210,120,30,0.3) 80%,
+  z-index: 12;
+  background: radial-gradient(circle at 50% 50%,
+    rgba(255, 255, 250, 1) 0%,
+    rgba(255, 240, 200, 0.96) 25%,
+    rgba(255, 200, 100, 0.75) 55%,
+    rgba(215, 120, 30, 0.35) 80%,
     transparent 100%);
 }
 
@@ -1573,7 +1625,7 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
   position: absolute;
   right: 20px;
   top: 20px;
-  z-index: 12;
+  z-index: 15;
   padding: 8px 18px;
   border-radius: 999px;
   cursor: pointer;
