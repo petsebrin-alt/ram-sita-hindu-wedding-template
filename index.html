@@ -16,12 +16,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Pinyon+Script&family=Caveat:wght@500;600&family=Tiro+Devanagari+Sanskrit:ital@0;1&display=swap" rel="stylesheet">
 
   <link rel="preload" as="image" href="assets/intro/rama-temple-bg.jpg">
-  <link rel="preload" as="image" href="assets/intro/rama-cutout.webp">
+  <link rel="preload" as="image" href="assets/intro/scroll-closed.webp">
   <link rel="preload" as="image" href="assets/intro/divine-arrow.webp">
   <link rel="preload" as="image" href="assets/intro/scroll-open.webp">
   <link rel="preload" as="image" href="assets/hero/hero-temple-river-night-wide.webp" media="(min-aspect-ratio: 1/1)">
   <link rel="preload" as="image" href="assets/hero/hero-temple-river-night.webp" media="(max-aspect-ratio: 1/1)">
-  <link rel="stylesheet" href="css/style.css?v=5.1.0">
+  <link rel="stylesheet" href="css/style.css?v=5.2.0">
 </head>
 <body>
 
@@ -69,56 +69,45 @@
   <!-- Atmospheric particle canvas (golden sparks, divine dust, floating flower petals) -->
   <canvas class="intro__fx" id="introFx" aria-hidden="true"></canvas>
 
-  <!-- Viewport container: Fullscreen on desktop & responsive on mobile -->
+  <!-- Viewport container: Fullscreen on desktop & responsive on mobile, edge-to-edge -->
   <div class="intro__viewport" id="introViewport">
 
     <!-- Unified Divine Temple Realm Scene -->
     <div class="intro__scene intro__scene--rama" id="sceneRama">
-      <!-- Base Temple Sunset Background -->
+      <!-- Fullscreen Base Temple Sunset Background (includes Lord Rama in the golden sky) -->
       <img decoding="async" class="intro__bg intro__bg--temple" id="bgTemple" src="assets/intro/rama-temple-bg.jpg" alt="Divine Ram Mandir at Sunset">
       
-      <!-- Volumetric Sun Rays & Golden Haze -->
+      <!-- Volumetric Sun Rays & Golden Haze Streaming from Sky -->
       <div class="intro__rays" id="introRays" aria-hidden="true"></div>
       
-      <!-- Floating Sacred Clouds Overlay -->
-      <div class="intro__clouds intro__clouds--1" id="introClouds1" aria-hidden="true"></div>
-      <div class="intro__clouds intro__clouds--2" id="introClouds2" aria-hidden="true"></div>
+      <!-- Divine Sky Aura around Lord Rama in the Sunset Sky -->
+      <div class="intro__sky-aura" id="skyAura" aria-hidden="true"></div>
 
-      <!-- Water Reflection Shimmer Overlay -->
-      <div class="intro__water-shimmer" id="waterShimmer" aria-hidden="true"></div>
+      <!-- Concentrated Star of Celestial Golden Energy charging at Rama's Bow in the sky -->
+      <div class="intro__bow-charge" id="bowCharge" aria-hidden="true"></div>
 
-      <!-- Divine Aura behind Lord Rama -->
-      <div class="intro__rama-aura" id="ramaAura" aria-hidden="true"></div>
-
-      <!-- Lord Rama Cutout Layer -->
-      <div class="intro__rama-wrap" id="ramaWrap" aria-hidden="true">
-        <img decoding="async" class="intro__rama-img" id="ramaImg" src="assets/intro/rama-cutout.webp" alt="Shri Ram Divine Blessing">
-        <!-- Concentrated golden charge / light at the bow & arrow tip -->
-        <div class="intro__arrow-charge" id="arrowCharge"></div>
-      </div>
-
-      <!-- Flying Divine Arrow with Energy Trail -->
+      <!-- Flying Divine Golden Arrow with Radiant Light Trail -->
       <div class="intro__arrow-flight" id="arrowFlight" aria-hidden="true">
         <div class="intro__arrow-trail" id="arrowTrail"></div>
         <img decoding="async" class="intro__arrow-img" id="arrowImg" src="assets/intro/divine-arrow.webp" alt="Divine Golden Arrow">
       </div>
 
-      <!-- Magical Burst / Energy Ring where arrow lands and scroll manifests -->
+      <!-- Sacred Mandala Energy Burst in Center Foreground where Arrow strikes -->
       <div class="intro__magic-burst" id="magicBurst" aria-hidden="true"></div>
 
-      <!-- Descending & Unfurling Royal Invitation Scroll -->
-      <div class="intro__invitation" id="introInvitation">
-        <!-- Closed Scroll (descending from the golden light) -->
+      <!-- Royal Wedding Scroll in Center of Frame -->
+      <div class="intro__scroll-container" id="scrollContainer">
+        <!-- Closed Horizontal Scroll (manifests from divine light) -->
         <div class="intro__scroll-closed" id="scrollClosed" aria-hidden="true">
-          <img decoding="async" src="assets/intro/scroll-closed.webp" alt="Royal Wedding Scroll">
+          <img decoding="async" src="assets/intro/scroll-closed.webp" alt="Royal Wedding Scroll Closed">
         </div>
 
-        <!-- Open Scroll with Content -->
+        <!-- Open Royal Scroll with Golden Borders & Unfurling Parchment -->
         <div class="intro__scroll-open" id="scrollOpen">
-          <div class="intro__scroll-frame">
-            <img decoding="async" class="intro__scroll-bg" src="assets/intro/scroll-open.webp" alt="Royal Invitation Parchment">
+          <div class="intro__scroll-wrapper">
+            <img decoding="async" class="intro__scroll-bg" src="assets/intro/scroll-open.webp" alt="Royal Invitation Scroll">
             
-            <!-- Editable HTML Invitation Text Content -->
+            <!-- Crisp, Editable HTML Invitation Content -->
             <div class="intro__scroll-body" id="scrollBody">
               <p class="scroll__deva deva">॥ श्री सीताराम ॥</p>
               <h2 class="scroll__guest">Dear Kumar Family,</h2>
