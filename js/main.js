@@ -167,9 +167,11 @@
     const introRays       = q('#introRays');
     const skyAura         = q('#skyAura');
     const bowCharge       = q('#bowCharge');
-    const arrowFlight     = q('#arrowFlight');
-    const arrowImg        = q('#arrowImg');
-    const arrowTrail      = q('#arrowTrail');
+    const spiritualWave   = q('#spiritualWave');
+    const waveAura        = q('#waveAura');
+    const waveLightning   = q('#waveLightning');
+    const waveCore        = q('#waveCore');
+    const waveHead        = q('#waveHead');
     const magicBurst      = q('#magicBurst');
     const scrollContainer = q('#scrollContainer');
     const scrollClosed    = q('#scrollClosed');
@@ -341,226 +343,225 @@
       return;
     }
 
+    /* ── SVG Spiritual Wave Path Setup ───────────────────────────────────── */
+    const totalWaveLen = waveCore && waveCore.getTotalLength ? waveCore.getTotalLength() : 600;
+    [waveAura, waveLightning, waveCore].forEach(p => {
+      if (p) {
+        p.style.strokeDasharray = totalWaveLen;
+        p.style.strokeDashoffset = totalWaveLen;
+      }
+    });
+
     /* ── Initial Element States ──────────────────────────────────────────── */
     gsap.set(sceneRama,    { opacity: 1, scale: 1 });
     gsap.set(bgTemple,     { scale: 1.0, transformOrigin: '50% 45%' });
     gsap.set(introRays,    { opacity: 0, scale: 0.95 });
     gsap.set(skyAura,      { opacity: 0, scale: 0.85 });
     gsap.set(bowCharge,    { opacity: 0, scale: 0.2 });
-
-    /* Arrow Flight - initial state at Rama's bow in the sky */
-    gsap.set(arrowFlight, {
-      opacity: 0,
-      scale: 0.65,
-      rotation: 138,
-      left: '86%',
-      top: '18%',
-      transformOrigin: '15% 50%'
-    });
-    gsap.set(arrowTrail, { scaleX: 0.1, opacity: 0 });
-
-    /* Magic burst & Royal Scroll */
-    gsap.set(magicBurst,      { opacity: 0, scale: 0.2 });
-    gsap.set(scrollClosed,    { opacity: 0, scale: 0.85, y: -25, rotation: -1 });
-    gsap.set(scrollOpen,      { opacity: 0 });
+    gsap.set(spiritualWave,{ opacity: 0 });
+    gsap.set(waveHead,     { opacity: 0, scale: 0.2 });
+    gsap.set(magicBurst,   { opacity: 0, scale: 0.2 });
+    gsap.set(scrollClosed, { opacity: 0, scale: 0.88, y: -20 });
+    gsap.set(scrollOpen,   { opacity: 0 });
     gsap.set(scrollParchment, { clipPath: 'inset(0 0 90.3% 0)' });
     gsap.set(scrollBotRoller, { top: '9.7%' });
-    gsap.set(Array.from(scrollBody.children), { opacity: 0, y: 14 });
+    gsap.set(Array.from(scrollBody.children), { opacity: 0, y: 12 });
 
     /* ── Main GSAP Cinematic Timeline ────────────────────────────────────── */
     const tl = gsap.timeline();
 
     /*
-     * SCENE 01 — FRACTION-OF-A-SECOND DIVINE REVEAL (0.0s → 0.85s)
-     * Volumetric sun rays & divine sky aura immediately radiate from Lord Rama
-     * Holy Ramayana blessing audio initiates without delay
+     * SCENE 01 — FRACTION-OF-A-SECOND DIVINE REVEAL & VILLU CHARGE (0.00s → 0.22s)
+     * Volumetric sun rays stream down instantly; celestial star charges at Rama's Villu
      */
     tl
-      /* Slow majestic camera push */
+      /* Slow cinematic camera push */
       .to(bgTemple, {
-        scale: 1.04,
+        scale: 1.05,
         duration: 3.5,
         ease: 'sine.inOut'
       }, 0)
 
-      /* Golden sun rays stream down instantly */
+      /* Golden sun rays stream down immediately */
       .to(introRays, {
-        opacity: 0.9,
+        opacity: 0.95,
         scale: 1.03,
-        duration: 1.0,
+        duration: 0.45,
         ease: 'power2.out'
-      }, 0.1)
+      }, 0.02)
 
-
-      /* Sky aura blooms around Lord Rama */
+      /* Sky aura radiates around Lord Rama */
       .to(skyAura, {
         opacity: 0.95,
-        scale: 1.2,
-        duration: 1.2,
+        scale: 1.25,
+        duration: 0.5,
         ease: 'power2.out'
-      }, 0.2)
+      }, 0.05)
 
-      /* Concentrated celestial golden lightning charges at Rama's drawn bow */
+      /* Concentrated celestial golden star charges at Rama's Villu (drawn bow) */
       .to(bowCharge, {
         opacity: 1,
-        scale: 1.5,
-        duration: 0.45,
+        scale: 1.9,
+        duration: 0.18,
         ease: 'back.out(2)'
-      }, 0.3)
-      .to(bowCharge, {
-        scale: 2.2,
-        opacity: 1,
-        duration: 0.2,
-        ease: 'power1.in'
-      }, 0.75)
+      }, 0.05)
 
     /*
-     * SCENE 02 — DIVINE ARROW RELEASE & DYNAMIC SKY FLIGHT (0.85s → 1.55s)
-     * Celestial flash at bow, arrow launches on a parabolic trajectory to center
+     * SCENE 02 — VILLU RELEASE & SPIRITUAL LIGHT WAVE FLIGHT (0.22s → 0.58s)
+     * Celestial flash at bow, radiant golden lightning wave streams across the sky
      */
       /* Bow flash at release */
       .to(bowCharge, {
-        scale: 3.2,
+        scale: 3.5,
         opacity: 1,
-        duration: 0.1,
+        duration: 0.06,
         ease: 'power2.in'
-      }, 0.85)
+      }, 0.22)
       .to(bowCharge, {
         opacity: 0,
         scale: 0.2,
-        duration: 0.25,
-        ease: 'power2.out'
-      }, 0.95)
-
-      /* Arrow launches dynamically */
-      .to(arrowFlight, {
-        opacity: 1,
-        scale: 1.0,
-        duration: 0.1
-      }, 0.88)
-      .to(arrowTrail, {
-        opacity: 1,
-        scaleX: 1.0,
-        duration: 0.2,
-        ease: 'power1.out'
-      }, 0.9)
-
-      /* Parabolic trajectory from Rama's bow in the sky directly to center */
-      .to(arrowFlight, {
-        left: '68%',
-        top: '32%',
-        rotation: 142,
-        scale: 1.2,
-        duration: 0.35,
-        ease: 'power2.in'
-      }, 0.92)
-      .to(arrowFlight, {
-        left: '50%',
-        top: '48%',
-        rotation: 146,
-        scale: 1.35,
-        duration: 0.32,
-        ease: 'power1.out'
-      }, 1.25)
-
-      /* Arrow strikes center */
-      .to(arrowFlight, {
-        opacity: 0,
-        scale: 1.6,
         duration: 0.15,
-        ease: 'power2.in'
-      }, 1.55)
+        ease: 'power2.out'
+      }, 0.28)
+
+      /* Spiritual light wave becomes visible & draws across the sky */
+      .set(spiritualWave, { opacity: 1 }, 0.23)
+      .set(waveHead, { opacity: 1 }, 0.23)
+      .to({ progress: 0 }, {
+        progress: 1,
+        duration: 0.35,
+        ease: 'power2.out',
+        onUpdate: function() {
+          const pr = this.targets()[0].progress;
+          const offset = totalWaveLen * (1 - pr);
+          if (waveAura) waveAura.style.strokeDashoffset = offset;
+          if (waveLightning) waveLightning.style.strokeDashoffset = offset;
+          if (waveCore) waveCore.style.strokeDashoffset = offset;
+
+          if (waveCore && waveCore.getPointAtLength && waveHead) {
+            const pt = waveCore.getPointAtLength(totalWaveLen * pr);
+            const px = (pt.x / 1000) * window.innerWidth;
+            const py = (pt.y / 600) * window.innerHeight;
+            waveHead.style.left = px + 'px';
+            waveHead.style.top = py + 'px';
+
+            // Emit glowing celestial stardust along the trajectory
+            if (Math.random() < 0.75) {
+              burstSparks.push({
+                x: px + (Math.random() - 0.5) * 14,
+                y: py + (Math.random() - 0.5) * 14,
+                vx: (Math.random() - 0.5) * 2.2,
+                vy: (Math.random() - 0.5) * 2.2,
+                r: 1.5 + Math.random() * 2.6,
+                alpha: 1.0
+              });
+            }
+          }
+        }
+      }, 0.23)
 
     /*
-     * SCENE 03 — CELESTIAL LIGHT BURST & GOLDEN ROD REVEAL (1.55s → 1.85s)
-     * Golden spark explosion & expanding mandala ring manifest royal golden rod
+     * SCENE 03 — CELESTIAL MANDALA BURST & ROYAL SCROLL MANIFESTATION (0.58s → 0.70s)
+     * Spiritual light strikes center with sparkling golden burst, summoning royal golden rod
      */
-      /* Canvas spark explosion at center */
+      /* Explode 60 golden celestial sparks at center */
       .call(() => {
         triggerGoldenBurst(window.innerWidth * 0.5, window.innerHeight * 0.48);
-      }, [], 1.55)
+      }, [], 0.58)
 
-      /* Expanding mandala of sacred golden light */
+      /* Expanding mandala burst */
       .to(magicBurst, {
         opacity: 1,
-        scale: 1.9,
-        duration: 0.3,
+        scale: 2.4,
+        duration: 0.25,
         ease: 'power2.out'
-      }, 1.55)
+      }, 0.58)
       .to(magicBurst, {
-        scale: 3.6,
+        scale: 4.0,
         opacity: 0,
-        duration: 0.5,
+        duration: 0.35,
         ease: 'power2.inOut'
-      }, 1.85)
+      }, 0.83)
 
-      /* Closed royal scroll appears at center */
+      /* Wave head bursts & wave dissolves into ambient golden glow */
+      .to(waveHead, {
+        scale: 2.8,
+        opacity: 0,
+        duration: 0.15,
+        ease: 'power2.in'
+      }, 0.58)
+      .to(spiritualWave, {
+        opacity: 0,
+        duration: 0.25,
+        ease: 'power1.out'
+      }, 0.60)
+
+      /* Royal closed golden scroll appears in the radiant burst */
       .to(scrollClosed, {
         opacity: 1,
         scale: 1.0,
         y: 0,
-        rotation: 0,
-        duration: 0.35,
-        ease: 'back.out(1.5)'
-      }, 1.6)
+        duration: 0.2,
+        ease: 'back.out(1.6)'
+      }, 0.62)
 
     /*
-     * SCENE 04 — NATURAL SMOOTH SCROLL UNROLLING (1.85s → 3.10s)
-     * Golden rod unrolls top to bottom smoothly like in user's video:
-     * Bottom roller physically rolls downwards in lockstep with unfurling ivory parchment
+     * SCENE 04 — NATURAL SMOOTH SCROLL UNROLLING (0.70s → 1.55s)
+     * Golden rod unrolls top to bottom smoothly:
+     * Bottom roller physically glides downwards in lockstep with the ivory parchment
      */
-      /* Seamless crossfade into open scroll top golden rod */
+      /* Crossfade into open scroll top golden rod */
       .to(scrollClosed, {
         opacity: 0,
-        scale: 0.97,
-        duration: 0.25,
+        scale: 0.98,
+        duration: 0.15,
         ease: 'power1.in'
-      }, 1.85)
-      .set(scrollOpen, { opacity: 1 }, 1.85)
+      }, 0.70)
+      .set(scrollOpen, { opacity: 1 }, 0.70)
 
-      /* Physical unrolling physics: bottom roller glides down smoothly over 1.25s */
+      /* Bottom roller rolls down smoothly over 0.85s */
       .fromTo(scrollBotRoller, {
         top: '9.7%'
       }, {
         top: '80.8%',
-        duration: 1.25,
+        duration: 0.85,
         ease: 'power2.out'
-      }, 1.88)
+      }, 0.72)
       .fromTo(scrollParchment, {
         clipPath: 'inset(0 0 90.3% 0)'
       }, {
         clipPath: 'inset(0 0 19.2% 0)',
-        duration: 1.25,
+        duration: 0.85,
         ease: 'power2.out'
-      }, 1.88)
+      }, 0.72)
 
-      /* Stagger reveal of invitation text lines */
+      /* Invitation text lines reveal smoothly */
       .to(Array.from(scrollBody.children), {
         opacity: 1,
         y: 0,
-        stagger: 0.08,
-        duration: 0.55,
+        stagger: 0.05,
+        duration: 0.45,
         ease: 'power2.out'
-      }, 2.35)
+      }, 1.05)
 
-      /* Call to action button bounces in with golden glow aura */
+      /* CTA button bounces in with golden glow aura */
       .fromTo(openBtn, {
         scale: 0.88,
         boxShadow: '0 0 0 rgba(212, 175, 90, 0)'
       }, {
         scale: 1.0,
         boxShadow: '0 4px 20px rgba(74, 10, 26, 0.45), 0 0 18px rgba(212, 175, 90, 0.55)',
-        duration: 0.5,
+        duration: 0.4,
         ease: 'back.out(1.6)'
-      }, 3.1);
+      }, 1.45);
 
     /* ── Button Event Listeners ──────────────────────────────────────────── */
     if (skipBtn) {
       skipBtn.addEventListener('click', () => {
         const p = tl.progress();
-        if (p < 0.85) {
+        if (p < 0.8) {
           /* Jump straight to fully revealed invitation scroll */
-          tl.progress(0.95);
+          tl.progress(0.92);
         } else {
           tl.kill();
           /* Flash & finish */
@@ -1072,37 +1073,70 @@
     // a closed book sits centred on its cover
     const closedX = () => narrow() ? 0 : -book.offsetWidth / 4;
 
-    // the lotus blooms first, then the photo is taped in and the words appear
+    // the lotus blooms first, then completely disappears as the couple photo arrives
+    let currentRevealTl = null;
     function reveal(k, instant) {
+      if (currentRevealTl) { currentRevealTl.kill(); currentRevealTl = null; }
       const right = leaves[k + 1] && $('.rbook__face--front .rpage', leaves[k + 1]);
       const left = $('.rbook__face--back .rpage', leaves[k]);
       const tl = gsap.timeline();
+      currentRevealTl = tl;
+
       if (left) {
         const bloom = $('.rpage__bloom', left), words = left.querySelectorAll('.rpage__om, .rpage__verse, .rpage__sub');
-        tl.fromTo(bloom, { opacity: 0, scale: .15, rotate: -40 }, { opacity: 1, scale: 1, rotate: 0, duration: 1.3, ease: 'back.out(1.4)' }, 0)
-          .fromTo(words, { opacity: 0, y: 10 }, { opacity: 1, y: 0, stagger: .15, duration: .6, ease: 'power2.out' }, .7);
+        if (instant || !ANIM) {
+          gsap.set(bloom, { opacity: 1, scale: 1, rotate: 0, autoAlpha: 1 });
+          gsap.set(words, { opacity: 1, y: 0 });
+        } else {
+          tl.fromTo(bloom, { opacity: 0, scale: .15, rotate: -40, autoAlpha: 1 }, { opacity: 1, scale: 1, rotate: 0, duration: 1.1, ease: 'back.out(1.4)' }, 0)
+            .fromTo(words, { opacity: 0, y: 10 }, { opacity: 1, y: 0, stagger: .12, duration: .55, ease: 'power2.out' }, .5);
+        }
       }
       if (right && !right.classList.contains('rpage--end')) {
         const bloom = $('.rpage__bloom', right), pol = $('.polaroid', right), tape = $('.polaroid__tape', right);
         const words = right.querySelectorAll('.rpage__kanda, .rpage__title, .rpage__text, .rpage__num');
-        tl.fromTo(bloom, { opacity: 0, scale: .15, rotate: -40 }, { opacity: 1, scale: 1, rotate: 0, duration: 1.1, ease: 'back.out(1.5)' }, 0)
-          .to(bloom, { opacity: 0, scale: 1.25, duration: .6, ease: 'power2.in' }, 1.4)
-          .fromTo(pol, { opacity: 0, y: -30, scale: .9, rotate: -6 }, { opacity: 1, y: 0, scale: 1, rotate: 0, duration: .9, ease: 'power3.out' }, 1.55)
-          .fromTo(tape, { scaleX: 0 }, { scaleX: 1, duration: .45, ease: 'power2.out' }, 2.15)
-          .fromTo(words, { opacity: 0, y: 12 }, { opacity: 1, y: 0, stagger: .12, duration: .55, ease: 'power2.out' }, 2.2);
+
+        if (instant || !ANIM) {
+          if (bloom) gsap.set(bloom, { opacity: 0, scale: 0.2, autoAlpha: 0 });
+          if (pol) gsap.set(pol, { opacity: 1, y: 0, scale: 1, rotate: 0, autoAlpha: 1 });
+          if (tape) gsap.set(tape, { scaleX: 1 });
+          if (words) gsap.set(words, { opacity: 1, y: 0 });
+          return tl;
+        }
+
+        // 1. Initial bloom appears on blank page
+        gsap.set(bloom, { autoAlpha: 1, opacity: 0, scale: 0.18, rotate: -35 });
+        tl.to(bloom, { opacity: 1, scale: 1, rotate: 0, duration: 0.75, ease: 'back.out(1.4)' }, 0)
+          // 2. Lotus flower completely dissolves & disappears BEFORE couple photo lands
+          .to(bloom, { opacity: 0, scale: 0.2, autoAlpha: 0, duration: 0.4, ease: 'power2.in' }, 0.8)
+          // 3. Couple photo appears cleanly in its place with zero lotus overlapping it
+          .fromTo(pol, { opacity: 0, y: -24, scale: 0.9, rotate: -5, autoAlpha: 1 }, { opacity: 1, y: 0, scale: 1, rotate: 0, duration: 0.75, ease: 'power3.out' }, 0.9)
+          // 4. Gold tape seals the photo down
+          .fromTo(tape, { scaleX: 0 }, { scaleX: 1, duration: 0.38, ease: 'power2.out' }, 1.35)
+          // 5. Story chapter words reveal
+          .fromTo(words, { opacity: 0, y: 12 }, { opacity: 1, y: 0, stagger: 0.1, duration: 0.5, ease: 'power2.out' }, 1.4);
       } else if (right) {
-        tl.fromTo(right.children, { opacity: 0, y: 12 }, { opacity: 1, y: 0, stagger: .12, duration: .6, ease: 'power2.out' }, 0);
+        if (instant || !ANIM) {
+          gsap.set(right.children, { opacity: 1, y: 0 });
+        } else {
+          tl.fromTo(right.children, { opacity: 0, y: 12 }, { opacity: 1, y: 0, stagger: .12, duration: .6, ease: 'power2.out' }, 0);
+        }
       }
-      if (instant) tl.progress(1);
       return tl;
     }
     // hide what is on a spread so it can bloom again when it is shown
     function prime(k) {
+      if (currentRevealTl) { currentRevealTl.kill(); currentRevealTl = null; }
       const right = leaves[k + 1] && $('.rbook__face--front .rpage', leaves[k + 1]);
       const left = $('.rbook__face--back .rpage', leaves[k]);
       if (left) gsap.set([$('.rpage__bloom', left), ...left.querySelectorAll('.rpage__om, .rpage__verse, .rpage__sub')], { opacity: 0 });
-      if (right && !right.classList.contains('rpage--end')) gsap.set([$('.rpage__bloom', right), $('.polaroid', right), ...right.querySelectorAll('.rpage__kanda, .rpage__title, .rpage__text, .rpage__num')], { opacity: 0 });
-      else if (right) gsap.set(right.children, { opacity: 0 });
+      if (right && !right.classList.contains('rpage--end')) {
+        const bloom = $('.rpage__bloom', right);
+        if (bloom) gsap.set(bloom, { opacity: 0, scale: 0.2, autoAlpha: 0 });
+        gsap.set([$('.polaroid', right), ...right.querySelectorAll('.rpage__kanda, .rpage__title, .rpage__text, .rpage__num')], { opacity: 0 });
+      } else if (right) {
+        gsap.set(right.children, { opacity: 0 });
+      }
     }
     const update = () => {
       count.textContent = spread < 0 ? 'Cover' : (spread + 1) + ' / ' + SPREADS;
@@ -1180,6 +1214,12 @@
     stage.addEventListener('pointerdown', e => { sx = e.clientX; });
     stage.addEventListener('pointerup', e => { if (sx == null) return; const dx = e.clientX - sx; sx = null; if (Math.abs(dx) > 50) go(dx < 0 ? spread + 1 : spread - 1, true); });
     stage.addEventListener('pointercancel', () => { sx = null; });
+
+    // Guarantee all story blooms on photo pages are completely hidden initially
+    leaves.forEach(leaf => {
+      const storyBloom = leaf.querySelector('.rpage--story:not(.rpage--end) .rpage__bloom');
+      if (storyBloom) gsap.set(storyBloom, { opacity: 0, autoAlpha: 0 });
+    });
 
     update();
     if (!ANIM) { if (intro) intro.remove(); open(); return; }

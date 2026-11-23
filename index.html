@@ -18,13 +18,12 @@
   <link rel="preload" as="image" href="assets/intro/rama-temple-bg-wide.jpg" media="(min-aspect-ratio: 1/1)">
   <link rel="preload" as="image" href="assets/intro/rama-temple-bg.jpg" media="(max-aspect-ratio: 1/1)">
   <link rel="preload" as="image" href="assets/intro/scroll-closed.webp">
-  <link rel="preload" as="image" href="assets/intro/divine-arrow.webp">
-  <link rel="preload" as="image" href="assets/intro/scroll-open.webp?v=5.6.0">
+  <link rel="preload" as="image" href="assets/intro/scroll-open.webp?v=5.7.0">
   <link rel="preload" as="image" href="assets/intro/scroll-bottom-roller.webp">
   <link rel="preload" as="image" href="assets/hero/hero-temple-river-night-wide.webp" media="(min-aspect-ratio: 1/1)">
   <link rel="preload" as="image" href="assets/hero/hero-temple-river-night.webp" media="(max-aspect-ratio: 1/1)">
   <link rel="preload" as="audio" href="assets/audio/vilakku-fire-on.wav">
-  <link rel="stylesheet" href="css/style.css?v=5.6.0">
+  <link rel="stylesheet" href="css/style.css?v=5.7.0">
 </head>
 <body>
 
@@ -89,16 +88,63 @@
       <!-- Divine Sky Aura around Lord Rama in the Sunset Sky -->
       <div class="intro__sky-aura" id="skyAura" aria-hidden="true"></div>
 
-      <!-- Concentrated Star of Celestial Golden Energy charging at Rama's Bow in the sky -->
+      <!-- Concentrated Star of Celestial Golden Energy charging at Rama's Villu (Bow) in the sky -->
       <div class="intro__bow-charge" id="bowCharge" aria-hidden="true"></div>
 
-      <!-- Flying Divine Golden Arrow with Radiant Light Trail -->
-      <div class="intro__arrow-flight" id="arrowFlight" aria-hidden="true">
-        <div class="intro__arrow-trail" id="arrowTrail"></div>
-        <img decoding="async" class="intro__arrow-img" id="arrowImg" src="assets/intro/divine-arrow.webp" alt="Divine Golden Arrow">
+      <!-- Radiant Spiritual Light Wave / Divine Celestial Energy Stream released from Lord Rama's Villu -->
+      <div class="intro__spiritual-wave" id="spiritualWave" aria-hidden="true">
+        <svg class="intro__wave-svg" viewBox="0 0 1000 600" preserveAspectRatio="none">
+          <defs>
+            <filter id="waveGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur1" />
+              <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="blur2" />
+              <feGaussianBlur in="SourceGraphic" stdDeviation="28" result="blur3" />
+              <feMerge>
+                <feMergeNode in="blur3" />
+                <feMergeNode in="blur2" />
+                <feMergeNode in="blur1" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <linearGradient id="waveGrad" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+              <stop offset="20%" stop-color="#fff59d" stop-opacity="0.95" />
+              <stop offset="55%" stop-color="#ffb300" stop-opacity="0.9" />
+              <stop offset="85%" stop-color="#ff6f00" stop-opacity="0.5" />
+              <stop offset="100%" stop-color="#e65100" stop-opacity="0" />
+            </linearGradient>
+            <linearGradient id="coreGrad" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+              <stop offset="45%" stop-color="#fffde7" stop-opacity="1" />
+              <stop offset="85%" stop-color="#ffe082" stop-opacity="0.95" />
+              <stop offset="100%" stop-color="#ffd54f" stop-opacity="0.7" />
+            </linearGradient>
+          </defs>
+
+          <!-- Broad Radiant Celestial Aura Stream -->
+          <path class="wave-path wave-path--aura" id="waveAura"
+            d="M 830,110 Q 720,165 590,225 T 500,288"
+            fill="none" stroke="url(#waveGrad)" stroke-width="32" stroke-linecap="round" filter="url(#waveGlow)" />
+
+          <!-- Dynamic Lightning Energy Tendril -->
+          <path class="wave-path wave-path--lightning" id="waveLightning"
+            d="M 830,110 Q 760,150 670,195 T 560,250 T 500,288"
+            fill="none" stroke="#fff9c4" stroke-width="7" stroke-linecap="round" filter="url(#waveGlow)" opacity="0.9" />
+
+          <!-- Pure Celestial White-Gold Core Beam -->
+          <path class="wave-path wave-path--core" id="waveCore"
+            d="M 830,110 Q 720,165 590,225 T 500,288"
+            fill="none" stroke="url(#coreGrad)" stroke-width="11" stroke-linecap="round" />
+        </svg>
+
+        <!-- Blazing Wave Head (Traveling Golden Plasma Star & Flare) -->
+        <div class="intro__wave-head" id="waveHead">
+          <div class="wave-head__pulse"></div>
+          <div class="wave-head__star">✦</div>
+        </div>
       </div>
 
-      <!-- Sacred Mandala Energy Burst in Center Foreground where Arrow strikes -->
+      <!-- Sacred Mandala Energy Burst in Center Foreground where Spiritual Light strikes -->
       <div class="intro__magic-burst" id="magicBurst" aria-hidden="true"></div>
 
       <!-- Royal Wedding Scroll in Center of Frame -->
@@ -1152,6 +1198,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="js/main.js?v=5.6.0"></script>
+<script src="js/main.js?v=5.7.0"></script>
 </body>
 </html>
