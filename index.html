@@ -15,13 +15,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Pinyon+Script&family=Caveat:wght@500;600&family=Tiro+Devanagari+Sanskrit:ital@0;1&display=swap" rel="stylesheet">
 
-  <link rel="preload" as="image" href="assets/intro/rama-temple-bg.jpg">
+  <link rel="preload" as="image" href="assets/intro/rama-temple-bg-wide.jpg" media="(min-aspect-ratio: 1/1)">
+  <link rel="preload" as="image" href="assets/intro/rama-temple-bg.jpg" media="(max-aspect-ratio: 1/1)">
   <link rel="preload" as="image" href="assets/intro/scroll-closed.webp">
   <link rel="preload" as="image" href="assets/intro/divine-arrow.webp">
   <link rel="preload" as="image" href="assets/intro/scroll-open.webp">
+  <link rel="preload" as="image" href="assets/intro/scroll-bottom-roller.webp">
   <link rel="preload" as="image" href="assets/hero/hero-temple-river-night-wide.webp" media="(min-aspect-ratio: 1/1)">
   <link rel="preload" as="image" href="assets/hero/hero-temple-river-night.webp" media="(max-aspect-ratio: 1/1)">
-  <link rel="stylesheet" href="css/style.css?v=5.2.0">
+  <link rel="stylesheet" href="css/style.css?v=5.3.0">
 </head>
 <body>
 
@@ -74,8 +76,11 @@
 
     <!-- Unified Divine Temple Realm Scene -->
     <div class="intro__scene intro__scene--rama" id="sceneRama">
-      <!-- Fullscreen Base Temple Sunset Background (includes Lord Rama in the golden sky) -->
-      <img decoding="async" class="intro__bg intro__bg--temple" id="bgTemple" src="assets/intro/rama-temple-bg.jpg" alt="Divine Ram Mandir at Sunset">
+      <!-- Fullscreen Base Temple Sunset Background (Responsive: widescreen on laptop, vertical on mobile) -->
+      <picture class="intro__bg-picture">
+        <source media="(min-aspect-ratio: 1/1)" srcset="assets/intro/rama-temple-bg-wide.jpg">
+        <img decoding="async" class="intro__bg intro__bg--temple" id="bgTemple" src="assets/intro/rama-temple-bg.jpg" alt="Divine Ram Mandir at Sunset">
+      </picture>
       
       <!-- Volumetric Sun Rays & Golden Haze Streaming from Sky -->
       <div class="intro__rays" id="introRays" aria-hidden="true"></div>
@@ -102,27 +107,35 @@
           <img decoding="async" src="assets/intro/scroll-closed.webp" alt="Royal Wedding Scroll Closed">
         </div>
 
-        <!-- Open Royal Scroll with Golden Borders & Unfurling Parchment -->
+        <!-- Open Royal Scroll with Golden Rollers & Physically Unrolling Parchment -->
         <div class="intro__scroll-open" id="scrollOpen">
-          <div class="intro__scroll-wrapper">
-            <img decoding="async" class="intro__scroll-bg" src="assets/intro/scroll-open.webp" alt="Royal Invitation Scroll">
-            
-            <!-- Crisp, Editable HTML Invitation Content -->
-            <div class="intro__scroll-body" id="scrollBody">
-              <p class="scroll__deva deva">॥ श्री सीताराम ॥</p>
-              <h2 class="scroll__guest">Dear Kumar Family,</h2>
-              <p class="scroll__blessing">With the divine blessings of Lord Rama,</p>
-              <p class="scroll__lead">You are cordially invited to celebrate the wedding of</p>
-              <h3 class="scroll__couple">Ram &amp; Sita</h3>
-              <div class="scroll__divider">
-                <svg viewBox="0 0 24 24"><use href="#i-lotus"/></svg>
+          <div class="intro__scroll-wrapper" id="scrollWrapper">
+            <!-- Parchment Sheet that unrolls downwards -->
+            <div class="intro__scroll-parchment" id="scrollParchment">
+              <img decoding="async" class="intro__scroll-bg" src="assets/intro/scroll-open.webp" alt="Royal Invitation Scroll">
+              
+              <!-- Crisp, Editable HTML Invitation Content -->
+              <div class="intro__scroll-body" id="scrollBody">
+                <p class="scroll__deva deva">॥ श्री सीताराम ॥</p>
+                <h2 class="scroll__guest">Dear Kumar Family,</h2>
+                <p class="scroll__blessing">With the divine blessings of Lord Rama,</p>
+                <p class="scroll__lead">You are cordially invited to celebrate the wedding of</p>
+                <h3 class="scroll__couple">Ram &amp; Sita</h3>
+                <div class="scroll__divider">
+                  <svg viewBox="0 0 24 24"><use href="#i-lotus"/></svg>
+                </div>
+                <p class="scroll__date">Saturday, 27 March 2027</p>
+                <p class="scroll__venue">Rambagh Palace · Jaipur, Rajasthan</p>
+                <button type="button" class="btn btn--maroon intro__open-btn" id="introOpenBtn">
+                  <span>Open Invitation</span>
+                  <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+                </button>
               </div>
-              <p class="scroll__date">Saturday, 27 March 2027</p>
-              <p class="scroll__venue">Rambagh Palace · Jaipur, Rajasthan</p>
-              <button type="button" class="btn btn--maroon intro__open-btn" id="introOpenBtn">
-                <span>Open Invitation</span>
-                <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-              </button>
+            </div>
+
+            <!-- Bottom Ornate Gold Roller that rolls down with the unfurl -->
+            <div class="intro__scroll-roller-bot" id="scrollBotRoller" aria-hidden="true">
+              <img decoding="async" src="assets/intro/scroll-bottom-roller.webp" alt="">
             </div>
           </div>
         </div>
@@ -1099,6 +1112,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="js/main.js?v=4.9.0"></script>
+<script src="js/main.js?v=5.3.0"></script>
 </body>
 </html>

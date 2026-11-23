@@ -1219,15 +1219,31 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
   will-change: transform, opacity;
 }
 
+.intro__bg-picture {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+  pointer-events: none;
+}
+
 .intro__bg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center bottom;
+  object-position: center 10%;
   display: block;
   will-change: transform;
+}
+
+@media (min-aspect-ratio: 1/1) {
+  .intro__bg {
+    object-position: center top;
+  }
 }
 
 /* ── Volumetric Sun Rays & Sacred Mist ──────────────────────────────────── */
@@ -1322,7 +1338,7 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
 .intro__bow-charge {
   position: absolute;
   top: 18%;
-  right: 18%;
+  right: 16%;
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -1337,9 +1353,9 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
   will-change: transform, opacity;
 }
 
-@media (max-width: 768px) {
+@media (min-aspect-ratio: 1/1) {
   .intro__bow-charge {
-    top: 17%;
+    top: 16%;
     right: 14%;
   }
 }
@@ -1420,11 +1436,17 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
 
 .intro__scroll-closed {
   position: absolute;
-  width: min(520px, 88vw);
-  max-width: 580px;
+  width: min(480px, 86vw);
+  max-width: 520px;
   pointer-events: none;
   opacity: 0;
   will-change: transform, opacity;
+}
+
+@media (min-aspect-ratio: 1/1) {
+  .intro__scroll-closed {
+    width: min(440px, 36vw);
+  }
 }
 
 .intro__scroll-closed img {
@@ -1436,11 +1458,17 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
 
 .intro__scroll-open {
   position: relative;
-  width: min(500px, 92vw);
-  max-width: 560px;
+  width: min(480px, 90vw);
+  max-width: 520px;
   pointer-events: none;
   opacity: 0;
-  will-change: transform, opacity, clip-path;
+  will-change: transform, opacity;
+}
+
+@media (min-aspect-ratio: 1/1) {
+  .intro__scroll-open {
+    width: min(420px, 34vw);
+  }
 }
 
 .intro__scroll-wrapper {
@@ -1449,16 +1477,41 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
   pointer-events: none;
 }
 
+.intro__scroll-parchment {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  clip-path: inset(0 0 100% 0);
+  will-change: clip-path;
+}
+
 .intro__scroll-bg {
   width: 100%;
   height: auto;
   display: block;
-  filter: drop-shadow(0 25px 50px rgba(35, 4, 12, 0.7)) drop-shadow(0 0 30px rgba(255, 215, 120, 0.45));
+  filter: drop-shadow(0 25px 50px rgba(35, 4, 12, 0.7)) drop-shadow(0 0 30px rgba(255, 215, 120, 0.4));
+}
+
+.intro__scroll-roller-bot {
+  position: absolute;
+  top: 14%;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  will-change: top, transform;
+  z-index: 3;
+}
+
+.intro__scroll-roller-bot img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 15px 25px rgba(40, 5, 15, 0.55));
 }
 
 .intro__scroll-body {
   position: absolute;
-  inset: 13% 14% 12% 14%;
+  inset: 12% 14% 10% 14%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1468,22 +1521,22 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
   pointer-events: auto;
 }
 
-/* ── Scroll Typography ─────────────────────────────────────────────────── */
+/* ── Scroll Typography (Clean, No Border Overlap) ────────────────────────── */
 .scroll__deva {
   font-family: var(--f-deva);
-  font-size: clamp(0.95rem, 2.2vw, 1.25rem);
+  font-size: clamp(0.92rem, 2vw, 1.15rem);
   color: var(--maroon-800);
-  margin: 0 0 4px;
+  margin: 0 0 3px;
   font-weight: 600;
   text-shadow: 0 1px 2px rgba(255, 230, 180, 0.6);
 }
 
 .scroll__guest {
   font-family: var(--f-script);
-  font-size: clamp(1.8rem, 4.4vw, 2.85rem);
-  color: var(--maroon-850, #5c0f24);
+  font-size: clamp(1.75rem, 4.2vw, 2.65rem);
+  color: #580b1e;
   line-height: 1.1;
-  margin: 0 0 4px;
+  margin: 0 0 3px;
   font-weight: 400;
   text-shadow: 0 1px 2px rgba(255, 235, 190, 0.5);
 }
@@ -1491,7 +1544,7 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
 .scroll__blessing {
   font-family: var(--f-serif);
   font-style: italic;
-  font-size: clamp(0.76rem, 1.8vw, 0.98rem);
+  font-size: clamp(0.74rem, 1.6vw, 0.94rem);
   color: #6a1a2e;
   margin: 0 0 3px;
   font-weight: 500;
@@ -1499,26 +1552,26 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
 
 .scroll__lead {
   font-family: var(--f-serif);
-  font-size: clamp(0.72rem, 1.7vw, 0.92rem);
+  font-size: clamp(0.7rem, 1.5vw, 0.88rem);
   color: #551222;
-  margin: 0 0 4px;
+  margin: 0 0 3px;
 }
 
 .scroll__couple {
   font-family: var(--f-display);
-  font-size: clamp(1.35rem, 3.2vw, 2.1rem);
+  font-size: clamp(1.3rem, 3vw, 1.95rem);
   font-weight: 700;
   letter-spacing: 0.05em;
   color: var(--maroon-900);
-  margin: 4px 0 3px;
+  margin: 3px 0 2px;
   text-shadow: 0 1px 3px rgba(255, 215, 130, 0.55);
 }
 
 .scroll__divider {
-  width: 28px;
-  height: 14px;
+  width: 26px;
+  height: 13px;
   color: var(--gold-600);
-  margin: 2px 0 4px;
+  margin: 2px 0 3px;
 }
 
 .scroll__divider svg {
@@ -1529,7 +1582,7 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
 
 .scroll__date {
   font-family: var(--f-caps);
-  font-size: clamp(0.68rem, 1.6vw, 0.88rem);
+  font-size: clamp(0.66rem, 1.5vw, 0.84rem);
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -1540,16 +1593,16 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
 .scroll__venue {
   font-family: var(--f-serif);
   font-style: italic;
-  font-size: clamp(0.72rem, 1.7vw, 0.92rem);
+  font-size: clamp(0.7rem, 1.5vw, 0.88rem);
   color: #5d1929;
   margin: 0 0 10px;
 }
 
 .intro__open-btn {
   margin-top: 2px;
-  padding: 9px 24px;
+  padding: 8px 22px;
   font-family: var(--f-caps);
-  font-size: clamp(0.74rem, 1.7vw, 0.9rem);
+  font-size: clamp(0.72rem, 1.5vw, 0.86rem);
   letter-spacing: 0.16em;
   font-weight: 600;
   text-transform: uppercase;

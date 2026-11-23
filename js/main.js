@@ -112,11 +112,48 @@
     const scrollContainer = q('#scrollContainer');
     const scrollClosed    = q('#scrollClosed');
     const scrollOpen      = q('#scrollOpen');
+    const scrollParchment = q('#scrollParchment');
+    const scrollBotRoller = q('#scrollBotRoller');
     const scrollBody      = q('#scrollBody');
     const openBtn         = q('#introOpenBtn');
     const skipBtn         = q('#introSkip');
     const flash           = q('#introFlash');
     const fxCanvas        = q('#introFx');
+
+    /* ── Sacred Rama Blessing Holy Audio ─────────────────────────────────── */
+    const blessingAudio = new Audio('assets/intro/rama-blessing.wav');
+    blessingAudio.volume = 0.92;
+    blessingAudio.preload = 'auto';
+
+    let audioStarted = false;
+    const playBlessingSound = () => {
+      if (audioStarted) return;
+      audioStarted = true;
+      try {
+        const p = blessingAudio.play();
+        if (p !== undefined) {
+          p.catch(() => {
+            const unlock = () => {
+              blessingAudio.play().catch(() => {});
+              window.removeEventListener('pointerdown', unlock);
+              window.removeEventListener('keydown', unlock);
+            };
+            window.addEventListener('pointerdown', unlock, { once: true });
+            window.addEventListener('keydown', unlock, { once: true });
+          });
+        }
+      } catch (e) {}
+    };
+
+    const stopBlessingSound = () => {
+      gsap.to(blessingAudio, {
+        volume: 0,
+        duration: 0.8,
+        onComplete: () => {
+          try { blessingAudio.pause(); } catch (e) {}
+        }
+      });
+    };
 
     /* ── Atmospheric Canvas FX (Floating Marigold Petals & Golden Sparks) ── */
     let fxRunning = true, fxRaf = null;
@@ -265,10 +302,12 @@
 
     /* ── Reduced Motion Accessibility ────────────────────────────────────── */
     if (reduced) {
-      gsap.set(bgTemple,     { opacity: 1, scale: 1 });
-      gsap.set(skyAura,      { opacity: 0.6 });
-      gsap.set(scrollClosed, { display: 'none' });
-      gsap.set(scrollOpen,   { opacity: 1, clipPath: 'inset(0 0 0% 0)' });
+      gsap.set(bgTemple,        { opacity: 1, scale: 1 });
+      gsap.set(skyAura,         { opacity: 0.6 });
+      gsap.set(scrollClosed,    { display: 'none' });
+      gsap.set(scrollOpen,      { opacity: 1 });
+      gsap.set(scrollParchment, { clipPath: 'inset(0 0 0% 0)' });
+      gsap.set(scrollBotRoller, { top: '83.2%' });
       gsap.set(Array.from(scrollBody.children), { opacity: 1, y: 0 });
       if (openBtn) openBtn.addEventListener('click', finish);
       if (skipBtn) skipBtn.addEventListener('click', finish);
@@ -287,16 +326,18 @@
       opacity: 0,
       scale: 0.65,
       rotation: 135,
-      left: '78%',
+      left: '80%',
       top: '18%',
       transformOrigin: '15% 50%'
     });
     gsap.set(arrowTrail, { scaleX: 0.1, opacity: 0 });
 
     /* Magic burst & Royal Scroll */
-    gsap.set(magicBurst,   { opacity: 0, scale: 0.2 });
-    gsap.set(scrollClosed, { opacity: 0, scale: 0.8, y: -40, rotation: -2 });
-    gsap.set(scrollOpen,   { opacity: 0, clipPath: 'inset(0 0 100% 0)' });
+    gsap.set(magicBurst,      { opacity: 0, scale: 0.2 });
+    gsap.set(scrollClosed,    { opacity: 0, scale: 0.8, y: -40, rotation: -2 });
+    gsap.set(scrollOpen,      { opacity: 0 });
+    gsap.set(scrollParchment, { clipPath: 'inset(0 0 79.5% 0)' });
+    gsap.set(scrollBotRoller, { top: '14%' });
     gsap.set(Array.from(scrollBody.children), { opacity: 0, y: 16 });
 
     /* ── Main GSAP Cinematic Timeline ────────────────────────────────────── */
@@ -331,9 +372,14 @@
       }, 1.0)
 
     /*
-     * SCENE 02 — LORD RAMA DRAWS HIS BOW (2.8s → 5.5s)
-     * Concentrated star of celestial golden energy ignites at Rama's drawn bow in the sky
+     * SCENE 02 — LORD RAMA DRAWS HIS DIVINE BOW (2.8s → 5.5s)
+     * Sacred Ramayana holy blessing sound initiates, golden lightning ignites at Rama's bow
      */
+      /* Holy blessing sound begins as lightning / golden energy ignites at bow */
+      .call(() => {
+        playBlessingSound();
+      }, [], 2.8)
+
       .to(bowCharge, {
         opacity: 1,
         scale: 1.4,
@@ -350,9 +396,9 @@
       }, 3.8)
 
     /*
-     * SCENE 03 — DIVINE ARROW RELEASE & FLIGHT FROM SKY (5.2s → 7.6s)
+     * SCENE 03 — DIVINE ARROW RELEASE & FLIGHT FROM SKY (5.2s → 7.1s)
      * Celestial flash at bow, golden arrow releases and soars in a parabolic arc
-     * from the sky down towards the center of the frame
+     * from Rama in the sky straight down to the center of the frame
      */
       /* Bow flash at release */
       .to(bowCharge, {
@@ -381,9 +427,9 @@
         ease: 'power1.out'
       }, 5.35)
 
-      /* Parabolic trajectory from upper-right sky to center */
+      /* Parabolic trajectory from upper-right sky directly to center */
       .to(arrowFlight, {
-        left: '52%',
+        left: '65%',
         top: '34%',
         rotation: 140,
         scale: 1.2,
@@ -391,9 +437,9 @@
         ease: 'power2.in'
       }, 5.4)
       .to(arrowFlight, {
-        left: '36%',
-        top: '47%',
-        rotation: 146,
+        left: '50%',
+        top: '50%',
+        rotation: 145,
         scale: 1.35,
         duration: 0.85,
         ease: 'power1.out'
@@ -403,18 +449,18 @@
       .to(arrowFlight, {
         opacity: 0,
         scale: 1.6,
-        duration: 0.3,
+        duration: 0.25,
         ease: 'power2.in'
-      }, 7.0)
+      }, 7.05)
 
     /*
      * SCENE 04 — GOLDEN LIGHT BURST & CLOSED SCROLL MANIFESTATION (7.1s → 9.6s)
      * Expanding mandala ring of sacred light + spark burst in center,
      * closed horizontal royal scroll appears and settles
      */
-      /* Trigger canvas spark explosion */
+      /* Trigger canvas spark explosion at exact center */
       .call(() => {
-        triggerGoldenBurst(window.innerWidth * 0.5, window.innerHeight * 0.48);
+        triggerGoldenBurst(window.innerWidth * 0.5, window.innerHeight * 0.5);
       }, [], 7.1)
 
       /* Expanding divine mandala ring */
@@ -454,25 +500,32 @@
       }, 9.2)
 
     /*
-     * SCENE 05 — ROYAL SCROLL UNFURLS & INVITATION REVEAL (9.6s → 12.8s)
-     * Scroll unrolls top-to-bottom, revealing ivory parchment,
-     * ornate gold borders, guest invitation text & button
+     * SCENE 05 — REALISTIC PHYSICAL SCROLL UNROLLING & INVITATION REVEAL (9.6s → 12.8s)
+     * Bottom roller physically rolls downwards from top roller to bottom,
+     * unfurling the clean antique parchment and revealing the invitation without inner border overlap
      */
-      /* Crossfade closed scroll into open parchment */
+      /* Crossfade closed scroll into open scroll top */
       .to(scrollClosed, {
         opacity: 0,
-        scale: 0.96,
-        duration: 0.45,
+        scale: 0.95,
+        duration: 0.35,
         ease: 'power1.in'
       }, 9.6)
       .set(scrollOpen, { opacity: 1 }, 9.6)
 
-      /* Unfurl clip-path from top to bottom like a physical royal parchment */
-      .fromTo(scrollOpen, {
-        clipPath: 'inset(0 0 100% 0)'
+      /* Physical unrolling physics: bottom roller glides down in lockstep with unfurling parchment */
+      .fromTo(scrollBotRoller, {
+        top: '14%'
+      }, {
+        top: '83.2%',
+        duration: 2.2,
+        ease: 'power2.inOut'
+      }, 9.7)
+      .fromTo(scrollParchment, {
+        clipPath: 'inset(0 0 79.5% 0)'
       }, {
         clipPath: 'inset(0 0 0% 0)',
-        duration: 1.8,
+        duration: 2.2,
         ease: 'power2.inOut'
       }, 9.7)
 
@@ -483,7 +536,7 @@
         stagger: 0.12,
         duration: 0.7,
         ease: 'power2.out'
-      }, 10.6)
+      }, 10.8)
 
       /* Call to action button bounces in with golden glow */
       .fromTo(openBtn, {
@@ -499,10 +552,11 @@
     /* ── Button Event Listeners ──────────────────────────────────────────── */
     if (skipBtn) {
       skipBtn.addEventListener('click', () => {
+        stopBlessingSound();
         const p = tl.progress();
         if (p < 0.85) {
           /* Jump straight to fully revealed invitation scroll */
-          tl.progress(0.92);
+          tl.progress(0.95);
         } else {
           tl.kill();
           /* Flash & finish */
@@ -517,41 +571,7 @@
 
     if (openBtn) {
       openBtn.addEventListener('click', () => {
-        tl.kill();
-        /* Divine golden flash transition to #welcome */
-        gsap.to(flash, {
-          opacity: 0.9,
-          duration: 0.45,
-          ease: 'power2.in',
-          onComplete: () => {
-            finish();
-            scrollToEl($('#welcome'));
-          }
-        });
-      });
-    }
-
-    /* ── Button Event Listeners ──────────────────────────────────────────── */
-    if (skipBtn) {
-      skipBtn.addEventListener('click', () => {
-        const p = tl.progress();
-        if (p < 0.85) {
-          /* Jump straight to fully revealed invitation scroll */
-          tl.progress(0.92);
-        } else {
-          tl.kill();
-          /* Flash & finish */
-          gsap.to(flash, {
-            opacity: 0.8,
-            duration: 0.35,
-            onComplete: finish
-          });
-        }
-      });
-    }
-
-    if (openBtn) {
-      openBtn.addEventListener('click', () => {
+        stopBlessingSound();
         tl.kill();
         /* Divine golden flash transition to #welcome */
         gsap.to(flash, {
