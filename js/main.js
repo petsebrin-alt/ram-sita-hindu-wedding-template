@@ -48,6 +48,77 @@
   }
   const toTop = () => { window.scrollTo(0, 0); document.documentElement.scrollTop = 0; };
 
+  /* ---------------------------------------------------------------------
+     Curated Sacred & Ceremonial Soundscape (Feel Movement)
+     --------------------------------------------------------------------- */
+  const Soundscape = (() => {
+    const sounds = {
+      paperUnroll:   new Audio('assets/audio/paper-unroll-soft.wav'),
+      fluteBloom:    new Audio('assets/audio/pullankuzhal-flute-bloom.wav'),
+      hanumanViolin: new Audio('assets/audio/hanuman-violin-blessing.wav'),
+      palaceDoor:    new Audio('assets/audio/palace-door-soft.wav'),
+      softCrackers:  new Audio('assets/audio/crackers-soft-festive.wav'),
+    };
+
+    sounds.paperUnroll.volume   = 0.42;
+    sounds.fluteBloom.volume    = 0.52;
+    sounds.hanumanViolin.volume = 0.55;
+    sounds.palaceDoor.volume    = 0.46;
+    sounds.softCrackers.volume  = 0.38;
+
+    Object.values(sounds).forEach(a => { a.preload = 'auto'; });
+
+    let unlocked = false;
+    const unlock = () => {
+      if (unlocked) return;
+      unlocked = true;
+      Object.values(sounds).forEach(a => {
+        try {
+          const p = a.play();
+          if (p !== undefined) {
+            p.then(() => { a.pause(); a.currentTime = 0; }).catch(() => {});
+          }
+        } catch (e) {}
+      });
+      window.removeEventListener('pointerdown', unlock);
+      window.removeEventListener('keydown', unlock);
+      window.removeEventListener('touchstart', unlock);
+    };
+
+    ['pointerdown', 'keydown', 'touchstart'].forEach(ev => {
+      window.addEventListener(ev, unlock, { once: true, passive: true });
+    });
+
+    const playedOnce = {};
+
+    return {
+      play(name, { once = false, volume = null, minInterval = 700 } = {}) {
+        const audioEl = sounds[name];
+        if (!audioEl) return;
+        if (once && playedOnce[name]) return;
+
+        const now = Date.now();
+        if (audioEl._lastPlay && now - audioEl._lastPlay < minInterval) return;
+        audioEl._lastPlay = now;
+
+        if (once) playedOnce[name] = true;
+        try {
+          const clone = audioEl.cloneNode();
+          clone.volume = volume !== null ? volume : audioEl.volume;
+          const p = clone.play();
+          if (p !== undefined) p.catch(() => {});
+        } catch (e) {
+          try {
+            audioEl.currentTime = 0;
+            if (volume !== null) audioEl.volume = volume;
+            const p = audioEl.play();
+            if (p !== undefined) p.catch(() => {});
+          } catch (err) {}
+        }
+      }
+    };
+  })();
+
   const store = {
     get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
     set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage blocked */ } }
@@ -496,6 +567,9 @@
       .set(scrollOpen, { opacity: 1 }, 1.85)
 
       /* Physical unrolling physics: bottom roller glides down smoothly over 1.25s */
+      .call(() => {
+        Soundscape.play('paperUnroll');
+      }, [], 1.88)
       .fromTo(scrollBotRoller, {
         top: '9.7%'
       }, {
@@ -787,7 +861,19 @@
   function initGatefold() {
     if (!ANIM) return;
     gsap.timeline({
-      scrollTrigger: { trigger: '#gatefold', start: 'top top', end: () => '+=' + innerHeight * 1.4, scrub: 1, pin: true, anticipatePin: 1 }
+      scrollTrigger: {
+        trigger: '#gatefold',
+        start: 'top top',
+        end: () => '+=' + innerHeight * 1.4,
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1,
+        onUpdate: self => {
+          if (self.progress > 0.05 && self.progress < 0.85 && self.direction > 0) {
+            Soundscape.play('paperUnroll', { minInterval: 2200 });
+          }
+        }
+      }
     })
       .to('.gatefold__seal', { scale: 1.25, opacity: 0, duration: .6, ease: 'power2.in' })
       .to('.gatefold__panel--left', { rotateY: -155, duration: 2.2, ease: 'power2.inOut' }, '-=.15')
@@ -971,7 +1057,14 @@
     lines.forEach(p => { p.setAttribute('pathLength', 1); p.style.strokeDasharray = 1; p.style.strokeDashoffset = 1; });
     gsap.set(leaves, { scale: 0, opacity: 0 });
     gsap.set(lotus, { scale: .12, opacity: 0, rotate: -10 });
-    gsap.timeline({ scrollTrigger: { trigger: box, start: 'top 78%', once: true } })
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: box,
+        start: 'top 78%',
+        once: true,
+        onEnter: () => Soundscape.play('fluteBloom', { once: true })
+      }
+    })
       .to(lines[0], { strokeDashoffset: 0, duration: 1.4, ease: 'sine.inOut' })
       .to(leaves, { scale: 1, opacity: 1, duration: .7, stagger: .2, ease: 'back.out(1.8)' }, .6)
       .to(lines[1], { strokeDashoffset: 0, duration: 2.2, ease: 'sine.inOut' }, 1.1)
@@ -1364,7 +1457,7 @@
         onStart() {
           const r = $('.hn__heart').getBoundingClientRect();
           marigolds.hanuman?.burst(r.left + r.width / 2, r.top + r.height / 2, small() ? 50 : 80, .7);
-          bell();
+          Soundscape.play('hanumanViolin', { once: true });
         }
       }, 2.0)
       .to('.hn__glow', { opacity: .5, duration: 1.4 }, 3.3)
@@ -1389,11 +1482,15 @@
       gsap.set($('.ev-pop', u), { autoAlpha: 0, y: 40, scale: .92 });
     });
     const labels = [];
-    let tl = null;
+    let tl = null, lastIdx = -1;
     const syncDots = self => {
       if (!tl) return;
       const t = self.progress * tl.duration(); let idx = 0;
       labels.forEach((lt, i) => { if (t >= lt - .05) idx = i; });
+      if (idx !== lastIdx && self.direction > 0 && self.progress > 0.02) {
+        lastIdx = idx;
+        Soundscape.play('palaceDoor', { minInterval: 1200 });
+      }
       dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
     };
     tl = gsap.timeline({
@@ -1420,7 +1517,7 @@
       const lbl = 'ev' + i;
       tl.addLabel(lbl); labels.push(tl.labels[lbl]);
       // 1. doors open onto the picture of the celebration
-      tl.to(L, { rotateY: -108, duration: 1 }, lbl)
+      tl.to(L, { rotateY: -108, duration: 1, onStart: () => Soundscape.play('palaceDoor', { minInterval: 1200 }) }, lbl)
         .to(R, { rotateY: 108, duration: 1 }, lbl)
         .to(light, { opacity: 1, duration: 1 }, lbl)
         .fromTo(scene, { scale: 1.12 }, { scale: 1, duration: 1.3, ease: 'power2.out' }, lbl)
@@ -1777,6 +1874,7 @@
       rockets.push({ x, y: H, vx: (Math.random() - .5) * 1.2 * dpr, vy: -(9 + Math.random() * 3.5) * dpr, ty: H * (.12 + Math.random() * .28), pal: palettes[(Math.random() * palettes.length) | 0] });
     }
     function explode(r) {
+      Soundscape.play('softCrackers', { minInterval: 2200 });
       const n = 70 + (Math.random() * 50) | 0;
       const ring = Math.random() < .35;
       for (let i = 0; i < n; i++) {
@@ -1808,9 +1906,17 @@
       ctx.globalAlpha = 1;
     }
     new IntersectionObserver(([e]) => {
-      if (e.isIntersecting && !running) { running = true; size(); requestAnimationFrame(frame); }
+      if (e.isIntersecting && !running) {
+        running = true;
+        size();
+        requestAnimationFrame(frame);
+        Soundscape.play('softCrackers', { minInterval: 2500 });
+      }
       else if (!e.isIntersecting) { running = false; }
     }, { threshold: .15 }).observe(cv);
+    cv.addEventListener('pointerdown', () => {
+      Soundscape.play('softCrackers', { minInterval: 600 });
+    }, { passive: true });
   }
 
   /* ---------------------------------------------------------------------
