@@ -23,12 +23,8 @@
   <link rel="preload" as="image" href="assets/intro/scroll-bottom-roller.webp">
   <link rel="preload" as="image" href="assets/hero/hero-temple-river-night-wide.webp" media="(min-aspect-ratio: 1/1)">
   <link rel="preload" as="image" href="assets/hero/hero-temple-river-night.webp" media="(max-aspect-ratio: 1/1)">
-  <link rel="preload" as="audio" href="assets/audio/paper-unroll-soft.wav">
-  <link rel="preload" as="audio" href="assets/audio/pullankuzhal-flute-bloom.wav">
-  <link rel="preload" as="audio" href="assets/audio/hanuman-violin-blessing.wav">
-  <link rel="preload" as="audio" href="assets/audio/palace-door-soft.wav">
-  <link rel="preload" as="audio" href="assets/audio/crackers-soft-festive.wav">
-  <link rel="stylesheet" href="css/style.css?v=5.5.0">
+  <link rel="preload" as="audio" href="assets/audio/vilakku-fire-on.wav">
+  <link rel="stylesheet" href="css/style.css?v=5.6.0">
 </head>
 <body>
 
@@ -247,8 +243,47 @@
     <!-- Ram & Sita (3D cut-out) standing before the temple, brass vilakku at their feet -->
     <div class="hero__couple">
       <img decoding="async" class="hero__couple-img" src="assets/hero/couple-ram-sita-3d-cutout.webp" alt="Ram and Sita in royal wedding attire holding jasmine and rose varmalas, facing each other">
-      <div class="hero__couple-diyas" aria-hidden="true">
-        <img decoding="async" src="assets/diya/diya-brass-photo-01.webp" alt=""><img decoding="async" src="assets/diya/diya-brass-photo-02.webp" alt=""><img decoding="async" src="assets/diya/diya-brass-photo-02.webp" alt=""><img decoding="async" src="assets/diya/diya-brass-photo-01.webp" alt="">
+      <div class="hero__couple-diyas" id="heroCoupleDiyas" aria-hidden="true">
+        <div class="vilakku-unit">
+          <img decoding="async" class="vilakku__bowl" src="assets/diya/diya-brass-photo-01.webp" alt="">
+          <div class="vilakku__fire">
+            <span class="vilakku__glow"></span>
+            <span class="vilakku__flame-core"></span>
+            <span class="vilakku__flame-tip"></span>
+            <span class="vilakku__spark s1"></span>
+            <span class="vilakku__spark s2"></span>
+          </div>
+        </div>
+        <div class="vilakku-unit">
+          <img decoding="async" class="vilakku__bowl" src="assets/diya/diya-brass-photo-02.webp" alt="">
+          <div class="vilakku__fire">
+            <span class="vilakku__glow"></span>
+            <span class="vilakku__flame-core"></span>
+            <span class="vilakku__flame-tip"></span>
+            <span class="vilakku__spark s1"></span>
+            <span class="vilakku__spark s2"></span>
+          </div>
+        </div>
+        <div class="vilakku-unit">
+          <img decoding="async" class="vilakku__bowl" src="assets/diya/diya-brass-photo-02.webp" alt="">
+          <div class="vilakku__fire">
+            <span class="vilakku__glow"></span>
+            <span class="vilakku__flame-core"></span>
+            <span class="vilakku__flame-tip"></span>
+            <span class="vilakku__spark s1"></span>
+            <span class="vilakku__spark s2"></span>
+          </div>
+        </div>
+        <div class="vilakku-unit">
+          <img decoding="async" class="vilakku__bowl" src="assets/diya/diya-brass-photo-01.webp" alt="">
+          <div class="vilakku__fire">
+            <span class="vilakku__glow"></span>
+            <span class="vilakku__flame-core"></span>
+            <span class="vilakku__flame-tip"></span>
+            <span class="vilakku__spark s1"></span>
+            <span class="vilakku__spark s2"></span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1117,6 +1152,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="js/main.js?v=5.5.0"></script>
+<script src="js/main.js?v=5.6.0"></script>
 </body>
 </html>
