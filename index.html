@@ -18,12 +18,12 @@
   <link rel="preload" as="image" href="assets/intro/rama-temple-bg-wide.jpg" media="(min-aspect-ratio: 1/1)">
   <link rel="preload" as="image" href="assets/intro/rama-temple-bg.jpg" media="(max-aspect-ratio: 1/1)">
   <link rel="preload" as="image" href="assets/intro/scroll-closed.webp">
-  <link rel="preload" as="image" href="assets/intro/scroll-open.webp?v=5.7.0">
+  <link rel="preload" as="image" href="assets/intro/scroll-open.webp?v=5.8.0">
   <link rel="preload" as="image" href="assets/intro/scroll-bottom-roller.webp">
   <link rel="preload" as="image" href="assets/hero/hero-temple-river-night-wide.webp" media="(min-aspect-ratio: 1/1)">
   <link rel="preload" as="image" href="assets/hero/hero-temple-river-night.webp" media="(max-aspect-ratio: 1/1)">
   <link rel="preload" as="audio" href="assets/audio/vilakku-fire-on.wav">
-  <link rel="stylesheet" href="css/style.css?v=5.7.0">
+  <link rel="stylesheet" href="css/style.css?v=5.8.0">
 </head>
 <body>
 
@@ -88,17 +88,79 @@
       <!-- Divine Sky Aura around Lord Rama in the Sunset Sky -->
       <div class="intro__sky-aura" id="skyAura" aria-hidden="true"></div>
 
+      <!-- Lord Rama Animated Action Rig (Hand pulling arrow from quiver, nocking & drawing bow) -->
+      <div class="intro__rama-rig" id="ramaRig" aria-hidden="true">
+        <svg class="rama-rig__svg" viewBox="0 0 220 220">
+          <defs>
+            <filter id="goldGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="3.5" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <linearGradient id="rigGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff" />
+              <stop offset="35%" stop-color="#ffe082" />
+              <stop offset="70%" stop-color="#ffb300" />
+              <stop offset="100%" stop-color="#d48800" />
+            </linearGradient>
+            <linearGradient id="rigArrowGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+              <stop offset="0%" stop-color="#ffffff" />
+              <stop offset="25%" stop-color="#fff8e1" />
+              <stop offset="60%" stop-color="#ffd54f" />
+              <stop offset="100%" stop-color="#ffb300" />
+            </linearGradient>
+          </defs>
+
+          <!-- Golden Bow Arc (Villu) -->
+          <path class="rig-bow__arc" id="rigBowArc"
+            d="M 66,16 C 118,70 118,130 66,184"
+            fill="none" stroke="url(#rigGoldGrad)" stroke-width="7" stroke-linecap="round" filter="url(#goldGlow)" />
+          
+          <!-- Ornate Bow Tips and Gems -->
+          <circle cx="66" cy="16" r="5" fill="#ffd54f" filter="url(#goldGlow)" />
+          <circle cx="66" cy="184" r="5" fill="#ffd54f" filter="url(#goldGlow)" />
+          <circle cx="98" cy="100" r="5" fill="#c2185b" stroke="#ffe082" stroke-width="2" />
+
+          <!-- Dynamic Bowstring (drawn back under tension) -->
+          <path class="rig-bow__string" id="rigBowString"
+            d="M 66,16 L 66,184"
+            fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" filter="url(#goldGlow)" />
+
+          <!-- Arrow in transit / nocked onto bow -->
+          <g class="rig-arrow__group" id="rigArrowGroup">
+            <!-- Arrow Shaft -->
+            <line class="rig-arrow__shaft" x1="8" y1="100" x2="140" y2="100"
+              stroke="url(#rigArrowGrad)" stroke-width="3.5" stroke-linecap="round" filter="url(#goldGlow)" />
+            <!-- Arrow Head (Divine point) -->
+            <polygon points="8,100 24,93 19,100 24,107" fill="#ffffff" filter="url(#goldGlow)" />
+            <!-- Arrow Fletching (Celestial feathers) -->
+            <polygon points="140,100 122,91 128,100 122,109" fill="#ffe082" opacity="0.95" />
+          </g>
+
+          <!-- Rama's Sacred Drawing Hand (gilded vambrace & fingers holding arrow nock) -->
+          <g class="rig-hand__group" id="rigHandGroup">
+            <!-- Wrist Vambrace -->
+            <ellipse cx="148" cy="100" rx="10" ry="15" fill="url(#rigGoldGrad)" filter="url(#goldGlow)" />
+            <circle cx="148" cy="100" r="3.5" fill="#c2185b" />
+            <!-- Hand / Fingers gripping nock -->
+            <path d="M 134,93 C 130,97 130,103 134,107 C 141,108 145,102 144,97 Z" fill="#ffe0b2" stroke="#d48800" stroke-width="0.8" />
+          </g>
+        </svg>
+      </div>
+
       <!-- Concentrated Star of Celestial Golden Energy charging at Rama's Villu (Bow) in the sky -->
       <div class="intro__bow-charge" id="bowCharge" aria-hidden="true"></div>
 
-      <!-- Radiant Spiritual Light Wave / Divine Celestial Energy Stream released from Lord Rama's Villu -->
+      <!-- Radiant Spiritual Light Wave & Flying Spiritual Arrow released from Lord Rama's Villu -->
       <div class="intro__spiritual-wave" id="spiritualWave" aria-hidden="true">
         <svg class="intro__wave-svg" viewBox="0 0 1000 600" preserveAspectRatio="none">
           <defs>
             <filter id="waveGlow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur1" />
-              <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="blur2" />
-              <feGaussianBlur in="SourceGraphic" stdDeviation="28" result="blur3" />
+              <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur1" />
+              <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur2" />
+              <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur3" />
               <feMerge>
                 <feMergeNode in="blur3" />
                 <feMergeNode in="blur2" />
@@ -110,7 +172,7 @@
               <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
               <stop offset="20%" stop-color="#fff59d" stop-opacity="0.95" />
               <stop offset="55%" stop-color="#ffb300" stop-opacity="0.9" />
-              <stop offset="85%" stop-color="#ff6f00" stop-opacity="0.5" />
+              <stop offset="85%" stop-color="#ff6f00" stop-opacity="0.55" />
               <stop offset="100%" stop-color="#e65100" stop-opacity="0" />
             </linearGradient>
             <linearGradient id="coreGrad" x1="100%" y1="0%" x2="0%" y2="100%">
@@ -121,21 +183,28 @@
             </linearGradient>
           </defs>
 
-          <!-- Broad Radiant Celestial Aura Stream -->
+          <!-- Broad Radiant Celestial Aura Stream (Wavy S-Curve) -->
           <path class="wave-path wave-path--aura" id="waveAura"
-            d="M 830,110 Q 720,165 590,225 T 500,288"
-            fill="none" stroke="url(#waveGrad)" stroke-width="32" stroke-linecap="round" filter="url(#waveGlow)" />
+            d="M 830,110 C 760,210 680,130 610,180 C 550,225 525,260 500,290"
+            fill="none" stroke="url(#waveGrad)" stroke-width="34" stroke-linecap="round" filter="url(#waveGlow)" />
 
-          <!-- Dynamic Lightning Energy Tendril -->
+          <!-- Dynamic Lightning Energy Tendril (Wavy S-Curve) -->
           <path class="wave-path wave-path--lightning" id="waveLightning"
-            d="M 830,110 Q 760,150 670,195 T 560,250 T 500,288"
-            fill="none" stroke="#fff9c4" stroke-width="7" stroke-linecap="round" filter="url(#waveGlow)" opacity="0.9" />
+            d="M 830,110 C 760,210 680,130 610,180 C 550,225 525,260 500,290"
+            fill="none" stroke="#fff9c4" stroke-width="8" stroke-linecap="round" filter="url(#waveGlow)" opacity="0.95" />
 
-          <!-- Pure Celestial White-Gold Core Beam -->
+          <!-- Pure Celestial White-Gold Core Beam (Wavy S-Curve) -->
           <path class="wave-path wave-path--core" id="waveCore"
-            d="M 830,110 Q 720,165 590,225 T 500,288"
-            fill="none" stroke="url(#coreGrad)" stroke-width="11" stroke-linecap="round" />
+            d="M 830,110 C 760,210 680,130 610,180 C 550,225 525,260 500,290"
+            fill="none" stroke="url(#coreGrad)" stroke-width="12" stroke-linecap="round" />
         </svg>
+
+        <!-- Divine Flying Spiritual Arrow (leads the wavy curve, dynamically rotates tangent to path) -->
+        <div class="intro__spiritual-arrow" id="spiritualArrow">
+          <img decoding="async" class="spiritual-arrow__img" src="assets/intro/divine-arrow.webp" alt="Spiritual Arrow of Lord Rama">
+          <div class="spiritual-arrow__flare"></div>
+          <div class="spiritual-arrow__star">✦</div>
+        </div>
 
         <!-- Blazing Wave Head (Traveling Golden Plasma Star & Flare) -->
         <div class="intro__wave-head" id="waveHead">
@@ -1198,6 +1267,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="js/main.js?v=5.7.0"></script>
+<script src="js/main.js?v=5.8.0"></script>
 </body>
 </html>

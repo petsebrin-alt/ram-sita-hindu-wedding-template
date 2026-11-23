@@ -166,11 +166,17 @@
     const bgTemple        = q('#bgTemple');
     const introRays       = q('#introRays');
     const skyAura         = q('#skyAura');
+    const ramaRig         = q('#ramaRig');
+    const rigBowArc       = q('#rigBowArc');
+    const rigBowString    = q('#rigBowString');
+    const rigArrowGroup   = q('#rigArrowGroup');
+    const rigHandGroup    = q('#rigHandGroup');
     const bowCharge       = q('#bowCharge');
     const spiritualWave   = q('#spiritualWave');
     const waveAura        = q('#waveAura');
     const waveLightning   = q('#waveLightning');
     const waveCore        = q('#waveCore');
+    const spiritualArrow  = q('#spiritualArrow');
     const waveHead        = q('#waveHead');
     const magicBurst      = q('#magicBurst');
     const scrollContainer = q('#scrollContainer');
@@ -333,6 +339,7 @@
     if (reduced) {
       gsap.set(bgTemple,        { opacity: 1, scale: 1 });
       gsap.set(skyAura,         { opacity: 0.6 });
+      if (ramaRig) gsap.set(ramaRig, { opacity: 0 });
       gsap.set(scrollClosed,    { display: 'none' });
       gsap.set(scrollOpen,      { opacity: 1 });
       gsap.set(scrollParchment, { clipPath: 'inset(0 0 19.2% 0)' });
@@ -357,8 +364,19 @@
     gsap.set(bgTemple,     { scale: 1.0, transformOrigin: '50% 45%' });
     gsap.set(introRays,    { opacity: 0, scale: 0.95 });
     gsap.set(skyAura,      { opacity: 0, scale: 0.85 });
+
+    /* Lord Rama Animated Action Rig initial state */
+    gsap.set(ramaRig,      { opacity: 1 });
+    gsap.set(rigBowArc,    { scaleX: 1, transformOrigin: '80% 50%' });
+    if (rigBowString) rigBowString.setAttribute('d', 'M 66,16 L 66,184');
+    /* Hand starting at quiver behind shoulder */
+    gsap.set(rigHandGroup, { x: 38, y: -42, rotation: -18, opacity: 0.7, transformOrigin: '50% 50%' });
+    /* Arrow beginning in quiver */
+    gsap.set(rigArrowGroup,{ x: 48, y: -45, rotation: -22, opacity: 0, transformOrigin: '100% 50%' });
+
     gsap.set(bowCharge,    { opacity: 0, scale: 0.2 });
     gsap.set(spiritualWave,{ opacity: 0 });
+    gsap.set(spiritualArrow,{ opacity: 0, scale: 0.7 });
     gsap.set(waveHead,     { opacity: 0, scale: 0.2 });
     gsap.set(magicBurst,   { opacity: 0, scale: 0.2 });
     gsap.set(scrollClosed, { opacity: 0, scale: 0.88, y: -20 });
@@ -371,8 +389,8 @@
     const tl = gsap.timeline();
 
     /*
-     * SCENE 01 — FRACTION-OF-A-SECOND DIVINE REVEAL & VILLU CHARGE (0.00s → 0.22s)
-     * Volumetric sun rays stream down instantly; celestial star charges at Rama's Villu
+     * SCENE 01 — DIVINE REVEAL & RAMA PULLS ARROW FROM QUIVER (0.00s → 0.34s)
+     * Volumetric sun rays stream down; Rama's hand smoothly draws golden arrow from quiver to bow
      */
     tl
       /* Slow cinematic camera push */
@@ -398,38 +416,109 @@
         ease: 'power2.out'
       }, 0.05)
 
-      /* Concentrated celestial golden star charges at Rama's Villu (drawn bow) */
-      .to(bowCharge, {
+      /* Rama's hand grasps golden arrow from quiver and brings it smoothly to the bow */
+      .to(rigArrowGroup, {
         opacity: 1,
-        scale: 1.9,
-        duration: 0.18,
-        ease: 'back.out(2)'
-      }, 0.05)
+        duration: 0.15,
+        ease: 'power1.out'
+      }, 0.08)
+      .to(rigHandGroup, {
+        opacity: 1,
+        duration: 0.15
+      }, 0.08)
+      .to([rigHandGroup, rigArrowGroup], {
+        x: 0,
+        y: 0,
+        rotation: 0,
+        duration: 0.26,
+        ease: 'power2.out'
+      }, 0.08)
 
     /*
-     * SCENE 02 — VILLU RELEASE & SPIRITUAL LIGHT WAVE FLIGHT (0.22s → 0.58s)
-     * Celestial flash at bow, radiant golden lightning wave streams across the sky
+     * SCENE 02 — RAMA DRAWS THE BOW TAUT & CHARGES CELESTIAL LIGHT (0.34s → 0.65s)
+     * Rama pulls the bowstring back towards his cheek; bow flexes under tension;
+     * Golden plasma star charges with divine rays at arrowhead
+     */
+      /* Arrow and hand pull back towards cheek */
+      .to([rigHandGroup, rigArrowGroup], {
+        x: 52,
+        duration: 0.32,
+        ease: 'power2.inOut'
+      }, 0.34)
+
+      /* Bow arc flexes under divine draw */
+      .to(rigBowArc, {
+        scaleX: 0.92,
+        duration: 0.32,
+        ease: 'power2.inOut'
+      }, 0.34)
+
+      /* Bowstring pulls back dynamically into taut V-shape */
+      .to({ stringPull: 0 }, {
+        stringPull: 1,
+        duration: 0.32,
+        ease: 'power2.inOut',
+        onUpdate: function() {
+          const sp = this.targets()[0].stringPull;
+          if (rigBowString) {
+            rigBowString.setAttribute('d', 'M 66,16 Q ' + (66 + 52 * sp) + ',100 66,184');
+          }
+        }
+      }, 0.34)
+
+      /* Concentrated celestial golden star ignites at arrowhead */
+      .to(bowCharge, {
+        opacity: 1,
+        scale: 2.1,
+        duration: 0.28,
+        ease: 'back.out(2)'
+      }, 0.36)
+
+    /*
+     * SCENE 03 — VILLU RELEASE & SPIRITUAL ARROW WAVY FLIGHT (0.65s → 1.05s)
+     * Bowstring snaps, Rama releases, spiritual arrow soars along the curving wavy S-curve
      */
       /* Bow flash at release */
       .to(bowCharge, {
-        scale: 3.5,
+        scale: 3.6,
         opacity: 1,
-        duration: 0.06,
+        duration: 0.05,
         ease: 'power2.in'
-      }, 0.22)
+      }, 0.65)
       .to(bowCharge, {
         opacity: 0,
         scale: 0.2,
         duration: 0.15,
         ease: 'power2.out'
-      }, 0.28)
+      }, 0.70)
 
-      /* Spiritual light wave becomes visible & draws across the sky */
-      .set(spiritualWave, { opacity: 1 }, 0.23)
-      .set(waveHead, { opacity: 1 }, 0.23)
+      /* Bowstring snaps back straight with vibration */
+      .call(() => {
+        if (rigBowString) rigBowString.setAttribute('d', 'M 66,16 L 66,184');
+      }, [], 0.65)
+      .to(rigBowArc, {
+        scaleX: 1.0,
+        duration: 0.15,
+        ease: 'elastic.out(2, 0.3)'
+      }, 0.65)
+
+      /* Hand recoils on release & arrow in rig launches */
+      .to(rigHandGroup, {
+        x: 60,
+        opacity: 0.3,
+        duration: 0.2,
+        ease: 'power2.out'
+      }, 0.65)
+      .set(rigArrowGroup, { opacity: 0 }, 0.66)
+      .to(ramaRig, { opacity: 0.6, duration: 0.4 }, 0.70)
+
+      /* Fullscreen Spiritual Arrow and Wavy Light Stream become visible & soar along wavy S-curve */
+      .set(spiritualWave, { opacity: 1 }, 0.66)
+      .set(spiritualArrow, { opacity: 1, scale: 1 }, 0.66)
+      .set(waveHead, { opacity: 1 }, 0.66)
       .to({ progress: 0 }, {
         progress: 1,
-        duration: 0.35,
+        duration: 0.40,
         ease: 'power2.out',
         onUpdate: function() {
           const pr = this.targets()[0].progress;
@@ -438,36 +527,50 @@
           if (waveLightning) waveLightning.style.strokeDashoffset = offset;
           if (waveCore) waveCore.style.strokeDashoffset = offset;
 
-          if (waveCore && waveCore.getPointAtLength && waveHead) {
+          if (waveCore && waveCore.getPointAtLength) {
             const pt = waveCore.getPointAtLength(totalWaveLen * pr);
+            const ptAhead = waveCore.getPointAtLength(Math.min(totalWaveLen, totalWaveLen * pr + 2));
+            const angleDeg = Math.atan2(ptAhead.y - pt.y, ptAhead.x - pt.x) * 180 / Math.PI;
+
             const px = (pt.x / 1000) * window.innerWidth;
             const py = (pt.y / 600) * window.innerHeight;
-            waveHead.style.left = px + 'px';
-            waveHead.style.top = py + 'px';
 
-            // Emit glowing celestial stardust along the trajectory
-            if (Math.random() < 0.75) {
+            if (spiritualArrow) {
+              spiritualArrow.style.left = px + 'px';
+              spiritualArrow.style.top = py + 'px';
+              // divine-arrow.webp naturally points left (180deg), so rotation is angleDeg - 180
+              spiritualArrow.style.transform = 'translate(-50%, -50%) rotate(' + (angleDeg - 180) + 'deg)';
+            }
+
+            if (waveHead) {
+              waveHead.style.left = px + 'px';
+              waveHead.style.top = py + 'px';
+            }
+
+            // Emit glowing celestial stardust along the wavy trajectory
+            if (Math.random() < 0.8) {
               burstSparks.push({
-                x: px + (Math.random() - 0.5) * 14,
-                y: py + (Math.random() - 0.5) * 14,
-                vx: (Math.random() - 0.5) * 2.2,
-                vy: (Math.random() - 0.5) * 2.2,
-                r: 1.5 + Math.random() * 2.6,
+                x: px + (Math.random() - 0.5) * 16,
+                y: py + (Math.random() - 0.5) * 16,
+                vx: (Math.random() - 0.5) * 2.4,
+                vy: (Math.random() - 0.5) * 2.4,
+                r: 1.5 + Math.random() * 2.8,
                 alpha: 1.0
               });
             }
           }
         }
-      }, 0.23)
+      }, 0.66)
 
     /*
-     * SCENE 03 — CELESTIAL MANDALA BURST & ROYAL SCROLL MANIFESTATION (0.58s → 0.70s)
-     * Spiritual light strikes center with sparkling golden burst, summoning royal golden rod
+     * SCENE 04 — CENTER IMPACT & ROYAL SCROLL UNROLLING (1.05s → 1.95s)
+     * Spiritual arrow impacts center with golden mandala explosion;
+     * Royal scroll manifests and unrolls smoothly top to bottom
      */
       /* Explode 60 golden celestial sparks at center */
       .call(() => {
         triggerGoldenBurst(window.innerWidth * 0.5, window.innerHeight * 0.48);
-      }, [], 0.58)
+      }, [], 1.05)
 
       /* Expanding mandala burst */
       .to(magicBurst, {
@@ -475,26 +578,32 @@
         scale: 2.4,
         duration: 0.25,
         ease: 'power2.out'
-      }, 0.58)
+      }, 1.05)
       .to(magicBurst, {
         scale: 4.0,
         opacity: 0,
         duration: 0.35,
         ease: 'power2.inOut'
-      }, 0.83)
+      }, 1.30)
 
-      /* Wave head bursts & wave dissolves into ambient golden glow */
+      /* Spiritual arrow & wave dissolve into divine light */
+      .to(spiritualArrow, {
+        scale: 1.5,
+        opacity: 0,
+        duration: 0.15,
+        ease: 'power2.in'
+      }, 1.05)
       .to(waveHead, {
         scale: 2.8,
         opacity: 0,
         duration: 0.15,
         ease: 'power2.in'
-      }, 0.58)
+      }, 1.05)
       .to(spiritualWave, {
         opacity: 0,
         duration: 0.25,
         ease: 'power1.out'
-      }, 0.60)
+      }, 1.08)
 
       /* Royal closed golden scroll appears in the radiant burst */
       .to(scrollClosed, {
@@ -503,37 +612,32 @@
         y: 0,
         duration: 0.2,
         ease: 'back.out(1.6)'
-      }, 0.62)
+      }, 1.08)
 
-    /*
-     * SCENE 04 — NATURAL SMOOTH SCROLL UNROLLING (0.70s → 1.55s)
-     * Golden rod unrolls top to bottom smoothly:
-     * Bottom roller physically glides downwards in lockstep with the ivory parchment
-     */
       /* Crossfade into open scroll top golden rod */
       .to(scrollClosed, {
         opacity: 0,
         scale: 0.98,
         duration: 0.15,
         ease: 'power1.in'
-      }, 0.70)
-      .set(scrollOpen, { opacity: 1 }, 0.70)
+      }, 1.15)
+      .set(scrollOpen, { opacity: 1 }, 1.15)
 
-      /* Bottom roller rolls down smoothly over 0.85s */
+      /* Bottom roller rolls down smoothly over 0.80s */
       .fromTo(scrollBotRoller, {
         top: '9.7%'
       }, {
         top: '80.8%',
-        duration: 0.85,
+        duration: 0.80,
         ease: 'power2.out'
-      }, 0.72)
+      }, 1.17)
       .fromTo(scrollParchment, {
         clipPath: 'inset(0 0 90.3% 0)'
       }, {
         clipPath: 'inset(0 0 19.2% 0)',
-        duration: 0.85,
+        duration: 0.80,
         ease: 'power2.out'
-      }, 0.72)
+      }, 1.17)
 
       /* Invitation text lines reveal smoothly */
       .to(Array.from(scrollBody.children), {
@@ -542,7 +646,7 @@
         stagger: 0.05,
         duration: 0.45,
         ease: 'power2.out'
-      }, 1.05)
+      }, 1.50)
 
       /* CTA button bounces in with golden glow aura */
       .fromTo(openBtn, {
@@ -553,7 +657,7 @@
         boxShadow: '0 4px 20px rgba(74, 10, 26, 0.45), 0 0 18px rgba(212, 175, 90, 0.55)',
         duration: 0.4,
         ease: 'back.out(1.6)'
-      }, 1.45);
+      }, 1.90);
 
     /* ── Button Event Listeners ──────────────────────────────────────────── */
     if (skipBtn) {
