@@ -52,12 +52,29 @@
      Curated Sacred & Ceremonial Soundscape (Feel Movement)
      --------------------------------------------------------------------- */
   const Soundscape = (() => {
-    const sounds = {
-      vilakkuFire: new Audio('assets/audio/vilakku-fire-on.wav'),
+    const audioSources = {
+      vilakkuFire:      'assets/audio/vilakku-fire-on.wav',
+      hanumanSriram:    'assets/audio/hanuman-sriram.m4a',
+      coupleFlutter:    'assets/audio/couple-flutter.m4a',
+      palaceDoor:       'assets/audio/palace-door-open.m4a',
+      scrapbookJaiRam:  'assets/audio/scrapbook-jai-ram.m4a',
     };
 
-    sounds.vilakkuFire.volume = 0.88;
-    sounds.vilakkuFire.preload = 'auto';
+    const sounds = {};
+    const baseVolumes = {
+      vilakkuFire:     0.88,
+      hanumanSriram:   0.95,
+      coupleFlutter:   0.85,
+      palaceDoor:      0.85,
+      scrapbookJaiRam: 0.90,
+    };
+
+    Object.entries(audioSources).forEach(([name, src]) => {
+      const a = new Audio(src);
+      a.preload = 'auto';
+      a.volume = baseVolumes[name] || 0.8;
+      sounds[name] = a;
+    });
 
     let unlocked = false;
     const unlock = () => {
@@ -81,9 +98,32 @@
     });
 
     const playedOnce = {};
+    const fadeTimers = {};
+    const durationTimers = {};
+
+    function fadeOutAndStop(audioEl, durationSec) {
+      if (!audioEl || audioEl.paused) return;
+      const startVol = audioEl.volume;
+      const startTime = performance.now();
+      const durMs = Math.max(80, durationSec * 1000);
+
+      function step(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(1, elapsed / durMs);
+        audioEl.volume = Math.max(0, startVol * (1 - progress));
+        if (progress < 1 && !audioEl.paused) {
+          requestAnimationFrame(step);
+        } else {
+          audioEl.pause();
+          audioEl.currentTime = 0;
+          audioEl.volume = startVol;
+        }
+      }
+      requestAnimationFrame(step);
+    }
 
     return {
-      play(name, { once = false, volume = null, minInterval = 1000 } = {}) {
+      play(name, { once = false, volume = null, minInterval = 800, duration = null, fadeOut = 0.35 } = {}) {
         const audioEl = sounds[name];
         if (!audioEl) return;
         if (once && playedOnce[name]) return;
@@ -93,19 +133,37 @@
         audioEl._lastPlay = now;
 
         if (once) playedOnce[name] = true;
+
+        if (fadeTimers[name]) { clearTimeout(fadeTimers[name]); delete fadeTimers[name]; }
+        if (durationTimers[name]) { clearTimeout(durationTimers[name]); delete durationTimers[name]; }
+
         try {
-          const clone = audioEl.cloneNode();
-          clone.volume = volume !== null ? volume : audioEl.volume;
-          const p = clone.play();
+          audioEl.currentTime = 0;
+          const targetVol = volume !== null ? volume : (baseVolumes[name] || 0.85);
+          audioEl.volume = targetVol;
+          const p = audioEl.play();
           if (p !== undefined) p.catch(() => {});
-        } catch (e) {
-          try {
-            audioEl.currentTime = 0;
-            if (volume !== null) audioEl.volume = volume;
-            const p = audioEl.play();
-            if (p !== undefined) p.catch(() => {});
-          } catch (err) {}
-        }
+
+          if (duration && duration > 0) {
+            const timeToFade = Math.max(100, (duration - fadeOut) * 1000);
+            durationTimers[name] = setTimeout(() => {
+              fadeOutAndStop(audioEl, fadeOut);
+            }, timeToFade);
+          }
+        } catch (err) {}
+      },
+
+      stop(name, { fade = 0.35 } = {}) {
+        const audioEl = sounds[name];
+        if (!audioEl || audioEl.paused) return;
+        if (durationTimers[name]) { clearTimeout(durationTimers[name]); delete durationTimers[name]; }
+        fadeOutAndStop(audioEl, fade);
+      },
+
+      stopAll({ fade = 0.35 } = {}) {
+        Object.keys(sounds).forEach(name => {
+          this.stop(name, { fade });
+        });
       }
     };
   })();
@@ -166,11 +224,6 @@
     const bgTemple        = q('#bgTemple');
     const introRays       = q('#introRays');
     const skyAura         = q('#skyAura');
-    const ramaRig         = q('#ramaRig');
-    const rigBowArc       = q('#rigBowArc');
-    const rigBowString    = q('#rigBowString');
-    const rigArrowGroup   = q('#rigArrowGroup');
-    const rigHandGroup    = q('#rigHandGroup');
     const bowCharge       = q('#bowCharge');
     const spiritualWave   = q('#spiritualWave');
     const waveAura        = q('#waveAura');
@@ -365,15 +418,6 @@
     gsap.set(introRays,    { opacity: 0, scale: 0.95 });
     gsap.set(skyAura,      { opacity: 0, scale: 0.85 });
 
-    /* Lord Rama Animated Action Rig initial state */
-    gsap.set(ramaRig,      { opacity: 1 });
-    gsap.set(rigBowArc,    { scaleX: 1, transformOrigin: '80% 50%' });
-    if (rigBowString) rigBowString.setAttribute('d', 'M 66,16 L 66,184');
-    /* Hand starting at quiver behind shoulder */
-    gsap.set(rigHandGroup, { x: 38, y: -42, rotation: -18, opacity: 0.7, transformOrigin: '50% 50%' });
-    /* Arrow beginning in quiver */
-    gsap.set(rigArrowGroup,{ x: 48, y: -45, rotation: -22, opacity: 0, transformOrigin: '100% 50%' });
-
     gsap.set(bowCharge,    { opacity: 0, scale: 0.2 });
     gsap.set(spiritualWave,{ opacity: 0 });
     gsap.set(spiritualArrow,{ opacity: 0, scale: 0.7 });
@@ -383,14 +427,14 @@
     gsap.set(scrollOpen,   { opacity: 0 });
     gsap.set(scrollParchment, { clipPath: 'inset(0 0 90.3% 0)' });
     gsap.set(scrollBotRoller, { top: '9.7%' });
-    gsap.set(Array.from(scrollBody.children), { opacity: 0, y: 12 });
+    gsap.set(Array.from(scrollBody.children), { opacity: 0, y: 10 });
 
     /* ── Main GSAP Cinematic Timeline ────────────────────────────────────── */
     const tl = gsap.timeline();
 
     /*
-     * SCENE 01 — DIVINE REVEAL & RAMA PULLS ARROW FROM QUIVER (0.00s → 0.34s)
-     * Volumetric sun rays stream down; Rama's hand smoothly draws golden arrow from quiver to bow
+     * SCENE 01 — DIVINE REVEAL & SUNSET TEMPLE AURA (0.00s → 0.35s)
+     * Volumetric sun rays stream down; golden celestial aura glows around Lord Rama
      */
     tl
       /* Slow cinematic camera push */
@@ -416,73 +460,26 @@
         ease: 'power2.out'
       }, 0.05)
 
-      /* Rama's hand grasps golden arrow from quiver and brings it smoothly to the bow */
-      .to(rigArrowGroup, {
-        opacity: 1,
-        duration: 0.15,
-        ease: 'power1.out'
-      }, 0.08)
-      .to(rigHandGroup, {
-        opacity: 1,
-        duration: 0.15
-      }, 0.08)
-      .to([rigHandGroup, rigArrowGroup], {
-        x: 0,
-        y: 0,
-        rotation: 0,
-        duration: 0.26,
-        ease: 'power2.out'
-      }, 0.08)
-
     /*
-     * SCENE 02 — RAMA DRAWS THE BOW TAUT & CHARGES CELESTIAL LIGHT (0.34s → 0.65s)
-     * Rama pulls the bowstring back towards his cheek; bow flexes under tension;
-     * Golden plasma star charges with divine rays at arrowhead
+     * SCENE 02 — LORD RAMA CHARGES CELESTIAL SPIRITUAL LIGHT AT VILLU (0.35s → 0.65s)
+     * Concentrated star of divine golden energy ignites and swells at the sacred bow
      */
-      /* Arrow and hand pull back towards cheek */
-      .to([rigHandGroup, rigArrowGroup], {
-        x: 52,
-        duration: 0.32,
-        ease: 'power2.inOut'
-      }, 0.34)
-
-      /* Bow arc flexes under divine draw */
-      .to(rigBowArc, {
-        scaleX: 0.92,
-        duration: 0.32,
-        ease: 'power2.inOut'
-      }, 0.34)
-
-      /* Bowstring pulls back dynamically into taut V-shape */
-      .to({ stringPull: 0 }, {
-        stringPull: 1,
-        duration: 0.32,
-        ease: 'power2.inOut',
-        onUpdate: function() {
-          const sp = this.targets()[0].stringPull;
-          if (rigBowString) {
-            rigBowString.setAttribute('d', 'M 66,16 Q ' + (66 + 52 * sp) + ',100 66,184');
-          }
-        }
-      }, 0.34)
-
-      /* Concentrated celestial golden star ignites at arrowhead */
       .to(bowCharge, {
         opacity: 1,
-        scale: 2.1,
+        scale: 2.2,
         duration: 0.28,
         ease: 'back.out(2)'
-      }, 0.36)
+      }, 0.35)
 
     /*
      * SCENE 03 — VILLU RELEASE & SPIRITUAL ARROW WAVY FLIGHT (0.65s → 1.05s)
-     * Bowstring snaps, Rama releases, spiritual arrow soars along the curving wavy S-curve
+     * Divine flash at release; spiritual arrow & wavy light beam soar along curving path
      */
-      /* Bow flash at release */
+      /* Celestial flash at bow */
       .to(bowCharge, {
         scale: 3.6,
         opacity: 1,
-        duration: 0.05,
+        duration: 0.06,
         ease: 'power2.in'
       }, 0.65)
       .to(bowCharge, {
@@ -490,27 +487,7 @@
         scale: 0.2,
         duration: 0.15,
         ease: 'power2.out'
-      }, 0.70)
-
-      /* Bowstring snaps back straight with vibration */
-      .call(() => {
-        if (rigBowString) rigBowString.setAttribute('d', 'M 66,16 L 66,184');
-      }, [], 0.65)
-      .to(rigBowArc, {
-        scaleX: 1.0,
-        duration: 0.15,
-        ease: 'elastic.out(2, 0.3)'
-      }, 0.65)
-
-      /* Hand recoils on release & arrow in rig launches */
-      .to(rigHandGroup, {
-        x: 60,
-        opacity: 0.3,
-        duration: 0.2,
-        ease: 'power2.out'
-      }, 0.65)
-      .set(rigArrowGroup, { opacity: 0 }, 0.66)
-      .to(ramaRig, { opacity: 0.6, duration: 0.4 }, 0.70)
+      }, 0.71)
 
       /* Fullscreen Spiritual Arrow and Wavy Light Stream become visible & soar along wavy S-curve */
       .set(spiritualWave, { opacity: 1 }, 0.66)
@@ -639,14 +616,14 @@
         ease: 'power2.out'
       }, 1.17)
 
-      /* Invitation text lines reveal smoothly */
+      /* Invitation text lines reveal smoothly as parchment unrolls */
       .to(Array.from(scrollBody.children), {
         opacity: 1,
         y: 0,
-        stagger: 0.05,
-        duration: 0.45,
+        stagger: 0.04,
+        duration: 0.35,
         ease: 'power2.out'
-      }, 1.50)
+      }, 1.25)
 
       /* CTA button bounces in with golden glow aura */
       .fromTo(openBtn, {
@@ -1128,13 +1105,31 @@
     lines.forEach(p => { p.setAttribute('pathLength', 1); p.style.strokeDasharray = 1; p.style.strokeDashoffset = 1; });
     gsap.set(leaves, { scale: 0, opacity: 0 });
     gsap.set(lotus, { scale: .12, opacity: 0, rotate: -10 });
-    gsap.timeline({ scrollTrigger: { trigger: box, start: 'top 78%', once: true } })
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: box,
+        start: 'top 78%',
+        once: true,
+        onEnter() {
+          Soundscape.play('coupleFlutter', { duration: 9.0, fadeOut: 0.8, volume: 0.85 });
+        }
+      }
+    })
       .to(lines[0], { strokeDashoffset: 0, duration: 1.4, ease: 'sine.inOut' })
       .to(leaves, { scale: 1, opacity: 1, duration: .7, stagger: .2, ease: 'back.out(1.8)' }, .6)
       .to(lines[1], { strokeDashoffset: 0, duration: 2.2, ease: 'sine.inOut' }, 1.1)
       .to(lotus, { opacity: 1, duration: .5 }, 1.4)
       .to(lotus, { scale: 1, rotate: 0, duration: 1.8, ease: 'back.out(1.4)' }, 1.4)
       .call(() => { const r = lotus.getBoundingClientRect(); petalBurst(r.left + r.width / 2, r.top + r.height / 2, 12); }, null, 2.2);
+
+    // Fade out and stop flutter melody when user scrolls away from couple section
+    ScrollTrigger.create({
+      trigger: '#couple',
+      start: 'top bottom',
+      end: 'bottom top',
+      onLeave: () => Soundscape.stop('coupleFlutter', { fade: 0.6 }),
+      onLeaveBack: () => Soundscape.stop('coupleFlutter', { fade: 0.6 })
+    });
   }
 
   /* ---------------------------------------------------------------------
@@ -1274,6 +1269,7 @@
       if (spread >= 0 || busy) return;
       busy = true; spread = 0; update(); prime(0);
       book.classList.add('is-open'); stage.classList.remove('is-closed');
+      Soundscape.play('scrapbookJaiRam', { volume: 0.88 });
       const tl = gsap.timeline();
       if (hint) tl.to(hint, { autoAlpha: 0, duration: .3 }, 0);
       if (ANIM && intro) tl.to(intro, { opacity: 0, y: -30, scale: 1.06, duration: .9, ease: 'power2.in' }, 0);
@@ -1287,6 +1283,7 @@
     function close() {
       if (busy || spread !== 0) return;
       busy = true; stopAuto(); clearTimeout(idleTimer);
+      Soundscape.stop('scrapbookJaiRam', { fade: 0.8 });
       spread = -1; update();
       book.classList.remove('is-open');
       const tl = gsap.timeline({ onComplete: () => { busy = false; stage.classList.add('is-closed'); } });
@@ -1329,8 +1326,21 @@
     if (!ANIM) { if (intro) intro.remove(); open(); return; }
     gsap.set(book, { opacity: 0, x: closedX() });
     ScrollTrigger.create({ trigger: stage, start: 'top 72%', once: true, onEnter: open });
-    // stop turning pages when the book is out of view
-    ScrollTrigger.create({ trigger: stage, start: 'top bottom', end: 'bottom top', onToggle: s => { if (!s.isActive) stopAuto(); else if (spread >= 0 && !auto) startAuto(); } });
+    // stop turning pages and pause music when the book is out of view
+    ScrollTrigger.create({
+      trigger: stage,
+      start: 'top bottom',
+      end: 'bottom top',
+      onToggle: s => {
+        if (!s.isActive) {
+          stopAuto();
+          Soundscape.stop('scrapbookJaiRam', { fade: 0.8 });
+        } else if (spread >= 0) {
+          if (!auto) startAuto();
+          Soundscape.play('scrapbookJaiRam', { volume: 0.88 });
+        }
+      }
+    });
   }
 
   /* ---------------------------------------------------------------------
@@ -1547,11 +1557,21 @@
         onStart() {
           const r = $('.hn__heart').getBoundingClientRect();
           marigolds.hanuman?.burst(r.left + r.width / 2, r.top + r.height / 2, small() ? 50 : 80, .7);
+          Soundscape.play('hanumanSriram', { duration: 1.6, fadeOut: 0.35, volume: 0.95 });
         }
       }, 2.0)
       .to('.hn__glow', { opacity: .5, duration: 1.4 }, 3.3)
       .from('.hn__verse, .hn__blessing', { opacity: 0, y: 26, duration: 1.1, stagger: .2, ease: 'power3.out' }, 2.8);
     tl.eventCallback('onComplete', () => gsap.to('.hn__heart', { scale: 1.06, duration: .95, repeat: -1, yoyo: true, ease: 'sine.inOut' }));
+
+    // Stop Sriram chant when user scrolls away from Hanuman section
+    ScrollTrigger.create({
+      trigger: '#hanuman',
+      start: 'top bottom',
+      end: 'bottom top',
+      onLeave: () => Soundscape.stop('hanumanSriram', { fade: 0.25 }),
+      onLeaveBack: () => Soundscape.stop('hanumanSriram', { fade: 0.25 })
+    });
   }
 
   /* ---------------------------------------------------------------------
@@ -1604,6 +1624,9 @@
       // 1. doors open onto the picture of the celebration
       tl.to(L, { rotateY: -108, duration: 1 }, lbl)
         .to(R, { rotateY: 108, duration: 1 }, lbl)
+        .call(() => {
+          Soundscape.play('palaceDoor', { minInterval: 1200, volume: 0.85 });
+        }, [], lbl)
         .to(light, { opacity: 1, duration: 1 }, lbl)
         .fromTo(scene, { scale: 1.12 }, { scale: 1, duration: 1.3, ease: 'power2.out' }, lbl)
         // 2. the details card pops up beneath it

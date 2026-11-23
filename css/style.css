@@ -1465,46 +1465,6 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
 }
 
 /* ── Lord Rama Animated Bow Action Rig ──────────────────────────────────── */
-.intro__rama-rig {
-  position: absolute;
-  top: 9%;
-  right: 8%;
-  width: clamp(140px, 16vw, 210px);
-  height: clamp(140px, 16vw, 210px);
-  pointer-events: none;
-  z-index: 5;
-  transform-origin: 80% 40%;
-  filter: drop-shadow(0 0 16px rgba(255, 215, 80, 0.75));
-}
-
-@media (min-aspect-ratio: 1/1) {
-  .intro__rama-rig {
-    top: 10%;
-    right: 8%;
-    width: clamp(160px, 15vw, 230px);
-    height: clamp(160px, 15vw, 230px);
-  }
-}
-
-.rama-rig__svg {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.rig-bow__arc {
-  will-change: transform;
-}
-
-.rig-bow__string {
-  will-change: d;
-}
-
-.rig-arrow__group,
-.rig-hand__group {
-  will-change: transform, opacity;
-}
-
 /* Concentrated Star of Celestial Golden Energy charging at Rama's Villu in the sky */
 .intro__bow-charge {
   position: absolute;

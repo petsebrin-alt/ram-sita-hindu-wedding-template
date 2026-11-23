@@ -88,68 +88,6 @@
       <!-- Divine Sky Aura around Lord Rama in the Sunset Sky -->
       <div class="intro__sky-aura" id="skyAura" aria-hidden="true"></div>
 
-      <!-- Lord Rama Animated Action Rig (Hand pulling arrow from quiver, nocking & drawing bow) -->
-      <div class="intro__rama-rig" id="ramaRig" aria-hidden="true">
-        <svg class="rama-rig__svg" viewBox="0 0 220 220">
-          <defs>
-            <filter id="goldGlow" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur stdDeviation="3.5" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-            <linearGradient id="rigGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#ffffff" />
-              <stop offset="35%" stop-color="#ffe082" />
-              <stop offset="70%" stop-color="#ffb300" />
-              <stop offset="100%" stop-color="#d48800" />
-            </linearGradient>
-            <linearGradient id="rigArrowGrad" x1="0%" y1="50%" x2="100%" y2="50%">
-              <stop offset="0%" stop-color="#ffffff" />
-              <stop offset="25%" stop-color="#fff8e1" />
-              <stop offset="60%" stop-color="#ffd54f" />
-              <stop offset="100%" stop-color="#ffb300" />
-            </linearGradient>
-          </defs>
-
-          <!-- Golden Bow Arc (Villu) -->
-          <path class="rig-bow__arc" id="rigBowArc"
-            d="M 66,16 C 118,70 118,130 66,184"
-            fill="none" stroke="url(#rigGoldGrad)" stroke-width="7" stroke-linecap="round" filter="url(#goldGlow)" />
-          
-          <!-- Ornate Bow Tips and Gems -->
-          <circle cx="66" cy="16" r="5" fill="#ffd54f" filter="url(#goldGlow)" />
-          <circle cx="66" cy="184" r="5" fill="#ffd54f" filter="url(#goldGlow)" />
-          <circle cx="98" cy="100" r="5" fill="#c2185b" stroke="#ffe082" stroke-width="2" />
-
-          <!-- Dynamic Bowstring (drawn back under tension) -->
-          <path class="rig-bow__string" id="rigBowString"
-            d="M 66,16 L 66,184"
-            fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" filter="url(#goldGlow)" />
-
-          <!-- Arrow in transit / nocked onto bow -->
-          <g class="rig-arrow__group" id="rigArrowGroup">
-            <!-- Arrow Shaft -->
-            <line class="rig-arrow__shaft" x1="8" y1="100" x2="140" y2="100"
-              stroke="url(#rigArrowGrad)" stroke-width="3.5" stroke-linecap="round" filter="url(#goldGlow)" />
-            <!-- Arrow Head (Divine point) -->
-            <polygon points="8,100 24,93 19,100 24,107" fill="#ffffff" filter="url(#goldGlow)" />
-            <!-- Arrow Fletching (Celestial feathers) -->
-            <polygon points="140,100 122,91 128,100 122,109" fill="#ffe082" opacity="0.95" />
-          </g>
-
-          <!-- Rama's Sacred Drawing Hand (gilded vambrace & fingers holding arrow nock) -->
-          <g class="rig-hand__group" id="rigHandGroup">
-            <!-- Wrist Vambrace -->
-            <ellipse cx="148" cy="100" rx="10" ry="15" fill="url(#rigGoldGrad)" filter="url(#goldGlow)" />
-            <circle cx="148" cy="100" r="3.5" fill="#c2185b" />
-            <!-- Hand / Fingers gripping nock -->
-            <path d="M 134,93 C 130,97 130,103 134,107 C 141,108 145,102 144,97 Z" fill="#ffe0b2" stroke="#d48800" stroke-width="0.8" />
-          </g>
-        </svg>
-      </div>
-
       <!-- Concentrated Star of Celestial Golden Energy charging at Rama's Villu (Bow) in the sky -->
       <div class="intro__bow-charge" id="bowCharge" aria-hidden="true"></div>
 
