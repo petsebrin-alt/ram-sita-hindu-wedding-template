@@ -1663,3 +1663,18 @@ section.is-offscreen *, section.is-offscreen::before, section.is-offscreen::afte
   .thanks__verse-en { font-size: clamp(.74rem, 1.2vw, .88rem); }
   .thanks__tag { margin-top: 6px; font-size: .62rem; }
 }
+
+/* event windows: a lamp that catches fire, and a lotus that opens from a bud */
+.ev-lamp { position: absolute; bottom: 6%; width: 17%; z-index: 2; }
+.ev-lamp--l { left: 6%; } .ev-lamp--r { right: 6%; }
+.ev-lamp .ev-scene__diya { position: static; display: block; width: 100%; }
+.ev-lamp__flame { position: absolute; left: 50%; bottom: 47%; height: 78%; translate: -50% 0; transform-origin: 50% 100%; opacity: 0; }
+.ev-lamp__flame img { display: block; height: 100%; width: auto; animation: op-flicker 1.5s ease-in-out infinite; transform-origin: 50% 95%; }
+.ev-lamp--r .ev-lamp__flame img { animation-duration: 1.2s; animation-delay: -.3s; }
+.ev-lamp__glow { position: absolute; left: 50%; top: 62%; width: 380%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 214, 130, .55), rgba(255, 150, 50, .16) 55%, transparent); animation: op-glow 2.2s ease-in-out infinite; }
+.ev-lamp__flame.is-lighting .ev-lamp__glow { animation: op-flare .9s ease-out 1, op-glow 2.2s ease-in-out .9s infinite; }
+.ev-bloom { position: absolute; bottom: 12%; width: 20%; z-index: 1; aspect-ratio: 770 / 514; }
+.ev-bloom--l { left: 14%; } .ev-bloom--r { right: 14%; scale: -1 1; }
+.ev-bloom .ev-scene__lotus { position: absolute; left: 0; bottom: 0; width: 100%; transform-origin: 50% 85%; }
+.ev-bloom .ev-scene__lotus--r { scale: 1; }
+.ev-bloom__bud { position: absolute; left: 50%; bottom: 4%; height: 120%; width: auto; translate: -50% 0; transform-origin: 50% 100%; filter: drop-shadow(0 6px 8px rgba(120, 30, 60, .35)); }

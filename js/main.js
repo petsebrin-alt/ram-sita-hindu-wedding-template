@@ -215,6 +215,8 @@
         fadeOutAndStop(audioEl, fade);
       },
 
+      isPlaying(name) { const a = sounds[name]; return !!a && !a.paused; },
+
       stopAll({ fade = 0.5 } = {}) {
         Object.keys(sounds).forEach(name => {
           this.stop(name, { fade });
@@ -1502,8 +1504,76 @@
       gsap.set($('.ev-window__light', u), { opacity: .4 });
       gsap.set($('.ev-pop', u), { autoAlpha: 0, y: 40, scale: .92 });
     });
-    const labels = [];
+    const labels = [], openSpans = [];
     let tl = null;
+
+    // each window's two lamps start unlit and its lotuses start as buds
+    const scenes = units.map(u => {
+      const scene = $('.ev-scene', u);
+      const lamps = $$('.ev-scene__diya', scene).map((d, k) => {
+        const wrap = document.createElement('span');
+        wrap.className = 'ev-lamp ev-lamp--' + (k ? 'r' : 'l');
+        d.replaceWith(wrap);
+        d.src = 'assets/diya/diya-bowl-0' + (k + 1) + '.webp';
+        const flame = document.createElement('span'); flame.className = 'ev-lamp__flame';
+        flame.innerHTML = '<span class="ev-lamp__glow"></span><img decoding="async" src="assets/diya/flame-0' + (k + 1) + '.webp" alt="">';
+        wrap.append(d, flame);
+        return flame;
+      });
+      const lotuses = $$('.ev-scene__lotus', scene).map((l, k) => {
+        const wrap = document.createElement('span');
+        wrap.className = 'ev-bloom ev-bloom--' + (k ? 'r' : 'l');
+        l.replaceWith(wrap);
+        const bud = document.createElement('img'); bud.className = 'ev-bloom__bud'; bud.alt = ''; bud.decoding = 'async';
+        bud.src = 'assets/flowers/lotus-photo-bud.webp';
+        wrap.append(bud, l);
+        return { wrap, bud, bloom: l };
+      });
+      return { lamps, lotuses, tl: null };
+    });
+    const resetScene = s => {
+      if (s.tl) { s.tl.kill(); s.tl = null; }
+      gsap.set(s.lamps, { opacity: 0, scale: .05 });
+      s.lotuses.forEach(o => { gsap.set(o.bud, { opacity: 0, scale: .35, y: 10 }); gsap.set(o.bloom, { opacity: 0, scale: .55, rotate: 0 }); });
+    };
+    scenes.forEach(resetScene);
+    const fireSound = () => { try { const a = new Audio('assets/audio/vilakku-fire-on.wav'); a.volume = .75; a.play().catch(() => {}); } catch (e) {} };
+    // a card opens: the lamps catch fire one after the other, then both lotuses slowly open from buds
+    const playScene = s => {
+      resetScene(s);
+      s.tl = gsap.timeline()
+        .add(() => { fireSound(); s.lamps[0].classList.add('is-lighting'); }, .15)
+        .to(s.lamps[0], { opacity: 1, scale: 1, duration: .8, ease: 'elastic.out(1, .55)' }, .15)
+        .add(() => { fireSound(); s.lamps[1] && s.lamps[1].classList.add('is-lighting'); }, .85)
+        .to(s.lamps.slice(1), { opacity: 1, scale: 1, duration: .8, ease: 'elastic.out(1, .55)' }, .85);
+      s.lotuses.forEach((o, k) => {
+        const t = 1.6 + k * .25;
+        s.tl.to(o.bud, { opacity: 1, scale: .8, y: 0, duration: 1.2, ease: 'sine.out' }, t)
+          .to(o.bud, { scale: .95, opacity: 0, duration: 1.4, ease: 'sine.inOut' }, t + 1.1)
+          .to(o.bloom, { opacity: 1, scale: 1, duration: 2.6, ease: 'sine.out' }, t + 1.1);
+      });
+    };
+    // the music plays for as long as a card is open; when its doors close it fades, and the next card starts it again
+    let active = -1;
+    function setActive(i) {
+      if (i === active) {
+        if (i >= 0 && !Soundscape.isPlaying('eventsCelebration')) Soundscape.play('eventsCelebration', { loop: true, volume: .8, allowScrollUp: true, minInterval: 0 });
+        return;
+      }
+      if (active >= 0) resetScene(scenes[active]);
+      active = i;
+      if (i >= 0) {
+        playScene(scenes[i]);
+        Soundscape.play('eventsCelebration', { loop: true, volume: .8, allowScrollUp: true, minInterval: 0 });
+      } else Soundscape.stop('eventsCelebration', { fade: .9 });
+    }
+    const syncCards = self => {
+      if (!tl) return;
+      const t = self.progress * tl.duration();
+      let idx = -1;
+      openSpans.forEach(([a, b], i) => { if (t >= a && t < b) idx = i; });
+      setActive(self.isActive ? idx : -1);
+    };
     const syncDots = self => {
       if (!tl) return;
       const t = self.progress * tl.duration(); let idx = 0;
@@ -1515,11 +1585,10 @@
       scrollTrigger: {
         trigger: '#events', start: 'top top', end: () => '+=' + innerHeight * (units.length * 1.5 + .4),
         scrub: 1, pin: true, anticipatePin: 1, invalidateOnRefresh: true,
-        onUpdate: syncDots,
+        onUpdate: self => { syncDots(self); syncCards(self); },
         onRefresh: self => requestAnimationFrame(() => syncDots(self)),
-        onEnter: () => Soundscape.play('eventsCelebration', { loop: true, volume: 0.80 }),
-        onLeave: () => Soundscape.stop('eventsCelebration', { fade: 0.8 }),
-        onLeaveBack: () => Soundscape.stop('eventsCelebration', { fade: 0.8 })
+        onLeave: () => setActive(-1),
+        onLeaveBack: () => setActive(-1)
       }
     });
     tl.fromTo(track, { y: yAt(0) }, { y: yAt(0), duration: .01 })
@@ -1547,6 +1616,7 @@
         // 2. the details card pops up beneath it
         .to(pop, { autoAlpha: 1, y: 0, scale: 1, duration: .7, ease: 'back.out(1.6)' }, lbl + '+=.75')
         .to({}, { duration: .9 });
+      openSpans[i] = [tl.labels[lbl] + .35, i < units.length - 1 ? tl.duration() : Infinity];
       // 3. card tucks away and the doors close before the next window
       if (i < units.length - 1) {
         tl.to(pop, { autoAlpha: 0, y: 24, scale: .96, duration: .45, ease: 'power1.in' })
