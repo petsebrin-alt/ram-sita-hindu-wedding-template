@@ -65,6 +65,10 @@
       scrapbookJaiRam:   'assets/audio/scrapbook-jai-ram.m4a',
       thankyouPeacock:   'assets/audio/thankyou-peacock.m4a',
       clickSeal:         'assets/audio/click-seal.m4a',
+      rsvpFlute:         'assets/audio/rsvp-flute.m4a',      // bansuri flute, 1:01-1:10 of the track, looping
+      ramSitaTarang:     'assets/audio/ramsita-tarang.m4a',  // Sita Ram tarang, festive music for the thank you
+      wishSparkle:       'assets/audio/wish-sparkle.m4a',    // magical sparkle as each blessing turns
+      wishNew:           'assets/audio/wish-new.m4a',        // a deeper sparkle when a new blessing arrives
     };
 
     const sounds = {};
@@ -81,6 +85,10 @@
       scrapbookJaiRam:   0.90,
       thankyouPeacock:   0.85,
       clickSeal:         0.95,
+      rsvpFlute:         0.8,
+      ramSitaTarang:     0.8,
+      wishSparkle:       0.6,
+      wishNew:           0.75,
     };
 
     Object.entries(audioSources).forEach(([name, src]) => {
@@ -1442,6 +1450,25 @@
     const target = new Date($('#countdownCells')?.dataset.target || CONFIG.muhurat).getTime();
     const units = ['days', 'hours', 'minutes', 'seconds'].reduce((o, k) => (o[k] = $$(`[data-unit="${k}"]`, sec), o), {});
     const hand = $('#cdHand'); let steps = 0;
+    // a gentle wooden clock: tick, tock, made in the browser (no file to download)
+    let actx = null, inView = false;
+    const wake = () => { try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); if (actx.state === 'suspended') actx.resume(); } catch (e) {} };
+    ['pointerdown', 'touchstart', 'keydown'].forEach(ev => addEventListener(ev, wake, { passive: true }));
+    function clockSound(odd) {
+      if (!actx || actx.state !== 'running' || document.hidden) return;
+      const t = actx.currentTime;
+      // the strike: a short knock on wood
+      const len = Math.floor(actx.sampleRate * .05), buf = actx.createBuffer(1, len, actx.sampleRate), d = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 6);
+      const src = actx.createBufferSource(); src.buffer = buf;
+      const bp = actx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = odd ? 2300 : 1700; bp.Q.value = 6;
+      // the body of the clock ringing softly under it
+      const o = actx.createOscillator(); o.type = 'sine'; o.frequency.value = odd ? 880 : 660;
+      const og = actx.createGain(); og.gain.setValueAtTime(.045, t); og.gain.exponentialRampToValueAtTime(.0001, t + .25);
+      const g = actx.createGain(); g.gain.value = .5;
+      src.connect(bp).connect(g).connect(actx.destination); o.connect(og).connect(actx.destination);
+      src.start(t); o.start(t); o.stop(t + .3);
+    }
     function tick() {
       let d = Math.max(0, target - Date.now());
       const days = Math.floor(d / 864e5); d -= days * 864e5;
@@ -1451,9 +1478,11 @@
       const set = (k, v, w) => units[k].forEach(el => { el.textContent = String(v).padStart(w, '0'); });
       set('days', days, 3); set('hours', h, 2); set('minutes', m, 2); set('seconds', s, 2);
       if (hand) hand.style.rotate = (steps++ * 6) + 'deg';
+      if (inView) clockSound(steps % 2);
       if (target - Date.now() <= 0) $('#cdMuhurat').textContent = 'The celebrations have begun — shubh vivah!';
     }
     tick(); setInterval(tick, 1000);
+    if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { inView = e.isIntersecting; }, { threshold: .35 }).observe(sec);
     if (!ANIM) return;
     gsap.from('.cd__dial', { scale: .55, rotate: -90, opacity: 0, duration: 1.8, ease: 'expo.out', scrollTrigger: { trigger: '.cd__dial', start: 'top 82%', once: true } });
     gsap.from('.cd__f', { opacity: 0, scale: .6, duration: .9, stagger: .12, ease: 'back.out(1.8)', delay: .7, scrollTrigger: { trigger: '.cd__dial', start: 'top 82%', once: true } });
@@ -1513,7 +1542,9 @@
     const track = $('.events__track'), vp = $('.events__viewport');
     if (!units.length || !track) return;
     const step = () => units[0].offsetHeight + (parseFloat(getComputedStyle(units[0]).marginBottom) || 0);
-    const yAt = i => () => (vp.clientHeight - units[0].offsetHeight) / 2 - i * step();
+    // centre each window together with its details card (the grand card hangs below the window)
+    const blockH = () => { const p = $('.ev-pop', units[0]); return Math.max(units[0].offsetHeight, p ? p.offsetTop + p.offsetHeight : 0); };
+    const yAt = i => () => Math.max(0, (vp.clientHeight - blockH()) / 2) - i * step();
     gsap.set(track, { y: yAt(0)() });
     units.forEach(u => {
       gsap.set($('.ev-window__light', u), { opacity: .4 });
@@ -1782,8 +1813,11 @@
       count.textContent = (i + 1) + ' / ' + list.length;
       fit();
     };
-    const show = (next, dir = 1) => {
+    let wishVisible = false;
+    if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { wishVisible = e.isIntersecting; }, { threshold: .3 }).observe($('#wishBoard'));
+    const show = (next, dir = 1, fresh = false) => {
       i = (next + list.length) % list.length;
+      if (wishVisible) Soundscape.play(fresh ? 'wishNew' : 'wishSparkle', { allowScrollUp: true, minInterval: 300 });
       if (!ANIM) return fill();
       gsap.timeline()
         .to(text, { opacity: 0, y: -14 * dir, duration: .35, ease: 'power1.in' })
@@ -1812,7 +1846,7 @@
       const land = () => {
         const s = scroll.getBoundingClientRect();
         petalBurst(s.left + s.width / 2, s.top + s.height / 2, 22);
-        show(0, 1);
+        wishVisible = true; show(0, 1, true);
         note.textContent = 'Your blessing now hangs on Jatayu’s scroll. Dhanyavaad!';
       };
       if (!ANIM || !lotus) { land(); return; }
@@ -1858,6 +1892,7 @@
       ScrollTrigger.create({
         trigger: stage, start: 'top 85%',
         onEnter: () => {
+          if (!opened) Soundscape.play('rsvpFlute', { loop: true, allowScrollUp: true, minInterval: 0 });
           flyIn = gsap.timeline()
             .to(fly, { autoAlpha: 1, duration: .8, ease: 'sine.out' }, 0)
             .to(fly, { x: 0, duration: 3.4, ease: 'sine.out' }, 0)
@@ -1872,6 +1907,7 @@
     // 2. tap the wax seal: it breaks, the flap opens, the letter rises and the invitation comes out
     function openEnvelope() {
       Soundscape.play('clickSeal', { volume: 0.95, allowScrollUp: true, minInterval: 50 });
+      Soundscape.stop('rsvpFlute', { fade: 1.2 });
       if (opened) return; opened = true;
       stage.classList.add('is-open');
       if (!ANIM) { gsap.set(card, { autoAlpha: 1 }); return; }
@@ -1956,6 +1992,8 @@
     $('#rsvpAccept').addEventListener('click', () => {
       Soundscape.play('clickSeal', { volume: 0.95, allowScrollUp: true, minInterval: 50 });
       store.set(KEY, { status: 'accept', at: new Date().toISOString() });
+      Soundscape.stop('rsvpFlute', { fade: .6 });
+      Soundscape.play('ramSitaTarang', { allowScrollUp: true, minInterval: 0 });
       showDone(true);
     });
 
@@ -1969,6 +2007,9 @@
         .fromTo(scene, { autoAlpha: 0, scale: .94 }, { autoAlpha: 1, scale: 1, duration: .9, ease: 'power2.out' });
     });
     // the answer is remembered, but every visit starts again with Hanuman flying in
+    // leaving the RSVP section (either way) quiets its music
+    const quiet = () => { Soundscape.stop('rsvpFlute', { fade: .8 }); Soundscape.stop('ramSitaTarang', { fade: 1.2 }); };
+    ScrollTrigger.create({ trigger: '#rsvp', start: 'top bottom', end: 'bottom top', onLeave: quiet, onLeaveBack: quiet });
   }
 
 

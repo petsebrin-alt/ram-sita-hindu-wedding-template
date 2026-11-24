@@ -1709,3 +1709,31 @@ section.is-offscreen *, section.is-offscreen::before, section.is-offscreen::afte
   .rpage__corner--r { right: 6px; } .rpage__corner--l { left: 6px; }
   .rbook-intro { width: min(360px, 94vw); }
 }
+
+/* ---- event details: the grand carved golden frame (arched top, pillars, lotus-heart base) ---- */
+.events { --cs: calc(var(--ev-w) * .9 / 650); }
+.ev-pop {
+  left: 5%; right: 5%; top: calc(60% - 64px); padding: 0; border-radius: 0; background: none;
+  box-shadow: none; filter: drop-shadow(0 18px 26px rgba(40, 0, 15, .55));
+  border-style: solid; border-color: transparent;
+  border-width: calc(var(--cs) * 168) calc(var(--cs) * 74) calc(var(--cs) * 100) calc(var(--cs) * 74);
+  border-image: url("../assets/events/grand-card.webp") 168 74 100 74 fill / calc(var(--cs) * 168) calc(var(--cs) * 74) calc(var(--cs) * 100) calc(var(--cs) * 74) stretch;
+}
+.ev-pop > * { position: relative; }
+.ev-pop__deva { margin-top: calc(var(--cs) * -78); }
+.ev-pop__title { margin: 0 0 4px; }
+.ev-pop__meta { border-top: 0; padding-top: 6px; margin-bottom: 10px; gap: 3px; }
+.ev-pop__meta::before { content: ""; display: block; height: 10px; margin: -6px auto 6px; width: 70%; background: radial-gradient(circle, #b8862b 0 2.5px, transparent 3px) center / 12px 10px no-repeat, linear-gradient(90deg, transparent, #b8862b 30%, #b8862b 70%, transparent) center / 100% 1px no-repeat; }
+.ev-pop__meta svg { color: var(--maroon-700); }
+.ev-pop--main { box-shadow: none; filter: drop-shadow(0 0 22px rgba(255, 200, 110, .55)) drop-shadow(0 18px 26px rgba(40, 0, 15, .55)); }
+@media (max-width: 560px) {
+  .events { --cs: calc(var(--ev-w) * .94 / 650); }
+  .ev-pop { left: 3%; right: 3%; }
+  .ev-pop__meta li { font-size: .9rem; }
+}
+.ev-lamp { bottom: calc(66px + 1%); } .ev-bloom { bottom: calc(66px + 4%); } .ev-scene--wedding .ev-bloom { bottom: calc(66px + 2%); }
+/* the grand frame is taller than the old card, so the window gives it room on every screen height */
+.events { --ev-h: min(560px, calc(100svh - var(--header-h) - 330px)); }
+@media (max-width: 560px) { .events { --ev-h: min(560px, calc(100svh - var(--header-h) - 330px)); } }
+.ev-unit { margin-bottom: calc(12vh + 240px); }
+.ev-pop__deva { margin-top: calc(var(--cs) * -42); } @media (max-width: 560px) { .ev-pop__deva { margin-top: calc(var(--cs) * -20); } .ev-pop__title { font-size: 1.45rem; } }
