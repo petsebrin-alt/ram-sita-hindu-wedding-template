@@ -279,6 +279,7 @@
     const sheet = q('#opSheet'), roller = q('#opRoller'), topRod = q('#opTopRod'), lines = $$('.op-l', intro), flames = $$('.op-flame', intro);
     const flash = q('#opFlash'), skipBtn = q('#introSkip'), openBtn = q('#introOpenBtn'), soundBtn = q('#opSound');
     const cv = q('#opFx'), ctx = cv.getContext('2d');
+    const world = q('#opWorld');
 
     // the guest's name can come from the link: ?to=Sharma%20Family
     const guest = new URLSearchParams(location.search).get('to');
@@ -287,38 +288,47 @@
     /* ---- where things are on screen (the picture is cover-fitted) ---- */
     const IW = 940, IH = 1672;
     let wide = false, layout = null;
+    let panEnd = 0;
     function measure() {
       const vw = innerWidth, vh = innerHeight;
-      // phones: the picture fills the screen. Anything wider: the picture keeps its own shape in the centre
-      const panel = vw / vh > .62;
-      intro.classList.toggle('is-panel', panel);
-      let rw, rh, ox, oy, pw;
-      if (panel) {
-        rh = vh; rw = vh * IW / IH; ox = (vw - rw) / 2; oy = 0; pw = rw;
-        intro.style.setProperty('--pl', ox + 'px'); intro.style.setProperty('--pw', rw + 'px');
+      // phones: the picture fills the screen. Tablets and laptops: the picture spans the full width, edge to edge,
+      // and the view travels down it with the arrow
+      const wide = vw / vh > .62;
+      intro.classList.toggle('is-wide', wide);
+      let rw, rh, ox, oy, wh;
+      if (wide) {
+        rw = vw; rh = vw * IH / IW; ox = 0; oy = 0; wh = rh;
+        const want = vw * (devicePixelRatio || 1) > 1000 ? 'assets/intro/rama-sunset-2x.webp' : 'assets/intro/rama-sunset.webp';
+        if (!bg.src.endsWith(want)) bg.src = want;
       } else {
-        const px = .66, s = Math.max(vw / IW, vh / IH);
-        rw = IW * s; rh = IH * s; ox = (vw - rw) * px; oy = (vh - rh) / 2; pw = vw;
+        const s = Math.max(vw / IW, vh / IH);
+        rw = IW * s; rh = IH * s; ox = (vw - rw) * .66; oy = (vh - rh) / 2; wh = vh;
         intro.style.setProperty('--bg-pos', '66% 50%');
       }
-      intro.style.setProperty('--op-sw', Math.min(440, pw * .86, (vh - 70) * .77) + 'px');
+      world.style.height = wh + 'px';
+      panEnd = Math.max(0, wh - vh);
+      intro.style.setProperty('--op-sw', Math.min(440, vw * .86, (vh - 70) * .77) + 'px');
       const at = (fx, fy) => ({ x: ox + fx * rw, y: oy + fy * rh });
       const bow = at(.894, .197), bowH = .2 * rh;
       const sr = scroll.getBoundingClientRect();
-      layout = { vw, vh, bow, bowH, s: rh, at, boxH: sr.height, target: { x: sr.left + sr.width / 2, y: sr.top + sr.height * .7 } };
+      // the scroll is fixed on screen; in the picture's terms it sits where the view ends up
+      layout = { vw, vh, ww: vw, wh, bow, bowH, s: rh, at, boxH: sr.height,
+                 target: { x: sr.left + sr.width / 2, y: sr.top + sr.height * .7 + panEnd } };
       flames.forEach(f => {
         const p = at(+f.dataset.fx, +f.dataset.fy), hgt = Math.max(9, +f.dataset.fh * rh * 1.3);
         Object.assign(f.style, { left: p.x + 'px', top: p.y + 'px', height: hgt + 'px' });
-        f.dataset.off = (p.x < -10 || p.x > vw + 10 || p.y < 0 || p.y > vh + 10) ? '1' : '';
+        f.dataset.off = (p.x < -10 || p.x > vw + 10 || p.y < 0 || p.y > wh + 10) ? '1' : '';
       });
       const place = (el, p) => { el.style.left = p.x + 'px'; el.style.top = p.y + 'px'; };
       place(aura, bow); place(charge, bow); place(str, { x: bow.x + bowH * .02, y: bow.y }); str.style.height = bowH + 'px';
       place(burst, layout.target);
-      const dpr = Math.min(devicePixelRatio || 1, small() ? 1.5 : 2);
-      cv.width = vw * dpr; cv.height = vh * dpr;
-      cv.style.width = vw + 'px'; cv.style.height = vh + 'px';
+      const dpr = wide ? 1 : Math.min(devicePixelRatio || 1, 1.5);
+      cv.width = vw * dpr; cv.height = wh * dpr;
+      cv.style.width = vw + 'px'; cv.style.height = wh + 'px';
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      if (camDone) gsap.set(world, { y: -panEnd });
     }
+    let camDone = false;
     measure();
     addEventListener('resize', measure);
 
@@ -359,7 +369,7 @@
     function frame(now) {
       if (!running) return;
       requestAnimationFrame(frame);
-      const { vw, vh } = layout;
+      const vw = layout.ww, vh = layout.wh;
       ctx.clearRect(0, 0, vw, vh);
       ctx.globalCompositeOperation = 'lighter';
       dust.forEach(p => {
@@ -440,6 +450,7 @@
           sparkle(p.x - Math.cos(ang * Math.PI / 180) * arrow.offsetWidth * .45, p.y - Math.sin(ang * Math.PI / 180) * arrow.offsetWidth * .45, 4, .9);
         } }, 3.3)
       .to(aura, { opacity: .5, duration: 1.2 }, 3.4)
+      .fromTo(world, { y: 0 }, { y: () => -panEnd, duration: 1.7, ease: 'sine.inOut', onComplete: () => { camDone = true; } }, 3.3)
       // the arrow becomes light low in the sky, and the light becomes the rolled scroll
       .to(arrow, { opacity: 0, scale: .2, duration: .3, ease: 'power2.in' }, 4.85)
       .fromTo(burst, { opacity: 0, scale: .2 }, { opacity: 1, scale: 1, duration: .55, ease: 'power2.out' }, 4.9)
@@ -457,9 +468,17 @@
       .to({ p: 0 }, { p: 1, duration: 5.4, ease: 'sine.inOut', onUpdate() { openTo(this.targets()[0].p); } }, 8.0)
       .to(lines, { opacity: 1, y: 0, duration: .8, ease: 'power2.out', stagger: .34 }, 9.6);
 
-    // the lamps: the big brass lamps on the floor light first, one by one, then the lamps floating on the water
+    // on wide screens the journey from the sky to the ghat takes a little longer, so everything after the release waits
+    const D = panEnd > layout.vh * .3 ? 1.1 : 0;
+    if (D) {
+      tl.getChildren(false, true, true).forEach(t => { if (t.startTime() >= 3.29 && t.startTime() <= 3.31 && t.duration() > 1.5) t.duration(1.7 + D); });
+      tl.shiftChildren(D, false, 4.8);
+    }
+    // the lamps: the big brass lamps on the floor light first, one by one, then the lamps floating on the water.
+    // on wide screens the floor lamps are below the view at first, so they light as the view arrives at the ghat
+    const lampStart = panEnd > layout.vh * .15 ? 4.9 + D : .7, waterStart = panEnd > layout.vh * .15 ? lampStart + 2.6 : 3.9 + D;
     lit.forEach((f, i) => {
-      const floor = i < 4, at = floor ? .7 + i * .75 : 3.9 + (i - 4) * .55;
+      const floor = i < 4, at = floor ? lampStart + i * .65 : waterStart + (i - 4) * .5;
       tl.add(() => {
           fire(); f.classList.add('is-lighting');
           sparkle(parseFloat(f.style.left), parseFloat(f.style.top) - 6, floor ? 18 : 8, floor ? 1.8 : 1.2);

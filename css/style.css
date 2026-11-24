@@ -1645,12 +1645,6 @@ section.is-offscreen *, section.is-offscreen::before, section.is-offscreen::afte
 .op-flame.is-lighting .op-flame__glow { animation: op-flare .9s ease-out 1, op-glow 2.2s ease-in-out .9s infinite; }
 @keyframes op-flare { 0% { opacity: 0; transform: scale(.2); } 35% { opacity: 1; transform: scale(1.6); } 100% { opacity: .9; transform: scale(1); } }
 
-/* laptops and tablets show exactly the phone composition: the picture at full height in the centre,
-   with the same scene softly glowing behind it to fill the screen */
-.op-ambient { position: absolute; inset: -6%; width: 112%; height: 112%; object-fit: cover; display: none; filter: blur(28px) brightness(.62) saturate(1.15); transform: translateZ(0); }
-.intro.is-panel .op-ambient { display: block; }
-.intro.is-panel .op-bg { left: var(--pl); width: var(--pw); right: auto; object-fit: cover; object-position: 50% 50%;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%); }
 .op-rama { display: none !important; }
 /* Dhanyavaad on tablets and small laptops: tighter text so it stays in the sky above the temple */
 @media (min-width: 701px) and (max-width: 1180px) {
@@ -1678,3 +1672,9 @@ section.is-offscreen *, section.is-offscreen::before, section.is-offscreen::afte
 .ev-bloom .ev-scene__lotus { position: absolute; left: 0; bottom: 0; width: 100%; transform-origin: 50% 85%; }
 .ev-bloom .ev-scene__lotus--r { scale: 1; }
 .ev-bloom__bud { position: absolute; left: 50%; bottom: 4%; height: 120%; width: auto; translate: -50% 0; transform-origin: 50% 100%; filter: drop-shadow(0 6px 8px rgba(120, 30, 60, .35)); }
+
+/* the picture and everything drawn on it travel together; on wide screens the picture spans the full width
+   and the view glides down it, from Lord Rama in the sky to the temple and the lamps */
+.op-world { position: absolute; left: 0; top: 0; width: 100%; height: 100%; will-change: transform; }
+.op-world .op-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.intro.is-wide .op-world .op-bg { object-position: 50% 0; }
