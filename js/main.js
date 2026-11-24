@@ -286,32 +286,26 @@
     if (guest) q('#opGuest').textContent = guest.slice(0, 40);
 
     /* ---- where things are on screen (the picture is cover-fitted) ---- */
-    const IW = 940, IH = 1672;
     let wide = false, layout = null;
     let panEnd = 0;
     function measure() {
       const vw = innerWidth, vh = innerHeight;
-      // phones: the picture fills the screen. Tablets and laptops: the picture spans the full width, edge to edge,
-      // and the view travels down it with the arrow
-      const wide = vw / vh > .62;
+      // portrait screens (phones, upright tablets): the portrait picture fills the screen.
+      // landscape screens (laptops, desktops, tablets on their side): the wide landscape picture fills the screen.
+      const wide = vw / vh >= 1;
       intro.classList.toggle('is-wide', wide);
-      let rw, rh, ox, oy, wh;
-      if (wide) {
-        // the whole picture, exactly as on a phone, standing at full height in the centre
-        rh = vh; rw = vh * IW / IH; ox = (vw - rw) / 2; oy = 0; wh = vh;
-        intro.style.setProperty('--pl', ox + 'px'); intro.style.setProperty('--pw', rw + 'px'); intro.style.setProperty('--side', ox + 'px');
-        const want = vh * (devicePixelRatio || 1) > 1700 ? 'assets/intro/rama-sunset-2x.webp' : 'assets/intro/rama-sunset.webp';
-        if (!bg.src.endsWith(want)) bg.src = want;
-      } else {
-        const s = Math.max(vw / IW, vh / IH);
-        rw = IW * s; rh = IH * s; ox = (vw - rw) * .66; oy = (vh - rh) / 2; wh = vh;
-        intro.style.setProperty('--bg-pos', '66% 50%');
-      }
+      const IW = wide ? 1672 : 940, IH = wide ? 941 : 1672, px = wide ? .62 : .66;
+      const s = Math.max(vw / IW, vh / IH);
+      const rw = IW * s, rh = IH * s, ox = (vw - rw) * px, oy = (vh - rh) / 2, wh = vh;
+      intro.style.setProperty('--bg-pos', (px * 100) + '% 50%');
+      const want = wide ? 'assets/intro/rama-sunset-wide.webp' : 'assets/intro/rama-sunset.webp';
+      if (!bg.src.endsWith(want)) bg.src = want;
+      flames.forEach(f => f.classList.toggle('is-other', f.dataset.set !== (wide ? 'w' : 'p')));
       world.style.height = wh + 'px';
       panEnd = Math.max(0, wh - vh);
-      intro.style.setProperty('--op-sw', Math.min(440, (wide ? rw : vw) * .86, (vh - 70) * .77) + 'px');
+      intro.style.setProperty('--op-sw', (wide ? Math.min(500, vw * .4, (vh - 60) * .77) : Math.min(440, vw * .86, (vh - 70) * .77)) + 'px');
       const at = (fx, fy) => ({ x: ox + fx * rw, y: oy + fy * rh });
-      const bow = at(.894, .197), bowH = .2 * rh;
+      const bow = wide ? at(.957, .197) : at(.894, .197), bowH = (wide ? .234 : .2) * rh;
       const sr = scroll.getBoundingClientRect();
       // the scroll is fixed on screen; in the picture's terms it sits where the view ends up
       layout = { vw, vh, ww: vw, wh, bow, bowH, s: rh, at, boxH: sr.height,
@@ -319,12 +313,12 @@
       flames.forEach(f => {
         const p = at(+f.dataset.fx, +f.dataset.fy), hgt = Math.max(9, +f.dataset.fh * rh * 1.3);
         Object.assign(f.style, { left: p.x + 'px', top: p.y + 'px', height: hgt + 'px' });
-        f.dataset.off = (p.x < -10 || p.x > vw + 10 || p.y < 0 || p.y > wh + 10) ? '1' : '';
+        f.dataset.off = (f.classList.contains('is-other') || p.x < -10 || p.x > vw + 10 || p.y < 0 || p.y > wh + 10) ? '1' : '';
       });
       const place = (el, p) => { el.style.left = p.x + 'px'; el.style.top = p.y + 'px'; };
       place(aura, bow); place(charge, bow); place(str, { x: bow.x + bowH * .02, y: bow.y }); str.style.height = bowH + 'px';
       place(burst, layout.target);
-      const dpr = wide ? 1 : Math.min(devicePixelRatio || 1, 1.5);
+      const dpr = Math.min(devicePixelRatio || 1, wide ? 1.25 : 1.5);
       cv.width = vw * dpr; cv.height = wh * dpr;
       cv.style.width = vw + 'px'; cv.style.height = wh + 'px';
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
