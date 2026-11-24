@@ -62,6 +62,7 @@
       palaceDoor:        'assets/audio/palace-door-open.m4a',
       eventsCelebration: 'assets/audio/events-celebration.m4a',
       scrapbookJaiRam:   'assets/audio/scrapbook-jai-ram.m4a',
+      openingJaiRam:     'assets/audio/opening-jai-jai-ram.m4a',  // the Jai Jai Ram song for the opening only
       thankyouPeacock:   'assets/audio/thankyou-peacock.m4a',
       clickSeal:         'assets/audio/click-seal.m4a',
       rsvpFlute:         'assets/audio/rsvp-flute.m4a',      // bansuri flute, 1:01-1:10 of the track, looping
@@ -81,6 +82,7 @@
       palaceDoor:        0.85,
       eventsCelebration: 0.80,
       scrapbookJaiRam:   0.90,
+      openingJaiRam:     0.9,
       thankyouPeacock:   0.85,
       clickSeal:         0.95,
       rsvpFlute:         0.8,
@@ -355,7 +357,7 @@
     }
     let musicStarted = false;
     // the Jai Jai Ram song begins as Lord Rama's arrow of light flies
-    const music = () => { if (musicStarted) return; musicStarted = true; Soundscape.play('scrapbookJaiRam', { allowScrollUp: true, volume: .85, minInterval: 0 }); };
+    const music = () => { if (musicStarted) return; musicStarted = true; Soundscape.play('openingJaiRam', { allowScrollUp: true, minInterval: 0 }); };
     soundBtn.addEventListener('click', () => {
       soundOn = true; soundBtn.classList.add('is-on'); soundBtn.setAttribute('aria-pressed', 'true');
       try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); actx.resume(); } catch (e) {}
@@ -397,7 +399,7 @@
     function finish() {
       if (finished) return; finished = true;
       if (tl) tl.kill();
-      Soundscape.stop('scrapbookJaiRam', { fade: 2.2 });
+      Soundscape.stop('openingJaiRam', { fade: 2.2 });
       done();
       gsap.timeline({ onComplete: () => { running = false; removeEventListener('resize', measure); intro.remove(); } })
         .to(flash, { opacity: 1, duration: .55, ease: 'power2.in' })
