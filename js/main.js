@@ -55,7 +55,8 @@
     const audioSources = {
       introSriRam:       'assets/audio/intro-sriram.m4a',
       vilakkuFire:       'assets/audio/vilakku-fire-on.wav',
-      hanumanSriram:     'assets/audio/hanuman-sriram.m4a',
+      paperOpen:         'assets/audio/paper-open.m4a',
+      mirrorBreak:       'assets/audio/mirror-break.m4a',
       coupleFlutter:     'assets/audio/couple-flutter.m4a',
       palaceDoor:        'assets/audio/palace-door-open.m4a',
       eventsCelebration: 'assets/audio/events-celebration.m4a',
@@ -67,7 +68,8 @@
     const baseVolumes = {
       introSriRam:       0.85,
       vilakkuFire:       0.88,
-      hanumanSriram:     0.95,
+      paperOpen:         0.85,
+      mirrorBreak:       0.95,
       coupleFlutter:     0.85,
       palaceDoor:        0.85,
       eventsCelebration: 0.80,
@@ -404,6 +406,7 @@
       finished = true;
       fxRunning = false;
       if (fxRaf) cancelAnimationFrame(fxRaf);
+      Soundscape.play('paperOpen', { volume: 0.9 });
       Soundscape.stop('introSriRam', { fade: 0.8 });
       done();
       gsap.to(intro, {
@@ -950,7 +953,13 @@
     gsap.timeline({
       scrollTrigger: { trigger: '#gatefold', start: 'top top', end: () => '+=' + innerHeight * 1.4, scrub: 1, pin: true, anticipatePin: 1 }
     })
-      .to('.gatefold__seal', { scale: 1.25, opacity: 0, duration: .6, ease: 'power2.in' })
+      .to('.gatefold__seal', {
+        scale: 1.25,
+        opacity: 0,
+        duration: .6,
+        ease: 'power2.in',
+        onStart: () => Soundscape.play('paperOpen', { volume: 0.75 })
+      })
       .to('.gatefold__panel--left', { rotateY: -155, duration: 2.2, ease: 'power2.inOut' }, '-=.15')
       .to('.gatefold__panel--right', { rotateY: 155, duration: 2.2, ease: 'power2.inOut' }, '<')
       .fromTo('.gatefold__card', { scale: .93, filter: 'brightness(.85)' }, { scale: 1, filter: 'brightness(1)', duration: 1.8, ease: 'power2.out' }, '<.4')
@@ -1201,6 +1210,29 @@
     // a closed book sits centred on its cover
     const closedX = () => narrow() ? 0 : -book.offsetWidth / 4;
 
+    // Strict visibility isolation: only allow the active spread's faces to render
+    function syncSpreadVisibility(activeSpread) {
+      leaves.forEach((l, idx) => {
+        const front = l.querySelector('.rbook__face--front');
+        const back = l.querySelector('.rbook__face--back');
+        if (activeSpread < 0) {
+          if (front) front.style.visibility = (idx === 0) ? 'visible' : 'hidden';
+          if (back) back.style.visibility = 'hidden';
+          return;
+        }
+        if (idx === activeSpread) {
+          if (front) front.style.visibility = 'hidden';
+          if (back) back.style.visibility = 'visible';
+        } else if (idx === activeSpread + 1) {
+          if (front) front.style.visibility = 'visible';
+          if (back) back.style.visibility = 'hidden';
+        } else {
+          if (front) front.style.visibility = 'hidden';
+          if (back) back.style.visibility = 'hidden';
+        }
+      });
+    }
+
     // the lotus blooms first, then completely disappears as the couple photo arrives
     let currentRevealTl = null;
     function reveal(k, instant) {
@@ -1216,8 +1248,8 @@
           gsap.set(bloom, { opacity: 1, scale: 1, rotate: 0, autoAlpha: 1 });
           gsap.set(words, { opacity: 1, y: 0 });
         } else {
-          tl.fromTo(bloom, { opacity: 0, scale: .15, rotate: -40, autoAlpha: 1 }, { opacity: 1, scale: 1, rotate: 0, duration: 1.1, ease: 'back.out(1.4)' }, 0)
-            .fromTo(words, { opacity: 0, y: 10 }, { opacity: 1, y: 0, stagger: .12, duration: .55, ease: 'power2.out' }, .5);
+          tl.fromTo(bloom, { opacity: 0, scale: .15, rotate: -40, autoAlpha: 1 }, { opacity: 1, scale: 1, rotate: 0, duration: 0.9, ease: 'back.out(1.4)' }, 0)
+            .fromTo(words, { opacity: 0, y: 10 }, { opacity: 1, y: 0, stagger: .1, duration: 0.5, ease: 'power2.out' }, .35);
         }
       }
       if (right && !right.classList.contains('rpage--end')) {
@@ -1232,38 +1264,46 @@
           return tl;
         }
 
-        // 1. Initial bloom appears on blank page
+        // 1. Initial lotus bloom appears on blank page
         gsap.set(bloom, { autoAlpha: 1, opacity: 0, scale: 0.18, rotate: -35 });
-        tl.to(bloom, { opacity: 1, scale: 1, rotate: 0, duration: 0.75, ease: 'back.out(1.4)' }, 0)
+        tl.to(bloom, { opacity: 1, scale: 1, rotate: 0, duration: 0.55, ease: 'back.out(1.4)' }, 0)
           // 2. Lotus flower completely dissolves & disappears BEFORE couple photo lands
-          .to(bloom, { opacity: 0, scale: 0.2, autoAlpha: 0, duration: 0.4, ease: 'power2.in' }, 0.8)
+          .to(bloom, { opacity: 0, scale: 0.2, autoAlpha: 0, duration: 0.35, ease: 'power2.in' }, 0.6)
           // 3. Couple photo appears cleanly in its place with zero lotus overlapping it
-          .fromTo(pol, { opacity: 0, y: -24, scale: 0.9, rotate: -5, autoAlpha: 1 }, { opacity: 1, y: 0, scale: 1, rotate: 0, duration: 0.75, ease: 'power3.out' }, 0.9)
+          .fromTo(pol, { opacity: 0, y: -20, scale: 0.92, rotate: -4, autoAlpha: 1 }, { opacity: 1, y: 0, scale: 1, rotate: 0, duration: 0.65, ease: 'power3.out' }, 0.72)
           // 4. Gold tape seals the photo down
-          .fromTo(tape, { scaleX: 0 }, { scaleX: 1, duration: 0.38, ease: 'power2.out' }, 1.35)
+          .fromTo(tape, { scaleX: 0 }, { scaleX: 1, duration: 0.32, ease: 'power2.out' }, 1.1)
           // 5. Story chapter words reveal
-          .fromTo(words, { opacity: 0, y: 12 }, { opacity: 1, y: 0, stagger: 0.1, duration: 0.5, ease: 'power2.out' }, 1.4);
+          .fromTo(words, { opacity: 0, y: 10 }, { opacity: 1, y: 0, stagger: 0.08, duration: 0.45, ease: 'power2.out' }, 1.15);
       } else if (right) {
         if (instant || !ANIM) {
           gsap.set(right.children, { opacity: 1, y: 0 });
         } else {
-          tl.fromTo(right.children, { opacity: 0, y: 12 }, { opacity: 1, y: 0, stagger: .12, duration: .6, ease: 'power2.out' }, 0);
+          tl.fromTo(right.children, { opacity: 0, y: 10 }, { opacity: 1, y: 0, stagger: .1, duration: .5, ease: 'power2.out' }, 0);
         }
       }
       return tl;
     }
-    // hide what is on a spread so it can bloom again when it is shown
+    // hide what is on all non-active spreads so nothing ever bleeds through or overlaps
     function prime(k) {
       if (currentRevealTl) { currentRevealTl.kill(); currentRevealTl = null; }
+      leaves.forEach((l, idx) => {
+        if (idx !== k && idx !== k + 1) {
+          const front = l.querySelector('.rbook__face--front');
+          const back = l.querySelector('.rbook__face--back');
+          if (front) gsap.set(front.querySelectorAll('.rpage__bloom, .polaroid, .rpage__kanda, .rpage__title, .rpage__text, .rpage__num, .rpage__om, .rpage__verse, .rpage__sub'), { opacity: 0, autoAlpha: 0 });
+          if (back) gsap.set(back.querySelectorAll('.rpage__bloom, .polaroid, .rpage__kanda, .rpage__title, .rpage__text, .rpage__num, .rpage__om, .rpage__verse, .rpage__sub'), { opacity: 0, autoAlpha: 0 });
+        }
+      });
       const right = leaves[k + 1] && $('.rbook__face--front .rpage', leaves[k + 1]);
       const left = $('.rbook__face--back .rpage', leaves[k]);
-      if (left) gsap.set([$('.rpage__bloom', left), ...left.querySelectorAll('.rpage__om, .rpage__verse, .rpage__sub')], { opacity: 0 });
+      if (left) gsap.set([$('.rpage__bloom', left), ...left.querySelectorAll('.rpage__om, .rpage__verse, .rpage__sub')], { opacity: 0, autoAlpha: 0 });
       if (right && !right.classList.contains('rpage--end')) {
         const bloom = $('.rpage__bloom', right);
         if (bloom) gsap.set(bloom, { opacity: 0, scale: 0.2, autoAlpha: 0 });
-        gsap.set([$('.polaroid', right), ...right.querySelectorAll('.rpage__kanda, .rpage__title, .rpage__text, .rpage__num')], { opacity: 0 });
+        gsap.set([$('.polaroid', right), ...right.querySelectorAll('.rpage__kanda, .rpage__title, .rpage__text, .rpage__num')], { opacity: 0, autoAlpha: 0 });
       } else if (right) {
-        gsap.set(right.children, { opacity: 0 });
+        gsap.set(right.children, { opacity: 0, autoAlpha: 0 });
       }
     }
     const update = () => {
@@ -1277,9 +1317,20 @@
     // turn one leaf with a soft shadow sweeping across it
     function turn(i, forward, after) {
       const leaf = leaves[i], faces = $$('.rbook__face', leaf);
+      const front = leaf.querySelector('.rbook__face--front');
+      const back = leaf.querySelector('.rbook__face--back');
+      if (front) front.style.visibility = 'visible';
+      if (back) back.style.visibility = 'visible';
       gsap.set(leaf, { zIndex: 100 });
-      const d = ANIM ? 1.35 : 0;
-      gsap.timeline({ onComplete: () => { gsap.set(leaf, { zIndex: forward ? zLeft(i) : zRight(i) }); busy = false; after && after(); } })
+      const d = ANIM ? 1.15 : 0;
+      gsap.timeline({
+        onComplete: () => {
+          gsap.set(leaf, { zIndex: forward ? zLeft(i) : zRight(i) });
+          syncSpreadVisibility(spread);
+          busy = false;
+          after && after();
+        }
+      })
         .to(leaf, { rotateY: forward ? -180 : 0, duration: d, ease: 'power2.inOut' }, 0)
         .fromTo(faces, { '--shade': 0 }, { '--shade': .55, duration: d / 2, ease: 'sine.in', yoyo: true, repeat: 1 }, 0);
     }
@@ -1289,9 +1340,32 @@
       if (busy || to < 0 || to > SPREADS - 1 || to === spread) return;
       if (user) pause();
       busy = true;
-      if (to > spread) { const k = spread + 1; prime(k); turn(k, true); setTimeout(() => reveal(k), ANIM ? 900 : 0); spread = k; }
-      else { const k = spread - 1; prime(k); turn(spread, false); setTimeout(() => reveal(k), ANIM ? 900 : 0); spread = k; }
-      update();
+      if (to > spread) {
+        const k = spread + 1;
+        spread = k;
+        update();
+        prime(k);
+        if (leaves[k + 1]) {
+          const nextFront = leaves[k + 1].querySelector('.rbook__face--front');
+          if (nextFront) nextFront.style.visibility = 'visible';
+        }
+        turn(k, true, () => {
+          reveal(k);
+        });
+      } else {
+        const k = spread - 1;
+        const turningLeaf = spread;
+        spread = k;
+        update();
+        prime(k);
+        if (leaves[k]) {
+          const prevBack = leaves[k].querySelector('.rbook__face--back');
+          if (prevBack) prevBack.style.visibility = 'visible';
+        }
+        turn(turningLeaf, false, () => {
+          reveal(k);
+        });
+      }
     }
     // the book opens: cover turns, the first spread blooms
     function open() {
@@ -1304,9 +1378,18 @@
       if (ANIM && intro) tl.to(intro, { opacity: 0, y: -30, scale: 1.06, duration: .9, ease: 'power2.in' }, 0);
       gsap.set(book, { x: closedX() });
       tl.fromTo(book, { opacity: 0, scale: .92 }, { opacity: 1, scale: 1, duration: ANIM ? .9 : 0, ease: 'power2.out' }, ANIM ? .45 : 0)
-        .add(() => turn(0, true, startAuto), ANIM ? 1.3 : 0)
-        .to(book, { x: () => narrow() ? 0 : 0, duration: ANIM ? 1.35 : 0, ease: 'power2.inOut' }, ANIM ? 1.4 : 0)
-        .add(() => reveal(0), ANIM ? 2.1 : 0);
+        .add(() => {
+          if (leaves[1]) {
+            const f = leaves[1].querySelector('.rbook__face--front');
+            if (f) f.style.visibility = 'visible';
+          }
+          turn(0, true, () => {
+            syncSpreadVisibility(0);
+            reveal(0);
+            startAuto();
+          });
+        }, ANIM ? 1.2 : 0)
+        .to(book, { x: () => narrow() ? 0 : 0, duration: ANIM ? 1.2 : 0, ease: 'power2.inOut' }, ANIM ? 1.25 : 0);
     }
     // close the book again: the cover turns back, then the grand Ramayana book returns
     function close() {
@@ -1504,7 +1587,7 @@
     function hit() {
       state = 'open';
       const p = plaque.getBoundingClientRect(), cx = p.left + p.width / 2, cy = p.top + p.height / 2;
-      crackerPop();
+      Soundscape.play('mirrorBreak', { volume: 0.95 });
       marigolds['save-the-date']?.burst(cx, cy, small() ? 90 : 150, 1.1);
       shatter(p);
       gsap.to(arrow, { opacity: 0, scale: .6, duration: .25, ease: 'power2.in' });
@@ -1517,23 +1600,39 @@
         .to('.sd__pillar', { scaleY: 1, duration: 1.4, stagger: .12, ease: 'power3.out' }, .2);
     }
 
-    // the golden seal splits into shards that fly out with the petals
+    // the crystal mirror breaks into glistening shards that fly outward
     function shatter(rect) {
       const host = $('#sdTarget'), hr = host.getBoundingClientRect();
-      const bg = getComputedStyle(plaque).backgroundImage;
-      const n = 9, base = Math.random() * Math.PI;
+      const n = 16, base = Math.random() * Math.PI;
       plaque.style.visibility = 'hidden';
       for (let i = 0; i < n; i++) {
-        const a1 = base + (i / n) * Math.PI * 2, a2 = base + ((i + 1) / n) * Math.PI * 2, am = (a1 + a2) / 2;
-        const pt = a => `${(50 + Math.cos(a) * 140).toFixed(1)}% ${(50 + Math.sin(a) * 140).toFixed(1)}%`;
+        const a1 = base + (i / n) * Math.PI * 2;
+        const a2 = base + ((i + 1) / n) * Math.PI * 2;
+        const am = (a1 + a2) / 2;
+        const r1 = 120 + Math.random() * 40;
+        const r2 = 120 + Math.random() * 40;
+        const pt = (a, r) => `${(50 + Math.cos(a) * r).toFixed(1)}% ${(50 + Math.sin(a) * r).toFixed(1)}%`;
         const s = document.createElement('span');
         s.className = 'sd__shard';
-        Object.assign(s.style, { left: rect.left - hr.left + 'px', top: rect.top - hr.top + 'px', width: rect.width + 'px', height: rect.height + 'px', backgroundImage: bg, clipPath: `polygon(${48 + Math.random() * 4}% ${48 + Math.random() * 4}%, ${pt(a1)}, ${pt(am)}, ${pt(a2)})` });
+        Object.assign(s.style, {
+          left: rect.left - hr.left + 'px',
+          top: rect.top - hr.top + 'px',
+          width: rect.width + 'px',
+          height: rect.height + 'px',
+          clipPath: `polygon(${48 + (Math.random() - .5) * 8}% ${48 + (Math.random() - .5) * 8}%, ${pt(a1, r1)}, ${pt(am, (r1 + r2) / 2)}, ${pt(a2, r2)})`
+        });
         host.appendChild(s);
-        const dist = 140 + Math.random() * 160;
+        const dist = 160 + Math.random() * 180;
         gsap.timeline({ onComplete: () => s.remove() })
-          .to(s, { x: Math.cos(am) * dist, y: Math.sin(am) * dist * .8 + 60, rotate: (Math.random() - .5) * 140, scale: .7, duration: 1.3, ease: 'power2.out' })
-          .to(s, { opacity: 0, duration: .5 }, .8);
+          .to(s, {
+            x: Math.cos(am) * dist,
+            y: Math.sin(am) * dist * .85 + 70,
+            rotate: (Math.random() - .5) * 260,
+            scale: Math.random() * .4 + .4,
+            duration: 1.3,
+            ease: 'power2.out'
+          })
+          .to(s, { opacity: 0, duration: .45 }, .85);
       }
     }
   }
@@ -1586,23 +1685,11 @@
         onStart() {
           const r = $('.hn__heart').getBoundingClientRect();
           marigolds.hanuman?.burst(r.left + r.width / 2, r.top + r.height / 2, small() ? 50 : 80, .7);
-          Soundscape.play('hanumanSriram', { loop: true, volume: 0.95 });
         }
       }, 2.0)
       .to('.hn__glow', { opacity: .5, duration: 1.4 }, 3.3)
       .from('.hn__verse, .hn__blessing', { opacity: 0, y: 26, duration: 1.1, stagger: .2, ease: 'power3.out' }, 2.8);
     tl.eventCallback('onComplete', () => gsap.to('.hn__heart', { scale: 1.06, duration: .95, repeat: -1, yoyo: true, ease: 'sine.inOut' }));
-
-    // Continuous Sriram music while in Hanuman section; only stops when user scrolls away
-    ScrollTrigger.create({
-      trigger: '#hanuman',
-      start: 'top 80%',
-      end: 'bottom 20%',
-      onEnter: () => Soundscape.play('hanumanSriram', { loop: true, volume: 0.95 }),
-      onEnterBack: () => Soundscape.play('hanumanSriram', { loop: true, volume: 0.95 }),
-      onLeave: () => Soundscape.stop('hanumanSriram', { fade: 0.6 }),
-      onLeaveBack: () => Soundscape.stop('hanumanSriram', { fade: 0.6 })
-    });
   }
 
   /* ---------------------------------------------------------------------
