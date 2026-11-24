@@ -357,7 +357,7 @@
     }
     let musicStarted = false;
     // the Jai Jai Ram song begins as Lord Rama's arrow of light flies
-    const music = () => { if (musicStarted) return; musicStarted = true; Soundscape.play('openingJaiRam', { allowScrollUp: true, minInterval: 0 }); };
+    const music = () => { if (musicStarted) return; musicStarted = true; Soundscape.play('openingJaiRam', { loop: true, allowScrollUp: true, minInterval: 0 }); };   // keeps circling until Open Invitation
     soundBtn.addEventListener('click', () => {
       soundOn = true; soundBtn.classList.add('is-on'); soundBtn.setAttribute('aria-pressed', 'true');
       try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); actx.resume(); } catch (e) {}
@@ -399,7 +399,11 @@
     function finish() {
       if (finished) return; finished = true;
       if (tl) tl.kill();
-      Soundscape.stop('openingJaiRam', { fade: 2.2 });
+      // the song eases away as a temple bell rings and the early-morning music welcomes the guest in
+      Soundscape.stop('openingJaiRam', { fade: 2.6 });
+      Soundscape.play('templeBell', { allowScrollUp: true, minInterval: 0, volume: .8 });
+      setTimeout(() => Soundscape.play('thankyouPeacock', { allowScrollUp: true, minInterval: 0, volume: .75 }), 900);
+      if (window.ScrollTrigger) ScrollTrigger.create({ trigger: '#welcome', start: 'top top', end: 'bottom top', onLeave: () => Soundscape.stop('thankyouPeacock', { fade: 1.2 }) });
       done();
       gsap.timeline({ onComplete: () => { running = false; removeEventListener('resize', measure); intro.remove(); } })
         .to(flash, { opacity: 1, duration: .55, ease: 'power2.in' })
