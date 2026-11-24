@@ -53,7 +53,7 @@
      --------------------------------------------------------------------- */
   const Soundscape = (() => {
     const audioSources = {
-      introSriRam:       'assets/audio/intro-sriram.m4a',
+      introSriRam:       'assets/audio/intro-music.m4a',   // the Sri Ram song's music only, without the singing
       vilakkuFire:       'assets/audio/vilakku-fire-on.wav',
       paperOpen:         'assets/audio/paper-open.m4a',
       mirrorBreak:       'assets/audio/mirror-break.m4a',
@@ -85,7 +85,7 @@
 
     Object.entries(audioSources).forEach(([name, src]) => {
       const a = new Audio(src);
-      a.preload = 'auto';
+      a.preload = 'none';
       a.volume = baseVolumes[name] || 0.8;
       sounds[name] = a;
     });
@@ -297,8 +297,10 @@
       intro.classList.toggle('is-wide', wide);
       let rw, rh, ox, oy, wh;
       if (wide) {
-        rw = vw; rh = vw * IH / IW; ox = 0; oy = 0; wh = rh;
-        const want = vw * (devicePixelRatio || 1) > 1000 ? 'assets/intro/rama-sunset-2x.webp' : 'assets/intro/rama-sunset.webp';
+        // the whole picture, exactly as on a phone, standing at full height in the centre
+        rh = vh; rw = vh * IW / IH; ox = (vw - rw) / 2; oy = 0; wh = vh;
+        intro.style.setProperty('--pl', ox + 'px'); intro.style.setProperty('--pw', rw + 'px'); intro.style.setProperty('--side', ox + 'px');
+        const want = vh * (devicePixelRatio || 1) > 1700 ? 'assets/intro/rama-sunset-2x.webp' : 'assets/intro/rama-sunset.webp';
         if (!bg.src.endsWith(want)) bg.src = want;
       } else {
         const s = Math.max(vw / IW, vh / IH);
@@ -307,7 +309,7 @@
       }
       world.style.height = wh + 'px';
       panEnd = Math.max(0, wh - vh);
-      intro.style.setProperty('--op-sw', Math.min(440, vw * .86, (vh - 70) * .77) + 'px');
+      intro.style.setProperty('--op-sw', Math.min(440, (wide ? rw : vw) * .86, (vh - 70) * .77) + 'px');
       const at = (fx, fy) => ({ x: ox + fx * rw, y: oy + fy * rh });
       const bow = at(.894, .197), bowH = .2 * rh;
       const sr = scroll.getBoundingClientRect();
@@ -993,7 +995,7 @@
     const zRight = i => 60 - i, zLeft = i => 10 + i;
     leaves.forEach((l, i) => gsap.set(l, { zIndex: zRight(i), rotateY: 0 }));
     // a closed book sits centred on its cover
-    const closedX = () => narrow() ? 0 : -book.offsetWidth / 4;
+    const closedX = () => -book.offsetWidth / 4;
 
     // Strict visibility and display isolation: only allow the active spread's faces to render
     function syncSpreadVisibility(activeSpread) {
@@ -1556,7 +1558,8 @@
       s.lotuses.forEach(o => { gsap.set(o.bud, { opacity: 0, scale: .35, y: 10 }); gsap.set(o.bloom, { opacity: 0, scale: .55, rotate: 0 }); });
     };
     scenes.forEach(resetScene);
-    const fireSound = () => { try { const a = new Audio('assets/audio/vilakku-fire-on.wav'); a.volume = .75; a.play().catch(() => {}); } catch (e) {} };
+    // a match is struck, then the wick catches
+    const fireSound = () => { try { const a = new Audio('assets/audio/match-strike.m4a'); a.volume = .85; a.play().catch(() => {}); } catch (e) {} };
     // a card opens: the lamps catch fire one after the other, then both lotuses slowly open from buds
     const playScene = s => {
       resetScene(s);
@@ -1606,7 +1609,7 @@
         scrub: 1, pin: true, anticipatePin: 1, invalidateOnRefresh: true,
         onUpdate: self => { syncDots(self); syncCards(self); },
         onRefresh: self => requestAnimationFrame(() => syncDots(self)),
-        onLeave: () => setActive(-1),
+        onLeave: () => { /* the last card stays lit as the guest moves on; only the music fades */ Soundscape.stop('eventsCelebration', { fade: .9 }); },
         onLeaveBack: () => setActive(-1)
       }
     });

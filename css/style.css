@@ -1677,4 +1677,42 @@ section.is-offscreen *, section.is-offscreen::before, section.is-offscreen::afte
    and the view glides down it, from Lord Rama in the sky to the temple and the lamps */
 .op-world { position: absolute; left: 0; top: 0; width: 100%; height: 100%; will-change: transform; }
 .op-world .op-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.intro.is-wide .op-world .op-bg { object-position: 50% 0; }
+
+/* laptops and tablets: the whole phone picture, uncropped, in the centre at full height */
+.op-sides { position: absolute; inset: 0; display: none; overflow: hidden;
+  background: radial-gradient(ellipse 60% 85% at 50% 55%, #7a1a2c 0%, #5a0f22 45%, #3a0816 80%, #2a0510 100%); }
+.intro.is-wide .op-sides { display: block; }
+.op-mandala { position: absolute; top: 50%; width: min(78vh, 46vw); aspect-ratio: 1; translate: 0 -50%; opacity: .22;
+  background: url("../assets/ornaments/chakra-lotus-mandala-gold.webp") center / contain no-repeat; animation: spin 160s linear infinite; }
+.op-mandala--l { left: calc(var(--side, 0px) * .5 - min(78vh, 46vw) / 2); }
+.op-mandala--r { right: calc(var(--side, 0px) * .5 - min(78vh, 46vw) / 2); animation-direction: reverse; }
+.intro.is-wide .op-world .op-bg { left: var(--pl); width: var(--pw); right: auto; object-fit: cover;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%); }
+/* wedding mandap: lotuses sit between the pillars and the couple, lamps in front of the pillars */
+.ev-scene--wedding .ev-bloom { width: 15%; bottom: 9%; z-index: 2; }
+.ev-scene--wedding .ev-bloom--l { left: 24%; } .ev-scene--wedding .ev-bloom--r { right: 24%; }
+.ev-scene--wedding .ev-lamp { z-index: 3; }
+/* lamps and lotuses sit just above the details card, so the bowls are never hidden behind it */
+.ev-lamp { bottom: calc(40px + 1%); }
+.ev-bloom { bottom: calc(40px + 4%); }
+.ev-scene--wedding .ev-bloom { bottom: calc(40px + 2%); }
+/* phones: the whole open book, both pages, fits the screen */
+@media (max-width: 700px) {
+  .rbook-stage { --pw: calc((100vw - 26px) / 2); --ph: calc(var(--pw) * 1.55); overflow: visible; margin-left: 0; margin-right: 0; height: calc(var(--ph) + 100px); }
+  .rbook { left: calc(50% - var(--pw)); }
+  .rpage { padding: 10% 7% 8%; }
+  .polaroid { width: 74%; margin: 2% 0 5%; padding: 4%; }
+  .polaroid__tape { height: 14px; top: -7px; }
+  .rpage__kanda { font-size: .46rem; letter-spacing: .12em; }
+  .rpage__title { font-size: 1.15rem; margin: 1px 0 2px; }
+  .rpage__text { font-size: .7rem; line-height: 1.35; }
+  .rpage__om { font-size: .8rem; }
+  .rpage__verse { font-size: 1.05rem; }
+  .rpage--title .rpage__verse { font-size: 1.15rem; }
+  .rpage__sub { font-size: .66rem; }
+  .rpage__date { font-size: .5rem; margin-top: 8px; }
+  .rpage__num { bottom: 8px; font-size: .8rem; }
+  .rpage__corner { width: 24px; bottom: 6px; }
+  .rpage__corner--r { right: 6px; } .rpage__corner--l { left: 6px; }
+  .rbook-intro { width: min(360px, 94vw); }
+}
