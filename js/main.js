@@ -435,7 +435,6 @@
       fxRunning = false;
       if (fxRaf) cancelAnimationFrame(fxRaf);
       Soundscape.play('paperOpen', { volume: 0.9 });
-      Soundscape.stop('introSriRam', { fade: 0.8 });
       done();
       gsap.to(intro, {
         opacity: 0,
@@ -445,17 +444,14 @@
       });
     };
 
-    /* Start Sri Ram devotional music on opening screen */
-    Soundscape.play('introSriRam', { loop: true, volume: 0.88 });
-
     /* ── Reduced Motion Accessibility ────────────────────────────────────── */
     if (reduced) {
       gsap.set(bgTemple,        { opacity: 1, scale: 1 });
       gsap.set(skyAura,         { opacity: 0.6 });
       gsap.set(scrollClosed,    { display: 'none' });
       gsap.set(scrollOpen,      { opacity: 1 });
-      gsap.set(scrollParchment, { clipPath: 'inset(0 0 19.0% 0)' });
-      gsap.set(scrollBotRoller, { top: '79.2%' });
+      gsap.set(scrollParchment, { clipPath: 'inset(0 0 19.2% 0)' });
+      gsap.set(scrollBotRoller, { top: '80.8%' });
       gsap.set(Array.from(scrollBody.children), { opacity: 1, y: 0 });
       if (openBtn) openBtn.addEventListener('click', finish);
       if (skipBtn) skipBtn.addEventListener('click', finish);
@@ -658,18 +654,18 @@
       }, 4.15)
       .set(scrollOpen, { opacity: 1 }, 4.15)
 
-      /* Bottom roller rolls down smoothly over 1.15s, seamlessly overlapping parchment */
+      /* Bottom roller rolls down smoothly over 1.15s */
       .fromTo(scrollBotRoller, {
         top: '9.7%'
       }, {
-        top: '79.2%',
+        top: '80.8%',
         duration: 1.15,
         ease: 'power2.out'
       }, 4.18)
       .fromTo(scrollParchment, {
         clipPath: 'inset(0 0 90.3% 0)'
       }, {
-        clipPath: 'inset(0 0 19.0% 0)',
+        clipPath: 'inset(0 0 19.2% 0)',
         duration: 1.15,
         ease: 'power2.out'
       }, 4.18)
@@ -1348,7 +1344,7 @@
     };
     const hint = $('#rbookOpen');
 
-    // turn one leaf with a soft shadow sweeping across it and gentle page paper sound
+    // turn one leaf with a soft shadow sweeping across it
     function turn(i, forward, after) {
       const leaf = leaves[i], faces = $$('.rbook__face', leaf);
       const front = leaf.querySelector('.rbook__face--front');
@@ -1357,7 +1353,6 @@
       if (front) front.style.visibility = 'visible';
       if (back) back.style.visibility = 'visible';
       gsap.set(leaf, { zIndex: 100 });
-      Soundscape.play('paperOpen', { volume: 0.70 });
       const d = ANIM ? 1.15 : 0;
       gsap.timeline({
         onComplete: () => {
@@ -1410,8 +1405,7 @@
       if (spread >= 0 || busy) return;
       busy = true; spread = 0; update(); prime(0);
       book.classList.add('is-open'); stage.classList.remove('is-closed');
-      Soundscape.play('paperOpen', { volume: 0.85 });
-      Soundscape.play('scrapbookJaiRam', { loop: true, volume: 0.90 });
+      Soundscape.play('scrapbookJaiRam', { loop: false, volume: 0.90 });
       const tl = gsap.timeline();
       if (hint) tl.to(hint, { autoAlpha: 0, duration: .3 }, 0);
       if (ANIM && intro) tl.to(intro, { opacity: 0, y: -30, scale: 1.06, duration: .9, ease: 'power2.in' }, 0);
@@ -1436,7 +1430,6 @@
       if (busy || spread !== 0) return;
       busy = true; stopAuto(); clearTimeout(idleTimer);
       Soundscape.stop('scrapbookJaiRam', { fade: 0.8 });
-      Soundscape.play('paperOpen', { volume: 0.70 });
       spread = -1; update();
       book.classList.remove('is-open');
       const tl = gsap.timeline({ onComplete: () => { busy = false; stage.classList.add('is-closed'); } });
@@ -1478,7 +1471,9 @@
     update();
     if (!ANIM) { if (intro) intro.remove(); open(); return; }
     gsap.set(book, { opacity: 0, x: closedX() });
-    // Song only starts when user opens the scrapbook, never simply scrolling into view
+    // Book opens smoothly as you scroll into the section
+    ScrollTrigger.create({ trigger: stage, start: 'top 70%', once: true, onEnter: open });
+    // stop turning pages and pause music when the book is out of view
     ScrollTrigger.create({
       trigger: stage,
       start: 'top bottom',

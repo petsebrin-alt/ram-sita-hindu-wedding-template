@@ -1762,36 +1762,36 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
 .intro__scroll-body {
   position: absolute;
   top: 9.8%;
-  bottom: 21.0%;
-  left: 17.5%;
-  right: 17.5%;
+  bottom: 19.8%;
+  left: 12%;
+  right: 12%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   text-align: center;
   color: #4a0a1a;
   pointer-events: auto;
   box-sizing: border-box;
-  padding: 0.8cqw 0.8cqw 0.5cqw;
+  padding: 1% 2%;
 }
 
 /* ── Scroll Typography (Crystal Clear, Royal Contrast, Pure Gold Outer Frame) ── */
 .scroll__deva {
   font-family: var(--f-deva);
-  font-size: clamp(0.72rem, 3.0cqw, 1.15rem);
+  font-size: clamp(0.72rem, 2.9cqw, 1.12rem);
   color: #4a0a1a;
   margin: 0;
   font-weight: 700;
   text-shadow: 0 1px 2px rgba(255, 230, 180, 0.6);
-  line-height: 1.15;
+  line-height: 1.2;
 }
 
 .scroll__guest {
   font-family: var(--f-script);
-  font-size: clamp(1.4rem, 7.2cqw, 2.85rem);
+  font-size: clamp(1.35rem, 6.8cqw, 2.7rem);
   color: #400512;
-  line-height: 1.1;
+  line-height: 1.12;
   margin: 0;
   font-weight: 400;
   text-shadow: 0 1px 2px rgba(255, 235, 190, 0.5);
@@ -1800,27 +1800,25 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
 .scroll__blessing {
   font-family: var(--f-serif);
   font-style: italic;
-  font-size: clamp(0.66rem, 2.6cqw, 0.96rem);
+  font-size: clamp(0.66rem, 2.6cqw, 0.98rem);
   color: #4a0a1a;
   margin: 0;
   font-weight: 600;
   line-height: 1.25;
-  max-width: 96%;
 }
 
 .scroll__lead {
   font-family: var(--f-serif);
-  font-size: clamp(0.62rem, 2.3cqw, 0.88rem);
+  font-size: clamp(0.62rem, 2.3cqw, 0.90rem);
   color: #4a0a1a;
   margin: 0;
   font-weight: 500;
   line-height: 1.25;
-  max-width: 96%;
 }
 
 .scroll__couple {
   font-family: var(--f-display);
-  font-size: clamp(1.1rem, 5.2cqw, 2.05rem);
+  font-size: clamp(1.05rem, 4.9cqw, 1.95rem);
   font-weight: 700;
   letter-spacing: 0.08em;
   color: #3b0410;
@@ -1844,7 +1842,7 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
 
 .scroll__date {
   font-family: var(--f-caps);
-  font-size: clamp(0.64rem, 2.4cqw, 0.88rem);
+  font-size: clamp(0.62rem, 2.3cqw, 0.86rem);
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -1864,10 +1862,10 @@ html:not(.anim) .ev-pop { position: relative; inset: auto; margin: -40px 8% 0; }
 }
 
 .intro__open-btn {
-  margin: 0.5cqw 0 0;
-  padding: clamp(6px, 2.0cqw, 10px) clamp(16px, 5.4cqw, 28px);
+  margin: 0;
+  padding: clamp(6px, 1.9cqw, 9px) clamp(16px, 5.2cqw, 26px);
   font-family: var(--f-caps);
-  font-size: clamp(0.66rem, 2.4cqw, 0.88rem);
+  font-size: clamp(0.65rem, 2.3cqw, 0.86rem);
   letter-spacing: 0.16em;
   font-weight: 700;
   text-transform: uppercase;
