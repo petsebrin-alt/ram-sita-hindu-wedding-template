@@ -271,459 +271,180 @@
   function playOpening(done) {
     const intro = $('#intro');
     if (!intro) return done();
-
     const q = s => $(s, intro);
+    const bg = q('#opBg'), rama = q('#opRama'), aura = q('#opAura'), str = q('#opString'), charge = q('#opCharge');
+    const arrow = q('#opArrow'), burst = q('#opBurst'), scroll = q('#opScroll'), closed = q('#opScrollClosed');
+    const sheet = q('#opSheet'), roller = q('#opRoller'), lines = $$('.op-l', intro), flames = $$('.op-flame', intro);
+    const flash = q('#opFlash'), skipBtn = q('#introSkip'), openBtn = q('#introOpenBtn'), soundBtn = q('#opSound');
+    const cv = q('#opFx'), ctx = cv.getContext('2d');
 
-    /* ── DOM Element References ─────────────────────────────────────────── */
-    const sceneRama       = q('#sceneRama');
-    const bgTemple        = q('#bgTemple');
-    const introRays       = q('#introRays');
-    const skyAura         = q('#skyAura');
-    const bowCharge       = q('#bowCharge');
-    const spiritualWave   = q('#spiritualWave');
-    const waveAura        = q('#waveAura');
-    const waveLightning   = q('#waveLightning');
-    const waveCore        = q('#waveCore');
-    const spiritualArrow  = q('#spiritualArrow');
-    const waveHead        = q('#waveHead');
-    const magicBurst      = q('#magicBurst');
-    const scrollContainer = q('#scrollContainer');
-    const scrollClosed    = q('#scrollClosed');
-    const scrollOpen      = q('#scrollOpen');
-    const scrollParchment = q('#scrollParchment');
-    const scrollBotRoller = q('#scrollBotRoller');
-    const scrollBody      = q('#scrollBody');
-    const openBtn         = q('#introOpenBtn');
-    const skipBtn         = q('#introSkip');
-    const flash           = q('#introFlash');
-    const fxCanvas        = q('#introFx');
+    // the guest's name can come from the link: ?to=Sharma%20Family
+    const guest = new URLSearchParams(location.search).get('to');
+    if (guest) q('#opGuest').textContent = guest.slice(0, 40);
 
-    /* ── Atmospheric Canvas FX (Floating Marigold Petals & Golden Sparks) ── */
-    let fxRunning = true, fxRaf = null;
-    let burstSparks = [];
-    if (fxCanvas) {
-      const ctx = fxCanvas.getContext('2d');
-      let w = fxCanvas.width  = window.innerWidth;
-      let h = fxCanvas.height = window.innerHeight;
-      window.addEventListener('resize', () => {
-        if (!fxCanvas) return;
-        w = fxCanvas.width  = window.innerWidth;
-        h = fxCanvas.height = window.innerHeight;
+    /* ---- where things are on screen (the picture is cover-fitted) ---- */
+    const IW = 940, IH = 1672;
+    let wide = false, layout = null;
+    function measure() {
+      const vw = innerWidth, vh = innerHeight;
+      wide = vw / vh >= 0.8;
+      intro.classList.toggle('is-wide', wide);
+      const px = wide ? .5 : .66, py = wide ? .9 : .5;
+      intro.style.setProperty('--bg-pos', (px * 100) + '% ' + (py * 100) + '%');
+      const s = Math.max(vw / IW, vh / IH), rw = IW * s, rh = IH * s, ox = (vw - rw) * px, oy = (vh - rh) * py;
+      const at = (fx, fy) => ({ x: ox + fx * rw, y: oy + fy * rh });
+      let bow, bowH;
+      if (wide) {
+        const r = rama.getBoundingClientRect();
+        bow = { x: r.left + r.width * .8, y: r.top + r.height * .47 }; bowH = r.height * .62;
+      } else { bow = at(.894, .197); bowH = .2 * rh; }
+      const sr = scroll.getBoundingClientRect();
+      layout = { vw, vh, bow, bowH, s: rh, at, target: { x: sr.left + sr.width / 2, y: sr.top + sr.height * .06 } };
+      flames.forEach(f => {
+        const p = at(+f.dataset.fx, +f.dataset.fy), hgt = Math.max(9, +f.dataset.fh * rh * 1.3);
+        Object.assign(f.style, { left: p.x + 'px', top: p.y + 'px', height: hgt + 'px' });
+        f.dataset.off = (p.x < -10 || p.x > vw + 10 || p.y < 0 || p.y > vh + 10) ? '1' : '';
       });
-
-      const particles = [];
-      const petalColors = [
-        'rgba(244,143,177,0.72)',
-        'rgba(255,183,77,0.78)',
-        'rgba(232,99,143,0.68)',
-        'rgba(255,213,79,0.75)',
-        'rgba(255,160,50,0.65)'
-      ];
-
-      /* Ambient falling petals */
-      for (let i = 0; i < 28; i++) {
-        particles.push({
-          type: 'petal',
-          x: Math.random() * w, y: Math.random() * h,
-          r: 4 + Math.random() * 8,
-          vx: -0.4 + Math.random() * 0.8,
-          vy: 0.6 + Math.random() * 1.3,
-          rot: Math.random() * Math.PI * 2,
-          vrot: (Math.random() - 0.5) * 0.045,
-          sway: 0.015 + Math.random() * 0.02,
-          color: petalColors[i % petalColors.length]
-        });
-      }
-
-      /* Ambient ascending golden sacred sparks */
-      for (let i = 0; i < 24; i++) {
-        particles.push({
-          type: 'spark',
-          x: Math.random() * w, y: Math.random() * h,
-          r: 1 + Math.random() * 2.2,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: -0.4 - Math.random() * 0.9,
-          alpha: 0.25 + Math.random() * 0.7,
-          dAlpha: 0.008 + Math.random() * 0.018
-        });
-      }
-
-      function drawFx() {
-        if (!fxRunning) return;
-        ctx.clearRect(0, 0, w, h);
-
-        /* Render ambient particles */
-        particles.forEach(p => {
-          if (p.type === 'petal') {
-            p.x += p.vx + Math.sin(p.y * p.sway) * 0.45;
-            p.y += p.vy;
-            p.rot += p.vrot;
-            if (p.y > h + 25) { p.y = -25; p.x = Math.random() * w; }
-            if (p.x < -25) p.x = w + 25;
-            if (p.x > w + 25) p.x = -25;
-            ctx.save();
-            ctx.translate(p.x, p.y);
-            ctx.rotate(p.rot);
-            ctx.fillStyle = p.color;
-            ctx.beginPath();
-            ctx.ellipse(0, 0, p.r, p.r * 0.45, 0, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.restore();
-          } else {
-            p.x += p.vx; p.y += p.vy;
-            p.alpha += p.dAlpha;
-            if (p.alpha > 0.95 || p.alpha < 0.15) p.dAlpha = -p.dAlpha;
-            if (p.y < -15) { p.y = h + 15; p.x = Math.random() * w; }
-            ctx.shadowColor = 'rgba(255, 215, 80, 0.9)';
-            ctx.shadowBlur = 8;
-            ctx.fillStyle = `rgba(255, 225, 120, ${Math.max(0, p.alpha)})`;
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-          }
-        });
-
-        /* Render explosive burst sparks (when arrow strikes center) */
-        if (burstSparks.length > 0) {
-          for (let i = burstSparks.length - 1; i >= 0; i--) {
-            const b = burstSparks[i];
-            b.x += b.vx;
-            b.y += b.vy;
-            b.vy += 0.08; /* slight gravity */
-            b.alpha *= 0.96;
-            if (b.alpha < 0.02) {
-              burstSparks.splice(i, 1);
-              continue;
-            }
-            ctx.shadowColor = 'rgba(255, 230, 100, 1)';
-            ctx.shadowBlur = 10;
-            ctx.fillStyle = `rgba(255, 240, 150, ${b.alpha})`;
-            ctx.beginPath();
-            ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-          }
-        }
-
-        fxRaf = requestAnimationFrame(drawFx);
-      }
-      drawFx();
+      const place = (el, p) => { el.style.left = p.x + 'px'; el.style.top = p.y + 'px'; };
+      place(aura, bow); place(charge, bow); place(str, { x: bow.x + bowH * .02, y: bow.y }); str.style.height = bowH + 'px';
+      place(burst, layout.target);
+      cv.width = vw * Math.min(devicePixelRatio || 1, 2); cv.height = vh * Math.min(devicePixelRatio || 1, 2);
+      cv.style.width = vw + 'px'; cv.style.height = vh + 'px';
+      ctx.setTransform(cv.width / vw, 0, 0, cv.height / vh, 0, 0);
     }
+    measure();
+    addEventListener('resize', measure);
 
-    /* Helper function to trigger golden burst at (x, y) */
-    const triggerGoldenBurst = (x, y) => {
-      for (let i = 0; i < 55; i++) {
-        const angle = Math.random() * Math.PI * 2;
-        const speed = 2.5 + Math.random() * 9.5;
-        burstSparks.push({
-          x: x || window.innerWidth / 2,
-          y: y || window.innerHeight / 2,
-          vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed,
-          r: 1.5 + Math.random() * 3.2,
-          alpha: 1.0
-        });
-      }
-    };
-
-    /* ── Finish & Smooth Transition to Website ───────────────────────────── */
-    let finished = false;
-    const finish = () => {
-      if (finished) return;
-      finished = true;
-      fxRunning = false;
-      if (fxRaf) cancelAnimationFrame(fxRaf);
-      Soundscape.play('paperOpen', { volume: 0.9 });
-      done();
-      gsap.to(intro, {
-        opacity: 0,
-        duration: 1.2,
-        ease: 'power2.out',
-        onComplete: () => intro.remove()
-      });
-    };
-
-    /* ── Reduced Motion Accessibility ────────────────────────────────────── */
-    if (reduced) {
-      gsap.set(bgTemple,        { opacity: 1, scale: 1 });
-      gsap.set(skyAura,         { opacity: 0.6 });
-      gsap.set(scrollClosed,    { display: 'none' });
-      gsap.set(scrollOpen,      { opacity: 1 });
-      gsap.set(scrollParchment, { clipPath: 'inset(0 0 19.2% 0)' });
-      gsap.set(scrollBotRoller, { top: '80.8%' });
-      gsap.set(Array.from(scrollBody.children), { opacity: 1, y: 0 });
-      if (openBtn) openBtn.addEventListener('click', finish);
-      if (skipBtn) skipBtn.addEventListener('click', finish);
-      return;
+    /* ---- sound: the browser only allows it after the first touch ---- */
+    let soundOn = false;
+    const fire = () => { try { const a = new Audio('assets/audio/vilakku-fire-on.wav'); a.volume = .75; a.play().catch(() => {}); } catch (e) {} };
+    let actx = null;
+    function whoosh() {
+      try {
+        actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+        if (actx.state === 'suspended') return;
+        const len = actx.sampleRate * 1.6, buf = actx.createBuffer(1, len, actx.sampleRate), d = buf.getChannelData(0);
+        for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+        const src = actx.createBufferSource(); src.buffer = buf;
+        const bp = actx.createBiquadFilter(); bp.type = 'bandpass'; bp.Q.value = 1.4;
+        bp.frequency.setValueAtTime(500, actx.currentTime); bp.frequency.exponentialRampToValueAtTime(2600, actx.currentTime + .5); bp.frequency.exponentialRampToValueAtTime(700, actx.currentTime + 1.5);
+        const g = actx.createGain(); g.gain.setValueAtTime(0, actx.currentTime); g.gain.linearRampToValueAtTime(.35, actx.currentTime + .25); g.gain.exponentialRampToValueAtTime(.001, actx.currentTime + 1.55);
+        src.connect(bp).connect(g).connect(actx.destination); src.start();
+      } catch (e) {}
     }
-
-    /* ── SVG Spiritual Wave Path Setup ───────────────────────────────────── */
-    const totalWaveLen = waveCore && waveCore.getTotalLength ? waveCore.getTotalLength() : 600;
-    [waveAura, waveLightning, waveCore].forEach(p => {
-      if (p) {
-        p.style.strokeDasharray = totalWaveLen;
-        p.style.strokeDashoffset = totalWaveLen;
-      }
+    let musicStarted = false;
+    const music = () => { if (musicStarted) return; musicStarted = true; Soundscape.play('introSriRam', { allowScrollUp: true, volume: .8 }); };
+    soundBtn.addEventListener('click', () => {
+      soundOn = true; soundBtn.classList.add('is-on'); soundBtn.setAttribute('aria-pressed', 'true');
+      try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); actx.resume(); } catch (e) {}
+      if (released) { musicStarted = false; music(); }
     });
+    intro.addEventListener('pointerdown', () => { try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); actx.resume(); } catch (e) {} }, { once: true });
 
-    /* ── Initial Element States ──────────────────────────────────────────── */
-    gsap.set(sceneRama,    { opacity: 1, scale: 1 });
-    gsap.set(bgTemple,     { scale: 1.0, transformOrigin: '50% 45%' });
-    gsap.set(introRays,    { opacity: 0, scale: 0.95 });
-    gsap.set(skyAura,      { opacity: 0, scale: 0.85 });
-
-    gsap.set(bowCharge,    { opacity: 0, scale: 0.2 });
-    gsap.set(spiritualWave,{ opacity: 0 });
-    gsap.set(spiritualArrow,{ opacity: 0, scale: 0.7 });
-    gsap.set(waveHead,     { opacity: 0, scale: 0.2 });
-    gsap.set(magicBurst,   { opacity: 0, scale: 0.2 });
-    gsap.set(scrollClosed, { opacity: 0, scale: 0.88, y: -20 });
-    gsap.set(scrollOpen,   { opacity: 0 });
-    gsap.set(scrollParchment, { clipPath: 'inset(0 0 90.3% 0)' });
-    gsap.set(scrollBotRoller, { top: '9.7%' });
-    gsap.set(Array.from(scrollBody.children), { opacity: 0, y: 10 });
-
-    /* ── Main GSAP Cinematic Timeline (~5.4s of slow, majestic motion) ────── */
-    const tl = gsap.timeline();
-
-    /*
-     * SCENE 01 — DIVINE REVEAL & SUNSET TEMPLE AURA (0.00s → 1.20s)
-     * Volumetric sun rays stream down; golden celestial aura glows around Lord Rama
-     */
-    tl
-      /* Slow cinematic camera push */
-      .to(bgTemple, {
-        scale: 1.06,
-        duration: 6.0,
-        ease: 'sine.inOut'
-      }, 0)
-
-      /* Golden sun rays stream down gracefully */
-      .to(introRays, {
-        opacity: 0.95,
-        scale: 1.04,
-        duration: 1.2,
-        ease: 'power2.out'
-      }, 0.05)
-
-      /* Sky aura radiates around Lord Rama */
-      .to(skyAura, {
-        opacity: 0.95,
-        scale: 1.3,
-        duration: 1.4,
-        ease: 'power2.out'
-      }, 0.10)
-
-    /*
-     * SCENE 02 — LORD RAMA CHARGES CELESTIAL SPIRITUAL LIGHT AT VILLU (1.20s → 2.40s)
-     * Concentrated star of divine golden energy slowly ignites, pulses and gathers power
-     */
-      .to(bowCharge, {
-        opacity: 1,
-        scale: 2.2,
-        duration: 1.10,
-        ease: 'sine.inOut'
-      }, 1.20)
-
-    /*
-     * SCENE 03 — VILLU RELEASE & SPIRITUAL ARROW SLOW CURVED FLIGHT (2.40s → 4.00s)
-     * Celestial flash at release; spiritual arrow & wavy light beam slowly soar along curving path
-     */
-      /* Celestial flash at bow */
-      .to(bowCharge, {
-        scale: 3.8,
-        opacity: 1,
-        duration: 0.10,
-        ease: 'power2.in'
-      }, 2.35)
-      .to(bowCharge, {
-        opacity: 0,
-        scale: 0.2,
-        duration: 0.35,
-        ease: 'power2.out'
-      }, 2.45)
-
-      /* Fullscreen Spiritual Arrow and Wavy Light Stream become visible & soar along wavy S-curve over 1.55s */
-      .set(spiritualWave, { opacity: 1 }, 2.42)
-      .set(spiritualArrow, { opacity: 1, scale: 1 }, 2.42)
-      .set(waveHead, { opacity: 1 }, 2.42)
-      .to({ progress: 0 }, {
-        progress: 1,
-        duration: 1.55,
-        ease: 'power1.inOut',
-        onUpdate: function() {
-          const pr = this.targets()[0].progress;
-          const offset = totalWaveLen * (1 - pr);
-          if (waveAura) waveAura.style.strokeDashoffset = offset;
-          if (waveLightning) waveLightning.style.strokeDashoffset = offset;
-          if (waveCore) waveCore.style.strokeDashoffset = offset;
-
-          if (waveCore && waveCore.getPointAtLength) {
-            const pt = waveCore.getPointAtLength(totalWaveLen * pr);
-            const ptAhead = waveCore.getPointAtLength(Math.min(totalWaveLen, totalWaveLen * pr + 2));
-            const angleDeg = Math.atan2(ptAhead.y - pt.y, ptAhead.x - pt.x) * 180 / Math.PI;
-
-            const px = (pt.x / 1000) * window.innerWidth;
-            const py = (pt.y / 600) * window.innerHeight;
-
-            if (spiritualArrow) {
-              spiritualArrow.style.left = px + 'px';
-              spiritualArrow.style.top = py + 'px';
-              spiritualArrow.style.transform = 'translate(-50%, -50%) rotate(' + (angleDeg - 180) + 'deg)';
-            }
-
-            if (waveHead) {
-              waveHead.style.left = px + 'px';
-              waveHead.style.top = py + 'px';
-            }
-
-            // Emit glowing celestial stardust along the wavy trajectory
-            if (Math.random() < 0.7) {
-              burstSparks.push({
-                x: px + (Math.random() - 0.5) * 18,
-                y: py + (Math.random() - 0.5) * 18,
-                vx: (Math.random() - 0.5) * 2.0,
-                vy: (Math.random() - 0.5) * 2.0,
-                r: 1.5 + Math.random() * 2.8,
-                alpha: 1.0
-              });
-            }
-          }
-        }
-      }, 2.45)
-
-    /*
-     * SCENE 04 — CENTER IMPACT & ROYAL SCROLL UNROLLING (4.00s → 5.30s)
-     * Spiritual arrow impacts center with golden mandala explosion;
-     * Royal scroll manifests and unrolls smoothly top to bottom
-     */
-      /* Explode 60 golden celestial sparks at center */
-      .call(() => {
-        triggerGoldenBurst(window.innerWidth * 0.5, window.innerHeight * 0.48);
-      }, [], 4.00)
-
-      /* Expanding mandala burst */
-      .to(magicBurst, {
-        opacity: 1,
-        scale: 2.6,
-        duration: 0.35,
-        ease: 'power2.out'
-      }, 4.00)
-      .to(magicBurst, {
-        scale: 4.2,
-        opacity: 0,
-        duration: 0.45,
-        ease: 'power2.inOut'
-      }, 4.35)
-
-      /* Spiritual arrow & wave dissolve into divine light */
-      .to(spiritualArrow, {
-        scale: 1.5,
-        opacity: 0,
-        duration: 0.25,
-        ease: 'power2.in'
-      }, 4.00)
-      .to(waveHead, {
-        scale: 2.8,
-        opacity: 0,
-        duration: 0.25,
-        ease: 'power2.in'
-      }, 4.00)
-      .to(spiritualWave, {
-        opacity: 0,
-        duration: 0.35,
-        ease: 'power1.out'
-      }, 4.05)
-
-      /* Royal closed golden scroll appears in the radiant burst */
-      .to(scrollClosed, {
-        opacity: 1,
-        scale: 1.0,
-        y: 0,
-        duration: 0.25,
-        ease: 'back.out(1.6)'
-      }, 4.05)
-
-      /* Crossfade into open scroll top golden rod */
-      .to(scrollClosed, {
-        opacity: 0,
-        scale: 0.98,
-        duration: 0.20,
-        ease: 'power1.in'
-      }, 4.15)
-      .set(scrollOpen, { opacity: 1 }, 4.15)
-
-      /* Bottom roller rolls down smoothly over 1.15s */
-      .fromTo(scrollBotRoller, {
-        top: '9.7%'
-      }, {
-        top: '80.8%',
-        duration: 1.15,
-        ease: 'power2.out'
-      }, 4.18)
-      .fromTo(scrollParchment, {
-        clipPath: 'inset(0 0 90.3% 0)'
-      }, {
-        clipPath: 'inset(0 0 19.2% 0)',
-        duration: 1.15,
-        ease: 'power2.out'
-      }, 4.18)
-
-      /* Invitation text lines reveal smoothly as parchment unrolls */
-      .to(Array.from(scrollBody.children), {
-        opacity: 1,
-        y: 0,
-        stagger: 0.07,
-        duration: 0.45,
-        ease: 'power2.out'
-      }, 4.30)
-
-      /* CTA button bounces in with golden glow aura */
-      .fromTo(openBtn, {
-        scale: 0.88,
-        boxShadow: '0 0 0 rgba(212, 175, 90, 0)'
-      }, {
-        scale: 1.0,
-        boxShadow: '0 4px 20px rgba(74, 10, 26, 0.45), 0 0 18px rgba(212, 175, 90, 0.55)',
-        duration: 0.5,
-        ease: 'back.out(1.6)'
-      }, 5.10);
-
-    /* ── Button Event Listeners ──────────────────────────────────────────── */
-    if (skipBtn) {
-      skipBtn.addEventListener('click', () => {
-        const p = tl.progress();
-        if (p < 0.8) {
-          /* Jump straight to fully revealed invitation scroll */
-          tl.progress(0.92);
-        } else {
-          tl.kill();
-          /* Flash & finish */
-          gsap.to(flash, {
-            opacity: 0.8,
-            duration: 0.35,
-            onComplete: finish
-          });
-        }
+    /* ---- golden dust and the arrow's trail of light ---- */
+    const dust = [], trail = [];
+    for (let i = 0; i < (small() ? 26 : 46); i++) dust.push({ x: Math.random(), y: Math.random(), r: .6 + Math.random() * 1.8, v: .0002 + Math.random() * .0005, t: Math.random() * 6.28 });
+    let running = true;
+    function frame(now) {
+      if (!running) return;
+      requestAnimationFrame(frame);
+      const { vw, vh } = layout;
+      ctx.clearRect(0, 0, vw, vh);
+      ctx.globalCompositeOperation = 'lighter';
+      dust.forEach(p => {
+        p.y -= p.v; p.t += .02; if (p.y < -.02) { p.y = 1.02; p.x = Math.random(); }
+        const a = .25 + .25 * Math.sin(p.t);
+        ctx.fillStyle = `rgba(255,214,140,${a})`; ctx.beginPath(); ctx.arc(p.x * vw + Math.sin(p.t) * 6, p.y * vh, p.r, 0, 6.283); ctx.fill();
       });
+      for (let i = trail.length - 1; i >= 0; i--) {
+        const p = trail[i]; p.x += p.vx; p.y += p.vy; p.vy += .015; p.life -= p.decay;
+        if (p.life <= 0) { trail.splice(i, 1); continue; }
+        const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 3);
+        g.addColorStop(0, `rgba(255,250,220,${p.life})`); g.addColorStop(.4, `rgba(255,200,90,${p.life * .6})`); g.addColorStop(1, 'rgba(255,150,40,0)');
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(p.x, p.y, p.r * 3, 0, 6.283); ctx.fill();
+      }
+      ctx.globalCompositeOperation = 'source-over';
+    }
+    requestAnimationFrame(frame);
+    const sparkle = (x, y, n, spread = 1.6) => { for (let i = 0; i < n; i++) trail.push({ x, y, vx: (Math.random() - .5) * spread, vy: (Math.random() - .5) * spread - .3, r: 1.5 + Math.random() * 3.5, life: 1, decay: .012 + Math.random() * .02 }); };
+
+    /* ---- finishing: light floods the screen and the website opens ---- */
+    let finished = false, released = false, tl = null;
+    function finish() {
+      if (finished) return; finished = true;
+      if (tl) tl.kill();
+      Soundscape.stop('introSriRam', { fade: 2.2 });
+      done();
+      gsap.timeline({ onComplete: () => { running = false; removeEventListener('resize', measure); intro.remove(); } })
+        .to(flash, { opacity: 1, duration: .55, ease: 'power2.in' })
+        .set(q('#opScene'), { opacity: 0 })
+        .to(intro, { opacity: 0, duration: 1.1, ease: 'power2.out' });
+    }
+    skipBtn.addEventListener('click', finish);
+    openBtn.addEventListener('click', finish);
+
+    /* ---- the arrow's path: from the bow, arcing down to the top of the scroll ---- */
+    function arrowPath(t) {
+      const { bow, target } = layout;
+      // leaves the bow travelling left, then sweeps down onto the scroll
+      const c1 = { x: bow.x - (bow.x - target.x) * .75, y: bow.y - layout.vh * .02 };
+      const c2 = { x: target.x + (bow.x - target.x) * .05, y: target.y - layout.vh * .12 };
+      const u = 1 - t;
+      return { x: u * u * u * bow.x + 3 * u * u * t * c1.x + 3 * u * t * t * c2.x + t * t * t * target.x,
+               y: u * u * u * bow.y + 3 * u * u * t * c1.y + 3 * u * t * t * c2.y + t * t * t * target.y };
     }
 
-    if (openBtn) {
-      openBtn.addEventListener('click', () => {
-        tl.kill();
-        /* Divine golden flash transition to #welcome */
-        gsap.to(flash, {
-          opacity: 0.9,
-          duration: 0.45,
-          ease: 'power2.in',
-          onComplete: () => {
-            finish();
-            scrollToEl($('#welcome'));
-          }
-        });
-      });
-    }
+    /* ---- the opening, step by step ---- */
+    const lit = flames.filter(f => !f.dataset.off);
+    gsap.set([aura, charge, str, arrow, burst], { opacity: 0 });
+    gsap.set(lit, { opacity: 0, scale: .1 });
+    gsap.set(lines, { opacity: 0, y: 8 });
+    const sheetH = () => sheet.offsetHeight;
+    tl = gsap.timeline();
+    tl.fromTo(bg, { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 3.2, ease: 'power2.out' }, 0)
+      .fromTo(rama, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 2.2, ease: 'sine.out' }, .5)
+      .to(q('.op-rama__aura'), { opacity: 1, duration: 2, ease: 'sine.out' }, 1)
+      // Lord Rama draws the bow: light gathers along the string and at the arrow's notch
+      .to(aura, { opacity: 1, scale: 1.1, duration: 1.6, ease: 'sine.inOut' }, 1.2)
+      .fromTo(str, { opacity: 0, scaleY: .3 }, { opacity: .95, scaleY: 1, duration: .9, ease: 'power2.out' }, 1.6)
+      .to(rama, { scale: 1.025, x: 6, duration: 1.5, ease: 'power1.in' }, 1.7)
+      .fromTo(charge, { opacity: 0, scale: .2 }, { opacity: 1, scale: 1.25, duration: 1.5, ease: 'power2.in' }, 1.8)
+      .add(() => sparkle(layout.bow.x, layout.bow.y, 26, 2.4), 3.1)
+      // release!
+      .add(() => { released = true; whoosh(); music(); }, 3.25)
+      .to(rama, { scale: 1, x: 0, duration: .5, ease: 'back.out(3)' }, 3.25)
+      .to(str, { opacity: 0, duration: .35 }, 3.25)
+      .to(charge, { scale: 2.2, opacity: 0, duration: .6, ease: 'power2.out' }, 3.25)
+      .set(arrow, { opacity: 1 }, 3.3)
+      .to({ t: 0 }, { t: 1, duration: 1.7, ease: 'sine.inOut', onUpdate() {
+          const t = this.targets()[0].t, p = arrowPath(t), p2 = arrowPath(Math.min(1, t + .02));
+          const ang = Math.atan2(p2.y - p.y, p2.x - p.x) * 180 / Math.PI;
+          gsap.set(arrow, { x: p.x - arrow.offsetWidth / 2, y: p.y - arrow.offsetHeight / 2, rotation: ang, scale: 1 - t * .35 });
+          sparkle(p.x - Math.cos(ang * Math.PI / 180) * arrow.offsetWidth * .45, p.y - Math.sin(ang * Math.PI / 180) * arrow.offsetWidth * .45, 4, .9);
+        } }, 3.3)
+      .to(aura, { opacity: .5, duration: 1.2 }, 3.4)
+      // the arrow becomes light, and the light becomes the scroll
+      .to(arrow, { opacity: 0, scale: .2, duration: .3, ease: 'power2.in' }, 4.85)
+      .fromTo(burst, { opacity: 0, scale: .2 }, { opacity: 1, scale: 1, duration: .55, ease: 'power2.out' }, 4.9)
+      .add(() => { sparkle(layout.target.x, layout.target.y, 60, 4); Soundscape.play('templeBell', { allowScrollUp: true, volume: .55 }); }, 4.9)
+      .fromTo(closed, { opacity: 0, scale: .5, y: 10 }, { opacity: 1, scale: 1, y: 0, duration: 1.1, ease: 'back.out(1.4)' }, 5.0)
+      .to(burst, { opacity: .35, scale: 1.4, duration: 1.4, ease: 'sine.out' }, 5.45)
+      // the sheet with its jewelled top rod takes the rolled scroll's place
+      .set(sheet, { clipPath: 'inset(0 0 89% 0)' }, 6.0)
+      .set(roller, { top: '11%' }, 6.0)
+      .to(closed, { opacity: 0, duration: .6, ease: 'power1.inOut' }, 6.1)
+      .to([sheet, roller], { opacity: 1, duration: .6, ease: 'power1.inOut' }, 6.1)
+      .to(burst, { opacity: 0, duration: 1.2 }, 6.4)
+      // ...and unrolls, very slowly, from top to bottom
+      .to(sheet, { clipPath: 'inset(0 0 19.4% 0)', duration: 4.6, ease: 'power1.inOut' }, 6.7)
+      .to(roller, { top: '80.6%', duration: 4.6, ease: 'power1.inOut' }, 6.7)
+      .to(lines, { opacity: 1, y: 0, duration: .7, ease: 'power2.out', stagger: .42 }, 7.3);
+    // the lamps on the ghat light one by one, each with the sound of the flame catching
+    lit.forEach((f, i) => {
+      tl.add(() => { if (soundOn || musicStarted) fire(); sparkle(parseFloat(f.style.left), parseFloat(f.style.top) - 6, 8, 1.2); }, 5.2 + i * .55)
+        .to(f, { opacity: 1, scale: 1, duration: .5, ease: 'back.out(2.2)' }, 5.2 + i * .55);
+    });
+    if (reduced) tl.progress(1);
   }
   window.addEventListener('load', () => setTimeout(hidePreloader, 120));
   setTimeout(hidePreloader, 6000);

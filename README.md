@@ -8,6 +8,8 @@ A single-page, scroll-animated wedding invitation website themed on the Ramayana
 
 > Performance: looping decorations pause while their section is off screen, pictures decode in the background, oversized pictures are scaled down, and the phone address bar no longer makes the page re-measure mid-scroll.
 
+> Opening: the Ram Mandir at sunset with Lord Rama in the clouds. Light gathers on his bow, a golden arrow flies down leaving a trail of light, becomes a rolled scroll, and the scroll unrolls slowly from top to bottom to show the invitation (Dear <guest>, Ram & Sita, Saturday 27 March 2027, Rambagh Palace) with a glowing Open Invitation button. The lamps on the ghat light one by one with the sound of the flame catching; the Sri Ram music plays from the arrow's release once the guest has tapped for sound. Add ?to=Sharma%20Family to the link to greet a family by name (default: Kumar Family).
+
 ## Run it locally
 
 Open a terminal in this folder and run:
