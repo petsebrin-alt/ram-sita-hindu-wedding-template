@@ -57,11 +57,14 @@
       vilakkuFire:       'assets/audio/vilakku-fire-on.wav',
       paperOpen:         'assets/audio/paper-open.m4a',
       mirrorBreak:       'assets/audio/mirror-break.m4a',
+      templeBell:        'assets/audio/temple-bell.m4a',
+      hanumanHeart:      'assets/audio/hanuman-heart-chant.m4a',
       coupleFlutter:     'assets/audio/couple-flutter.m4a',
       palaceDoor:        'assets/audio/palace-door-open.m4a',
       eventsCelebration: 'assets/audio/events-celebration.m4a',
       scrapbookJaiRam:   'assets/audio/scrapbook-jai-ram.m4a',
       thankyouPeacock:   'assets/audio/thankyou-peacock.m4a',
+      clickSeal:         'assets/audio/click-seal.m4a',
     };
 
     const sounds = {};
@@ -70,11 +73,14 @@
       vilakkuFire:       0.88,
       paperOpen:         0.85,
       mirrorBreak:       0.95,
+      templeBell:        0.85,
+      hanumanHeart:      0.95,
       coupleFlutter:     0.85,
       palaceDoor:        0.85,
       eventsCelebration: 0.80,
       scrapbookJaiRam:   0.90,
       thankyouPeacock:   0.85,
+      clickSeal:         0.95,
     };
 
     Object.entries(audioSources).forEach(([name, src]) => {
@@ -86,6 +92,25 @@
 
     let unlocked = false;
     let pendingPlay = null;
+    let scrollDirection = 1; // 1 = down, -1 = up
+    let lastScrollY = window.pageYOffset || 0;
+
+    window.addEventListener('scroll', () => {
+      const y = window.pageYOffset || 0;
+      const diff = y - lastScrollY;
+      if (Math.abs(diff) > 3) {
+        const newDir = diff > 0 ? 1 : -1;
+        if (newDir !== scrollDirection) {
+          scrollDirection = newDir;
+          if (scrollDirection === -1) {
+            // Scrolling up: silence all sounds immediately per user requirement
+            Soundscape.stopAll({ fade: 0.25 });
+          }
+        }
+        lastScrollY = y;
+      }
+    }, { passive: true });
+
     const unlock = () => {
       if (unlocked) return;
       unlocked = true;
@@ -142,7 +167,10 @@
     }
 
     return {
-      play(name, { loop = false, once = false, volume = null, minInterval = 600, duration = null, fadeOut = 0.5 } = {}) {
+      play(name, { loop = false, once = false, volume = null, minInterval = 600, duration = null, fadeOut = 0.5, allowScrollUp = false } = {}) {
+        // Disallow playback while scrolling up (unless explicitly user-triggered click)
+        if (scrollDirection === -1 && !allowScrollUp) return;
+
         const audioEl = sounds[name];
         if (!audioEl) return;
         if (once && playedOnce[name]) return;
@@ -166,7 +194,7 @@
           if (p !== undefined) {
             p.catch(() => {
               if (!unlocked) {
-                pendingPlay = { name, opts: { loop, once, volume, minInterval, duration, fadeOut } };
+                pendingPlay = { name, opts: { loop, once, volume, minInterval, duration, fadeOut, allowScrollUp } };
               }
             });
           }
@@ -426,8 +454,8 @@
       gsap.set(skyAura,         { opacity: 0.6 });
       gsap.set(scrollClosed,    { display: 'none' });
       gsap.set(scrollOpen,      { opacity: 1 });
-      gsap.set(scrollParchment, { clipPath: 'inset(0 0 19.2% 0)' });
-      gsap.set(scrollBotRoller, { top: '80.8%' });
+      gsap.set(scrollParchment, { clipPath: 'inset(0 0 19.0% 0)' });
+      gsap.set(scrollBotRoller, { top: '79.2%' });
       gsap.set(Array.from(scrollBody.children), { opacity: 1, y: 0 });
       if (openBtn) openBtn.addEventListener('click', finish);
       if (skipBtn) skipBtn.addEventListener('click', finish);
@@ -630,18 +658,18 @@
       }, 4.15)
       .set(scrollOpen, { opacity: 1 }, 4.15)
 
-      /* Bottom roller rolls down smoothly over 1.15s */
+      /* Bottom roller rolls down smoothly over 1.15s, seamlessly overlapping parchment */
       .fromTo(scrollBotRoller, {
         top: '9.7%'
       }, {
-        top: '80.8%',
+        top: '79.2%',
         duration: 1.15,
         ease: 'power2.out'
       }, 4.18)
       .fromTo(scrollParchment, {
         clipPath: 'inset(0 0 90.3% 0)'
       }, {
-        clipPath: 'inset(0 0 19.2% 0)',
+        clipPath: 'inset(0 0 19.0% 0)',
         duration: 1.15,
         ease: 'power2.out'
       }, 4.18)
@@ -1158,13 +1186,12 @@
       .to(lotus, { scale: 1, rotate: 0, duration: 1.8, ease: 'back.out(1.4)' }, 1.4)
       .call(() => { const r = lotus.getBoundingClientRect(); petalBurst(r.left + r.width / 2, r.top + r.height / 2, 12); }, null, 2.2);
 
-    // Continuous music while in couple section; only stops when user scrolls away
+    // Continuous music while in couple section; only stops when user scrolls away (down-only playback)
     ScrollTrigger.create({
       trigger: '#couple',
       start: 'top 80%',
       end: 'bottom 20%',
       onEnter: () => Soundscape.play('coupleFlutter', { loop: true, volume: 0.85 }),
-      onEnterBack: () => Soundscape.play('coupleFlutter', { loop: true, volume: 0.85 }),
       onLeave: () => Soundscape.stop('coupleFlutter', { fade: 0.6 }),
       onLeaveBack: () => Soundscape.stop('coupleFlutter', { fade: 0.6 })
     });
@@ -1210,28 +1237,35 @@
     // a closed book sits centred on its cover
     const closedX = () => narrow() ? 0 : -book.offsetWidth / 4;
 
-    // Strict visibility isolation: only allow the active spread's faces to render
+    // Strict visibility and display isolation: only allow the active spread's faces to render
     function syncSpreadVisibility(activeSpread) {
       leaves.forEach((l, idx) => {
         const front = l.querySelector('.rbook__face--front');
         const back = l.querySelector('.rbook__face--back');
         if (activeSpread < 0) {
+          l.style.display = (idx === 0) ? 'block' : 'none';
           if (front) front.style.visibility = (idx === 0) ? 'visible' : 'hidden';
           if (back) back.style.visibility = 'hidden';
           return;
         }
         if (idx === activeSpread) {
+          l.style.display = 'block';
           if (front) front.style.visibility = 'hidden';
           if (back) back.style.visibility = 'visible';
         } else if (idx === activeSpread + 1) {
+          l.style.display = 'block';
           if (front) front.style.visibility = 'visible';
           if (back) back.style.visibility = 'hidden';
         } else {
+          l.style.display = 'none';
           if (front) front.style.visibility = 'hidden';
           if (back) back.style.visibility = 'hidden';
         }
       });
     }
+
+    // Initialize with book closed: hide non-cover leaves from GPU completely
+    syncSpreadVisibility(-1);
 
     // the lotus blooms first, then completely disappears as the couple photo arrives
     let currentRevealTl = null;
@@ -1246,10 +1280,10 @@
         const bloom = $('.rpage__bloom', left), words = left.querySelectorAll('.rpage__om, .rpage__verse, .rpage__sub');
         if (instant || !ANIM) {
           gsap.set(bloom, { opacity: 1, scale: 1, rotate: 0, autoAlpha: 1 });
-          gsap.set(words, { opacity: 1, y: 0 });
+          gsap.set(words, { opacity: 1, autoAlpha: 1, y: 0 });
         } else {
           tl.fromTo(bloom, { opacity: 0, scale: .15, rotate: -40, autoAlpha: 1 }, { opacity: 1, scale: 1, rotate: 0, duration: 0.9, ease: 'back.out(1.4)' }, 0)
-            .fromTo(words, { opacity: 0, y: 10 }, { opacity: 1, y: 0, stagger: .1, duration: 0.5, ease: 'power2.out' }, .35);
+            .fromTo(words, { opacity: 0, autoAlpha: 0, y: 10 }, { opacity: 1, autoAlpha: 1, y: 0, stagger: .1, duration: 0.5, ease: 'power2.out' }, .35);
         }
       }
       if (right && !right.classList.contains('rpage--end')) {
@@ -1260,7 +1294,7 @@
           if (bloom) gsap.set(bloom, { opacity: 0, scale: 0.2, autoAlpha: 0 });
           if (pol) gsap.set(pol, { opacity: 1, y: 0, scale: 1, rotate: 0, autoAlpha: 1 });
           if (tape) gsap.set(tape, { scaleX: 1 });
-          if (words) gsap.set(words, { opacity: 1, y: 0 });
+          if (words) gsap.set(words, { opacity: 1, autoAlpha: 1, y: 0 });
           return tl;
         }
 
@@ -1273,13 +1307,13 @@
           .fromTo(pol, { opacity: 0, y: -20, scale: 0.92, rotate: -4, autoAlpha: 1 }, { opacity: 1, y: 0, scale: 1, rotate: 0, duration: 0.65, ease: 'power3.out' }, 0.72)
           // 4. Gold tape seals the photo down
           .fromTo(tape, { scaleX: 0 }, { scaleX: 1, duration: 0.32, ease: 'power2.out' }, 1.1)
-          // 5. Story chapter words reveal
-          .fromTo(words, { opacity: 0, y: 10 }, { opacity: 1, y: 0, stagger: 0.08, duration: 0.45, ease: 'power2.out' }, 1.15);
+          // 5. Story chapter words reveal cleanly with autoAlpha: 1 so text is fully visible
+          .fromTo(words, { opacity: 0, autoAlpha: 0, y: 10 }, { opacity: 1, autoAlpha: 1, y: 0, stagger: 0.08, duration: 0.45, ease: 'power2.out' }, 1.15);
       } else if (right) {
         if (instant || !ANIM) {
-          gsap.set(right.children, { opacity: 1, y: 0 });
+          gsap.set(right.children, { opacity: 1, autoAlpha: 1, y: 0 });
         } else {
-          tl.fromTo(right.children, { opacity: 0, y: 10 }, { opacity: 1, y: 0, stagger: .1, duration: .5, ease: 'power2.out' }, 0);
+          tl.fromTo(right.children, { opacity: 0, autoAlpha: 0, y: 10 }, { opacity: 1, autoAlpha: 1, y: 0, stagger: .1, duration: .5, ease: 'power2.out' }, 0);
         }
       }
       return tl;
@@ -1314,14 +1348,16 @@
     };
     const hint = $('#rbookOpen');
 
-    // turn one leaf with a soft shadow sweeping across it
+    // turn one leaf with a soft shadow sweeping across it and gentle page paper sound
     function turn(i, forward, after) {
       const leaf = leaves[i], faces = $$('.rbook__face', leaf);
       const front = leaf.querySelector('.rbook__face--front');
       const back = leaf.querySelector('.rbook__face--back');
+      leaf.style.display = 'block';
       if (front) front.style.visibility = 'visible';
       if (back) back.style.visibility = 'visible';
       gsap.set(leaf, { zIndex: 100 });
+      Soundscape.play('paperOpen', { volume: 0.70 });
       const d = ANIM ? 1.15 : 0;
       gsap.timeline({
         onComplete: () => {
@@ -1346,6 +1382,7 @@
         update();
         prime(k);
         if (leaves[k + 1]) {
+          leaves[k + 1].style.display = 'block';
           const nextFront = leaves[k + 1].querySelector('.rbook__face--front');
           if (nextFront) nextFront.style.visibility = 'visible';
         }
@@ -1359,6 +1396,7 @@
         update();
         prime(k);
         if (leaves[k]) {
+          leaves[k].style.display = 'block';
           const prevBack = leaves[k].querySelector('.rbook__face--back');
           if (prevBack) prevBack.style.visibility = 'visible';
         }
@@ -1372,6 +1410,7 @@
       if (spread >= 0 || busy) return;
       busy = true; spread = 0; update(); prime(0);
       book.classList.add('is-open'); stage.classList.remove('is-closed');
+      Soundscape.play('paperOpen', { volume: 0.85 });
       Soundscape.play('scrapbookJaiRam', { loop: true, volume: 0.90 });
       const tl = gsap.timeline();
       if (hint) tl.to(hint, { autoAlpha: 0, duration: .3 }, 0);
@@ -1380,6 +1419,7 @@
       tl.fromTo(book, { opacity: 0, scale: .92 }, { opacity: 1, scale: 1, duration: ANIM ? .9 : 0, ease: 'power2.out' }, ANIM ? .45 : 0)
         .add(() => {
           if (leaves[1]) {
+            leaves[1].style.display = 'block';
             const f = leaves[1].querySelector('.rbook__face--front');
             if (f) f.style.visibility = 'visible';
           }
@@ -1396,6 +1436,7 @@
       if (busy || spread !== 0) return;
       busy = true; stopAuto(); clearTimeout(idleTimer);
       Soundscape.stop('scrapbookJaiRam', { fade: 0.8 });
+      Soundscape.play('paperOpen', { volume: 0.70 });
       spread = -1; update();
       book.classList.remove('is-open');
       const tl = gsap.timeline({ onComplete: () => { busy = false; stage.classList.add('is-closed'); } });
@@ -1437,20 +1478,18 @@
     update();
     if (!ANIM) { if (intro) intro.remove(); open(); return; }
     gsap.set(book, { opacity: 0, x: closedX() });
-    ScrollTrigger.create({ trigger: stage, start: 'top 72%', once: true, onEnter: open });
-    // stop turning pages and pause music when the book is out of view
+    // Song only starts when user opens the scrapbook, never simply scrolling into view
     ScrollTrigger.create({
       trigger: stage,
       start: 'top bottom',
       end: 'bottom top',
-      onToggle: s => {
-        if (!s.isActive) {
-          stopAuto();
-          Soundscape.stop('scrapbookJaiRam', { fade: 0.8 });
-        } else if (spread >= 0) {
-          if (!auto) startAuto();
-          Soundscape.play('scrapbookJaiRam', { loop: true, volume: 0.90 });
-        }
+      onLeave: () => {
+        stopAuto();
+        Soundscape.stop('scrapbookJaiRam', { fade: 0.8 });
+      },
+      onLeaveBack: () => {
+        stopAuto();
+        Soundscape.stop('scrapbookJaiRam', { fade: 0.8 });
       }
     });
   }
@@ -1676,7 +1715,16 @@
   function initHanuman() {
     if (!ANIM || !$('#hanuman')) return;
     gsap.from('#hanuman .crimson__head > *', { y: 30, opacity: 0, duration: 1.1, stagger: .12, ease: 'power3.out', scrollTrigger: { trigger: '#hanuman', start: 'top 75%', once: true } });
-    const tl = gsap.timeline({ scrollTrigger: { trigger: '#hnFigure', start: 'top 72%', once: true } });
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#hnFigure',
+        start: 'top 72%',
+        once: true,
+        onEnter: () => {
+          Soundscape.play('templeBell', { volume: 0.85 });
+        }
+      }
+    });
     tl.from('.hn__img', { y: 70, opacity: 0, scale: .94, duration: 1.5, ease: 'power3.out' })
       .from('.hn__halo', { opacity: 0, scale: .3, duration: 1.6, ease: 'power2.out' }, .2)
       .to('.hn__glow', { opacity: 1, duration: 1.3, ease: 'sine.inOut' }, 1.1)
@@ -1685,11 +1733,21 @@
         onStart() {
           const r = $('.hn__heart').getBoundingClientRect();
           marigolds.hanuman?.burst(r.left + r.width / 2, r.top + r.height / 2, small() ? 50 : 80, .7);
+          Soundscape.play('hanumanHeart', { duration: 2.5, fadeOut: 0.5, volume: 0.95 });
         }
       }, 2.0)
       .to('.hn__glow', { opacity: .5, duration: 1.4 }, 3.3)
       .from('.hn__verse, .hn__blessing', { opacity: 0, y: 26, duration: 1.1, stagger: .2, ease: 'power3.out' }, 2.8);
     tl.eventCallback('onComplete', () => gsap.to('.hn__heart', { scale: 1.06, duration: .95, repeat: -1, yoyo: true, ease: 'sine.inOut' }));
+
+    // Stop hanuman audio if user scrolls away
+    ScrollTrigger.create({
+      trigger: '#hanuman',
+      start: 'top bottom',
+      end: 'bottom top',
+      onLeave: () => Soundscape.stop('hanumanHeart', { fade: 0.4 }),
+      onLeaveBack: () => Soundscape.stop('hanumanHeart', { fade: 0.4 })
+    });
   }
 
   /* ---------------------------------------------------------------------
@@ -1724,7 +1782,6 @@
         onUpdate: syncDots,
         onRefresh: self => requestAnimationFrame(() => syncDots(self)),
         onEnter: () => Soundscape.play('eventsCelebration', { loop: true, volume: 0.80 }),
-        onEnterBack: () => Soundscape.play('eventsCelebration', { loop: true, volume: 0.80 }),
         onLeave: () => Soundscape.stop('eventsCelebration', { fade: 0.8 }),
         onLeaveBack: () => Soundscape.stop('eventsCelebration', { fade: 0.8 })
       }
@@ -1992,6 +2049,7 @@
 
     // 2. tap the wax seal: it breaks, the flap opens, the letter rises and the invitation comes out
     function openEnvelope() {
+      Soundscape.play('clickSeal', { volume: 0.95, allowScrollUp: true, minInterval: 50 });
       if (opened) return; opened = true;
       stage.classList.add('is-open');
       if (!ANIM) { gsap.set(card, { autoAlpha: 1 }); return; }
@@ -2011,6 +2069,21 @@
         .add(() => { if (card.getBoundingClientRect().bottom > innerHeight - 60) card.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 2.6);
     }
     seal.addEventListener('click', openEnvelope);
+    const handSeal = $('.rsvp-hand--seal');
+    if (handSeal) {
+      handSeal.style.cursor = 'pointer';
+      handSeal.addEventListener('click', openEnvelope);
+    }
+    const handAccept = $('.rsvp-hand--accept');
+    if (handAccept) {
+      handAccept.style.cursor = 'pointer';
+      handAccept.addEventListener('click', () => {
+        $('#rsvpAccept')?.click();
+      });
+    }
+    $$('a[href="#rsvp"]').forEach(a => {
+      a.addEventListener('click', () => Soundscape.play('clickSeal', { volume: 0.95, allowScrollUp: true, minInterval: 50 }));
+    });
 
     // 3. accept: Hanuman, the hill, the envelope and the card fade away;
     //    Ram walks in from the left, Sita from the right, and they meet in the middle to thank the guest
@@ -2059,12 +2132,14 @@
       gsap.set(card, { autoAlpha: 0, x: 0, y: 0 }); gsap.set(flap, { rotateX: 0 }); gsap.set(letter, { yPercent: 0, autoAlpha: 1 }); gsap.set(seal, { autoAlpha: 1 });
     }
     $('#rsvpAccept').addEventListener('click', () => {
+      Soundscape.play('clickSeal', { volume: 0.95, allowScrollUp: true, minInterval: 50 });
       store.set(KEY, { status: 'accept', at: new Date().toISOString() });
       showDone(true);
     });
 
     // Replay: back to Hanuman with the closed envelope
     $('#rsvpReplay').addEventListener('click', () => {
+      Soundscape.play('clickSeal', { volume: 0.95, allowScrollUp: true, minInterval: 50 });
       if (!ANIM) { resetAll(); return; }
       gsap.timeline()
         .to(done, { autoAlpha: 0, duration: .45, ease: 'power1.in' })
@@ -2146,7 +2221,6 @@
         start: 'top 80%',
         end: 'bottom 10%',
         onEnter: () => Soundscape.play('thankyouPeacock', { loop: true, volume: 0.85 }),
-        onEnterBack: () => Soundscape.play('thankyouPeacock', { loop: true, volume: 0.85 }),
         onLeave: () => Soundscape.stop('thankyouPeacock', { fade: 0.8 }),
         onLeaveBack: () => Soundscape.stop('thankyouPeacock', { fade: 0.8 })
       });
