@@ -274,7 +274,7 @@
     const q = s => $(s, intro);
     const bg = q('#opBg'), rama = q('#opRama'), aura = q('#opAura'), str = q('#opString'), charge = q('#opCharge');
     const arrow = q('#opArrow'), burst = q('#opBurst'), scroll = q('#opScroll'), closed = q('#opScrollClosed');
-    const sheet = q('#opSheet'), roller = q('#opRoller'), lines = $$('.op-l', intro), flames = $$('.op-flame', intro);
+    const sheet = q('#opSheet'), roller = q('#opRoller'), topRod = q('#opTopRod'), lines = $$('.op-l', intro), flames = $$('.op-flame', intro);
     const flash = q('#opFlash'), skipBtn = q('#introSkip'), openBtn = q('#introOpenBtn'), soundBtn = q('#opSound');
     const cv = q('#opFx'), ctx = cv.getContext('2d');
 
@@ -299,7 +299,7 @@
         bow = { x: r.left + r.width * .8, y: r.top + r.height * .47 }; bowH = r.height * .62;
       } else { bow = at(.894, .197); bowH = .2 * rh; }
       const sr = scroll.getBoundingClientRect();
-      layout = { vw, vh, bow, bowH, s: rh, at, target: { x: sr.left + sr.width / 2, y: sr.top + sr.height * .06 } };
+      layout = { vw, vh, bow, bowH, s: rh, at, boxH: sr.height, target: { x: sr.left + sr.width / 2, y: sr.top + sr.height * .7 } };
       flames.forEach(f => {
         const p = at(+f.dataset.fx, +f.dataset.fy), hgt = Math.max(9, +f.dataset.fh * rh * 1.3);
         Object.assign(f.style, { left: p.x + 'px', top: p.y + 'px', height: hgt + 'px' });
@@ -394,10 +394,18 @@
                y: u * u * u * bow.y + 3 * u * u * t * c1.y + 3 * u * t * t * c2.y + t * t * t * target.y };
     }
 
+    const K = 968 / 980;   // box % -> sheet %
+    function openTo(p) {
+      const rodTop = 35.8 * (1 - p), rollTop = 43 + (80.6 - 43) * p;
+      topRod.style.top = rodTop + '%';
+      roller.style.top = rollTop + '%';
+      const clipTop = (rodTop + 10.4) * K, clipBottom = Math.max(19.4, 100 - (rollTop + 2.5) * K);
+      sheet.style.clipPath = `inset(${clipTop}% 0 ${clipBottom}% 0)`;
+    }
     /* ---- the opening, step by step ---- */
     const lit = flames.filter(f => !f.dataset.off);
     gsap.set([aura, charge, str, arrow, burst], { opacity: 0 });
-    gsap.set(lit, { opacity: 0, scale: .1 });
+    gsap.set(lit, { opacity: 0, scale: .05 });
     gsap.set(lines, { opacity: 0, y: 8 });
     const sheetH = () => sheet.offsetHeight;
     tl = gsap.timeline();
@@ -423,26 +431,31 @@
           sparkle(p.x - Math.cos(ang * Math.PI / 180) * arrow.offsetWidth * .45, p.y - Math.sin(ang * Math.PI / 180) * arrow.offsetWidth * .45, 4, .9);
         } }, 3.3)
       .to(aura, { opacity: .5, duration: 1.2 }, 3.4)
-      // the arrow becomes light, and the light becomes the scroll
+      // the arrow becomes light low in the sky, and the light becomes the rolled scroll
       .to(arrow, { opacity: 0, scale: .2, duration: .3, ease: 'power2.in' }, 4.85)
       .fromTo(burst, { opacity: 0, scale: .2 }, { opacity: 1, scale: 1, duration: .55, ease: 'power2.out' }, 4.9)
       .add(() => { sparkle(layout.target.x, layout.target.y, 60, 4); Soundscape.play('templeBell', { allowScrollUp: true, volume: .55 }); }, 4.9)
-      .fromTo(closed, { opacity: 0, scale: .5, y: 10 }, { opacity: 1, scale: 1, y: 0, duration: 1.1, ease: 'back.out(1.4)' }, 5.0)
-      .to(burst, { opacity: .35, scale: 1.4, duration: 1.4, ease: 'sine.out' }, 5.45)
-      // the sheet with its jewelled top rod takes the rolled scroll's place
-      .set(sheet, { clipPath: 'inset(0 0 89% 0)' }, 6.0)
-      .set(roller, { top: '11%' }, 6.0)
-      .to(closed, { opacity: 0, duration: .6, ease: 'power1.inOut' }, 6.1)
-      .to([sheet, roller], { opacity: 1, duration: .6, ease: 'power1.inOut' }, 6.1)
-      .to(burst, { opacity: 0, duration: 1.2 }, 6.4)
-      // ...and unrolls, very slowly, from top to bottom
-      .to(sheet, { clipPath: 'inset(0 0 19.4% 0)', duration: 4.6, ease: 'power1.inOut' }, 6.7)
-      .to(roller, { top: '80.6%', duration: 4.6, ease: 'power1.inOut' }, 6.7)
-      .to(lines, { opacity: 1, y: 0, duration: .7, ease: 'power2.out', stagger: .42 }, 7.3);
-    // the lamps on the ghat light one by one, each with the sound of the flame catching
+      .fromTo(closed, { opacity: 0, scale: .5, y: () => layout.boxH * .25 }, { opacity: 1, scale: 1, y: () => layout.boxH * .25, duration: 1, ease: 'back.out(1.4)' }, 5.0)
+      .to(burst, { opacity: 0, duration: 1.4, ease: 'sine.out' }, 5.5)
+      // the rolled scroll rises gently into place...
+      .to(closed, { y: 0, duration: 1.5, ease: 'sine.inOut' }, 6.0)
+      // ...and becomes two jewelled rods lying together
+      .set([topRod, roller, sheet], { opacity: 0 }, 7.4)
+      .to(closed, { opacity: 0, duration: .55, ease: 'power1.inOut' }, 7.5)
+      .to([topRod, roller], { opacity: 1, duration: .55, ease: 'power1.inOut' }, 7.5)
+      .set(sheet, { opacity: 1 }, 7.9)
+      // then the paper opens softly from the middle: the top rod rises, the bottom rod rolls down
+      .to({ p: 0 }, { p: 1, duration: 5.4, ease: 'sine.inOut', onUpdate() { openTo(this.targets()[0].p); } }, 8.0)
+      .to(lines, { opacity: 1, y: 0, duration: .8, ease: 'power2.out', stagger: .34 }, 9.6);
+
+    // the lamps: the big brass lamps on the floor light first, one by one, then the lamps floating on the water
     lit.forEach((f, i) => {
-      tl.add(() => { if (soundOn || musicStarted) fire(); sparkle(parseFloat(f.style.left), parseFloat(f.style.top) - 6, 8, 1.2); }, 5.2 + i * .55)
-        .to(f, { opacity: 1, scale: 1, duration: .5, ease: 'back.out(2.2)' }, 5.2 + i * .55);
+      const floor = i < 4, at = floor ? .7 + i * .75 : 3.9 + (i - 4) * .55;
+      tl.add(() => {
+          fire(); f.classList.add('is-lighting');
+          sparkle(parseFloat(f.style.left), parseFloat(f.style.top) - 6, floor ? 18 : 8, floor ? 1.8 : 1.2);
+        }, at)
+        .fromTo(f, { opacity: 0, scale: .05 }, { opacity: 1, scale: 1, duration: floor ? .9 : .55, ease: floor ? 'elastic.out(1, .55)' : 'back.out(2.2)' }, at);
     });
     if (reduced) tl.progress(1);
   }

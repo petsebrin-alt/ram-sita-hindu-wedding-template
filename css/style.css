@@ -1347,10 +1347,10 @@ html:not(.anim) .intro { display: none; }
 @keyframes op-glow { 0%, 100% { opacity: .85; } 50% { opacity: 1; } }
 /* the scroll */
 .op-scroll { --sw: min(440px, 86vw, calc((100svh - 70px) * .77)); position: absolute; left: 50%; top: 50%; width: var(--sw); aspect-ratio: 746 / 968; translate: -50% -50%; z-index: 6; container-type: inline-size; }
-.op-scroll__closed { position: absolute; left: -2%; top: 0; width: 104%; opacity: 0; filter: drop-shadow(0 10px 18px rgba(60, 20, 0, .5)); }
-.op-scroll__sheet { position: absolute; left: 0; top: 0; width: 100%; height: calc(100% * 980 / 968); opacity: 0; clip-path: inset(0 0 89% 0); filter: drop-shadow(0 18px 26px rgba(60, 20, 0, .45)); }
+.op-scroll__closed { position: absolute; left: -2%; top: 30.1%; width: 104%; opacity: 0; filter: drop-shadow(0 10px 18px rgba(60, 20, 0, .5)); }
+.op-scroll__sheet { position: absolute; left: 0; top: 0; width: 100%; height: calc(100% * 980 / 968); opacity: 0; clip-path: inset(45% 0 55% 0); filter: drop-shadow(0 18px 26px rgba(60, 20, 0, .45)); }
 .op-scroll__paper { position: absolute; inset: 0; width: 100%; height: 100%; }
-.op-scroll__roller { position: absolute; left: 0; width: 100%; top: 11%; opacity: 0; z-index: 2; filter: drop-shadow(0 10px 12px rgba(60, 20, 0, .45)); }
+.op-scroll__roller { position: absolute; left: 0; width: 100%; top: 43%; opacity: 0; z-index: 2; filter: drop-shadow(0 10px 12px rgba(60, 20, 0, .45)); }
 .op-scroll__body { position: absolute; top: 13%; bottom: 21.5%; left: 19%; right: 19%; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly; text-align: center; color: #4a0a1a; }
 .op-l { margin: 0; }
 .op-deva { color: #8a2a12; font-size: 4.2cqw; font-weight: 600; }
@@ -1638,3 +1638,10 @@ section.is-offscreen *, section.is-offscreen::before, section.is-offscreen::afte
   .thanks__verse-en { font-size: .78rem; }
   .thanks__tag { font-size: .58rem; letter-spacing: .18em; }
 }
+
+/* the jewelled top rod travels up while the bottom rod travels down: the paper opens from the middle */
+.op-scroll__toprod { position: absolute; left: 0; width: 100%; top: 35.8%; height: calc(100% * 110 / 968); overflow: hidden; opacity: 0; z-index: 2; filter: drop-shadow(0 8px 10px rgba(60, 20, 0, .4)); }
+.op-scroll__toprod img { position: absolute; left: 0; top: 0; width: 100%; height: auto; }
+/* a lamp catching fire: a tiny ember swells into the flame with a flare of warm light */
+.op-flame.is-lighting .op-flame__glow { animation: op-flare .9s ease-out 1, op-glow 2.2s ease-in-out .9s infinite; }
+@keyframes op-flare { 0% { opacity: 0; transform: scale(.2); } 35% { opacity: 1; transform: scale(1.6); } 100% { opacity: .9; transform: scale(1); } }
