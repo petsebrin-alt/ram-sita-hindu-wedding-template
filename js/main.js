@@ -53,7 +53,6 @@
      --------------------------------------------------------------------- */
   const Soundscape = (() => {
     const audioSources = {
-      introSriRam:       'assets/audio/intro-music.m4a',   // the Sri Ram song's music only, without the singing
       vilakkuFire:       'assets/audio/vilakku-fire-on.wav',
       paperOpen:         'assets/audio/paper-open.m4a',
       mirrorBreak:       'assets/audio/mirror-break.m4a',
@@ -73,7 +72,6 @@
 
     const sounds = {};
     const baseVolumes = {
-      introSriRam:       0.85,
       vilakkuFire:       0.88,
       paperOpen:         0.85,
       mirrorBreak:       0.95,
@@ -356,7 +354,8 @@
       } catch (e) {}
     }
     let musicStarted = false;
-    const music = () => { if (musicStarted) return; musicStarted = true; Soundscape.play('introSriRam', { allowScrollUp: true, volume: .8 }); };
+    // the Jai Jai Ram song begins as Lord Rama's arrow of light flies
+    const music = () => { if (musicStarted) return; musicStarted = true; Soundscape.play('scrapbookJaiRam', { allowScrollUp: true, volume: .85, minInterval: 0 }); };
     soundBtn.addEventListener('click', () => {
       soundOn = true; soundBtn.classList.add('is-on'); soundBtn.setAttribute('aria-pressed', 'true');
       try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); actx.resume(); } catch (e) {}
@@ -398,7 +397,7 @@
     function finish() {
       if (finished) return; finished = true;
       if (tl) tl.kill();
-      Soundscape.stop('introSriRam', { fade: 2.2 });
+      Soundscape.stop('scrapbookJaiRam', { fade: 2.2 });
       done();
       gsap.timeline({ onComplete: () => { running = false; removeEventListener('resize', measure); intro.remove(); } })
         .to(flash, { opacity: 1, duration: .55, ease: 'power2.in' })
@@ -444,7 +443,7 @@
       .fromTo(charge, { opacity: 0, scale: .2 }, { opacity: 1, scale: 1.25, duration: 1.5, ease: 'power2.in' }, 1.8)
       .add(() => sparkle(layout.bow.x, layout.bow.y, 26, 2.4), 3.1)
       // release!
-      .add(() => { released = true; whoosh(); music(); }, 3.25)
+      .add(() => { released = true; music(); }, 3.25)
       .to(rama, { scale: 1, x: 0, duration: .5, ease: 'back.out(3)' }, 3.25)
       .to(str, { opacity: 0, duration: .35 }, 3.25)
       .to(charge, { scale: 2.2, opacity: 0, duration: .6, ease: 'power2.out' }, 3.25)
@@ -460,7 +459,7 @@
       // the arrow becomes light low in the sky, and the light becomes the rolled scroll
       .to(arrow, { opacity: 0, scale: .2, duration: .3, ease: 'power2.in' }, 4.85)
       .fromTo(burst, { opacity: 0, scale: .2 }, { opacity: 1, scale: 1, duration: .55, ease: 'power2.out' }, 4.9)
-      .add(() => { sparkle(layout.target.x, layout.target.y, 60, 4); Soundscape.play('templeBell', { allowScrollUp: true, volume: .55 }); }, 4.9)
+      .add(() => { sparkle(layout.target.x, layout.target.y, 60, 4); }, 4.9)
       .fromTo(closed, { opacity: 0, scale: .5, y: () => layout.boxH * .25 }, { opacity: 1, scale: 1, y: () => layout.boxH * .25, duration: 1, ease: 'back.out(1.4)' }, 5.0)
       .to(burst, { opacity: 0, duration: 1.4, ease: 'sine.out' }, 5.5)
       // the rolled scroll rises gently into place...
