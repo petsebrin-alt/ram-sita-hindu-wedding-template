@@ -112,7 +112,8 @@
           scrollDirection = newDir;
           if (scrollDirection === -1) {
             // Scrolling up: silence all sounds immediately per user requirement
-            Soundscape.stopAll({ fade: 0.25 });
+            // (except music that belongs to a moment the guest started, like the Sita Ram music after accepting)
+            Soundscape.stopAll({ fade: 0.25, keep: ['ramSitaTarang', 'rsvpFlute'] });
           }
         }
         lastScrollY = y;
@@ -225,8 +226,9 @@
 
       isPlaying(name) { const a = sounds[name]; return !!a && !a.paused; },
 
-      stopAll({ fade = 0.5 } = {}) {
+      stopAll({ fade = 0.5, keep = [] } = {}) {
         Object.keys(sounds).forEach(name => {
+          if (keep.includes(name)) return;
           this.stop(name, { fade });
         });
       }
@@ -839,6 +841,24 @@
      06 · FAMILIES — each card's gold outline is drawn stroke by stroke as you
      scroll, then the card fills in, the details appear and lotus flowers bloom
      --------------------------------------------------------------------- */
+  // a soft temple-bell shimmer used while the families' golden line draws
+  let chimeCtx = null;
+  ['pointerdown', 'touchstart', 'keydown'].forEach(ev => addEventListener(ev, () => {
+    try { chimeCtx = chimeCtx || new (window.AudioContext || window.webkitAudioContext)(); if (chimeCtx.state === 'suspended') chimeCtx.resume(); } catch (e) {}
+  }, { passive: true }));
+  const PENTA = [523.25, 587.33, 659.25, 783.99, 880, 1046.5, 1174.66, 1318.5, 1567.98, 1760];
+  function goldChime(step) {
+    const c = chimeCtx; if (!c || c.state !== 'running' || document.hidden) return;
+    const t = c.currentTime, f = PENTA[step % PENTA.length] * (step >= PENTA.length ? 1 : 1);
+    [1, 2.76, 5.4].forEach((m, k) => {           // a bell: fundamental and two soft overtones
+      const o = c.createOscillator(), g = c.createGain();
+      o.type = 'sine'; o.frequency.value = f * m;
+      const v = [.05, .018, .008][k];
+      g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(v, t + .008); g.gain.exponentialRampToValueAtTime(.0001, t + 1.6 / (k + 1));
+      o.connect(g).connect(c.destination); o.start(t); o.stop(t + 1.7);
+    });
+  }
+
   function initFamilies() {
     const cards = $$('.family');
     if (!cards.length) return;
@@ -894,8 +914,17 @@
       gsap.set(flowers, { scale: 0, y: 10, opacity: 0 });
       const TAIL = .045;
       const pen = { a: 0, b: 0 };   // a: outer line drawn so far, b: inner line drawn so far
+      let lastNote = -1, lastAt = 0;
+      const chime = () => {          // one note of a rising pentatonic shimmer for every bit of line drawn
+        const step = Math.floor(pen.a * 24);
+        if (step === lastNote || pen.a <= .001 || pen.a >= .999) return;
+        const now = performance.now(); if (now - lastAt < 110) return;
+        const up = step > lastNote; lastNote = step; lastAt = now;
+        if (up) goldChime(step);
+      };
       const draw = () => {
         const a = pen.a, b = pen.b;
+        chime();
         [outer.halo, outer.line].forEach(p => { p.style.strokeDasharray = '1 2'; p.style.strokeDashoffset = 1 - a; });
         [inner.halo, inner.line].forEach(p => { p.style.strokeDasharray = '1 2'; p.style.strokeDashoffset = 1 - b; });
         const live = a > .001 && a < .999;
@@ -1907,7 +1936,6 @@
     // 2. tap the wax seal: it breaks, the flap opens, the letter rises and the invitation comes out
     function openEnvelope() {
       Soundscape.play('clickSeal', { volume: 0.95, allowScrollUp: true, minInterval: 50 });
-      Soundscape.stop('rsvpFlute', { fade: 1.2 });
       if (opened) return; opened = true;
       stage.classList.add('is-open');
       if (!ANIM) { gsap.set(card, { autoAlpha: 1 }); return; }
@@ -1992,8 +2020,9 @@
     $('#rsvpAccept').addEventListener('click', () => {
       Soundscape.play('clickSeal', { volume: 0.95, allowScrollUp: true, minInterval: 50 });
       store.set(KEY, { status: 'accept', at: new Date().toISOString() });
-      Soundscape.stop('rsvpFlute', { fade: .6 });
-      Soundscape.play('ramSitaTarang', { allowScrollUp: true, minInterval: 0 });
+      Soundscape.stop('rsvpFlute', { fade: .5 });
+      // the Sita Ram music plays from now until the guest scrolls on to the next section
+      Soundscape.play('ramSitaTarang', { loop: true, allowScrollUp: true, minInterval: 0 });
       showDone(true);
     });
 
@@ -2009,7 +2038,7 @@
     // the answer is remembered, but every visit starts again with Hanuman flying in
     // leaving the RSVP section (either way) quiets its music
     const quiet = () => { Soundscape.stop('rsvpFlute', { fade: .8 }); Soundscape.stop('ramSitaTarang', { fade: 1.2 }); };
-    ScrollTrigger.create({ trigger: '#rsvp', start: 'top bottom', end: 'bottom top', onLeave: quiet, onLeaveBack: quiet });
+    ScrollTrigger.create({ trigger: '#rsvp', start: 'top bottom', end: 'bottom 30%', onLeave: quiet, onLeaveBack: quiet });
   }
 
 

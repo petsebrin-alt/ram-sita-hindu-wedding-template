@@ -1737,3 +1737,10 @@ section.is-offscreen *, section.is-offscreen::before, section.is-offscreen::afte
 @media (max-width: 560px) { .events { --ev-h: min(560px, calc(100svh - var(--header-h) - 330px)); } }
 .ev-unit { margin-bottom: calc(12vh + 240px); }
 .ev-pop__deva { margin-top: calc(var(--cs) * -42); } @media (max-width: 560px) { .ev-pop__deva { margin-top: calc(var(--cs) * -20); } .ev-pop__title { font-size: 1.45rem; } }
+/* wedding mandap: the canopy sits higher and the couple stands above the card, so Ram & Sita's faces are always clear */
+.ev-scene--wedding .ev-scene__canopy { width: 64%; top: -7%; }
+.ev-scene--wedding .ev-scene__pillar { height: 62%; bottom: 22%; }
+.ev-scene--wedding .ev-scene__pillar--l { left: 17%; } .ev-scene--wedding .ev-scene__pillar--r { right: 17%; }
+.ev-scene--wedding .ev-scene__couple { height: 48%; bottom: 22%; }
+/* laptops: the window takes all the height the card leaves free, so the scene is never squeezed */
+@media (min-width: 561px) { .events { --ev-h: min(560px, calc((100svh - var(--header-h) - 104px - 7vh - 272px) / .6)); } }
