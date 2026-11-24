@@ -287,17 +287,21 @@
     let wide = false, layout = null;
     function measure() {
       const vw = innerWidth, vh = innerHeight;
-      wide = vw / vh >= 0.8;
-      intro.classList.toggle('is-wide', wide);
-      const px = wide ? .5 : .66, py = wide ? .9 : .5;
-      intro.style.setProperty('--bg-pos', (px * 100) + '% ' + (py * 100) + '%');
-      const s = Math.max(vw / IW, vh / IH), rw = IW * s, rh = IH * s, ox = (vw - rw) * px, oy = (vh - rh) * py;
+      // phones: the picture fills the screen. Anything wider: the picture keeps its own shape in the centre
+      const panel = vw / vh > .62;
+      intro.classList.toggle('is-panel', panel);
+      let rw, rh, ox, oy, pw;
+      if (panel) {
+        rh = vh; rw = vh * IW / IH; ox = (vw - rw) / 2; oy = 0; pw = rw;
+        intro.style.setProperty('--pl', ox + 'px'); intro.style.setProperty('--pw', rw + 'px');
+      } else {
+        const px = .66, s = Math.max(vw / IW, vh / IH);
+        rw = IW * s; rh = IH * s; ox = (vw - rw) * px; oy = (vh - rh) / 2; pw = vw;
+        intro.style.setProperty('--bg-pos', '66% 50%');
+      }
+      intro.style.setProperty('--op-sw', Math.min(440, pw * .86, (vh - 70) * .77) + 'px');
       const at = (fx, fy) => ({ x: ox + fx * rw, y: oy + fy * rh });
-      let bow, bowH;
-      if (wide) {
-        const r = rama.getBoundingClientRect();
-        bow = { x: r.left + r.width * .8, y: r.top + r.height * .47 }; bowH = r.height * .62;
-      } else { bow = at(.894, .197); bowH = .2 * rh; }
+      const bow = at(.894, .197), bowH = .2 * rh;
       const sr = scroll.getBoundingClientRect();
       layout = { vw, vh, bow, bowH, s: rh, at, boxH: sr.height, target: { x: sr.left + sr.width / 2, y: sr.top + sr.height * .7 } };
       flames.forEach(f => {
@@ -308,9 +312,10 @@
       const place = (el, p) => { el.style.left = p.x + 'px'; el.style.top = p.y + 'px'; };
       place(aura, bow); place(charge, bow); place(str, { x: bow.x + bowH * .02, y: bow.y }); str.style.height = bowH + 'px';
       place(burst, layout.target);
-      cv.width = vw * Math.min(devicePixelRatio || 1, 2); cv.height = vh * Math.min(devicePixelRatio || 1, 2);
+      const dpr = Math.min(devicePixelRatio || 1, small() ? 1.5 : 2);
+      cv.width = vw * dpr; cv.height = vh * dpr;
       cv.style.width = vw + 'px'; cv.style.height = vh + 'px';
-      ctx.setTransform(cv.width / vw, 0, 0, cv.height / vh, 0, 0);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
     measure();
     addEventListener('resize', measure);
@@ -342,6 +347,10 @@
     intro.addEventListener('pointerdown', () => { try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); actx.resume(); } catch (e) {} }, { once: true });
 
     /* ---- golden dust and the arrow's trail of light ---- */
+    const sprite = document.createElement('canvas'); sprite.width = sprite.height = 64;
+    { const sc = sprite.getContext('2d'), g = sc.createRadialGradient(32, 32, 0, 32, 32, 32);
+      g.addColorStop(0, 'rgba(255,250,220,1)'); g.addColorStop(.4, 'rgba(255,200,90,.6)'); g.addColorStop(1, 'rgba(255,150,40,0)');
+      sc.fillStyle = g; sc.fillRect(0, 0, 64, 64); }
     const dust = [], trail = [];
     for (let i = 0; i < (small() ? 26 : 46); i++) dust.push({ x: Math.random(), y: Math.random(), r: .6 + Math.random() * 1.8, v: .0002 + Math.random() * .0005, t: Math.random() * 6.28 });
     let running = true;
@@ -359,14 +368,12 @@
       for (let i = trail.length - 1; i >= 0; i--) {
         const p = trail[i]; p.x += p.vx; p.y += p.vy; p.vy += .015; p.life -= p.decay;
         if (p.life <= 0) { trail.splice(i, 1); continue; }
-        const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 3);
-        g.addColorStop(0, `rgba(255,250,220,${p.life})`); g.addColorStop(.4, `rgba(255,200,90,${p.life * .6})`); g.addColorStop(1, 'rgba(255,150,40,0)');
-        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(p.x, p.y, p.r * 3, 0, 6.283); ctx.fill();
+        ctx.globalAlpha = p.life; ctx.drawImage(sprite, p.x - p.r * 3, p.y - p.r * 3, p.r * 6, p.r * 6); ctx.globalAlpha = 1;
       }
       ctx.globalCompositeOperation = 'source-over';
     }
     requestAnimationFrame(frame);
-    const sparkle = (x, y, n, spread = 1.6) => { for (let i = 0; i < n; i++) trail.push({ x, y, vx: (Math.random() - .5) * spread, vy: (Math.random() - .5) * spread - .3, r: 1.5 + Math.random() * 3.5, life: 1, decay: .012 + Math.random() * .02 }); };
+    const sparkle = (x, y, n, spread = 1.6) => { if (small()) n = Math.ceil(n * .6); if (trail.length > 260) return; for (let i = 0; i < n; i++) trail.push({ x, y, vx: (Math.random() - .5) * spread, vy: (Math.random() - .5) * spread - .3, r: 1.5 + Math.random() * 3.5, life: 1, decay: .012 + Math.random() * .02 }); };
 
     /* ---- finishing: light floods the screen and the website opens ---- */
     let finished = false, released = false, tl = null;
