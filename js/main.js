@@ -477,7 +477,8 @@
       .set(sheet, { opacity: 1 }, 7.9)
       // then the paper opens softly from the middle: the top rod rises, the bottom rod rolls down
       .to({ p: 0 }, { p: 1, duration: 5.4, ease: 'sine.inOut', onUpdate() { openTo(this.targets()[0].p); } }, 8.0)
-      .to(lines, { opacity: 1, y: 0, duration: .8, ease: 'power2.out', stagger: .34 }, 9.6);
+      .to(lines, { opacity: 1, y: 0, duration: .8, ease: 'power2.out', stagger: .34 }, 9.6)
+      .add(() => finish(), 13.4 + 2);
 
     // on wide screens the journey from the sky to the ghat takes a little longer, so everything after the release waits
     const D = panEnd > layout.vh * .3 ? 1.1 : 0;
@@ -664,6 +665,7 @@
 
   function heroIntro() {
     if (!ANIM) return;
+    if (window.__heroTl) gsap.delayedCall(.4, () => window.__heroTl.play(0));
     gsap.from('.hero__shubh', { opacity: 0, y: -14, duration: 1.2, ease: 'power3.out' });
     gsap.from('.hero__name', { opacity: 0, y: 40, scale: .92, duration: 1.6, stagger: .25, ease: 'power3.out', delay: .15 });
     gsap.from('.hero__amp', { opacity: 0, scale: .4, duration: 1.4, ease: 'back.out(2)', delay: .55 });
@@ -677,22 +679,11 @@
     gsap.set(lotuses, { y: 120, opacity: 0 });
     gsap.set('.plotus__bud', { opacity: 1, scale: .7 });
     gsap.set('.plotus__bloom', { opacity: 0, scale: .3, rotate: -8 });
-    const tl = gsap.timeline({
-      defaults: { ease: 'none' },
-      scrollTrigger: {
-        trigger: '#welcome',
-        start: 'top top',
-        end: () => '+=' + innerHeight * 3.2,
-        scrub: 1,
-        pin: true,
-        anticipatePin: 1,
-        onUpdate: self => {
-          if (self.progress > 0.72 && self.progress < 0.92 && self.direction > 0) {
-            Soundscape.play('vilakkuFire', { minInterval: 2500 });
-          }
-        }
-      }
-    });
+    // plays by itself once the invitation is opened: night turns to dawn in about a second,
+    // then the lotuses bloom, Ram & Sita appear and the vilakku light, all within about four seconds
+    const tl = gsap.timeline({ defaults: { ease: 'none' }, paused: true });
+    tl.timeScale(2.8);
+    window.__heroTl = tl;
     tl.to('.scroll-cue', { opacity: 0, y: 20, duration: .6 }, 0)
       // 1 · the lights of the temple come on
       .to('.hero__img--night', { opacity: 0, duration: 2.6, ease: 'power1.inOut' }, 0.2)
@@ -720,7 +711,7 @@
     tl.fromTo('.hero__couple', { opacity: 0, y: 70, scale: .92, transformOrigin: '50% 100%' }, { opacity: 1, y: 0, scale: 1, duration: 2, ease: 'power2.out' }, 7.2)
       .fromTo('.vilakku-unit', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: .7, stagger: .12, ease: 'power2.out' }, 8.0)
       .call(() => {
-        Soundscape.play('vilakkuFire');
+        Soundscape.play('vilakkuFire', { allowScrollUp: true, minInterval: 0 });
       }, [], 8.35)
       .fromTo('.vilakku__fire', {
         scale: 0,
