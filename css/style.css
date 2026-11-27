@@ -206,6 +206,19 @@ section { position: relative; }
 .site-header__right { display: flex; align-items: center; gap: 10px; }
 .menu-btn { display: flex; align-items: center; gap: 8px; background: none; border: 1px solid rgba(212, 175, 90, .7); border-radius: 999px; padding: .45em 1em .45em .8em; color: var(--gold-300); font-family: var(--f-caps); font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; }
 .menu-btn svg { width: 18px; height: 18px; }
+.mute-btn { display: inline-flex; align-items: center; gap: 6px; background: none; border: 1px solid rgba(212, 175, 90, .7); border-radius: 999px; padding: .45em .9em .45em .7em; color: var(--gold-300); font-family: var(--f-caps); font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; cursor: pointer; transition: background .3s, color .3s; }
+.mute-btn:hover, .mute-btn:focus-visible { background: rgba(212, 175, 90, .14); }
+.mute-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.mute-btn .mute-btn__spk { fill: currentColor; }
+.mute-btn .mute-btn__off { display: none; }
+.mute-btn.is-muted .mute-btn__on { display: none; }
+.mute-btn.is-muted .mute-btn__off { display: inline; }
+.mute-btn.is-muted { color: var(--ivory-100); border-color: rgba(212, 175, 90, .45); }
+@media (max-width: 560px) {
+  .mute-btn { padding: .45em; }
+  .mute-btn__label { display: none; }
+  .site-header__right { gap: 8px; }
+}
 
 .menu {
   position: fixed; inset: 0; z-index: 70;

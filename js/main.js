@@ -49,6 +49,53 @@
   const toTop = () => { window.scrollTo(0, 0); document.documentElement.scrollTop = 0; };
 
   /* ---------------------------------------------------------------------
+     Mute: one button in the header silences every sound on the page:
+     music files, sound effects and the Web Audio bells/ticks, and brings
+     them back when tapped again. The guest's choice is remembered.
+     --------------------------------------------------------------------- */
+  const Mute = (() => {
+    let muted = false;
+    try { muted = localStorage.getItem('rs-muted') === '1'; } catch (e) {}
+    const media = new Set();
+    const ctxs = new Set();
+    const MP = HTMLMediaElement.prototype;
+    const origPlay = MP.play;
+    MP.play = function () { media.add(this); this.muted = muted; return origPlay.apply(this, arguments); };
+    ['AudioContext', 'webkitAudioContext'].forEach(k => {
+      const Orig = window[k];
+      if (!Orig) return;
+      const origResume = Orig.prototype.resume;
+      Orig.prototype.resume = function () { return muted ? Promise.resolve() : origResume.apply(this, arguments); };
+      const Wrapped = function () { const c = new Orig(...arguments); ctxs.add(c); if (muted) { try { c.suspend(); } catch (e) {} } return c; };
+      Wrapped.prototype = Orig.prototype;
+      window[k] = Wrapped;
+    });
+    const paint = () => $$('#muteBtn').forEach(b => {
+      b.classList.toggle('is-muted', muted);
+      b.setAttribute('aria-pressed', String(muted));
+      const t = muted ? 'Unmute music' : 'Mute music';
+      b.setAttribute('aria-label', t); b.title = t;
+      const l = b.querySelector('.mute-btn__label'); if (l) l.textContent = muted ? 'Muted' : 'Sound';
+    });
+    const set = (m) => {
+      muted = !!m;
+      try { localStorage.setItem('rs-muted', muted ? '1' : '0'); } catch (e) {}
+      media.forEach(a => { a.muted = muted; });
+      $$('audio, video').forEach(a => { a.muted = muted; });
+      ctxs.forEach(c => { try { muted ? c.suspend() : c.resume(); } catch (e) {} });
+      paint();
+    };
+    document.addEventListener('DOMContentLoaded', paint);
+    paint();
+    document.addEventListener('click', (e) => {
+      const b = e.target.closest && e.target.closest('#muteBtn');
+      if (b) { e.preventDefault(); set(!muted); }
+    });
+    return { set, get muted() { return muted; } };
+  })();
+  window.__mute = Mute;
+
+  /* ---------------------------------------------------------------------
      Curated Sacred & Ceremonial Soundscape (Feel Movement)
      --------------------------------------------------------------------- */
   const Soundscape = (() => {
@@ -360,6 +407,7 @@
     const music = () => { if (musicStarted) return; musicStarted = true; Soundscape.play('openingJaiRam', { loop: true, allowScrollUp: true, minInterval: 0 }); };   // keeps circling until Open Invitation
     soundBtn.addEventListener('click', () => {
       soundOn = true; soundBtn.classList.add('is-on'); soundBtn.setAttribute('aria-pressed', 'true');
+      if (Mute.muted) Mute.set(false);
       try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); actx.resume(); } catch (e) {}
       if (released) { musicStarted = false; music(); }
     });
